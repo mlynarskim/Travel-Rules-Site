@@ -21,10 +21,12 @@
     body {
       font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
         Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
-      transition: background-color 0.3s, color 0.3s;
+      transition: background-color 1s, color 1s;
     }
 
-    /* ========== THEME CLASSIC ========== */
+    /* ========== MOTYWY JASNE ========== */
+
+    /* THEME CLASSIC */
     body.theme-classic {
       --color-primary: #29606D;
       --color-secondary: #DDAA4F;
@@ -39,9 +41,11 @@
       --color-warning: #FFC107;
       --color-error: #FF5252;
       --color-button-highlight: rgba(255, 255, 255, 0.2);
+      background-color: var(--color-bg);
+      color: var(--color-text-primary);
     }
 
-    /* ========== THEME MOUNTAIN ========== */
+    /* THEME MOUNTAIN */
     body.theme-mountain {
       --color-primary: #2B4C7E;
       --color-secondary: #738FA7;
@@ -56,9 +60,11 @@
       --color-warning: #FFC107;
       --color-error: #FF5252;
       --color-button-highlight: rgba(255, 255, 255, 0.2);
+      background-color: var(--color-bg);
+      color: var(--color-text-primary);
     }
 
-    /* ========== THEME BEACH ========== */
+    /* THEME BEACH */
     body.theme-beach {
       --color-primary: #1B6C8A;
       --color-secondary: #e8723f;
@@ -73,9 +79,11 @@
       --color-warning: #FF9F1C;
       --color-error: #D7263D;
       --color-button-highlight: rgba(255, 255, 255, 0.25);
+      background-color: var(--color-bg);
+      color: var(--color-text-primary);
     }
 
-    /* ========== THEME DESERT ========== */
+    /* THEME DESERT */
     body.theme-desert {
       --color-primary: #C19A6B;
       --color-secondary: #FFB347;
@@ -90,9 +98,11 @@
       --color-warning: #FFC107;
       --color-error: #FF5252;
       --color-button-highlight: rgba(255, 255, 255, 0.2);
+      background-color: var(--color-bg);
+      color: var(--color-text-primary);
     }
 
-    /* ========== THEME FOREST ========== */
+    /* THEME FOREST */
     body.theme-forest {
       --color-primary: #2E8B57;
       --color-secondary: #4CAF50;
@@ -107,32 +117,65 @@
       --color-warning: #FFC107;
       --color-error: #FF5252;
       --color-button-highlight: rgba(255, 255, 255, 0.2);
-    }
-
-    /* Domyślne tło i kolory tekstu */
-    body.theme-classic {
       background-color: var(--color-bg);
       color: var(--color-text-primary);
     }
 
-    body.dark-mode {
-      --color-bg: #1e1e1e;
-      --color-text-primary: #fff; 
-      --color-text-secondary: #fff;
-      --color-card-background: #fff;
+    /* ========== DARK MODE DLA KAŻDEGO MOTYWU ========== */
+
+    /* CLASSIC DARK */
+    body.theme-classic.dark-mode {
+      --color-bg: #1a1a1a;
+      --color-text-primary: #f0f0f0;
+      --color-text-secondary: #cccccc;
+      --color-card-background: #2a2a2a;
     }
 
+    /* MOUNTAIN DARK */
+    body.theme-mountain.dark-mode {
+      --color-bg: #121212;
+      --color-text-primary: #fafafa;
+      --color-text-secondary: #cccccc;
+      --color-card-background: #2e2e2e;
+    }
+
+    /* BEACH DARK */
+    body.theme-beach.dark-mode {
+      --color-bg: #131313;
+      --color-text-primary: #f7f7f7;
+      --color-text-secondary: #d0d0d0;
+      --color-card-background: #2b2b2b;
+    }
+
+    /* DESERT DARK */
+    body.theme-desert.dark-mode {
+      --color-bg: #1c1c1c;
+      --color-text-primary: #f5f5f5;
+      --color-text-secondary: #c9c9c9;
+      --color-card-background: #2c2c2c;
+    }
+
+    /* FOREST DARK */
+    body.theme-forest.dark-mode {
+      --color-bg: #141414;
+      --color-text-primary: #eeeeee;
+      --color-text-secondary: #cccccc;
+      --color-card-background: #252525;
+    }
+
+    /* Dodatkowe ustawienia hero-text w trybie ciemnym */
     body.dark-mode .hero-text {
-      color: #fff;
+      background-color: rgba(255, 255, 255, 0.1);
+      color: var(--color-text-primary);
     }
 
     body.dark-mode .hero-text a {
-      background-color: #000;
-      color: #fff;
+      background-color: var(--color-text-primary);
+      color: var(--color-bg);
       transition: background-color 0.3s;
     }
     body.dark-mode .hero-text a:hover {
-      background-color: #333;
+      background-color: var(--color-secondary);
     }
 
     /* NAGŁÓWEK */
@@ -155,6 +198,7 @@
       color: var(--color-text-primary);
     }
 
+    /* ========== MENU ========== */
     nav ul {
       list-style: none;
       display: flex;
@@ -172,18 +216,18 @@
       opacity: 0.7;
     }
 
-    /* Przełącznik językowy oraz dropdown zmiany motywu i przełącznik ciemnego/jasnego trybu */
+    /* PRZEŁĄCZNIKI (motyw, język, tryb ciemny/jasny) */
     .header-extra {
       display: flex;
       align-items: center;
       gap: 15px;
     }
 
-    .header-extra select,
-    .header-extra label {
+    .header-extra label,
+    .header-extra select {
       font-size: 1rem;
     }
-    
+
     .dark-toggle {
       display: flex;
       align-items: center;
@@ -191,12 +235,22 @@
       cursor: pointer;
     }
 
+    /* IKONA HAMBURGER */
+    .menu-toggle {
+      display: none;
+      background: none;
+      border: none;
+      color: var(--color-text-primary);
+      font-size: 1.8rem;
+      cursor: pointer;
+    }
+
     /* SEKCJA HERO */
     .hero {
       position: relative;
       width: 100%;
-      height: 100vh; 
-      background: url("") no-repeat center center/cover; 
+      height: 100vh;
+      background: url("") no-repeat center center/cover;
       display: flex;
       align-items: center;
       justify-content: center;
@@ -239,7 +293,7 @@
       background-color: var(--color-secondary);
     }
 
-    /* SEKCJA OGÓLNA */
+    /* SEKCJA (SECTION) */
     .section {
       width: 100%;
       max-width: 1200px;
@@ -270,7 +324,7 @@
       margin-top: 40px;
     }
 
-    /* Efekt pojawiania się elementów przy przewijaniu */
+    /* ANIMACJA POJAWIANIA SIĘ */
     .feature-box {
       background-color: var(--color-card-background);
       padding: 40px 20px;
@@ -302,7 +356,7 @@
       line-height: 1.5;
     }
 
-    /* SEKCJA ZRZUTÓW EKRANU (lokalne obrazy) */
+    /* ZRZUTY EKRANU */
     .screenshots {
       display: flex;
       flex-wrap: wrap;
@@ -323,7 +377,7 @@
       transform: scale(1.05);
     }
 
-    /* SEKCJA AKTUALNOŚCI */
+    /* AKTUALNOŚCI */
     .updates {
       text-align: left;
       margin-top: 40px;
@@ -345,7 +399,7 @@
       margin-bottom: 15px;
     }
 
-    /* NOWA SEKCJA: ROZSZERZONE FUNKCJE LOKALIZACJI I EKSPORTU LIST */
+    /* SEKCJA EXTENDED */
     .extended {
       text-align: left;
       margin-top: 40px;
@@ -381,7 +435,7 @@
       margin-left: -1em;
     }
 
-    /* SEKCJA CTA (Call to Action) */
+    /* CTA */
     .cta {
       background-color: var(--color-primary);
       color: #fff;
@@ -426,25 +480,67 @@
       color: var(--color-text-secondary);
     }
 
-    .social-links a {
-      color: var(--color-text-primary);
-      text-decoration: none;
-      margin: 0 10px;
-      transition: opacity 0.3s;
-    }
-
-    .social-links a:hover {
-      opacity: 0.6;
-    }
-
     /* RESPONSYWNOŚĆ */
     @media screen and (max-width: 768px) {
-      .hero-text {
-        padding: 20px;
+      .header-extra {
+        gap: 10px;
       }
 
-      .features {
-        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      /* hamburger widoczny */
+      .menu-toggle {
+        display: block;
+      }
+
+      /* HAMBURGER – po kliknięciu .show-menu pokazuje dropdown na środku */
+nav ul {
+  display: none;           /* domyślnie ukryte */
+  flex-direction: column;
+  align-items: center;     /* wyśrodkowanie w poziomie */
+  background: var(--color-bg);
+  position: absolute;
+  top: 80px;
+  left: 50%;               /* przesunięcie w poziomie do połowy ekranu */
+  transform: translateX(-50%) translateY(-10px);
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+  opacity: 0;
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+nav ul.show-menu {
+  display: flex; 
+  opacity: 1;
+  transform: translateX(-50%) translateY(0);
+}
+
+
+      /* Zastępujemy dropdown języka flagami (tylko w stylu) */
+      .header-extra #languageSelect {
+        display: none; /* ukrywamy select */
+      }
+      .lang-flags {
+        display: flex;
+        gap: 8px;
+      }
+      .lang-flags img {
+        width: 25px;
+        height: 25px;
+        cursor: pointer;
+      }
+
+      /* Zastępujemy dropdown motywu jedną ikonką (przykład) */
+      .theme-selector {
+        display: none;
+      }
+      .theme-icons {
+        display: flex;
+        gap: 8px;
+      }
+      .theme-icons img {
+        width: 25px;
+        height: 25px;
+        cursor: pointer;
       }
     }
 
@@ -477,12 +573,28 @@
         font-size: 1rem;
       }
     }
+    /* Ikonki emoji – prosta stylizacja */
+.flag-emoji, .theme-emoji {
+  font-size: 1.5rem;    /* zwiększamy rozmiar */
+  cursor: pointer;
+  margin: 0 5px;       /* odstępy między flagami/ikonami */
+  transition: transform 0.2s;
+}
+
+.flag-emoji:hover, .theme-emoji:hover {
+  transform: scale(1.2);  /* lekkie powiększenie przy najechaniu */
+}
+
   </style>
 </head>
 <body class="theme-classic">
   <!-- NAGŁÓWEK -->
   <header>
     <a href="#" class="logo" data-lang-key="logo">Travel Rules</a>
+
+    <!-- HAMBURGER -->
+    <button class="menu-toggle" id="menuToggle">&#9776;</button>
+
     <nav>
       <ul>
         <li><a href="#app" data-lang-key="about">O Aplikacji</a></li>
@@ -492,8 +604,9 @@
         <li style="margin-left: 20px;"><a href="#cta" data-lang-key="download">Pobierz</a></li>
       </ul>
     </nav>
+
     <div class="header-extra">
-      <!-- Przełącznik motywów -->
+      <!-- Wybór motywu (desktop) -->
       <select class="theme-selector" id="themeSelect">
         <option value="classic">Classic</option>
         <option value="mountain">Mountain</option>
@@ -501,14 +614,33 @@
         <option value="desert">Desert</option>
         <option value="forest">Forest</option>
       </select>
-      <!-- Przełącznik językowy -->
+      <!-- Zastępcze ikony motywów (mobil) -->
+      <div class="theme-icons" style="display:none;">
+        <!-- Przykładowe ikony - zamień na własne -->
+        <img src="https://via.placeholder.com/25/29606D" data-theme="classic" alt="Classic">
+        <img src="https://via.placeholder.com/25/2B4C7E" data-theme="mountain" alt="Mountain">
+        <img src="https://via.placeholder.com/25/1B6C8A" data-theme="beach" alt="Beach">
+        <img src="https://via.placeholder.com/25/C19A6B" data-theme="desert" alt="Desert">
+        <img src="https://via.placeholder.com/25/2E8B57" data-theme="forest" alt="Forest">
+      </div>
+
+      <!-- Wybór języka (desktop) -->
       <select id="languageSelect">
         <option value="pl">Polski</option>
         <option value="en">English</option>
         <option value="es">Español</option>
       </select>
+      <!-- Ikony flag (mobil) -->
+<div class="lang-flags" style="display:none;">
+  <!-- Używamy emotek flag (lub innych emoji) -->
+  <span class="flag-emoji" data-lang="pl">🇵🇱</span>
+  <span class="flag-emoji" data-lang="en">🇬🇧</span>
+  <span class="flag-emoji" data-lang="es">🇪🇸</span>
+</div>
+
       <!-- Przełącznik ciemny/jasny -->
       <div class="dark-toggle">
+        <!-- Można zastąpić ikonami słońce / księżyc -->
         <label for="darkModeToggle">Tryb ciemny</label>
         <input type="checkbox" id="darkModeToggle">
       </div>
@@ -627,7 +759,12 @@
     <p data-lang-key="cta_text">Pobierz Travel Rules na swoje urządzenie iOS. Aplikacja dostępna wyłącznie na iOS – poczuj różnicę dzięki intuicyjnemu interfejsowi i zaawansowanym funkcjom.</p>
     <div class="download-link" style="display: inline-block; text-align: center;">
       <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/fa/Apple_logo_black.svg/100px-Apple_logo_black.svg.png" alt="Apple Logo" style="width: 50px; height: auto; display: block; margin: 0 auto;">
-      <a href="https://apps.apple.com/pl/app/travel-rules/id6451070215?l=pl" style="background-color: rgba(255, 255, 255, 0.7); color: #000; text-decoration: none; padding: 10px; display: inline-block; margin-top: 10px;">Pobierz na iOS</a>
+      <!-- Przycisk z kluczem do tłumaczenia "download_on_ios" -->
+      <a href="https://apps.apple.com/pl/app/travel-rules/id6451070215?l=pl"
+         data-lang-key="download_on_ios"
+         style="background-color: rgba(255, 255, 255, 0.7); color: #000; text-decoration: none; padding: 10px; display: inline-block; margin-top: 10px;">
+         Pobierz na iOS
+      </a>
     </div>
   </section>
 
@@ -656,9 +793,17 @@
    <p>Wszystkie Prawa Zastrzeżone &copy; 2025 Travel Rules</p>
   </footer>
 
-  <!-- SKRYPT JS: PRZEŁĄCZANIE MOTYWU, CIEMNY/JASNY TRYB ORAZ PRZEŁĄCZANIE JĘZYKÓW -->
+  <!-- SKRYPT JS: PRZEŁĄCZANIE MOTYWU, CIEMNY/JASNY TRYB, ROZWIJANIE MENU, PRZEŁĄCZANIE JĘZYKÓW -->
   <script>
-    // Przełączanie motywów
+    // MENU TOGGLE
+    const menuToggle = document.getElementById('menuToggle');
+    const navUl = document.querySelector('nav ul');
+
+    menuToggle.addEventListener('click', () => {
+      navUl.classList.toggle('show-menu');
+    });
+
+    // PRZEŁĄCZANIE MOTYWÓW
     const themeSelect = document.getElementById('themeSelect');
     const body = document.querySelector('body');
     themeSelect.addEventListener('change', (event) => {
@@ -667,7 +812,17 @@
       body.classList.add(`theme-${themeName}`);
     });
 
-    // Przełącznik ciemny/jasny
+    // Ikony motywów (mobil)
+    const themeIcons = document.querySelectorAll('.theme-icons img');
+    themeIcons.forEach(icon => {
+      icon.addEventListener('click', () => {
+        const themeName = icon.getAttribute('data-theme');
+        body.classList.remove('theme-classic', 'theme-mountain', 'theme-beach', 'theme-desert', 'theme-forest');
+        body.classList.add(`theme-${themeName}`);
+      });
+    });
+
+    // PRZEŁĄCZNIK CIEMNY/JASNY
     const darkModeToggle = document.getElementById('darkModeToggle');
     darkModeToggle.addEventListener('change', (event) => {
       if(event.target.checked) {
@@ -677,12 +832,11 @@
       }
     });
 
-    // Efekt przewijania: dodanie klasy "in-view" do .feature-box po pojawieniu się w widoku
+    // Efekt przewijania: dodanie klasy "in-view" do .feature-box
     const featureBoxes = document.querySelectorAll('.feature-box');
     const observerOptions = {
       threshold: 0.3
     };
-
     const observer = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
         if(entry.isIntersecting) {
@@ -691,13 +845,31 @@
         }
       });
     }, observerOptions);
-
     featureBoxes.forEach(box => {
       observer.observe(box);
     });
 
-    // Obsługa przełącznika językowego
+    // Obsługa języka
     const languageSelect = document.getElementById('languageSelect');
+// Flagi/emotikony językowe
+const langFlags = document.querySelectorAll('.flag-emoji');
+langFlags.forEach(flag => {
+  flag.addEventListener('click', () => {
+    const lang = flag.getAttribute('data-lang');
+    setLanguage(lang);
+  });
+});
+
+// Ikonki/emotikony do motywu
+const themeEmojis = document.querySelectorAll('.theme-emoji');
+themeEmojis.forEach(emoji => {
+  emoji.addEventListener('click', () => {
+    const themeName = emoji.getAttribute('data-theme');
+    body.classList.remove('theme-classic', 'theme-mountain', 'theme-beach', 'theme-desert', 'theme-forest');
+    body.classList.add(`theme-${themeName}`);
+  });
+});
+
     const translations = {
       pl: {
         logo: "Travel Rules",
@@ -744,7 +916,8 @@
         contact_title: "Kontakt",
         contact_name: "Imię:",
         contact_email: "Email:",
-        contact_message: "Wiadomość:"
+        contact_message: "Wiadomość:",
+        download_on_ios: "Pobierz na iOS"
       },
       en: {
         logo: "Travel Rules",
@@ -791,7 +964,8 @@
         contact_title: "Contact",
         contact_name: "Name:",
         contact_email: "Email:",
-        contact_message: "Message:"
+        contact_message: "Message:",
+        download_on_ios: "Download on iOS"
       },
       es: {
         logo: "Travel Rules",
@@ -838,7 +1012,8 @@
         contact_title: "Contacto",
         contact_name: "Nombre:",
         contact_email: "Email:",
-        contact_message: "Mensaje:"
+        contact_message: "Mensaje:",
+        download_on_ios: "Descargar en iOS"
       }
     };
 
@@ -864,6 +1039,14 @@
 
     languageSelect.addEventListener('change', (e) => {
       setLanguage(e.target.value);
+    });
+
+    // Obsługa kliknięć w flagi (na mobilu)
+    langFlags.forEach(flag => {
+      flag.addEventListener('click', () => {
+        const lang = flag.getAttribute('data-lang');
+        setLanguage(lang);
+      });
     });
   </script>
 </body>
