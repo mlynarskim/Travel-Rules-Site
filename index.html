@@ -12,6 +12,11 @@
       box-sizing: border-box;
     }
 
+    /* PŁYNNE PRZEWIJANIE DO ZAKOTWICZEŃ */
+    html {
+      scroll-behavior: smooth;
+    }
+
     /* USTAWIENIA PODSTAWOWEGO FONTU */
     body {
       font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
@@ -110,13 +115,25 @@
       color: var(--color-text-primary);
     }
 
-    /* Tryb ciemny – dodatkowa klasa, która nadpisuje niektóre zmienne */
     body.dark-mode {
       --color-bg: #121212;
-      --color-text-primary: #e0e0e0;
-      --color-text-secondary: #aaaaaa;
+      --color-text-primary: #2c2c2c; 
+      --color-text-secondary: #2c2c2c;
       --color-card-background: #1e1e1e;
-      /* Możesz dodać więcej nadpisów, jeśli potrzebujesz */
+    }
+
+    body.dark-mode .hero-text {
+      background-color: rgba(255, 255, 255, 0.9);
+      color: #000;
+    }
+
+    body.dark-mode .hero-text a {
+      background-color: #000;
+      color: #fff;
+      transition: background-color 0.3s;
+    }
+    body.dark-mode .hero-text a:hover {
+      background-color: #333;
     }
 
     /* NAGŁÓWEK */
@@ -179,8 +196,8 @@
     .hero {
       position: relative;
       width: 100%;
-      height: 100vh; /* pełna wysokość okna */
-      background: url("") no-repeat center center/cover;
+      height: 100vh; 
+      background: url("") no-repeat center center/cover; 
       display: flex;
       align-items: center;
       justify-content: center;
@@ -193,6 +210,7 @@
       border-radius: 10px;
       max-width: 600px;
       color: var(--color-text-primary);
+      transition: background-color 0.3s, color 0.3s;
     }
 
     .hero-text h1 {
@@ -637,11 +655,6 @@
   <!-- STOPKA -->
   <footer>
    <p>Wszystkie Prawa Zastrzeżone &copy; 2025 Travel Rules</p>
-   <!--  <div class="social-links">
-      <a href="#" target="_blank">Instagram</a> |
-      <a href="#" target="_blank">Facebook</a> |
-      <a href="#" target="_blank">Twitter</a> -->
-    </div>
   </footer>
 
   <!-- SKRYPT JS: PRZEŁĄCZANIE MOTYWU, CIEMNY/JASNY TRYB ORAZ PRZEŁĄCZANIE JĘZYKÓW -->
@@ -694,8 +707,8 @@
         updates: "Aktualności",
         download: "Pobierz",
         contact: "Kontakt",
-        hero_title: "Vanlife. Simplified.",
-        hero_subtitle: "Travel Rules – Twoje codzienne źródło inspiracji i praktycznych wskazówek.",
+        hero_title: "Travel Rules",
+        hero_subtitle: "Twoje codzienne źródło inspiracji i praktycznych wskazówek.",
         learn_more: "Dowiedz się więcej",
         about_title: "Travel Rules",
         about_text: "Aplikacja, dzięki której odkryjesz uroki vanlife w zupełnie nowy sposób. Codzienne zasady, checklista podróżna, społeczność i wiele więcej – wszystko w eleganckim, minimalistycznym wydaniu.",
@@ -741,8 +754,8 @@
         updates: "Updates",
         download: "Download",
         contact: "Contact",
-        hero_title: "Vanlife. Simplified.",
-        hero_subtitle: "Travel Rules – Your daily source of inspiration and practical tips.",
+        hero_title: "Travel Rules",
+        hero_subtitle: "Your daily source of inspiration and practical tips.",
         learn_more: "Learn More",
         about_title: "Travel Rules",
         about_text: "An app that lets you discover the charm of vanlife in a completely new way. Daily rules, travel checklist, community and much more – all in an elegant, minimalist design.",
@@ -788,8 +801,8 @@
         updates: "Actualizaciones",
         download: "Descargar",
         contact: "Contacto",
-        hero_title: "Vanlife. Simplificado.",
-        hero_subtitle: "Travel Rules – Tu fuente diaria de inspiración y consejos prácticos.",
+        hero_title: "Travel Rules",
+        hero_subtitle: "Tu fuente diaria de inspiración y consejos prácticos.",
         learn_more: "Saber más",
         about_title: "Travel Rules",
         about_text: "Una aplicación que te permite descubrir el encanto del vanlife de una manera completamente nueva. Reglas diarias, lista de viaje, comunidad y mucho más – todo en un diseño elegante y minimalista.",
