@@ -637,7 +637,7 @@
         <li><a href="#features" data-lang-key="features">Funkcje</a></li>
         <li><a href="#updates" data-lang-key="updates">Aktualności</a></li>
         <li><a href="#contact" data-lang-key="contact">Kontakt</a></li>
-        <li style="margin-left: 20px;"><a href="#cta" data-lang-key="download">Pobierz</a></li>
+        <li><a href="#cta" data-lang-key="download">Pobierz</a></li>
       </ul>
     </nav>
 
@@ -659,14 +659,9 @@
         <img src="https://via.placeholder.com/25/2E8B57" data-theme="forest" alt="Forest">
       </div>
 
-      <!-- Wybór języka (desktop) -->
-      <select id="languageSelect">
-        <option value="pl">Polski</option>
-        <option value="en">English</option>
-        <option value="es">Español</option>
-      </select>
+
       <!-- Ikony flag (mobil) -->
-      <div class="lang-flags" style="display:none;">
+      <div class="lang-flags">
         <span class="flag-emoji" data-lang="pl">🇵🇱</span>
         <span class="flag-emoji" data-lang="en">🇬🇧</span>
         <span class="flag-emoji" data-lang="es">🇪🇸</span>
@@ -674,7 +669,7 @@
 
       <!-- Przełącznik ciemny/jasny -->
       <div class="dark-toggle">
-        <label for="darkModeToggle">Tryb ciemny</label>
+        <label for="darkModeToggle" data-lang-key="dark_mode">Tryb ciemny</label>
         <input type="checkbox" id="darkModeToggle">
       </div>
     </div>
@@ -1059,7 +1054,8 @@
         contact_email: "Email:",
         contact_message: "Message:",
         download_on_ios: "Download on iOS",
-        previous_version: "Click and see what the previous version of Travel Rules v 1.0 looked like."
+        previous_version: "Click and see what the previous version of Travel Rules v 1.0 looked like.",
+        dark_mode: "Dark mode"
 
       },
       es: {
@@ -1069,59 +1065,86 @@
         updates: "Actualizaciones",
         download: "Descargar",
         contact: "Contacto",
+
         hero_title: "Travel Rules",
         hero_subtitle: "Tu fuente diaria de inspiración y consejos prácticos.",
         learn_more: "Saber más",
+
         about_title: "Travel Rules",
-        about_text: "Una aplicación que te permite descubrir el encanto del vanlife de una manera completamente nueva. Reglas diarias, lista de viaje, comunidad y mucho más – todo en un diseño elegante y minimalista.",
-        features_title: "Key Features",
-        features_text: "What sets our app apart?",
-        feature1_title: "Daily Rule",
-        feature1_text: "Every day, the app inspires you with a short tip to make life on four wheels easier.",
-        feature2_title: "Create Your Own Rules",
-        feature2_text: "Personalize your experience by saving your own thoughts and tips.",
-        feature3_title: "Saved Rules",
-        feature3_text: "All your favorite tips in one place, always at hand.",
-        feature4_title: "Personalized Checklist",
-        feature4_text: "Never forget anything – your travel essentials at your fingertips.",
-        feature5_title: "Share Inspiration",
-        feature5_text: "Share your rules and travel photos on social media and build a vanlife community!",
-        feature6_title: "Create Your Own Packing List",
-        feature6_text: "Add, edit, and mark items as packed – always be ready for the road.",
-        feature7_title: "Save Locations",
-        feature7_text: "Keep track of important places you’ve visited – the best campsites, parking spots, and hidden gems.",
-        screenshots_title: "See How It Looks",
-        screenshots_title2: "See How It Looks",
-        updates_title: "Updates",
-        updates_heading: "Upcoming Update",
-        updates_text: "An update is coming soon! We are working on fantastic features that will make your vanlife even easier.",
-        extended_title: "Extended Features",
-        extended_loc_title: "Location Saving",
-        extended_loc_text: "Now you can save locations and easily find them on the map. Open saved locations in Google Maps and Apple Maps.",
-        extended_rules_title: "New Travel Rules",
-        extended_rules_text: "More rules have been added and organized to be even more useful.",
-        extended_achievements_title: "Achievement System",
-        extended_achievements_text: "Earn achievements for using the app, such as 'Regular Traveler' and 'Consistency Master'.",
-        extended_emergency_title: "Emergency Numbers for Different Countries",
-        extended_emergency_text: "The app automatically detects your country and displays the appropriate emergency numbers along with useful links.",
-        extended_packing_title: "Packing List",
-        extended_packing_text: "Create and personalize a packing list before your trip.",
-        extended_notifications_title: "New Notifications",
-        extended_notifications_text: "Set notifications for daily rules and reminders for important documents.",
-        extended_docs_title: "Expiring Documents Notifications",
-        extended_docs_text: "A new option to receive notifications one month before important documents expire has been added.",
-        extended_personalization_title: "App Personalization",
-        extended_personalization_text: "Change the color theme with options including classic, mountain, beach, desert, and forest.",
-        extended_improvements_title: "Improvements and Optimizations",
-        extended_improvements_text: "Interface bugs have been fixed, notification management enhanced, and ads now appear in more natural, less intrusive locations.",
-        cta_title: "Start Organizing Your Travels Now!",
-        cta_text: "Download Travel Rules for iOS. Available exclusively on iOS – experience the difference with our intuitive interface and advanced features.",
-        contact_title: "Contact",
-        contact_name: "Name:",
-        contact_email: "Email:",
-        contact_message: "Message:",
-        download_on_ios: "Download on iOS",
-        previous_version: "Haz clic y mira cómo era la versión anterior de Travel Rules v 1.0."
+        about_text: "Una aplicación que te permite descubrir el encanto del van‑life de una manera totalmente nueva. Reglas diarias, lista de viaje, comunidad y mucho más, todo con un diseño elegante y minimalista.",
+
+        features_title: "Funciones Principales",
+        features_text: "¿Qué hace única nuestra aplicación?",
+
+        feature1_title: "Regla Diaria",
+        feature1_text: "Cada día la aplicación te inspira con un consejo breve que facilita la vida sobre ruedas.",
+
+        feature2_title: "Crea tus Propias Reglas",
+        feature2_text: "Personaliza la experiencia guardando tus propios pensamientos y consejos.",
+
+        feature3_title: "Lista de Reglas Guardadas",
+        feature3_text: "Todas tus reglas favoritas en un solo lugar, siempre a mano.",
+
+        feature4_title: "Lista de Tareas Personalizada",
+        feature4_text: "No olvides nada: lleva tu lista esencial de viaje siempre contigo.",
+
+        feature5_title: "Comparte la Inspiración",
+        feature5_text: "Comparte reglas y fotos en redes sociales y construye la comunidad van‑life.",
+
+        feature6_title: "Crea tu Propia Lista de Empaque",
+        feature6_text: "Añade, edita y marca artículos como empacados: ¡siempre listo para la ruta!",
+
+        feature7_title: "Guardar Ubicaciones",
+        feature7_text: "Guarda los lugares importantes que visites: los mejores campings, aparcamientos y rincones ocultos.",
+
+        screenshots_title: "Mira cómo se ve",
+        screenshots_title2: "Mira cómo se ve",
+
+        updates_title: "Actualizaciones",
+        updates_heading: "¡Actualización ya disponible!",
+        updates_text: "¡La nueva versión de Travel Rules ha sido lanzada! Descubre funciones que harán tu vida van‑life aún más fácil.",
+
+        extended_title: "Funciones Avanzadas",
+
+        extended_loc_title: "Guardar Ubicaciones",
+        extended_loc_text: "Ahora puedes guardar ubicaciones y encontrarlas fácilmente en el mapa. Ábrelas en Google Maps o Apple Maps.",
+
+        extended_rules_title: "Nuevas Reglas de Viaje",
+        extended_rules_text: "Se añadieron más reglas y se organizaron para que sean aún más útiles.",
+
+        extended_achievements_title: "Sistema de Logros",
+        extended_achievements_text: "Consigue logros por usar la app, como «Viajero Frecuente» o «Maestro de la Constancia».",
+
+        extended_emergency_title: "Números de Emergencia Internacionales",
+        extended_emergency_text: "La app detecta tu país y muestra los números de emergencia y enlaces útiles correspondientes.",
+
+        extended_packing_title: "Lista de Empaque",
+        extended_packing_text: "Crea y personaliza tu lista de empaque antes de viajar.",
+
+        extended_notifications_title: "Nuevas Notificaciones",
+        extended_notifications_text: "Configura recordatorios diarios de reglas y alertas para documentos importantes.",
+
+        extended_docs_title: "Alertas de Documentos por Caducar",
+        extended_docs_text: "Recibe avisos un mes antes de que caduquen documentos importantes.",
+
+        extended_personalization_title: "Personalización de la App",
+        extended_personalization_text: "Cambia el tema de color: clásico, montaña, playa, desierto o bosque.",
+
+        extended_improvements_title: "Mejoras y Optimización",
+        extended_improvements_text: "Errores solucionados, notificaciones mejoradas y anuncios menos intrusivos.",
+
+        cta_title: "¡Empieza a organizar tus viajes ahora!",
+        cta_text: "Descarga Travel Rules para iOS. Disponible exclusivamente en iOS: disfruta de una interfaz intuitiva y funciones avanzadas.",
+
+        contact_title: "Contacto",
+        contact_name: "Nombre:",
+        contact_email: "Correo:",
+        contact_message: "Mensaje:",
+
+        download_on_ios: "Descargar en iOS",
+
+        previous_version: "Haz clic y descubre cómo era la versión anterior de Travel Rules v 1.0.",
+        dark_mode: "Modo oscuro"
 
       }
     };
