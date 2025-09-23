@@ -27,12 +27,24 @@
       user-select: none;
     }
     .collapsible-content {
-      display: none;
-      padding: 20px;
+      max-height: 0;
+      overflow: hidden;
+      padding: 0 20px;
       background-color: #fafafa;
+      transition: max-height 0.5s ease;
     }
     .collapsible-content.show {
-      display: block;
+      max-height: none;
+      padding: 20px;
+    }
+    .collapsible-header::after {
+      content: "▶";
+      margin-left: 10px;
+      transition: transform 0.3s ease;
+      display: inline-block;
+    }
+    .collapsible-header[aria-expanded="true"]::after {
+      transform: rotate(90deg);
     }
     /* Dark mode dla rozwijalnego kontenera */
     body.dark-mode .collapsible-container {
@@ -692,7 +704,7 @@
 
   <!-- ROZWIJANY KONTAINER - WERSJA v 1.0 -->
   <div class="collapsible-container">
-    <div class="collapsible-header" id="collapsibleHeader">
+    <div class="collapsible-header" id="collapsibleHeader" role="button" aria-controls="collapsibleContent" aria-expanded="false" tabindex="0">
       <p data-lang-key="previous_version">Kliknij i zobacz, jak wyglądała wcześniejsza wersja Travel Rules v 1.0.</p>
     </div>
     <div class="collapsible-content" id="collapsibleContent">
@@ -750,9 +762,8 @@
  <!-- SEKCJA AKTUALNOŚCI -->
 <section id="updates" class="section">
   <h2 data-lang-key="updates_title">Aktualności</h2>
-  <div class="updates" style="background-color: var(--color-card-background); color: var(--color-text-primary);">
-    <h3 data-lang-key="updates_heading">Aktualizacja już dostępna!</h3>
-    <p data-lang-key="updates_text">Nowa wersja aplikacji „Travel Rules” została wydana! Odkryj nowe funkcje, które jeszcze bardziej ułatwią Ci życie w stylu #VanLife.</p>
+  <div id="appstore-updates" class="updates" style="background-color: var(--color-card-background); color: var(--color-text-primary);">
+    <p style="opacity:.7">Ładowanie informacji z App Store…</p>
   </div>
 </section>
 
@@ -851,9 +862,10 @@
 
   <!-- STOPKA -->
   <footer>
-    <p>Wszystkie Prawa Zastrzeżone &copy; 2025 Travel Rules</p>
-    <p>
-      <a href="polityka-prywatnosci.html" target="_blank">Polityka Prywatności</a>
+    <p>© 2025 Travel Rules. Wszelkie prawa zastrzeżone.</p>
+    <p class="small">
+      <a href="polityka-prywatnosci.html">Polityka Prywatności</a> •
+      <a href="warunki-korzystania.html">Warunki korzystania</a>
     </p>
   </footer>
 
@@ -1158,34 +1170,84 @@
       });
     }
 
-    // Wykryj język systemowy
+    // Wykryj język systemowy (bezpiecznie, gdy #languageSelect nie istnieje)
     const userLang = navigator.language.slice(0,2);
-    if(['pl', 'en', 'es'].includes(userLang)) {
+    if (['pl', 'en', 'es'].includes(userLang)) {
       setLanguage(userLang);
-      languageSelect.value = userLang;
+      if (languageSelect) languageSelect.value = userLang;
     } else {
       setLanguage('pl');
-      languageSelect.value = 'pl';
+      if (languageSelect) languageSelect.value = 'pl';
     }
-
-    languageSelect.addEventListener('change', (e) => {
-      setLanguage(e.target.value);
-    });
-
-    // Obsługa kliknięć w flagi (na mobilu)
-    langFlags.forEach(flag => {
-      flag.addEventListener('click', () => {
-        const lang = flag.getAttribute('data-lang');
-        setLanguage(lang);
+    if (languageSelect) {
+      languageSelect.addEventListener('change', (e) => {
+        setLanguage(e.target.value);
       });
-    });
+    }
 
     // Rozwijany kontener
     const collapsibleHeader = document.getElementById('collapsibleHeader');
     const collapsibleContent = document.getElementById('collapsibleContent');
-    collapsibleHeader.addEventListener('click', () => {
-      collapsibleContent.classList.toggle('show');
+    function toggleCollapsible() {
+      const isOpen = collapsibleContent.classList.toggle('show');
+      collapsibleHeader.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+    }
+    collapsibleHeader.addEventListener('click', toggleCollapsible);
+    collapsibleHeader.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter' || e.key === ' ') {
+        e.preventDefault();
+        toggleCollapsible();
+      }
     });
+    /* === App Store release notes (JSONP, bez CORS) === */
+    (function loadAppStoreReleaseNotes() {
+      var APP_ID = '6451070215';           // Travel Rules – App Store ID
+      var COUNTRY = 'pl';                   // dopasuj do języka/rynku
+      var target = document.getElementById('appstore-updates');
+      if (!target) return;
+
+      var cbName = 'appStoreCB_' + Date.now();
+      window[cbName] = function (data) {
+        try {
+          if (!data || !data.results || !data.results.length) {
+            target.innerHTML = '<p>Brak danych z App Store.</p>';
+            cleanup();
+            return;
+          }
+          var app = data.results[0];
+          var ver = app.version || '—';
+          var relNotes = (app.releaseNotes || '').replace(/\n/g, '<br>');
+          var date = app.currentVersionReleaseDate ? new Date(app.currentVersionReleaseDate) : null;
+          var datePL = date ? date.toLocaleDateString('pl-PL', { year: 'numeric', month: 'long', day: 'numeric' }) : '—';
+          var link = app.trackViewUrl || '#';
+
+          target.innerHTML = `
+            <h3 style="margin-top:0">Co nowego w wersji ${ver}</h3>
+            <p class="small" style="margin:4px 0 12px; opacity:.8">Data wydania: ${datePL}</p>
+            <div class="card" style="margin:0;">
+              ${relNotes || 'Brak opisu zmian.'}
+            </div>
+            <p style="margin-top:12px;">
+              <a href="${link}" target="_blank" rel="noopener">Zobacz w App Store</a>
+            </p>
+          `;
+        } catch(e) {
+          target.innerHTML = '<p>Nie udało się wczytać danych z App Store.</p>';
+        } finally {
+          cleanup();
+        }
+      };
+
+      function cleanup() {
+        try { delete window[cbName]; } catch(_) {}
+        if (script && script.parentNode) script.parentNode.removeChild(script);
+      }
+
+      var script = document.createElement('script');
+      script.src = `https://itunes.apple.com/lookup?id=${APP_ID}&country=${COUNTRY}&callback=${cbName}`;
+      script.onerror = function(){ target.innerHTML = '<p>Nie udało się połączyć z App Store.</p>'; cleanup(); };
+      document.body.appendChild(script);
+    })();
   </script>
 </body>
 </html>
