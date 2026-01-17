@@ -1,6 +1,15 @@
 <!DOCTYPE html>
 <html lang="pl">
 <head>
+    <!-- Google Tag Manager -->
+  <script>
+    (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+    'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+    })(window,document,'script','dataLayer','GTM-KSSXRMKH');
+  </script>
+  <!-- End Google Tag Manager -->
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5307701268996147"
@@ -756,6 +765,88 @@
       }
     }
 
+    /* LINKI (social + sklepy) */
+    .links-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 18px;
+      margin-top: 28px;
+      text-align: left;
+    }
+
+    .link-card {
+      display: flex;
+      gap: 14px;
+      align-items: flex-start;
+      padding: 18px;
+      border-radius: 14px;
+      background: var(--color-card-background);
+      box-shadow: 0 10px 20px var(--color-card-shadow);
+      text-decoration: none;
+      color: var(--color-text-primary);
+      border: 1px solid rgba(0,0,0,0.06);
+      transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+    }
+
+    body.dark-mode .link-card {
+      border-color: rgba(255,255,255,0.10);
+    }
+
+    .link-card:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 14px 26px rgba(0,0,0,0.14);
+    }
+
+    .link-card:focus {
+      outline: 2px solid var(--color-secondary);
+      outline-offset: 3px;
+    }
+
+    .link-icon {
+      width: 44px;
+      height: 44px;
+      border-radius: 12px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      background: rgba(0,0,0,0.05);
+      color: var(--color-primary);
+      flex: 0 0 44px;
+    }
+
+    body.dark-mode .link-icon {
+      background: rgba(255,255,255,0.06);
+    }
+
+    .link-title {
+      font-weight: 700;
+      font-size: 1.05rem;
+      margin-bottom: 4px;
+    }
+
+    .link-desc {
+      color: var(--color-text-secondary);
+      line-height: 1.4;
+      font-size: 0.98rem;
+      margin-bottom: 6px;
+    }
+
+    .link-url {
+      font-size: 0.9rem;
+      opacity: 0.75;
+    }
+
+    .links-note {
+      margin-top: 14px;
+      color: var(--color-text-secondary);
+      opacity: 0.9;
+    }
+
+    @media screen and (max-width: 480px) {
+      .link-card { padding: 16px; }
+      .link-icon { width: 40px; height: 40px; flex: 0 0 40px; border-radius: 12px; }
+    }
+
     /* Ikonki emoji – prosta stylizacja */
     .flag-emoji, .theme-emoji {
       font-size: 1.5rem;
@@ -771,6 +862,10 @@
 </head>
 
 <body class="theme-classic">
+  <!-- Google Tag Manager (noscript) -->
+  <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-KSSXRMKH"
+  height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+  <!-- End Google Tag Manager (noscript) -->
   <!-- NAGŁÓWEK -->
   <header>
     <a href="#" class="logo" data-lang-key="logo">Travel Rules</a>
@@ -783,6 +878,7 @@
         <li><a href="#app" data-lang-key="about">O Aplikacji</a></li>
         <li><a href="#features" data-lang-key="features">Funkcje</a></li>
         <li><a href="#updates" data-lang-key="updates">Aktualności</a></li>
+        <li><a href="linki.html" data-lang-key="links">Linki</a></li>
         <li><a href="#contact" data-lang-key="contact">Kontakt</a></li>
         <li><a href="#cta" data-lang-key="download">Pobierz</a></li>
       </ul>
@@ -954,6 +1050,8 @@
     </div>
   </section>
 
+
+
   <!-- CTA -->
   <section id="cta" class="cta">
     <h2 data-lang-key="cta_title">Zacznij organizować swoje podróże już teraz!</h2>
@@ -1099,6 +1197,7 @@
         about: "O Aplikacji",
         features: "Funkcje",
         updates: "Aktualności",
+        links: "Linki",
         download: "Pobierz",
         contact: "Kontakt",
         hero_title: "Travel Rules",
@@ -1141,6 +1240,7 @@
         about: "About",
         features: "Features",
         updates: "Updates",
+        links: "Links",
         download: "Download",
         contact: "Contact",
         hero_title: "Travel Rules",
@@ -1183,6 +1283,7 @@
         about: "Acerca de",
         features: "Funciones",
         updates: "Actualizaciones",
+        links: "Enlaces",
         download: "Descargar",
         contact: "Contacto",
         hero_title: "Travel Rules",
