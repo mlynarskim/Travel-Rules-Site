@@ -1,0 +1,586 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+  <!-- Google Tag Manager -->
+  <script>
+    (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+    'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+    })(window,document,'script','dataLayer','GTM-KSSXRMKH');
+  </script>
+  <!-- End Google Tag Manager -->
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+
+  <title>Travel Rules – Linki</title>
+  <meta name="description" content="Social media oraz sklep Travel Rules: Instagram, TikTok, YouTube, Pinterest, Gumroad i Naffy (PL).">
+  <meta name="theme-color" content="#29606D">
+
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Travel Rules">
+  <meta property="og:title" content="Travel Rules – Linki">
+  <meta property="og:description" content="Social media oraz sklep Travel Rules.">
+  <meta property="og:image" content="images/og/travelrules_og.jpg">
+  <meta property="og:url" content="https://www.travelrules.eu/linki.html">
+
+  <link rel="icon" href="/favicon.ico">
+
+  <style>
+    /* RESET */
+    * { margin:0; padding:0; box-sizing:border-box; }
+    html { scroll-behavior:smooth; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
+        Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+      transition: background-color 1s, color 1s;
+    }
+
+    /* THEMES (minimal subset consistent with index) */
+    body.theme-classic {
+      --color-primary: #29606D;
+      --color-secondary: #DDAA4F;
+      --color-bg: #ffffff;
+      --color-text-primary: #1A1A1A;
+      --color-text-secondary: #666666;
+      --color-card-background: rgba(255, 255, 255, 0.95);
+      --color-card-shadow: rgba(0, 0, 0, 0.1);
+      background-color: var(--color-bg);
+      color: var(--color-text-primary);
+    }
+    body.theme-classic.dark-mode {
+      --color-bg: #1a1a1a;
+      --color-text-primary: #f0f0f0;
+      --color-text-secondary: #cccccc;
+      --color-card-background: #2a2a2a;
+    }
+
+    :focus { outline: 2px solid var(--color-secondary); outline-offset: 2px; }
+
+    /* HEADER */
+    header {
+      display:flex; align-items:center; justify-content:space-between;
+      padding: 20px 40px;
+      position: sticky; top: 0; z-index: 10;
+      background-color: var(--color-bg);
+      border-bottom: 1px solid #e2e2e2;
+    }
+    .logo {
+      font-size: 1.5rem; font-weight: 600;
+      text-decoration:none; color: var(--color-text-primary);
+    }
+
+    /* MENU */
+    nav ul { list-style:none; display:flex; gap:20px; }
+    nav a { text-decoration:none; color: var(--color-text-primary); font-weight:500; transition: opacity .3s; }
+    nav a:hover { opacity: .7; }
+
+    .header-extra { display:flex; align-items:center; gap:15px; }
+    .dark-toggle { display:flex; align-items:center; gap:6px; cursor:pointer; }
+    .dark-toggle label { font-size: 1rem; }
+
+    /* Hamburger */
+    .menu-toggle {
+      display:none;
+      background:none; border:none;
+      color: var(--color-text-primary);
+      font-size: 1.8rem; cursor:pointer;
+    }
+
+    /* flags */
+    .flag-emoji { font-size: 1.5rem; cursor:pointer; margin: 0 5px; transition: transform .2s; }
+    .flag-emoji:hover { transform: scale(1.15); }
+
+    @media (max-width: 768px) {
+      .menu-toggle { display:block; }
+      nav ul {
+        display:none;
+        flex-direction:column;
+        align-items:center;
+        background: var(--color-bg);
+        position:absolute;
+        top: 80px; left: 50%;
+        transform: translateX(-50%) translateY(-10px);
+        padding: 20px;
+        border-radius: 10px;
+        box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        opacity: 0;
+        transition: opacity .3s ease, transform .3s ease;
+      }
+      nav ul.show-menu {
+        display:flex;
+        opacity:1;
+        transform: translateX(-50%) translateY(0);
+      }
+      header { padding: 18px 18px; }
+    }
+
+    /* SECTION layout */
+    .section {
+      width: 100%;
+      max-width: 1200px;
+      margin: 50px auto; /* było 70px */
+      padding: 0 20px;
+      text-align: center;
+    }
+    .section h1 {
+      font-size: 2.5rem;
+      margin-bottom: 14px;
+      font-weight: 800;
+      color: var(--color-text-primary);
+    }
+    .section p {
+      font-size: 1.15rem;
+      line-height: 1.6;
+      margin-bottom: 26px;
+      color: var(--color-text-secondary);
+    }
+
+    /* Watermark map */
+    .section.map-watermark {
+      position: relative;
+      overflow: hidden;
+      padding: 46px 34px;
+      border-radius: 18px;
+    }
+    .section.map-watermark > *:not(.decor-map) { position: relative; z-index: 1; }
+    .decor-map {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center top;
+      opacity: 0.08;
+      filter: saturate(0) contrast(1.05);
+      z-index: 0;
+      pointer-events: none;
+      user-select: none;
+    }
+    body.dark-mode .decor-map {
+      opacity: 0.10;
+      filter: invert(1) brightness(1.15) contrast(1.05);
+    }
+
+    /* GROUP HEADINGS */
+    .group-title {
+      margin-top: 26px;
+      margin-bottom: 8px;
+      font-size: 1.6rem;
+      font-weight: 900;
+      text-align: left;
+      color: var(--color-text-primary);
+    }
+
+    .group-sub {
+      margin: 0 0 18px;
+      text-align: left;
+      color: var(--color-text-secondary);
+      font-size: 1.05rem;
+      line-height: 1.55;
+    }
+
+    .promo {
+      grid-column: 1 / -1;
+      padding: 16px 18px;
+      border-radius: 14px;
+      background: var(--color-card-background);
+      box-shadow: 0 10px 20px var(--color-card-shadow);
+      border: 1px solid rgba(0,0,0,0.06);
+      color: var(--color-text-secondary);
+      line-height: 1.6;
+      text-align: left;
+    }
+
+    body.dark-mode .promo {
+      border-color: rgba(255,255,255,0.10);
+    }
+
+    /* LINK CARDS */
+    .links-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 18px;
+      margin-top: 18px;
+      text-align: left;
+    }
+    .link-card {
+      display:flex;
+      gap: 14px;
+      align-items:flex-start;
+      padding: 18px;
+      border-radius: 14px;
+      background: var(--color-card-background);
+      box-shadow: 0 10px 20px var(--color-card-shadow);
+      text-decoration:none;
+      color: var(--color-text-primary);
+      border: 1px solid rgba(0,0,0,0.06);
+      transition: transform .2s ease, box-shadow .2s ease, border-color .2s ease;
+    }
+    body.dark-mode .link-card { border-color: rgba(255,255,255,0.10); }
+    .link-card:hover { transform: translateY(-2px); box-shadow: 0 14px 26px rgba(0,0,0,0.14); }
+    .link-card:focus { outline: 2px solid var(--color-secondary); outline-offset: 3px; }
+
+    .link-icon {
+      width: 44px; height: 44px;
+      border-radius: 12px;
+      display:inline-flex;
+      align-items:center; justify-content:center;
+      background: rgba(0,0,0,0.05);
+      color: var(--color-primary);
+      flex: 0 0 44px;
+    }
+    body.dark-mode .link-icon { background: rgba(255,255,255,0.06); }
+
+    .link-title { font-weight: 800; font-size: 1.05rem; margin-bottom: 4px; }
+    .link-desc { color: var(--color-text-secondary); line-height: 1.4; font-size: 0.98rem; margin-bottom: 6px; }
+    .link-url  { font-size: 0.9rem; opacity: 0.75; }
+
+    /* Footer */
+    footer {
+      text-align:center;
+      padding: 40px 20px;
+      background-color: var(--color-bg);
+      border-top: 1px solid #e2e2e2;
+      margin-top: 60px;
+    }
+    footer p { color: var(--color-text-secondary); margin-bottom: 10px; }
+
+    @media (max-width: 480px) {
+      .link-card { padding: 16px; }
+      .link-icon { width: 40px; height: 40px; flex: 0 0 40px; }
+      .section h1 { font-size: 2.1rem; }
+      .section.map-watermark { padding: 28px 18px; }
+    }
+  </style>
+</head>
+
+<body class="theme-classic">
+  <!-- Google Tag Manager (noscript) -->
+  <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-KSSXRMKH"
+  height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+  <!-- End Google Tag Manager (noscript) -->
+  <header>
+    <a href="index.html" class="logo" data-lang-key="logo">Travel Rules</a>
+
+    <button class="menu-toggle" id="menuToggle" aria-label="Otwórz menu" aria-controls="primaryNav" aria-expanded="false">&#9776;</button>
+
+    <nav role="navigation" aria-label="Główne">
+      <ul id="primaryNav">
+        <li><a href="index.html#app" data-lang-key="about">O Aplikacji</a></li>
+        <li><a href="index.html#features" data-lang-key="features">Funkcje</a></li>
+        <li><a href="index.html#updates" data-lang-key="updates">Aktualności</a></li>
+        <li><a href="linki.html" data-lang-key="links" aria-current="page">Linki</a></li>
+        <li><a href="index.html#contact" data-lang-key="contact">Kontakt</a></li>
+        <li><a href="index.html#cta" data-lang-key="download">Pobierz</a></li>
+      </ul>
+    </nav>
+
+    <div class="header-extra">
+      <div class="lang-flags" aria-label="Wybór języka">
+        <span class="flag-emoji" data-lang="pl" title="Polski">🇵🇱</span>
+        <span class="flag-emoji" data-lang="en" title="English">🇬🇧</span>
+        <span class="flag-emoji" data-lang="es" title="Español">🇪🇸</span>
+      </div>
+
+      <div class="dark-toggle">
+        <label for="darkModeToggle" data-lang-key="dark_mode" aria-live="polite">Tryb ciemny</label>
+        <input type="checkbox" id="darkModeToggle">
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <section class="section map-watermark">
+      <img class="decor-map" src="images/decor/world-map.png" alt="" aria-hidden="true" loading="lazy">
+
+      <h1 data-lang-key="links_title">Linki</h1>
+      <p data-lang-key="links_intro">Znajdziesz tu nasz sklep oraz social media.</p>
+
+      <h2 class="group-title" data-lang-key="links_shop_title">Sklep</h2>
+      <p class="group-sub" data-lang-key="links_shop_sub">Produkty cyfrowe, checklisty i poradniki — wybierz wersję dla siebie.</p>
+
+      <div class="links-grid" role="list" aria-label="Sklep">
+        <!-- Gumroad -->
+        <a role="listitem" class="link-card" href="https://travelrules.gumroad.com/l/camper-first-trip-prep?utm_source=travelrules.eu&utm_medium=referral&utm_campaign=links_page&utm_content=gumroad" target="_blank" rel="noopener" aria-label="Gumroad eBook: przygotowanie kampera do pierwszej podróży" data-lang-only="en,es">
+          <span class="link-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M5 4h10a3 3 0 0 1 3 3v13H8a3 3 0 0 0-3 3V4z"></path>
+              <path d="M8 4v16"></path>
+            </svg>
+          </span>
+          <div class="link-meta">
+            <div class="link-title" data-lang-key="links_ebook">e-book: Przygotuj kampera krok po kroku przed pierwszą podróżą.</div>
+            <div class="link-desc" data-lang-key="links_ebook_desc">Pierwszy wyjazd kamperem? Ten e-book pomoże Ci ogarnąć wszystko bez stresu: co sprawdzić przed startem, jak spakować się mądrze i o czym najczęściej się zapomina. Dostajesz jasne kroki i checklisty, dzięki którym ruszasz w trasę pewnie i spokojnie.</div>
+            <div class="link-url">travelrules.gumroad.com</div>
+          </div>
+        </a>
+
+        <!-- Naffy (PL only) -->
+        <a role="listitem" class="link-card" href="https://www.naffy.io/travelrules?utm_source=travelrules.eu&utm_medium=referral&utm_campaign=links_page&utm_content=naffy" target="_blank" rel="noopener" aria-label="Sklep Naffy Travel Rules" data-lang-only="pl">
+          <span class="link-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M6 6h15l-1.5 9h-12z"></path>
+              <path d="M6 6l-2 0"></path>
+              <circle cx="9" cy="20" r="1.5" fill="currentColor" stroke="none"></circle>
+              <circle cx="18" cy="20" r="1.5" fill="currentColor" stroke="none"></circle>
+            </svg>
+          </span>
+          <div class="link-meta">
+            <div class="link-title" data-lang-key="links_naffy">e-book: Przygotuj kampera krok po kroku przed pierwszą podróżą.</div>
+            <div class="link-desc" data-lang-key="links_naffy_desc">Pierwszy wyjazd kamperem? Ten e-book pomoże Ci ogarnąć wszystko bez stresu: co sprawdzić przed startem, jak spakować się mądrze i o czym najczęściej się zapomina. Dostajesz jasne kroki i checklisty, dzięki którym ruszasz w trasę pewnie i spokojnie.</div>
+            <div class="link-url">naffy.io/travelrules</div>
+          </div>
+        </a>
+      </div>
+
+      <h2 class="group-title" data-lang-key="links_social_title">Social media</h2>
+      <p class="group-sub" data-lang-key="links_social_sub">Nowości, tipy i kulisy — dołącz do społeczności.</p>
+
+      <div class="links-grid" role="list" aria-label="Social media">
+        <!-- Instagram -->
+        <a role="listitem" class="link-card" href="https://www.instagram.com/travelrules.app/" target="_blank" rel="noopener" aria-label="Instagram Travel Rules">
+          <span class="link-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="3" y="3" width="18" height="18" rx="5" ry="5"></rect>
+              <circle cx="12" cy="12" r="4"></circle>
+              <circle cx="17.5" cy="6.5" r="0.8" fill="currentColor" stroke="none"></circle>
+            </svg>
+          </span>
+          <div class="link-meta">
+            <div class="link-title" data-lang-key="links_instagram">Instagram</div>
+            <div class="link-desc" data-lang-key="links_instagram_desc">Kulisy aplikacji, tipy i nowości.</div>
+            <div class="link-url">@travelrules.app</div>
+          </div>
+        </a>
+
+        <!-- TikTok -->
+        <a role="listitem" class="link-card" href="https://www.tiktok.com/@travelrules.app" target="_blank" rel="noopener" aria-label="TikTok Travel Rules">
+          <span class="link-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M14 3v10.5a4.5 4.5 0 1 1-3.5-4.4"></path>
+              <path d="M14 7c1.3 1.9 3.1 3 5 3"></path>
+            </svg>
+          </span>
+          <div class="link-meta">
+            <div class="link-title" data-lang-key="links_tiktok">TikTok</div>
+            <div class="link-desc" data-lang-key="links_tiktok_desc">Szybkie porady i krótkie formaty.</div>
+            <div class="link-url">@travelrules.app</div>
+          </div>
+        </a>
+
+        <!-- YouTube -->
+        <a role="listitem" class="link-card" href="https://youtube.com/@travelrulesapp?si=vgaI6kc48qq8-F1c" target="_blank" rel="noopener" aria-label="YouTube Travel Rules">
+          <span class="link-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M22 12s0-4-0.5-5.5A3 3 0 0 0 19.6 4.6C18 4 12 4 12 4s-6 0-7.6.6A3 3 0 0 0 2.5 6.5C2 8 2 12 2 12s0 4 .5 5.5a3 3 0 0 0 1.9 1.9C6 20 12 20 12 20s6 0 7.6-.6a3 3 0 0 0 1.9-1.9C22 16 22 12 22 12z"></path>
+              <path d="M10 15V9l6 3-6 3z" fill="currentColor" stroke="none"></path>
+            </svg>
+          </span>
+          <div class="link-meta">
+            <div class="link-title" data-lang-key="links_youtube">YouTube</div>
+            <div class="link-desc" data-lang-key="links_youtube_desc">Dłuższe materiały i poradniki.</div>
+            <div class="link-url">@travelrulesapp</div>
+          </div>
+        </a>
+
+        <!-- Pinterest -->
+        <a role="listitem" class="link-card" href="https://pin.it/13VDOuOmK" target="_blank" rel="noopener" aria-label="Pinterest Travel Rules">
+          <span class="link-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M12 22s7-4.4 7-12a7 7 0 1 0-14 0c0 4.2 2.4 6.8 4.2 6.8 1 0 1.6-.5 1.9-1.1"></path>
+              <path d="M10.7 13.6 10 17l2-1.2"></path>
+            </svg>
+          </span>
+          <div class="link-meta">
+            <div class="link-title" data-lang-key="links_pinterest">Pinterest</div>
+            <div class="link-desc" data-lang-key="links_pinterest_desc">Inspiracje i pomysły do zapisania.</div>
+            <div class="link-url">Travel Rules</div>
+          </div>
+        </a>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <p>© 2025 Travel Rules. Wszelkie prawa zastrzeżone.</p>
+    <p class="small">
+      <a href="polityka-prywatnosci.html">Polityka Prywatności</a> •
+      <a href="warunki-korzystania.html">Warunki korzystania</a>
+    </p>
+  </footer>
+
+  <script>
+    // MENU TOGGLE
+    const menuToggle = document.getElementById('menuToggle');
+    const navUl = document.getElementById('primaryNav');
+    menuToggle.addEventListener('click', () => {
+      const expanded = menuToggle.getAttribute('aria-expanded') === 'true';
+      menuToggle.setAttribute('aria-expanded', String(!expanded));
+      navUl.classList.toggle('show-menu');
+    });
+
+    // Load saved prefs from index (shared keys)
+    const body = document.querySelector('body');
+    const savedTheme = localStorage.getItem('tr_theme');
+    const savedDark = localStorage.getItem('tr_dark') === '1';
+    const savedLang = localStorage.getItem('tr_lang');
+
+    if (savedTheme) {
+      body.classList.remove('theme-classic');
+      body.classList.add(`theme-${savedTheme}`);
+    }
+
+    if (savedDark) {
+      body.classList.add('dark-mode');
+      const dm = document.getElementById('darkModeToggle');
+      if (dm) dm.checked = true;
+    }
+
+    // Dark toggle
+    const darkModeToggle = document.getElementById('darkModeToggle');
+    darkModeToggle.addEventListener('change', (event) => {
+      if (event.target.checked) {
+        body.classList.add('dark-mode');
+        localStorage.setItem('tr_dark','1');
+      } else {
+        body.classList.remove('dark-mode');
+        localStorage.removeItem('tr_dark');
+      }
+    });
+
+    // Translations for this page
+    const translations = {
+      pl: {
+        logo: "Travel Rules",
+        about: "O Aplikacji",
+        features: "Funkcje",
+        updates: "Aktualności",
+        links: "Linki",
+        download: "Pobierz",
+        contact: "Kontakt",
+        dark_mode: "Tryb ciemny",
+
+        links_title: "Linki",
+        links_intro: "Znajdziesz tu nasz sklep oraz social media.",
+
+        links_shop_title: "Sklep",
+        links_shop_sub: "Produkty cyfrowe, checklisty i poradniki — wybierz wersję dla siebie.",
+        links_social_title: "Social media",
+        links_social_sub: "Nowości, tipy i kulisy — dołącz do społeczności.",
+
+        links_instagram: "Instagram",
+        links_instagram_desc: "Kulisy aplikacji, tipy i nowości.",
+        links_tiktok: "TikTok",
+        links_tiktok_desc: "Szybkie porady i krótkie formaty.",
+        links_youtube: "YouTube",
+        links_youtube_desc: "Dłuższe materiały i poradniki.",
+        links_pinterest: "Pinterest",
+        links_pinterest_desc: "Inspiracje i pomysły do zapisania.",
+
+        links_naffy: "e-book: Przygotuj kampera krok po kroku przed pierwszą podróżą.",
+        links_naffy_desc: "Pierwszy wyjazd kamperem? Ten e-book pomoże Ci ogarnąć wszystko bez stresu: co sprawdzić przed startem, jak spakować się mądrze i o czym najczęściej się zapomina. Dostajesz jasne kroki i checklisty, dzięki którym ruszasz w trasę pewnie i spokojnie."
+      },
+
+      en: {
+        logo: "Travel Rules",
+        about: "About",
+        features: "Features",
+        updates: "Updates",
+        links: "Links",
+        download: "Download",
+        contact: "Contact",
+        dark_mode: "Dark mode",
+
+        links_title: "Links",
+        links_intro: "Find our shop and social media here.",
+
+        links_shop_title: "Shop",
+        links_shop_sub: "Digital products, checklists and guides — pick what you need.",
+        links_social_title: "Social media",
+        links_social_sub: "Updates, tips and behind the scenes — join the community.",
+
+        links_instagram: "Instagram",
+        links_instagram_desc: "Behind the scenes, tips and updates.",
+        links_tiktok: "TikTok",
+        links_tiktok_desc: "Quick tips and short videos.",
+        links_youtube: "YouTube",
+        links_youtube_desc: "Longer videos and guides.",
+        links_pinterest: "Pinterest",
+        links_pinterest_desc: "Inspiration and ideas to save.",
+
+        links_ebook: "e-book: Prepare your motorhome step by step before your first trip.",
+        links_ebook_desc: "First trip in a motorhome? This e-book will help you get everything sorted without stress: what to check before you set off, how to pack smartly, and what people most often forget. You get clear steps and checklists to help you hit the road confidently and calmly.",
+
+      },
+
+      es: {
+        logo: "Travel Rules",
+        about: "Acerca de",
+        features: "Funciones",
+        updates: "Actualizaciones",
+        links: "Enlaces",
+        download: "Descargar",
+        contact: "Contacto",
+        dark_mode: "Modo oscuro",
+
+        links_title: "Enlaces",
+        links_intro: "Aquí encontrarás nuestra tienda y redes sociales.",
+
+        links_shop_title: "Tienda",
+        links_shop_sub: "Productos digitales, listas y guías — elige lo que necesitas.",
+        links_social_title: "Redes sociales",
+        links_social_sub: "Novedades, consejos y detrás de cámaras — únete a la comunidad.",
+
+        links_instagram: "Instagram",
+        links_instagram_desc: "Detrás de cámaras, consejos y novedades.",
+        links_tiktok: "TikTok",
+        links_tiktok_desc: "Consejos rápidos y vídeos cortos.",
+        links_youtube: "YouTube",
+        links_youtube_desc: "Vídeos más largos y guías.",
+        links_pinterest: "Pinterest",
+        links_pinterest_desc: "Inspiración e ideas para guardar.",
+
+        links_ebook: "e-Book: Prepara tu camper paso a paso antes del primer viaje.",
+        links_ebook_desc: "¿Tu primer viaje en autocaravana? Este libro electrónico te ayudará a organizarlo todo sin estrés: qué comprobar antes de salir, cómo hacer las maletas de forma inteligente y qué es lo que se suele olvidar con más frecuencia. Obtendrás pasos claros y listas de verificación que te permitirán salir a la carretera con confianza y tranquilidad.",
+        
+      }
+    };
+
+    function setLanguage(lang) {
+      document.documentElement.lang = lang;
+
+      document.querySelectorAll('[data-lang-key]').forEach(el => {
+        const key = el.getAttribute('data-lang-key');
+        if (translations[lang] && translations[lang][key]) {
+          el.textContent = translations[lang][key];
+        }
+      });
+
+      // Show/hide elements for specific languages (comma separated supported)
+      document.querySelectorAll('[data-lang-only]').forEach(el => {
+        const onlyRaw = (el.getAttribute('data-lang-only') || '').trim();
+        const allowed = onlyRaw.split(',').map(s => s.trim()).filter(Boolean);
+        el.style.display = allowed.includes(lang) ? '' : 'none';
+      });
+    }
+
+    // Language flags
+    const langFlags = document.querySelectorAll('.flag-emoji');
+    langFlags.forEach(flag => {
+      flag.addEventListener('click', () => {
+        const lang = flag.getAttribute('data-lang');
+        setLanguage(lang);
+        localStorage.setItem('tr_lang', lang);
+      });
+    });
+
+    // Init language
+    const initialLang = (savedLang && ['pl','en','es'].includes(savedLang))
+      ? savedLang
+      : (navigator.language || 'pl').slice(0,2);
+
+    setLanguage(['pl','en','es'].includes(initialLang) ? initialLang : 'pl');
+  </script>
+</body>
+</html>
