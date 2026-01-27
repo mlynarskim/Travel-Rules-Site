@@ -126,6 +126,8 @@
         }
 
         .alert { padding: 1rem; border-radius: 12px; margin-bottom: 1.25rem; font-size: 0.85rem; border-left: 4px solid var(--accent); background: var(--bg); }
+        .privacy-box { margin-top: 2rem; padding: 1rem; border-radius: 12px; background: rgba(0,0,0,0.03); border: 1px dashed var(--border); text-align: center; }
+        [data-theme="dark"] .privacy-box { background: rgba(255,255,255,0.03); }
     </style>
 <link rel="stylesheet" href="/index.css">
 </head>
@@ -210,6 +212,11 @@
             </div>
             
             <button class="btn btn-outline btn-block" style="color:var(--danger); border-color:var(--danger);" id="btn-reset">Resetuj dane</button>
+
+            <div class="privacy-box">
+                <div style="font-weight: 700; font-size: 0.8rem; margin-bottom: 0.25rem;" id="ui-privacy-title">Twoja Prywatność</div>
+                <div style="font-size: 0.75rem; color: var(--text-muted);" id="ui-privacy-msg">Dane są zapisywane wyłącznie w Twojej przeglądarce.</div>
+            </div>
         </section>
 
         <section id="tab-expenses" class="section">

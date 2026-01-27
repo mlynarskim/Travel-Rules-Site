@@ -1,4 +1,6 @@
 
+// Fixed global scope naming conflict by wrapping the script in an IIFE.
+(() => {
 // --- TRANSLATIONS ---
 const i18n: any = {
     pl: {
@@ -12,7 +14,9 @@ const i18n: any = {
         converter_title: "Szybki Przelicznik", rates_title: "Kursy wymiany", rates_info: "Definiuj kursy wymiany względem waluty głównej.",
         packing_progress: "Postęp pakowania", add_to_list: "Dodaj do listy", pdf_title: "Generowanie Raportu", pdf_desc: "Twój plan i wydatki gotowe do druku.",
         confirm_reset: "Czy na pewno zresetować WSZYSTKIE dane?",
-        groups: ["Dokumenty", "Ubrania", "Elektronika", "Apteczka", "Auto/Van", "Inne"]
+        groups: ["Dokumenty", "Ubrania", "Elektronika", "Apteczka", "Auto/Van", "Inne"],
+        privacy_title: "Twoja Prywatność",
+        privacy_msg: "Dane są zapisywane wyłącznie w Twojej przeglądarce (LocalStorage). Aplikacja nie wysyła żadnych danych osobowych na serwer."
     },
     en: {
         title: "Travel Budget Planner",
@@ -25,7 +29,9 @@ const i18n: any = {
         converter_title: "Quick Converter", rates_title: "Exchange Rates", rates_info: "Define rates relative to your base currency.",
         packing_progress: "Packing Progress", add_to_list: "Add to List", pdf_title: "Generate Report", pdf_desc: "Your plan and expenses ready to print.",
         confirm_reset: "Are you sure you want to reset ALL data?",
-        groups: ["Documents", "Clothes", "Electronics", "Medical", "Auto/Van", "Other"]
+        groups: ["Documents", "Clothes", "Electronics", "Medical", "Auto/Van", "Other"],
+        privacy_title: "Your Privacy",
+        privacy_msg: "All data is stored locally in your browser (LocalStorage). We never send your personal information to any server."
     },
     es: {
         title: "Planificador de Viaje",
@@ -38,7 +44,9 @@ const i18n: any = {
         converter_title: "Conversor rápido", rates_title: "Tasas de cambio", rates_info: "Define las tasas relativas a tu moneda principal.",
         packing_progress: "Progreso de empaque", add_to_list: "Añadir a la lista", pdf_title: "Generar Informe", pdf_desc: "Tu plan y gastos listos para imprimir.",
         confirm_reset: "¿Estás seguro de que quieres reiniciar TODOS los datos?",
-        groups: ["Documentos", "Ropa", "Electrónica", "Botiquín", "Auto/Van", "Otros"]
+        groups: ["Documentos", "Ropa", "Electrónica", "Botiquín", "Auto/Van", "Otros"],
+        privacy_title: "Tu Privacidad",
+        privacy_msg: "Los datos se guardan solo en su navegador (LocalStorage). La aplicación no envía ningún dato personal al servidor."
     }
 };
 
@@ -72,8 +80,6 @@ const updateRatesFromApi = async () => {
             Object.keys(state.currency.manualRates).forEach(code => {
                 if (code === base) state.currency.manualRates[code] = 1;
                 else if (data.rates[code]) state.currency.manualRates[code] = 1 / data.rates[code];
-                // Note: Frankfurter provides rates FROM base TO others. We want 1 Other = X Base.
-                // So if 1 PLN = 0.23 EUR, then 1 EUR = 1/0.23 PLN = 4.3 PLN.
             });
             save();
             render();
@@ -149,6 +155,9 @@ const render = () => {
     getEl('ui-add-to-list').textContent = t.add_to_list;
     getEl('ui-pdf-title').textContent = t.pdf_title;
     getEl('ui-pdf-desc').textContent = t.pdf_desc;
+
+    getEl('ui-privacy-title').textContent = t.privacy_title;
+    getEl('ui-privacy-msg').textContent = t.privacy_msg;
 
     // State data sync
     getEl('lang-select').value = state.settings.lang;
@@ -378,3 +387,4 @@ window.addEventListener('DOMContentLoaded', () => {
     updateRatesFromApi(); // Fetch rates on startup
     render();
 });
+})();
