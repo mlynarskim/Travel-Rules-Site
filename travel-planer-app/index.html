@@ -20,9 +20,11 @@
             --success: #22c55e;
             --danger: #ef4444;
             --header-text: #ffffff;
+            --input-bg: #ffffff;
         }
 
-        body[data-theme="dark"] {
+        /* Dark Mode Fix */
+        [data-theme="dark"] {
             --bg: #0f172a;
             --card: #1e293b;
             --text: #f8fafc;
@@ -30,6 +32,7 @@
             --border: #334155;
             --header-text: #ffffff;
             --primary: #334155;
+            --input-bg: #1e293b;
         }
 
         * { box-sizing: border-box; font-family: 'Inter', system-ui, -apple-system, sans-serif; transition: background-color 0.2s, color 0.2s; }
@@ -82,7 +85,7 @@
         
         input, select {
             width: 100%; padding: 0.75rem; border: 1px solid var(--border); border-radius: 10px; font-size: 0.95rem;
-            background-color: var(--card); color: var(--text);
+            background-color: var(--input-bg); color: var(--text);
         }
         input:focus { outline: none; border-color: var(--accent); }
 
@@ -115,12 +118,15 @@
 
         #print-view { display: none; }
         @media print {
-            nav, header, .no-print, .btn, .privacy-box { display: none !important; }
-            #print-view { display: block !important; padding: 20px; color: black !important; }
+            nav, header, .no-print, .btn, .privacy-box, .pdf-selection { display: none !important; }
+            #print-view { display: block !important; padding: 20px; color: black !important; background: white !important; }
             main { display: none !important; }
-            table { width: 100%; border-collapse: collapse; margin-top: 1rem; margin-bottom: 2rem; }
-            th, td { text-align: left; padding: 8px; border-bottom: 1px solid #ddd; font-size: 12px; }
-            h2 { border-bottom: 2px solid var(--primary); padding-bottom: 5px; margin-top: 20px; }
+            table { width: 100%; border-collapse: collapse; margin-top: 1rem; margin-bottom: 1.5rem; }
+            th, td { text-align: left; padding: 6px; border: 1px solid #ddd; font-size: 10pt; color: black !important; }
+            th { background-color: #f2f2f2; }
+            h1, h2, h3 { color: black !important; margin-top: 1.5rem; }
+            h2 { border-bottom: 2px solid #333; padding-bottom: 4px; }
+            .pdf-summary-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
         }
 
         .theme-toggle {
@@ -130,11 +136,11 @@
 
         .alert { padding: 1rem; border-radius: 12px; margin-bottom: 1.25rem; font-size: 0.85rem; border-left: 4px solid var(--accent); background: var(--bg); }
         .privacy-box { margin-top: 2rem; padding: 1rem; border-radius: 12px; background: rgba(0,0,0,0.03); border: 1px dashed var(--border); text-align: center; }
-        body[data-theme="dark"] .privacy-box { background: rgba(255,255,255,0.03); }
+        [data-theme="dark"] .privacy-box { background: rgba(255,255,255,0.03); }
 
-        .pdf-selection { display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; margin-top: 1rem; text-align: left; }
-        .pdf-option { display: flex; align-items: center; gap: 8px; font-size: 0.85rem; cursor: pointer; }
-        .pdf-option input { width: auto; }
+        .pdf-selection { display: grid; grid-template-columns: 1fr; gap: 12px; margin-top: 1rem; text-align: left; }
+        .pdf-option { display: flex; align-items: center; gap: 10px; font-size: 0.9rem; cursor: pointer; padding: 8px; border-radius: 8px; background: rgba(0,0,0,0.02); }
+        .pdf-option input { width: auto; margin: 0; }
     </style>
 <link rel="stylesheet" href="/index.css">
 </head>
@@ -167,6 +173,7 @@
     </header>
 
     <main id="main-content" class="no-print">
+        <!-- Budget Section -->
         <section id="tab-budget" class="section active">
             <div class="card">
                 <div class="card-title" id="ui-trip-params">Parametry Podróży</div>
@@ -233,6 +240,7 @@
             </div>
         </section>
 
+        <!-- Expenses Section -->
         <section id="tab-expenses" class="section">
             <div class="card">
                 <div class="card-title" id="ui-add-expense">Dodaj Wydatek</div>
@@ -261,7 +269,7 @@
                         <label id="ui-exp-currency-label">Waluta</label>
                         <select id="exp-currency"></select>
                     </div>
-                    <div class="form-group" id="fx-field-container">
+                    <div class="form-group">
                         <label id="ui-exp-fx-label">Kurs wymiany</label>
                         <input type="number" id="exp-fx" step="0.0001">
                     </div>
@@ -286,6 +294,7 @@
             </div>
         </section>
 
+        <!-- Fuel Section -->
         <section id="tab-fuel" class="section">
             <div class="card">
                 <div class="card-title" id="ui-fuel-calc">Kalkulator Paliwa</div>
@@ -313,10 +322,10 @@
                     <label id="ui-fuel-fx-label">Kurs waluty paliwa</label>
                     <input type="number" id="fuel-fx" step="0.0001">
                 </div>
-                <div style="background: var(--primary); color: white; padding: 1rem; border-radius: 12px; text-align: center; margin-top: 1rem;">
-                    <div style="font-size: 0.7rem; text-transform: uppercase; opacity: 0.8;">Szacowany koszt paliwa</div>
-                    <div style="font-size: 1.25rem; font-weight: 800; color: var(--accent);"><span id="res-fuel-cost-only">0.00</span> <span class="base-curr-label">PLN</span></div>
-                    <div style="font-size: 0.75rem; opacity: 0.9;">Potrzeba: <span id="res-fuel-liters">0.0</span> L</div>
+                <div style="background: var(--primary); color: white; padding: 1.25rem; border-radius: 12px; text-align: center; margin-top: 1rem;">
+                    <div id="ui-est-fuel-cost-text" style="font-size: 0.7rem; text-transform: uppercase; opacity: 0.8;">SZACOWANY KOSZT PALIWA</div>
+                    <div style="font-size: 1.5rem; font-weight: 800; color: var(--accent);"><span id="res-fuel-cost-only">0.00</span> <span class="base-curr-label">PLN</span></div>
+                    <div style="font-size: 0.8rem; opacity: 0.9;"><span id="ui-fuel-needed-text">Potrzeba paliwa</span>: <span id="res-fuel-liters" style="font-weight:700">0.0</span> L</div>
                 </div>
             </div>
 
@@ -340,7 +349,7 @@
                     <label id="ui-toll-fx-label">Kurs waluty opłaty</label>
                     <input type="number" id="tolls-fx" step="0.0001">
                 </div>
-                <button class="btn btn-accent btn-block" id="btn-add-toll">Dodaj do historii</button>
+                <button class="btn btn-accent btn-block" id="btn-add-toll">DODAJ DO HISTORII</button>
             </div>
 
             <div class="card">
@@ -348,11 +357,12 @@
                 <div id="tolls-list"></div>
                 <div style="margin-top: 1.5rem; padding-top: 1rem; border-top: 1px solid var(--border); display: flex; justify-content: space-between; align-items: center;">
                     <span id="ui-transport-total-label" style="font-weight: 700;">Łączny koszt transportu:</span>
-                    <span style="font-size: 1.1rem; font-weight: 800; color: var(--accent);"><span id="res-total-transport">0.00</span> <span class="base-curr-label">PLN</span></span>
+                    <span style="font-size: 1.15rem; font-weight: 800; color: var(--accent);"><span id="res-total-transport">0.00</span> <span class="base-curr-label">PLN</span></span>
                 </div>
             </div>
         </section>
 
+        <!-- Rates Section -->
         <section id="tab-currencies" class="section">
             <div class="card">
                 <div class="card-title" id="ui-converter-title">Szybki Przelicznik</div>
@@ -371,6 +381,7 @@
             </div>
         </section>
 
+        <!-- Checklist Section -->
         <section id="tab-checklist" class="section">
             <div class="card">
                 <div class="card-title" id="ui-packing-progress">Postęp pakowania</div>
@@ -390,19 +401,20 @@
             </div>
         </section>
 
+        <!-- PDF Section -->
         <section id="tab-pdf" class="section">
             <div class="card" style="text-align: center; padding: 2rem;">
                 <h3 id="ui-pdf-title">Generowanie Raportu</h3>
-                <p id="ui-pdf-desc" style="color: var(--text-muted); font-size: 0.9rem; margin-bottom: 1rem;"></p>
+                <p id="ui-pdf-desc" style="color: var(--text-muted); font-size: 0.9rem; margin-bottom: 1.5rem;"></p>
                 
-                <div class="pdf-selection card" style="background: rgba(0,0,0,0.02);">
-                    <label class="pdf-option"><input type="checkbox" id="pdf-inc-budget" checked> <span id="ui-pdf-inc-budget">Podsumowanie & Budżet</span></label>
-                    <label class="pdf-option"><input type="checkbox" id="pdf-inc-expenses" checked> <span id="ui-pdf-inc-expenses">Wydatki</span></label>
-                    <label class="pdf-option"><input type="checkbox" id="pdf-inc-fuel" checked> <span id="ui-pdf-inc-fuel">Transport & Paliwo</span></label>
-                    <label class="pdf-option"><input type="checkbox" id="pdf-inc-checklist" checked> <span id="ui-pdf-inc-checklist">Lista kontrolna</span></label>
+                <div class="pdf-selection">
+                    <label class="pdf-option"><input type="checkbox" id="pdf-inc-budget" checked> <span id="ui-pdf-inc-budget">Parametry & Budżet</span></label>
+                    <label class="pdf-option"><input type="checkbox" id="pdf-inc-expenses" checked> <span id="ui-pdf-inc-expenses">Wydatki rzeczywiste</span></label>
+                    <label class="pdf-option"><input type="checkbox" id="pdf-inc-fuel" checked> <span id="ui-pdf-inc-fuel">Transport (Paliwo & Opłaty)</span></label>
+                    <label class="pdf-option"><input type="checkbox" id="pdf-inc-checklist" checked> <span id="ui-pdf-inc-checklist">Pełna lista rzeczy</span></label>
                 </div>
 
-                <button class="btn btn-primary btn-block" style="margin-top:1.5rem;" id="btn-gen-pdf">Generuj PDF / Drukuj</button>
+                <button class="btn btn-primary btn-block" style="margin-top:2rem;" id="btn-gen-pdf">EKSPORTUJ DO PDF</button>
             </div>
         </section>
     </main>
