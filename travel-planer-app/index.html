@@ -22,13 +22,14 @@
             --header-text: #ffffff;
         }
 
-        [data-theme="dark"] {
+        body[data-theme="dark"] {
             --bg: #0f172a;
             --card: #1e293b;
             --text: #f8fafc;
             --text-muted: #94a3b8;
             --border: #334155;
             --header-text: #ffffff;
+            --primary: #334155;
         }
 
         * { box-sizing: border-box; font-family: 'Inter', system-ui, -apple-system, sans-serif; transition: background-color 0.2s, color 0.2s; }
@@ -101,23 +102,25 @@
         .stat-val { display: block; font-size: 1.15rem; font-weight: 800; color: var(--accent); }
         .stat-label { font-size: 0.7rem; font-weight: 600; opacity: 0.8; text-transform: uppercase; }
 
-        .list-item { display: flex; justify-content: space-between; align-items: center; padding: 1rem 0; border-bottom: 1px solid var(--border); }
+        .list-item { display: flex; justify-content: space-between; align-items: center; padding: 0.75rem 0; border-bottom: 1px solid var(--border); }
         .list-item:last-child { border-bottom: none; }
         .list-item-title { font-weight: 600; font-size: 0.95rem; }
         .list-item-sub { font-size: 0.8rem; color: var(--text-muted); }
 
-        .tag { padding: 0.25rem 0.6rem; border-radius: 6px; font-size: 0.65rem; font-weight: 700; background: var(--primary); color: white; }
-
         .progress-bar { height: 10px; background: var(--border); border-radius: 10px; overflow: hidden; }
         .progress-fill { height: 100%; background: var(--success); transition: width 0.4s; }
 
+        .check-row { display: flex; align-items: center; gap: 10px; }
+        .check-row input[type="checkbox"] { width: auto; }
+
         #print-view { display: none; }
         @media print {
-            nav, header, .no-print { display: none !important; }
+            nav, header, .no-print, .btn, .privacy-box { display: none !important; }
             #print-view { display: block !important; padding: 20px; color: black !important; }
             main { display: none !important; }
-            table { width: 100%; border-collapse: collapse; margin-top: 1rem; }
-            th, td { text-align: left; padding: 8px; border-bottom: 1px solid #ddd; }
+            table { width: 100%; border-collapse: collapse; margin-top: 1rem; margin-bottom: 2rem; }
+            th, td { text-align: left; padding: 8px; border-bottom: 1px solid #ddd; font-size: 12px; }
+            h2 { border-bottom: 2px solid var(--primary); padding-bottom: 5px; margin-top: 20px; }
         }
 
         .theme-toggle {
@@ -127,7 +130,11 @@
 
         .alert { padding: 1rem; border-radius: 12px; margin-bottom: 1.25rem; font-size: 0.85rem; border-left: 4px solid var(--accent); background: var(--bg); }
         .privacy-box { margin-top: 2rem; padding: 1rem; border-radius: 12px; background: rgba(0,0,0,0.03); border: 1px dashed var(--border); text-align: center; }
-        [data-theme="dark"] .privacy-box { background: rgba(255,255,255,0.03); }
+        body[data-theme="dark"] .privacy-box { background: rgba(255,255,255,0.03); }
+
+        .pdf-selection { display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; margin-top: 1rem; text-align: left; }
+        .pdf-option { display: flex; align-items: center; gap: 8px; font-size: 0.85rem; cursor: pointer; }
+        .pdf-option input { width: auto; }
     </style>
 <link rel="stylesheet" href="/index.css">
 </head>
@@ -138,8 +145,16 @@
             <h1 id="ui-title">Planer Budżetu Podróży</h1>
             <div class="settings-bar">
                 <button class="theme-toggle" id="theme-btn" title="Zmień motyw">
-                    <svg id="theme-icon" viewBox="0 0 24 24" width="20" height="20" fill="currentColor">
-                        <path d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364-6.364l-.707.707M6.343 17.657l-.707.707m12.728 0l-.707-.707M6.343 6.343l-.707-.707M12 5a7 7 0 100 14 7 7 0 000-14z" />
+                    <svg id="theme-icon" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2">
+                        <circle cx="12" cy="12" r="5"></circle>
+                        <line x1="12" y1="1" x2="12" y2="3"></line>
+                        <line x1="12" y1="21" x2="12" y2="23"></line>
+                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                        <line x1="1" y1="12" x2="3" y2="12"></line>
+                        <line x1="21" y1="12" x2="23" y2="12"></line>
+                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
                     </svg>
                 </button>
                 <select id="lang-select" class="settings-select">
@@ -208,7 +223,6 @@
                         <button class="btn btn-accent" id="btn-add-cat">+</button>
                     </div>
                 </div>
-                <div id="category-summary" class="alert" style="display:none;"></div>
             </div>
             
             <button class="btn btn-outline btn-block" style="color:var(--danger); border-color:var(--danger);" id="btn-reset">Resetuj dane</button>
@@ -299,10 +313,19 @@
                     <label id="ui-fuel-fx-label">Kurs waluty paliwa</label>
                     <input type="number" id="fuel-fx" step="0.0001">
                 </div>
+                <div style="background: var(--primary); color: white; padding: 1rem; border-radius: 12px; text-align: center; margin-top: 1rem;">
+                    <div style="font-size: 0.7rem; text-transform: uppercase; opacity: 0.8;">Szacowany koszt paliwa</div>
+                    <div style="font-size: 1.25rem; font-weight: 800; color: var(--accent);"><span id="res-fuel-cost-only">0.00</span> <span class="base-curr-label">PLN</span></div>
+                    <div style="font-size: 0.75rem; opacity: 0.9;">Potrzeba: <span id="res-fuel-liters">0.0</span> L</div>
+                </div>
             </div>
 
             <div class="card">
-                <div class="card-title" id="ui-tolls-title">Opłaty & Autostrady</div>
+                <div class="card-title" id="ui-tolls-title">Dodaj Opłatę / Bramkę</div>
+                <div class="form-group">
+                    <label id="ui-toll-name-label">Nazwa (np. Bramki A1, Winieta)</label>
+                    <input type="text" id="toll-name">
+                </div>
                 <div class="grid">
                     <div class="form-group">
                         <label id="ui-tolls-amount-label">Kwota</label>
@@ -313,20 +336,19 @@
                         <select id="tolls-currency"></select>
                     </div>
                 </div>
+                <div class="form-group">
+                    <label id="ui-toll-fx-label">Kurs waluty opłaty</label>
+                    <input type="number" id="tolls-fx" step="0.0001">
+                </div>
+                <button class="btn btn-accent btn-block" id="btn-add-toll">Dodaj do historii</button>
             </div>
 
-            <div class="card" style="background: var(--primary); color: white;">
-                <div style="display:flex; justify-content: space-around; text-align:center;">
-                    <div>
-                        <span class="stat-label" id="ui-liters-label">Litry</span>
-                        <div style="font-size: 1.5rem; font-weight: 800; color: var(--accent);" id="res-fuel-liters">0.0</div>
-                    </div>
-                    <div>
-                        <span class="stat-label" id="ui-transport-total-label">Koszt transportu</span>
-                        <div style="font-size: 1.5rem; font-weight: 800; color: var(--accent);">
-                            <span id="res-total-transport">0.00</span> <span class="base-curr-label">PLN</span>
-                        </div>
-                    </div>
+            <div class="card">
+                <div class="card-title" id="ui-tolls-history-label">Historia Opłat</div>
+                <div id="tolls-list"></div>
+                <div style="margin-top: 1.5rem; padding-top: 1rem; border-top: 1px solid var(--border); display: flex; justify-content: space-between; align-items: center;">
+                    <span id="ui-transport-total-label" style="font-weight: 700;">Łączny koszt transportu:</span>
+                    <span style="font-size: 1.1rem; font-weight: 800; color: var(--accent);"><span id="res-total-transport">0.00</span> <span class="base-curr-label">PLN</span></span>
                 </div>
             </div>
         </section>
@@ -371,8 +393,16 @@
         <section id="tab-pdf" class="section">
             <div class="card" style="text-align: center; padding: 2rem;">
                 <h3 id="ui-pdf-title">Generowanie Raportu</h3>
-                <p id="ui-pdf-desc" style="color: var(--text-muted); font-size: 0.9rem; margin-bottom: 2rem;"></p>
-                <button class="btn btn-primary btn-block" id="btn-gen-pdf">PDF / Drukuj</button>
+                <p id="ui-pdf-desc" style="color: var(--text-muted); font-size: 0.9rem; margin-bottom: 1rem;"></p>
+                
+                <div class="pdf-selection card" style="background: rgba(0,0,0,0.02);">
+                    <label class="pdf-option"><input type="checkbox" id="pdf-inc-budget" checked> <span id="ui-pdf-inc-budget">Podsumowanie & Budżet</span></label>
+                    <label class="pdf-option"><input type="checkbox" id="pdf-inc-expenses" checked> <span id="ui-pdf-inc-expenses">Wydatki</span></label>
+                    <label class="pdf-option"><input type="checkbox" id="pdf-inc-fuel" checked> <span id="ui-pdf-inc-fuel">Transport & Paliwo</span></label>
+                    <label class="pdf-option"><input type="checkbox" id="pdf-inc-checklist" checked> <span id="ui-pdf-inc-checklist">Lista kontrolna</span></label>
+                </div>
+
+                <button class="btn btn-primary btn-block" style="margin-top:1.5rem;" id="btn-gen-pdf">Generuj PDF / Drukuj</button>
             </div>
         </section>
     </main>
