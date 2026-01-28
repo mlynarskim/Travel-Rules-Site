@@ -100,7 +100,7 @@
 
         .cat-progress-container { margin-top: 8px; margin-bottom: 12px; }
         .cat-progress-bg { height: 6px; background: var(--border); border-radius: 10px; overflow: hidden; }
-        .cat-progress-fill { height: 100%; background: var(--primary); transition: width 0.4s; }
+        .cat-progress-fill { height: 100%; background: var(--accent); transition: width 0.4s; }
         .cat-progress-fill.over { background: var(--danger); }
         .cat-progress-label { display: flex; justify-content: space-between; font-size: 0.65rem; color: var(--text-muted); margin-top: 4px; font-weight: 600; }
 
@@ -115,9 +115,17 @@
         .calendar-grid { display: grid; grid-template-columns: repeat(7, 1fr); gap: 2px; margin-bottom: 1rem; max-width: 300px; margin-left: auto; margin-right: auto; }
         .cal-day-head { font-size: 0.5rem; text-align: center; color: var(--text-muted); font-weight: 800; padding-bottom: 2px; }
         .cal-day { aspect-ratio: 1; display: flex; align-items: center; justify-content: center; font-size: 0.7rem; border-radius: 4px; cursor: pointer; position: relative; background: var(--bg); border: 1px solid var(--border); }
-        .cal-day.today { border-color: var(--primary); color: var(--primary); font-weight: 800; }
-        .cal-day.selected { background: var(--accent); color: white; border-color: var(--accent); }
-        .cal-day.has-content::after { content: ''; position: absolute; bottom: 2px; left: 20%; right: 20%; height: 1.5px; background: var(--primary); border-radius: 1px; }
+        
+        /* Styl dla dzisiejszego dnia */
+        .cal-day.today-highlight { 
+            border: 2px solid var(--accent); 
+            color: var(--accent); 
+            font-weight: 900;
+            background: rgba(221, 170, 79, 0.1);
+        }
+        
+        .cal-day.selected { background: var(--primary); color: white; border-color: var(--primary); z-index: 2; }
+        .cal-day.has-content::after { content: ''; position: absolute; bottom: 2px; left: 20%; right: 20%; height: 1.5px; background: currentColor; border-radius: 1px; opacity: 0.6; }
 
         .stats-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 0.75rem; margin-bottom: 1rem; }
         .stat-item { background: var(--primary); color: white; padding: 0.75rem; border-radius: 12px; }
@@ -129,7 +137,6 @@
 
         .summary-sub { background: var(--primary-dark); color: white; padding: 0.5rem 1rem; border-radius: 8px; font-size: 0.8rem; margin-top: 0.5rem; display: flex; justify-content: space-between; align-items: center; }
 
-        /* Journal Specific Styles */
         .selector-strip { display: flex; justify-content: space-between; align-items: center; background: var(--card); padding: 0.5rem; border-radius: 12px; border: 1px solid var(--border); margin-bottom: 1rem; }
         .selector-btn { background: none; border: none; color: var(--primary); cursor: pointer; font-size: 1.2rem; padding: 0 10px; }
         .sub-selector { display: flex; gap: 5px; overflow-x: auto; padding-bottom: 8px; margin-bottom: 1rem; scrollbar-width: none; }
@@ -150,21 +157,17 @@
             table { width: 100%; border-collapse: collapse; margin-top: 10px; }
             th, td { border: 1px solid #e2e8f0; padding: 8px; text-align: left; }
             th { background-color: #f8fafc; font-weight: bold; }
-            .print-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
-            .stat-box { border: 1px solid #e2e8f0; padding: 10px; border-radius: 8px; }
-            .journal-day { margin-bottom: 15px; border-left: 3px solid #DDAA4F; padding-left: 10px; }
         }
     </style>
 <link rel="stylesheet" href="/index.css">
 </head>
 <body data-theme="light">
-
     <header class="no-print">
         <div class="header-top">
             <h1 id="ui-title">Planer Podróży</h1>
             <div class="settings-bar">
                 <button class="theme-toggle" id="theme-btn">
-                    <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg>
+                    <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" id="theme-icon-svg"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg>
                 </button>
                 <select id="lang-select" class="settings-select">
                     <option value="pl">PL</option>
@@ -253,7 +256,7 @@
                 <div class="card-title" id="ui-refuel-card-title">Tankowanie</div>
                 <div class="grid">
                     <div class="form-group"><label id="ui-refuel-date-label">Kiedy</label><input type="date" id="refuel-date"></div>
-                    <div class="form-group"><label id="ui-refuel-name-label">Nazwa stacji lub kraju</label><input type="text" id="refuel-name"></div>
+                    <div class="form-group"><label id="ui-refuel-name-label">Nazwa</label><input type="text" id="refuel-name"></div>
                 </div>
                 <div class="grid">
                     <div class="form-group"><label id="ui-refuel-amount-label">Kwota</label><input type="text" inputmode="decimal" id="refuel-amount"></div>
