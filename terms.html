@@ -1,0 +1,526 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Warunki korzystania — Travel Rules</title>
+  <meta name="description" content="Warunki korzystania aplikacji Travel Rules na iOS. Informacje o licencji, subskrypcjach, odpowiedzialności, prywatności i wsparciu.">
+  <style>
+    :root{
+      --bg:#f9f9f9;
+      --text:#333;
+      --muted:#444;
+      --link:#0066cc;
+      --card:#ffffff;
+      --border:#e6e6e6;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: Arial, Helvetica, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.7;
+    }
+    header, footer {
+      background: var(--card);
+      border-bottom: 1px solid var(--border);
+      text-align: center;
+      padding: 28px 16px;
+    }
+    footer { border-top: 1px solid var(--border); border-bottom: none; }
+    header h1 { margin: 0 0 6px; font-size: 2rem; }
+    header p.meta { margin: 0; color: #666; font-size: .9rem; }
+    main {
+      max-width: 1000px;
+      margin: 24px auto 40px;
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 28px;
+    }
+    h2 {
+      color: var(--muted);
+      font-size: 1.25rem;
+      margin: 0 0 10px;
+    }
+    h3 { font-size: 1.05rem; margin: 18px 0 8px; color: #333; }
+    p { margin: 0 0 12px; }
+    ul { margin: 0 0 12px 20px; }
+    li { margin: 6px 0; }
+    a { color: var(--link); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+    .card {
+      background: #f7fbff;
+      border: 1px solid #e2f0ff;
+      padding: 14px;
+      border-radius: 8px;
+      margin: 12px 0;
+      font-size: .95rem;
+    }
+    .toc {
+      background: #fff;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 12px 14px;
+      margin-bottom: 18px;
+    }
+    .toc a { display: inline-block; margin: 4px 12px 4px 0; font-size: .95rem; }
+    .small { font-size: .92rem; color: #555; }
+
+    /* Language switcher */
+    .langbar{
+      display:flex;
+      justify-content:center;
+      gap:10px;
+      margin-top:14px;
+      flex-wrap:wrap;
+    }
+    .lang-btn{
+      border:1px solid var(--border);
+      background:#fff;
+      color:var(--text);
+      padding:8px 12px;
+      border-radius:999px;
+      cursor:pointer;
+      font-size:.95rem;
+      line-height:1;
+      transition:background .15s ease, border-color .15s ease;
+    }
+    .lang-btn:hover{ background:#f3f3f3; }
+    .lang-btn[aria-pressed="true"]{
+      border-color:#cfd8ff;
+      background:#eef2ff;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1 data-i18n="title_h1">Warunki korzystania</h1>
+    <p class="small" data-i18n-html="app_line">Aplikacja: <strong>Travel Rules</strong> (iOS)</p>
+    <p class="meta" data-i18n="updated_line">Ostatnia aktualizacja: 23 września 2025</p>
+
+    <div class="langbar" aria-label="Language switcher">
+      <button class="lang-btn" type="button" data-lang="pl" aria-pressed="true">Polski</button>
+      <button class="lang-btn" type="button" data-lang="en" aria-pressed="false">English</button>
+      <button class="lang-btn" type="button" data-lang="es" aria-pressed="false">Español</button>
+    </div>
+  </header>
+
+  <main>
+    <div class="toc" aria-label="Spis treści">
+      <strong data-i18n="toc_title">Spis treści:</strong><br>
+      <a href="#1" data-i18n="toc_1">1. Postanowienia ogólne</a>
+      <a href="#2" data-i18n="toc_2">2. Definicje</a>
+      <a href="#3" data-i18n="toc_3">3. Wymagania techniczne</a>
+      <a href="#4" data-i18n="toc_4">4. Licencja i prawa</a>
+      <a href="#5" data-i18n="toc_5">5. Zasady korzystania</a>
+      <a href="#6" data-i18n="toc_6">6. Treści użytkownika</a>
+      <a href="#7" data-i18n="toc_7">7. Subskrypcje i zakupy</a>
+      <a href="#8" data-i18n="toc_8">8. Reklamy i usługi zewn.</a>
+      <a href="#9" data-i18n="toc_9">9. Prywatność</a>
+      <a href="#10" data-i18n="toc_10">10. Odpowiedzialność</a>
+      <a href="#11" data-i18n="toc_11">11. Zmiany i rozwiązanie</a>
+      <a href="#12" data-i18n="toc_12">12. Prawo i spory</a>
+      <a href="#13" data-i18n="toc_13">13. Postanowienia Apple</a>
+      <a href="#14" data-i18n="toc_14">14. Kontakt</a>
+    </div>
+
+    <section id="1">
+      <h2 data-i18n="s1_h">1. Postanowienia ogólne</h2>
+      <p data-i18n-html="s1_p">Niniejsze Warunki korzystania („Warunki”) regulują sposób korzystania z aplikacji mobilnej <strong>Travel Rules</strong> na system iOS, dystrybuowanej za pośrednictwem Apple App Store. Instalując, uzyskując dostęp lub korzystając z aplikacji, akceptujesz te Warunki. Jeżeli nie akceptujesz Warunków, nie korzystaj z aplikacji.</p>
+    </section>
+
+    <section id="2">
+      <h2 data-i18n="s2_h">2. Definicje</h2>
+      <ul data-i18n-html="s2_ul">
+        <li><strong>Aplikacja</strong> – oprogramowanie „Travel Rules” na iOS.</li>
+        <li><strong>Użytkownik</strong> – osoba fizyczna korzystająca z Aplikacji.</li>
+        <li><strong>Subskrypcja</strong> – odnawialny plan płatny (miesięczny lub roczny) zapewniający dostęp do funkcji premium.</li>
+        <li><strong>Konto Apple ID</strong> – konto niezbędne do dokonywania zakupów w App Store i zarządzania subskrypcjami.</li>
+      </ul>
+    </section>
+
+    <section id="3">
+      <h2 data-i18n="s3_h">3. Wymagania techniczne</h2>
+      <ul data-i18n-html="s3_ul">
+        <li>Urządzenie z systemem iOS w wersji wspieranej przez Aplikację oraz dostęp do internetu do pobrania i ewentualnych aktualizacji.</li>
+        <li>Do zakupów w Aplikacji wymagane jest aktywne konto Apple ID oraz skonfigurowana metoda płatności.</li>
+        <li>Niektóre funkcje (np. mapy, lokalizacja) mogą wymagać włączenia usług lokalizacji i dostępu do internetu.</li>
+      </ul>
+    </section>
+
+    <section id="4">
+      <h2 data-i18n="s4_h">4. Licencja i prawa własności intelektualnej</h2>
+      <p data-i18n-html="s4_p">Otrzymujesz niewyłączną, odwołalną, nieprzenoszalną licencję na korzystanie z Aplikacji wyłącznie do celów prywatnych, zgodnie z Warunkami i obowiązującym prawem. Wszystkie prawa do Aplikacji, w tym kod źródłowy, interfejsy, grafiki, są zastrzeżone przez twórcę.</p>
+    </section>
+
+    <section id="5">
+      <h2 data-i18n="s5_h">5. Zasady korzystania (dozwolone i niedozwolone)</h2>
+      <ul data-i18n-html="s5_ul">
+        <li>Nie wolno dekompilować, odtwarzać kodu, modyfikować, rozpowszechniać ani sprzedawać Aplikacji.</li>
+        <li>Nie wolno wykorzystywać Aplikacji w sposób niezgodny z prawem, naruszający prawa osób trzecich lub bezpieczeństwo urządzeń.</li>
+        <li>Nie wolno obchodzić mechanizmów subskrypcji, weryfikacji zakupu czy zabezpieczeń.</li>
+        <li>Użytkownik odpowiada za konfigurację urządzenia, aktualizacje systemu oraz kopie zapasowe.</li>
+      </ul>
+      <div class="card" data-i18n-html="s5_card">
+        <strong>Bezpieczeństwo i odpowiedzialne korzystanie:</strong>
+        Aplikacja ma charakter informacyjno-organizacyjny. Nie zastępuje przepisów ruchu drogowego, służb ratunkowych ani profesjonalnych porad. W nagłych wypadkach dzwoń bezpośrednio pod lokalne numery alarmowe.
+      </div>
+    </section>
+
+    <section id="6">
+      <h2 data-i18n="s6_h">6. Treści użytkownika</h2>
+      <p data-i18n-html="s6_p">Możesz zapisywać własne notatki, listy i lokalizacje („Treści użytkownika”). Odpowiadasz za ich legalność i zgodność z zasadami. Treści są przechowywane lokalnie na urządzeniu i nie są przesyłane do nas (szczegóły w Polityce Prywatności).</p>
+    </section>
+
+    <section id="7">
+      <h2 data-i18n="s7_h">7. Subskrypcje i zakupy w aplikacji (IAP)</h2>
+      <p data-i18n="s7_p1">Aplikacja oferuje płatne subskrypcje automatycznie odnawialne:</p>
+      <ul data-i18n-html="s7_ul">
+        <li><strong>Miesięczna</strong> – odnawiana co miesiąc.</li>
+        <li><strong>Roczna</strong> – odnawiana co rok.</li>
+      </ul>
+
+      <h3 data-i18n="s7_1_h">7.1. Ceny i rozliczenia</h3>
+      <ul data-i18n-html="s7_1_ul">
+        <li>Cena i waluta zależą od regionu i są wyświetlane w App Store oraz w Aplikacji <em>przed</em> zakupem.</li>
+        <li>Płatność pobierana jest z konta Apple ID po potwierdzeniu zakupu.</li>
+        <li>Subskrypcja odnawia się automatycznie, chyba że auto-odnawianie zostanie wyłączone co najmniej 24 godziny przed końcem bieżącego okresu.</li>
+        <li>Opłata za odnowienie naliczana jest w ciągu 24 godzin przed końcem bieżącego okresu.</li>
+        <li>Okresy próbne (jeżeli oferowane) mogą ulec utracie w momencie zakupu planu płatnego.</li>
+      </ul>
+
+      <h3 data-i18n="s7_2_h">7.2. Zarządzanie i anulowanie</h3>
+      <p data-i18n-html="s7_2_p">Subskrypcjami zarządzasz w iOS: <strong>Ustawienia &gt; [Twoje imię] &gt; Subskrypcje</strong> lub w App Store. Pomoc Apple:</p>
+      <ul>
+        <li><a href="https://support.apple.com/pl-pl/HT202039" target="_blank" rel="noopener">Zarządzanie/Anulowanie subskrypcji</a></li>
+        <li><a href="https://reportaproblem.apple.com/" target="_blank" rel="noopener">Zwroty i zgłaszanie problemów</a></li>
+      </ul>
+
+      <h3 data-i18n="s7_3_h">7.3. Przywracanie zakupów</h3>
+      <p data-i18n-html="s7_3_p">Aplikacja udostępnia funkcję <strong>„Przywróć zakupy”</strong> (Restore Purchases) dla wcześniej nabytych subskrypcji na tym samym Apple ID (np. po reinstalacji lub zmianie urządzenia).</p>
+
+      <h3 data-i18n="s7_4_h">7.4. Zwroty</h3>
+      <p data-i18n-html="s7_4_p">Zwroty realizuje Apple zgodnie ze swoimi zasadami. Wnioski złóż przez <a href="https://reportaproblem.apple.com/" target="_blank" rel="noopener">reportaproblem.apple.com</a>.</p>
+
+      <div class="card" data-i18n-html="s7_card">
+        <strong>Dane płatnicze:</strong> Dane kart i rozliczeń przetwarza Apple. My nie przechowujemy danych kart. Weryfikujemy jedynie status subskrypcji (np. na podstawie paragonu transakcyjnego/receipt) w celu odblokowania funkcji premium.
+      </div>
+    </section>
+
+    <section id="8">
+      <h2 data-i18n="s8_h">8. Reklamy i usługi zewnętrzne</h2>
+      <p data-i18n="s8_p">Aplikacja może wyświetlać reklamy lub korzystać z usług analitycznych firm trzecich (np. Apple/Google). Szczegóły dotyczące danych i preferencji reklam znajdziesz w ustawieniach iOS oraz w Polityce Prywatności. Zakres i częstotliwość reklam może się zmieniać.</p>
+    </section>
+
+    <section id="9">
+      <h2 data-i18n="s9_h">9. Ochrona prywatności</h2>
+      <p data-i18n-html="s9_p">Twoja prywatność jest dla nas ważna. Zapoznaj się z <a href="polityka-prywatnosci.html">Polityką Prywatności</a>, która opisuje, jakie informacje są przetwarzane i w jaki sposób.</p>
+    </section>
+
+    <section id="10">
+      <h2 data-i18n="s10_h">10. Zastrzeżenia, odpowiedzialność i ryzyka</h2>
+      <ul data-i18n-html="s10_ul">
+        <li>Aplikacja dostarczana jest „tak jak jest” (AS IS), bez gwarancji przydatności do określonego celu czy bezbłędności.</li>
+        <li>Nie gwarantujemy dostępności wszystkich funkcji w każdym kraju ani aktualności numerów alarmowych czy danych zewnętrznych.</li>
+        <li>W zakresie dozwolonym przez prawo, wyłączamy odpowiedzialność za szkody pośrednie, utratę danych, korzyści, przerwę w działalności itp.</li>
+        <li>Użytkownik korzysta z Aplikacji na własną odpowiedzialność i zobowiązuje się do przestrzegania przepisów obowiązujących w miejscu korzystania.</li>
+      </ul>
+    </section>
+
+    <section id="11">
+      <h2 data-i18n="s11_h">11. Zmiany, zawieszenie i rozwiązanie korzystania</h2>
+      <ul data-i18n-html="s11_ul">
+        <li>Możemy wprowadzać aktualizacje, modyfikować lub czasowo ograniczać funkcje Aplikacji (np. z powodów technicznych lub prawnych).</li>
+        <li>Możemy rozwiązać licencję Użytkownika w przypadku naruszenia Warunków.</li>
+        <li>O istotnych zmianach Warunków poinformujemy w Aplikacji lub w opisie w App Store; dalsze korzystanie oznacza akceptację zmian.</li>
+      </ul>
+    </section>
+
+    <section id="12">
+      <h2 data-i18n="s12_h">12. Prawo właściwe i rozstrzyganie sporów</h2>
+      <p data-i18n="s12_p">Warunki podlegają prawu Rzeczypospolitej Polskiej (z poszanowaniem bezwzględnie obowiązujących przepisów ochrony konsumenta kraju Twojego zamieszkania w UE). Spory rekomendujemy rozwiązywać polubownie; w razie potrzeby właściwe są sądy powszechne w Polsce, chyba że bezwzględnie obowiązujące prawo stanowi inaczej.</p>
+    </section>
+
+    <section id="13">
+      <h2 data-i18n="s13_h">13. Postanowienia dotyczące Apple</h2>
+      <ul data-i18n-html="s13_ul">
+        <li>Apple nie jest stroną niniejszej umowy licencyjnej i nie odpowiada za Aplikację ani jej treść.</li>
+        <li>Apple i jego spółki zależne są beneficjentami pośrednimi niniejszych Warunków w zakresie postanowień dotyczących Aplikacji i mają prawo dochodzić ich wykonania.</li>
+        <li>Korzystanie z Aplikacji podlega Warunkom Apple Media Services oraz innym właściwym zasadom Apple.</li>
+      </ul>
+      <ul>
+        <li><a href="https://www.apple.com/legal/internet-services/itunes/pl/terms.html" target="_blank" rel="noopener" data-i18n="s13_link">Warunki Apple Media Services</a></li>
+      </ul>
+    </section>
+
+    <section id="14">
+      <h2 data-i18n="s14_h">14. Kontakt</h2>
+      <p data-i18n-html="s14_p">W sprawach dotyczących Aplikacji lub niniejszych Warunków skontaktuj się z nami: <a href="mailto:mlynarski.mateusz@gmail.com">mlynarski.mateusz@gmail.com</a>.</p>
+      <p class="small" data-i18n-html="s14_small">W sprawach płatności, faktur i zwrotów skorzystaj z pomocy Apple: <a href="https://reportaproblem.apple.com/" target="_blank" rel="noopener">reportaproblem.apple.com</a>.</p>
+    </section>
+  </main>
+
+  <footer>
+    <p data-i18n="footer_rights">© 2025 Travel Rules. Wszelkie prawa zastrzeżone.</p>
+    <p class="small">
+      <a href="polityka-prywatnosci.html" data-i18n="footer_privacy">Polityka Prywatności</a> •
+      <a href="warunki-korzystania.html" data-i18n="footer_terms">Warunki korzystania</a>
+    </p>
+  </footer>
+
+  <script>
+    (function(){
+      const metaDesc = document.querySelector('meta[name="description"]');
+      const htmlEl = document.documentElement;
+
+      const dict = {
+        pl: {
+          page_title: 'Warunki korzystania — Travel Rules',
+          page_desc: 'Warunki korzystania aplikacji Travel Rules na iOS. Informacje o licencji, subskrypcjach, odpowiedzialności, prywatności i wsparciu.',
+          title_h1: 'Warunki korzystania',
+          app_line: 'Aplikacja: <strong>Travel Rules</strong> (iOS)',
+          updated_line: 'Ostatnia aktualizacja: 23 września 2025',
+          toc_title: 'Spis treści:',
+          toc_1: '1. Postanowienia ogólne',
+          toc_2: '2. Definicje',
+          toc_3: '3. Wymagania techniczne',
+          toc_4: '4. Licencja i prawa',
+          toc_5: '5. Zasady korzystania',
+          toc_6: '6. Treści użytkownika',
+          toc_7: '7. Subskrypcje i zakupy',
+          toc_8: '8. Reklamy i usługi zewn.',
+          toc_9: '9. Prywatność',
+          toc_10: '10. Odpowiedzialność',
+          toc_11: '11. Zmiany i rozwiązanie',
+          toc_12: '12. Prawo i spory',
+          toc_13: '13. Postanowienia Apple',
+          toc_14: '14. Kontakt',
+          s1_h: '1. Postanowienia ogólne',
+          s1_p: 'Niniejsze Warunki korzystania („Warunki”) regulują sposób korzystania z aplikacji mobilnej <strong>Travel Rules</strong> na system iOS, dystrybuowanej za pośrednictwem Apple App Store. Instalując, uzyskując dostęp lub korzystając z aplikacji, akceptujesz te Warunki. Jeżeli nie akceptujesz Warunków, nie korzystaj z aplikacji.',
+          s2_h: '2. Definicje',
+          s2_ul: '<li><strong>Aplikacja</strong> – oprogramowanie „Travel Rules” na iOS.</li><li><strong>Użytkownik</strong> – osoba fizyczna korzystająca z Aplikacji.</li><li><strong>Subskrypcja</strong> – odnawialny plan płatny (miesięczny lub roczny) zapewniający dostęp do funkcji premium.</li><li><strong>Konto Apple ID</strong> – konto niezbędne do dokonywania zakupów w App Store i zarządzania subskrypcjami.</li>',
+          s3_h: '3. Wymagania techniczne',
+          s3_ul: '<li>Urządzenie z systemem iOS w wersji wspieranej przez Aplikację oraz dostęp do internetu do pobrania i ewentualnych aktualizacji.</li><li>Do zakupów w Aplikacji wymagane jest aktywne konto Apple ID oraz skonfigurowana metoda płatności.</li><li>Niektóre funkcje (np. mapy, lokalizacja) mogą wymagać włączenia usług lokalizacji i dostępu do internetu.</li>',
+          s4_h: '4. Licencja i prawa własności intelektualnej',
+          s4_p: 'Otrzymujesz niewyłączną, odwołalną, nieprzenoszalną licencję na korzystanie z Aplikacji wyłącznie do celów prywatnych, zgodnie z Warunkami i obowiązującym prawem. Wszystkie prawa do Aplikacji, w tym kod źródłowy, interfejsy, grafiki, są zastrzeżone przez twórcę.',
+          s5_h: '5. Zasady korzystania (dozwolone i niedozwolone)',
+          s5_ul: '<li>Nie wolno dekompilować, odtwarzać kodu, modyfikować, rozpowszechniać ani sprzedawać Aplikacji.</li><li>Nie wolno wykorzystywać Aplikacji w sposób niezgodny z prawem, naruszający prawa osób trzecich lub bezpieczeństwo urządzeń.</li><li>Nie wolno obchodzić mechanizmów subskrypcji, weryfikacji zakupu czy zabezpieczeń.</li><li>Użytkownik odpowiada za konfigurację urządzenia, aktualizacje systemu oraz kopie zapasowe.</li>',
+          s5_card: '<strong>Bezpieczeństwo i odpowiedzialne korzystanie:</strong> Aplikacja ma charakter informacyjno-organizacyjny. Nie zastępuje przepisów ruchu drogowego, służb ratunkowych ani profesjonalnych porad. W nagłych wypadkach dzwoń bezpośrednio pod lokalne numery alarmowe.',
+          s6_h: '6. Treści użytkownika',
+          s6_p: 'Możesz zapisywać własne notatki, listy i lokalizacje („Treści użytkownika”). Odpowiadasz za ich legalność i zgodność z zasadami. Treści są przechowywane lokalnie na urządzeniu i nie są przesyłane do nas (szczegóły w Polityce Prywatności).',
+          s7_h: '7. Subskrypcje i zakupy w aplikacji (IAP)',
+          s7_p1: 'Aplikacja oferuje płatne subskrypcje automatycznie odnawialne:',
+          s7_ul: '<li><strong>Miesięczna</strong> – odnawiana co miesiąc.</li><li><strong>Roczna</strong> – odnawiana co rok.</li>',
+          s7_1_h: '7.1. Ceny i rozliczenia',
+          s7_1_ul: '<li>Cena i waluta zależą od regionu i są wyświetlane w App Store oraz w Aplikacji <em>przed</em> zakupem.</li><li>Płatność pobierana jest z konta Apple ID po potwierdzeniu zakupu.</li><li>Subskrypcja odnawia się automatycznie, chyba że auto-odnawianie zostanie wyłączone co najmniej 24 godziny przed końcem bieżącego okresu.</li><li>Opłata za odnowienie naliczana jest w ciągu 24 godzin przed końcem bieżącego okresu.</li><li>Okresy próbne (jeżeli oferowane) mogą ulec utracie w momencie zakupu planu płatnego.</li>',
+          s7_2_h: '7.2. Zarządzanie i anulowanie',
+          s7_2_p: 'Subskrypcjami zarządzasz w iOS: <strong>Ustawienia &gt; [Twoje imię] &gt; Subskrypcje</strong> lub w App Store. Pomoc Apple:',
+          s7_3_h: '7.3. Przywracanie zakupów',
+          s7_3_p: 'Aplikacja udostępnia funkcję <strong>„Przywróć zakupy”</strong> (Restore Purchases) dla wcześniej nabytych subskrypcji na tym samym Apple ID (np. po reinstalacji lub zmianie urządzenia).',
+          s7_4_h: '7.4. Zwroty',
+          s7_4_p: 'Zwroty realizuje Apple zgodnie ze swoimi zasadami. Wnioski złóż przez <a href="https://reportaproblem.apple.com/" target="_blank" rel="noopener">reportaproblem.apple.com</a>.',
+          s7_card: '<strong>Dane płatnicze:</strong> Dane kart i rozliczeń przetwarza Apple. My nie przechowujemy danych kart. Weryfikujemy jedynie status subskrypcji (np. na podstawie paragonu transakcyjnego/receipt) w celu odblokowania funkcji premium.',
+          s8_h: '8. Reklamy i usługi zewnętrzne',
+          s8_p: 'Aplikacja może wyświetlać reklamy lub korzystać z usług analitycznych firm trzecich (np. Apple/Google). Szczegóły dotyczące danych i preferencji reklam znajdziesz w ustawieniach iOS oraz w Polityce Prywatności. Zakres i częstotliwość reklam może się zmieniać.',
+          s9_h: '9. Ochrona prywatności',
+          s9_p: 'Twoja prywatność jest dla nas ważna. Zapoznaj się z <a href="polityka-prywatnosci.html">Polityką Prywatności</a>, która opisuje, jakie informacje są przetwarzane i w jaki sposób.',
+          s10_h: '10. Zastrzeżenia, odpowiedzialność i ryzyka',
+          s10_ul: '<li>Aplikacja dostarczana jest „tak jak jest” (AS IS), bez gwarancji przydatności do określonego celu czy bezbłędności.</li><li>Nie gwarantujemy dostępności wszystkich funkcji w każdym kraju ani aktualności numerów alarmowych czy danych zewnętrznych.</li><li>W zakresie dozwolonym przez prawo, wyłączamy odpowiedzialność za szkody pośrednie, utratę danych, korzyści, przerwę w działalności itp.</li><li>Użytkownik korzysta z Aplikacji na własną odpowiedzialność i zobowiązuje się do przestrzegania przepisów obowiązujących w miejscu korzystania.</li>',
+          s11_h: '11. Zmiany, zawieszenie i rozwiązanie korzystania',
+          s11_ul: '<li>Możemy wprowadzać aktualizacje, modyfikować lub czasowo ograniczać funkcje Aplikacji (np. z powodów technicznych lub prawnych).</li><li>Możemy rozwiązać licencję Użytkownika w przypadku naruszenia Warunków.</li><li>O istotnych zmianach Warunków poinformujemy w Aplikacji lub w opisie w App Store; dalsze korzystanie oznacza akceptację zmian.</li>',
+          s12_h: '12. Prawo właściwe i rozstrzyganie sporów',
+          s12_p: 'Warunki podlegają prawu Rzeczypospolitej Polskiej (z poszanowaniem bezwzględnie obowiązujących przepisów ochrony konsumenta kraju Twojego zamieszkania w UE). Spory rekomendujemy rozwiązywać polubownie; w razie potrzeby właściwe są sądy powszechne w Polsce, chyba że bezwzględnie obowiązujące prawo stanowi inaczej.',
+          s13_h: '13. Postanowienia dotyczące Apple',
+          s13_ul: '<li>Apple nie jest stroną niniejszej umowy licencyjnej i nie odpowiada za Aplikację ani jej treść.</li><li>Apple i jego spółki zależne są beneficjentami pośrednimi niniejszych Warunków w zakresie postanowień dotyczących Aplikacji i mają prawo dochodzić ich wykonania.</li><li>Korzystanie z Aplikacji podlega Warunkom Apple Media Services oraz innym właściwym zasadom Apple.</li>',
+          s13_link: 'Warunki Apple Media Services',
+          s14_h: '14. Kontakt',
+          s14_p: 'W sprawach dotyczących Aplikacji lub niniejszych Warunków skontaktuj się z nami: <a href="mailto:mlynarski.mateusz@gmail.com">mlynarski.mateusz@gmail.com</a>.',
+          s14_small: 'W sprawach płatności, faktur i zwrotów skorzystaj z pomocy Apple: <a href="https://reportaproblem.apple.com/" target="_blank" rel="noopener">reportaproblem.apple.com</a>.',
+          footer_rights: '© 2025 Travel Rules. Wszelkie prawa zastrzeżone.',
+          footer_privacy: 'Polityka Prywatności',
+          footer_terms: 'Warunki korzystania',          footer_cookies: 'Cookies',
+          footer_cookies: 'Cookies'
+        },
+        en: {
+          page_title: 'Terms of Use — Travel Rules',
+          page_desc: 'Terms of Use for the Travel Rules iOS app. Information about license, subscriptions, liability, privacy, and support.',
+          title_h1: 'Terms of Use',
+          app_line: 'App: <strong>Travel Rules</strong> (iOS)',
+          updated_line: 'Last updated: September 23, 2025',
+          toc_title: 'Table of contents:',
+          toc_1: '1. General provisions',
+          toc_2: '2. Definitions',
+          toc_3: '3. Technical requirements',
+          toc_4: '4. License and IP',
+          toc_5: '5. Acceptable use',
+          toc_6: '6. User content',
+          toc_7: '7. Subscriptions & purchases',
+          toc_8: '8. Ads & third-party services',
+          toc_9: '9. Privacy',
+          toc_10: '10. Disclaimers & liability',
+          toc_11: '11. Changes, suspension, termination',
+          toc_12: '12. Governing law & disputes',
+          toc_13: '13. Apple provisions',
+          toc_14: '14. Contact',
+          s1_h: '1. General provisions',
+          s1_p: 'These Terms of Use (the “Terms”) govern your use of the <strong>Travel Rules</strong> mobile application for iOS, distributed via the Apple App Store. By installing, accessing, or using the app, you agree to these Terms. If you do not agree, do not use the app.',
+          s2_h: '2. Definitions',
+          s2_ul: '<li><strong>App</strong> — the “Travel Rules” software for iOS.</li><li><strong>User</strong> — an individual using the App.</li><li><strong>Subscription</strong> — a paid renewable plan (monthly or annual) providing access to premium features.</li><li><strong>Apple ID account</strong> — the account required to make App Store purchases and manage subscriptions.</li>',
+          s3_h: '3. Technical requirements',
+          s3_ul: '<li>An iOS device supported by the App and internet access to download and potentially update it.</li><li>An active Apple ID account and configured payment method are required for in-app purchases.</li><li>Some features (e.g., maps, location) may require location services and internet access.</li>',
+          s4_h: '4. License and intellectual property',
+          s4_p: 'You receive a non-exclusive, revocable, non-transferable license to use the App for personal purposes only, in accordance with these Terms and applicable law. All rights to the App, including source code, interfaces, and graphics, are reserved by the developer.',
+          s5_h: '5. Acceptable and prohibited use',
+          s5_ul: '<li>You may not decompile, reverse engineer, modify, distribute, or sell the App.</li><li>You may not use the App unlawfully or in a way that infringes third-party rights or device security.</li><li>You may not bypass subscription, purchase verification, or security mechanisms.</li><li>You are responsible for your device configuration, system updates, and backups.</li>',
+          s5_card: '<strong>Safety and responsible use:</strong> The App is informational and organizational. It does not replace traffic laws, emergency services, or professional advice. In emergencies, call your local emergency numbers directly.',
+          s6_h: '6. User content',
+          s6_p: 'You can save your own notes, lists, and locations (“User Content”). You are responsible for its legality and compliance. Content is stored locally on your device and is not sent to us (see the Privacy Policy for details).',
+          s7_h: '7. Subscriptions and in-app purchases (IAP)',
+          s7_p1: 'The App offers paid auto-renewable subscriptions:',
+          s7_ul: '<li><strong>Monthly</strong> — renews every month.</li><li><strong>Annual</strong> — renews every year.</li>',
+          s7_1_h: '7.1. Pricing and billing',
+          s7_1_ul: '<li>Price and currency depend on your region and are shown in the App Store and in the App <em>before</em> purchase.</li><li>Payment is charged to your Apple ID account upon confirmation.</li><li>Your subscription renews automatically unless auto-renew is turned off at least 24 hours before the end of the current period.</li><li>The renewal fee is charged within 24 hours prior to the end of the current period.</li><li>If trials are offered, they may be forfeited when you purchase a paid plan.</li>',
+          s7_2_h: '7.2. Managing and canceling',
+          s7_2_p: 'Manage subscriptions in iOS: <strong>Settings &gt; [Your Name] &gt; Subscriptions</strong> or in the App Store. Apple help:',
+          s7_3_h: '7.3. Restoring purchases',
+          s7_3_p: 'The App provides a <strong>“Restore Purchases”</strong> feature for subscriptions purchased with the same Apple ID (e.g., after reinstalling or switching devices).',
+          s7_4_h: '7.4. Refunds',
+          s7_4_p: 'Refunds are handled by Apple under its policies. Submit requests via <a href="https://reportaproblem.apple.com/" target="_blank" rel="noopener">reportaproblem.apple.com</a>.',
+          s7_card: '<strong>Payment data:</strong> Card and billing data are processed by Apple. We do not store card data. We only verify subscription status (e.g., using a transaction receipt) to unlock premium features.',
+          s8_h: '8. Ads and third-party services',
+          s8_p: 'The App may display ads or use third-party analytics services (e.g., Apple/Google). Details about data and ad preferences can be found in iOS settings and in the Privacy Policy. The scope and frequency of ads may change.',
+          s9_h: '9. Privacy',
+          s9_p: 'Your privacy matters. Please read our <a href="polityka-prywatnosci.html">Privacy Policy</a>, which describes what information is processed and how.',
+          s10_h: '10. Disclaimers, liability, and risks',
+          s10_ul: '<li>The App is provided “as is” (AS IS) without warranties of fitness for a particular purpose or error-free operation.</li><li>We do not guarantee availability of all features in every country or the accuracy/recency of emergency numbers or external data.</li><li>To the extent permitted by law, we disclaim liability for indirect damages, data loss, lost profits, business interruption, etc.</li><li>You use the App at your own risk and must comply with laws applicable where you use it.</li>',
+          s11_h: '11. Changes, suspension, and termination',
+          s11_ul: '<li>We may update, modify, or temporarily limit App features (e.g., for technical or legal reasons).</li><li>We may terminate your license if you breach these Terms.</li><li>Material changes will be communicated in the App or App Store description; continued use means acceptance.</li>',
+          s12_h: '12. Governing law and disputes',
+          s12_p: 'These Terms are governed by the laws of the Republic of Poland, without prejudice to mandatory consumer protection laws of your EU country of residence. We encourage amicable dispute resolution; otherwise, common courts in Poland will have jurisdiction unless mandatory law provides otherwise.',
+          s13_h: '13. Apple provisions',
+          s13_ul: '<li>Apple is not a party to this license agreement and is not responsible for the App or its content.</li><li>Apple and its subsidiaries are third-party beneficiaries of these Terms for App-related provisions and may enforce them.</li><li>Your use of the App is subject to Apple Media Services Terms and other applicable Apple rules.</li>',
+          s13_link: 'Apple Media Services Terms',
+          s14_h: '14. Contact',
+          s14_p: 'For questions about the App or these Terms, contact us at: <a href="mailto:mlynarski.mateusz@gmail.com">mlynarski.mateusz@gmail.com</a>.',
+          s14_small: 'For payments, invoices, and refunds, use Apple support: <a href="https://reportaproblem.apple.com/" target="_blank" rel="noopener">reportaproblem.apple.com</a>.',
+          footer_rights: '© 2025 Travel Rules. All rights reserved.',
+          footer_privacy: 'Privacy Policy',
+          footer_terms: 'Terms of Use',          footer_cookies: 'Cookies',
+          footer_cookies: 'Cookies'
+        },
+        es: {
+          page_title: 'Términos de uso — Travel Rules',
+          page_desc: 'Términos de uso de la app Travel Rules para iOS. Información sobre licencia, suscripciones, responsabilidad, privacidad y soporte.',
+          title_h1: 'Términos de uso',
+          app_line: 'Aplicación: <strong>Travel Rules</strong> (iOS)',
+          updated_line: 'Última actualización: 23 de septiembre de 2025',
+          toc_title: 'Índice:',
+          toc_1: '1. Disposiciones generales',
+          toc_2: '2. Definiciones',
+          toc_3: '3. Requisitos técnicos',
+          toc_4: '4. Licencia y propiedad intelectual',
+          toc_5: '5. Uso permitido y prohibido',
+          toc_6: '6. Contenido del usuario',
+          toc_7: '7. Suscripciones y compras',
+          toc_8: '8. Anuncios y servicios de terceros',
+          toc_9: '9. Privacidad',
+          toc_10: '10. Exenciones y responsabilidad',
+          toc_11: '11. Cambios, suspensión, terminación',
+          toc_12: '12. Ley aplicable y disputas',
+          toc_13: '13. Disposiciones de Apple',
+          toc_14: '14. Contacto',
+          s1_h: '1. Disposiciones generales',
+          s1_p: 'Estos Términos de uso (los “Términos”) regulan el uso de la aplicación móvil <strong>Travel Rules</strong> para iOS, distribuida a través de Apple App Store. Al instalar, acceder o usar la app, aceptas estos Términos. Si no estás de acuerdo, no uses la app.',
+          s2_h: '2. Definiciones',
+          s2_ul: '<li><strong>App</strong> — el software “Travel Rules” para iOS.</li><li><strong>Usuario</strong> — la persona que utiliza la App.</li><li><strong>Suscripción</strong> — un plan de pago renovable (mensual o anual) que da acceso a funciones premium.</li><li><strong>Cuenta de Apple ID</strong> — la cuenta necesaria para compras en App Store y gestionar suscripciones.</li>',
+          s3_h: '3. Requisitos técnicos',
+          s3_ul: '<li>Un dispositivo iOS compatible y acceso a internet para descargar y, si corresponde, actualizar la App.</li><li>Para compras dentro de la App se requiere una cuenta Apple ID activa y un método de pago configurado.</li><li>Algunas funciones (p. ej., mapas, ubicación) pueden requerir servicios de ubicación y acceso a internet.</li>',
+          s4_h: '4. Licencia y propiedad intelectual',
+          s4_p: 'Recibes una licencia no exclusiva, revocable y no transferible para usar la App solo con fines personales, de acuerdo con estos Términos y la ley aplicable. Todos los derechos sobre la App, incluido el código fuente, interfaces y gráficos, están reservados por el desarrollador.',
+          s5_h: '5. Uso permitido y prohibido',
+          s5_ul: '<li>No puedes descompilar, realizar ingeniería inversa, modificar, distribuir ni vender la App.</li><li>No puedes usar la App de forma ilegal o que infrinja derechos de terceros o la seguridad del dispositivo.</li><li>No puedes eludir mecanismos de suscripción, verificación de compra o seguridad.</li><li>Eres responsable de la configuración del dispositivo, actualizaciones del sistema y copias de seguridad.</li>',
+          s5_card: '<strong>Seguridad y uso responsable:</strong> La App es informativa y organizativa. No sustituye leyes de tráfico, servicios de emergencia ni asesoramiento profesional. En emergencias, llama directamente a los números de emergencia locales.',
+          s6_h: '6. Contenido del usuario',
+          s6_p: 'Puedes guardar tus propias notas, listas y ubicaciones (“Contenido del usuario”). Eres responsable de su legalidad y cumplimiento. El contenido se almacena localmente en tu dispositivo y no se nos envía (ver la Política de Privacidad para detalles).',
+          s7_h: '7. Suscripciones y compras en la app (IAP)',
+          s7_p1: 'La App ofrece suscripciones de pago con renovación automática:',
+          s7_ul: '<li><strong>Mensual</strong> — se renueva cada mes.</li><li><strong>Anual</strong> — se renueva cada año.</li>',
+          s7_1_h: '7.1. Precios y facturación',
+          s7_1_ul: '<li>El precio y la moneda dependen de tu región y se muestran en App Store y en la App <em>antes</em> de comprar.</li><li>El pago se carga a tu cuenta Apple ID al confirmar.</li><li>La suscripción se renueva automáticamente salvo que desactives la renovación al menos 24 horas antes de que termine el período actual.</li><li>El cargo de renovación se realiza dentro de las 24 horas previas al fin del período actual.</li><li>Si hay pruebas, pueden perderse al comprar un plan de pago.</li>',
+          s7_2_h: '7.2. Gestión y cancelación',
+          s7_2_p: 'Gestiona suscripciones en iOS: <strong>Ajustes &gt; [Tu nombre] &gt; Suscripciones</strong> o en App Store. Ayuda de Apple:',
+          s7_3_h: '7.3. Restaurar compras',
+          s7_3_p: 'La App ofrece la función <strong>“Restaurar compras”</strong> para suscripciones compradas con el mismo Apple ID (por ejemplo, tras reinstalar o cambiar de dispositivo).',
+          s7_4_h: '7.4. Reembolsos',
+          s7_4_p: 'Los reembolsos los gestiona Apple según sus políticas. Solicítalos en <a href="https://reportaproblem.apple.com/" target="_blank" rel="noopener">reportaproblem.apple.com</a>.',
+          s7_card: '<strong>Datos de pago:</strong> Apple procesa los datos de tarjeta y facturación. Nosotros no almacenamos datos de tarjeta. Solo verificamos el estado de la suscripción (por ejemplo, con un recibo) para desbloquear funciones premium.',
+          s8_h: '8. Anuncios y servicios de terceros',
+          s8_p: 'La App puede mostrar anuncios o usar analítica de terceros (p. ej., Apple/Google). Los detalles sobre datos y preferencias de anuncios están en los ajustes de iOS y en la Política de Privacidad. El alcance y la frecuencia de anuncios pueden cambiar.',
+          s9_h: '9. Privacidad',
+          s9_p: 'Tu privacidad es importante. Consulta nuestra <a href="polityka-prywatnosci.html">Política de Privacidad</a>, que describe qué información se procesa y cómo.',
+          s10_h: '10. Exenciones, responsabilidad y riesgos',
+          s10_ul: '<li>La App se proporciona “tal cual” (AS IS) sin garantías de idoneidad para un fin específico ni de funcionamiento sin errores.</li><li>No garantizamos la disponibilidad de todas las funciones en todos los países ni la exactitud/actualidad de números de emergencia o datos externos.</li><li>En la medida permitida por la ley, no asumimos responsabilidad por daños indirectos, pérdida de datos, lucro cesante, interrupción del negocio, etc.</li><li>Usas la App bajo tu propia responsabilidad y debes cumplir la legislación aplicable donde la uses.</li>',
+          s11_h: '11. Cambios, suspensión y terminación',
+          s11_ul: '<li>Podemos actualizar, modificar o limitar temporalmente funciones (por motivos técnicos o legales).</li><li>Podemos terminar tu licencia si incumples estos Términos.</li><li>Los cambios importantes se comunicarán en la App o en la descripción de App Store; el uso continuado implica aceptación.</li>',
+          s12_h: '12. Ley aplicable y resolución de disputas',
+          s12_p: 'Estos Términos se rigen por la legislación de la República de Polonia, sin perjuicio de las normas imperativas de protección al consumidor de tu país de residencia en la UE. Recomendamos resolver disputas amistosamente; en caso contrario, serán competentes los tribunales en Polonia salvo que la ley imperativa disponga otra cosa.',
+          s13_h: '13. Disposiciones de Apple',
+          s13_ul: '<li>Apple no es parte de este acuerdo de licencia y no es responsable de la App ni de su contenido.</li><li>Apple y sus filiales son beneficiarios terceros de estos Términos para las disposiciones relacionadas con la App y pueden hacerlos cumplir.</li><li>El uso de la App está sujeto a los Términos de Apple Media Services y otras reglas aplicables de Apple.</li>',
+          s13_link: 'Términos de Apple Media Services',
+          s14_h: '14. Contacto',
+          s14_p: 'Para preguntas sobre la App o estos Términos, contáctanos en: <a href="mailto:mlynarski.mateusz@gmail.com">mlynarski.mateusz@gmail.com</a>.',
+          s14_small: 'Para pagos, facturas y reembolsos, usa el soporte de Apple: <a href="https://reportaproblem.apple.com/" target="_blank" rel="noopener">reportaproblem.apple.com</a>.',
+          footer_rights: '© 2025 Travel Rules. Todos los derechos reservados.',
+          footer_privacy: 'Política de Privacidad',
+          footer_terms: 'Términos de uso',          footer_cookies: 'Cookies',
+          footer_cookies: 'Cookies'
+        }
+      };
+
+      function setPressed(lang){
+        document.querySelectorAll('.lang-btn').forEach(btn => {
+          btn.setAttribute('aria-pressed', btn.dataset.lang === lang ? 'true' : 'false');
+        });
+      }
+
+      function applyLang(lang){
+        const t = dict[lang] || dict.en;
+        htmlEl.setAttribute('lang', lang);
+        document.title = t.page_title;
+        if (metaDesc) metaDesc.setAttribute('content', t.page_desc);
+
+        document.querySelectorAll('[data-i18n]').forEach(el => {
+          const key = el.getAttribute('data-i18n');
+          if (t[key] != null) el.textContent = t[key];
+        });
+        document.querySelectorAll('[data-i18n-html]').forEach(el => {
+          const key = el.getAttribute('data-i18n-html');
+          if (t[key] != null) el.innerHTML = t[key];
+        });
+
+        setPressed(lang);
+        try{ localStorage.setItem('tr_lang', lang); }catch(e){}
+      }
+
+      function detectLang(){
+        try{
+          const saved = localStorage.getItem('tr_lang');
+          if (saved && dict[saved]) return saved;
+        }catch(e){}
+        const nav = (navigator.language || 'en').toLowerCase();
+        if (nav.startsWith('pl')) return 'pl';
+        if (nav.startsWith('es')) return 'es';
+        return 'en';
+      }
+
+      document.querySelectorAll('.lang-btn').forEach(btn => {
+        btn.addEventListener('click', () => applyLang(btn.dataset.lang));
+      });
+
+      applyLang(detectLang());
+    })();
+  </script>
+</body>
+</html>

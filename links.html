@@ -10,6 +10,7 @@
     })(window,document,'script','dataLayer','GTM-KSSXRMKH');
   </script>
   <!-- End Google Tag Manager -->
+
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 
@@ -21,7 +22,7 @@
   <meta property="og:site_name" content="Travel Rules">
   <meta property="og:title" content="Travel Rules – Linki">
   <meta property="og:description" content="Social media oraz sklep Travel Rules.">
-  <meta property="og:image" content="images/og/travelrules_og.jpg">
+  <meta property="og:image" content="/images/v3/phone_mockup.png">
   <meta property="og:url" content="https://www.travelrules.eu/links.html">
 
   <link rel="icon" href="/favicon.ico">
@@ -30,106 +31,171 @@
     /* RESET */
     * { margin:0; padding:0; box-sizing:border-box; }
     html { scroll-behavior:smooth; }
-    body {
+
+    body{
       font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
         Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
-      transition: background-color 1s, color 1s;
+      transition: background-color .28s ease, color .28s ease;
     }
 
-    /* THEMES (minimal subset consistent with index) */
-    body.theme-classic {
+    /* THEMES (consistent with hub) */
+    body.theme-classic{
       --color-primary: #29606D;
       --color-secondary: #DDAA4F;
+
       --color-bg: #ffffff;
       --color-text-primary: #1A1A1A;
       --color-text-secondary: #666666;
+
       --color-card-background: rgba(255, 255, 255, 0.95);
       --color-card-shadow: rgba(0, 0, 0, 0.1);
+
       background-color: var(--color-bg);
       color: var(--color-text-primary);
     }
-    body.theme-classic.dark-mode {
+
+    body.theme-classic.dark-mode{
       --color-bg: #1a1a1a;
       --color-text-primary: #f0f0f0;
       --color-text-secondary: #cccccc;
       --color-card-background: #2a2a2a;
+      --color-card-shadow: rgba(0, 0, 0, 0.25);
     }
 
-    :focus { outline: 2px solid var(--color-secondary); outline-offset: 2px; }
+    :focus{ outline: 2px solid var(--color-secondary); outline-offset: 2px; }
 
-    /* HEADER */
-    header {
-      display:flex; align-items:center; justify-content:space-between;
-      padding: 20px 40px;
-      position: sticky; top: 0; z-index: 10;
+    /* Smooth theme transitions */
+    header, footer, .section, .link-card, nav ul {
+      transition: background-color .28s ease, color .28s ease, border-color .28s ease, box-shadow .28s ease;
+    }
+
+    @media (prefers-reduced-motion: reduce){
+      html{ scroll-behavior: auto; }
+      body, header, footer, .section, .link-card, nav ul { transition: none !important; }
+    }
+
+    /* HEADER (like hub / screenshot) */
+    header{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      padding: 18px 22px;
+      position: sticky;
+      top: 0;
+      z-index: 10;
       background-color: var(--color-bg);
       border-bottom: 1px solid #e2e2e2;
     }
-    .logo {
-      font-size: 1.5rem; font-weight: 600;
-      text-decoration:none; color: var(--color-text-primary);
-    }
 
-    /* MENU */
-    nav ul { list-style:none; display:flex; gap:20px; }
-    nav a { text-decoration:none; color: var(--color-text-primary); font-weight:500; transition: opacity .3s; }
-    nav a:hover { opacity: .7; }
-
-    .header-extra { display:flex; align-items:center; gap:15px; }
-    .dark-toggle { display:flex; align-items:center; gap:6px; cursor:pointer; }
-    .dark-toggle label { font-size: 1rem; }
-
-    /* Hamburger */
-    .menu-toggle {
-      display:none;
-      background:none; border:none;
+    .brand{
+      display:flex;
+      align-items:center;
+      gap: 12px;
+      text-decoration:none;
       color: var(--color-text-primary);
-      font-size: 1.8rem; cursor:pointer;
+      min-width: 0;
     }
 
-    /* flags */
-    .flag-emoji { font-size: 1.5rem; cursor:pointer; margin: 0 5px; transition: transform .2s; }
-    .flag-emoji:hover { transform: scale(1.15); }
+    .brand-mark{
+      width: 44px;
+      height: 44px;
+      border-radius: 14px;
+      display:grid;
+      place-items:center;
+      font-weight: 900;
+      letter-spacing: .5px;
+      color: #fff;
+      background: var(--color-primary);
+      flex: 0 0 44px;
+    }
 
-    @media (max-width: 768px) {
-      .menu-toggle { display:block; }
-      nav ul {
-        display:none;
-        flex-direction:column;
-        align-items:center;
-        background: var(--color-bg);
-        position:absolute;
-        top: 80px; left: 50%;
-        transform: translateX(-50%) translateY(-10px);
-        padding: 20px;
-        border-radius: 10px;
-        box-shadow: 0 5px 15px rgba(0,0,0,0.2);
-        opacity: 0;
-        transition: opacity .3s ease, transform .3s ease;
-      }
-      nav ul.show-menu {
-        display:flex;
-        opacity:1;
-        transform: translateX(-50%) translateY(0);
-      }
-      header { padding: 18px 18px; }
+    .brand-name{
+      font-size: 1.35rem;
+      font-weight: 800;
+      line-height: 1;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .header-controls{
+      display:flex;
+      align-items:center;
+      gap: 12px;
+    }
+
+    .icon-btn{
+      width: 44px;
+      height: 44px;
+      border-radius: 999px;
+      border: 1px solid #e2e2e2;
+      background: #fff;
+      color: var(--color-text-primary);
+      display:grid;
+      place-items:center;
+      cursor:pointer;
+      transition: transform .15s ease, background-color .28s ease, border-color .28s ease;
+    }
+    body.dark-mode .icon-btn{
+      background: #242424;
+      border-color: rgba(255,255,255,0.12);
+    }
+    .icon-btn:hover{ transform: translateY(-1px); }
+
+    .icon{
+      width: 20px;
+      height: 20px;
+      display:block;
+    }
+
+    .langbar{
+      display:flex;
+      align-items:center;
+      gap: 10px;
+    }
+
+    .lang-btn{
+      width: 54px;
+      height: 44px;
+      border-radius: 999px;
+      border: 1px solid #e2e2e2;
+      background: #fff;
+      color: var(--color-text-primary);
+      cursor:pointer;
+      font-weight: 800;
+      letter-spacing: .5px;
+      transition: background-color .28s ease, border-color .28s ease, transform .15s ease;
+    }
+    .lang-btn:hover{ transform: translateY(-1px); }
+    .lang-btn[aria-pressed="true"]{
+      border-color: rgba(41,96,109,0.35);
+      background: rgba(41,96,109,0.08);
+    }
+    body.dark-mode .lang-btn{
+      background: #242424;
+      border-color: rgba(255,255,255,0.12);
+      color: var(--color-text-primary);
+    }
+    body.dark-mode .lang-btn[aria-pressed="true"]{
+      border-color: rgba(221,170,79,0.35);
+      background: rgba(221,170,79,0.10);
     }
 
     /* SECTION layout */
-    .section {
+    .section{
       width: 100%;
       max-width: 1200px;
-      margin: 50px auto; /* było 70px */
+      margin: 50px auto;
       padding: 0 20px;
       text-align: center;
     }
-    .section h1 {
+    .section h1{
       font-size: 2.5rem;
       margin-bottom: 14px;
-      font-weight: 800;
+      font-weight: 900;
       color: var(--color-text-primary);
     }
-    .section p {
+    .section p{
       font-size: 1.15rem;
       line-height: 1.6;
       margin-bottom: 26px;
@@ -137,14 +203,14 @@
     }
 
     /* Watermark map */
-    .section.map-watermark {
+    .section.map-watermark{
       position: relative;
       overflow: hidden;
       padding: 46px 34px;
       border-radius: 18px;
     }
-    .section.map-watermark > *:not(.decor-map) { position: relative; z-index: 1; }
-    .decor-map {
+    .section.map-watermark > *:not(.decor-map){ position: relative; z-index: 1; }
+    .decor-map{
       position: absolute;
       inset: 0;
       width: 100%;
@@ -157,13 +223,13 @@
       pointer-events: none;
       user-select: none;
     }
-    body.dark-mode .decor-map {
+    body.dark-mode .decor-map{
       opacity: 0.10;
       filter: invert(1) brightness(1.15) contrast(1.05);
     }
 
     /* GROUP HEADINGS */
-    .group-title {
+    .group-title{
       margin-top: 26px;
       margin-bottom: 8px;
       font-size: 1.6rem;
@@ -171,8 +237,7 @@
       text-align: left;
       color: var(--color-text-primary);
     }
-
-    .group-sub {
+    .group-sub{
       margin: 0 0 18px;
       text-align: left;
       color: var(--color-text-secondary);
@@ -180,31 +245,15 @@
       line-height: 1.55;
     }
 
-    .promo {
-      grid-column: 1 / -1;
-      padding: 16px 18px;
-      border-radius: 14px;
-      background: var(--color-card-background);
-      box-shadow: 0 10px 20px var(--color-card-shadow);
-      border: 1px solid rgba(0,0,0,0.06);
-      color: var(--color-text-secondary);
-      line-height: 1.6;
-      text-align: left;
-    }
-
-    body.dark-mode .promo {
-      border-color: rgba(255,255,255,0.10);
-    }
-
     /* LINK CARDS */
-    .links-grid {
+    .links-grid{
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
       gap: 18px;
       margin-top: 18px;
       text-align: left;
     }
-    .link-card {
+    .link-card{
       display:flex;
       gap: 14px;
       align-items:flex-start;
@@ -215,13 +264,13 @@
       text-decoration:none;
       color: var(--color-text-primary);
       border: 1px solid rgba(0,0,0,0.06);
-      transition: transform .2s ease, box-shadow .2s ease, border-color .2s ease;
+      transition: transform .2s ease, box-shadow .2s ease, border-color .28s ease, background-color .28s ease;
     }
-    body.dark-mode .link-card { border-color: rgba(255,255,255,0.10); }
-    .link-card:hover { transform: translateY(-2px); box-shadow: 0 14px 26px rgba(0,0,0,0.14); }
-    .link-card:focus { outline: 2px solid var(--color-secondary); outline-offset: 3px; }
+    body.dark-mode .link-card{ border-color: rgba(255,255,255,0.10); }
+    .link-card:hover{ transform: translateY(-2px); box-shadow: 0 14px 26px rgba(0,0,0,0.14); }
+    .link-card:focus{ outline: 2px solid var(--color-secondary); outline-offset: 3px; }
 
-    .link-icon {
+    .link-icon{
       width: 44px; height: 44px;
       border-radius: 12px;
       display:inline-flex;
@@ -229,28 +278,33 @@
       background: rgba(0,0,0,0.05);
       color: var(--color-primary);
       flex: 0 0 44px;
+      transition: background-color .28s ease, color .28s ease;
     }
-    body.dark-mode .link-icon { background: rgba(255,255,255,0.06); }
+    body.dark-mode .link-icon{ background: rgba(255,255,255,0.06); }
 
-    .link-title { font-weight: 800; font-size: 1.05rem; margin-bottom: 4px; }
-    .link-desc { color: var(--color-text-secondary); line-height: 1.4; font-size: 0.98rem; margin-bottom: 6px; }
-    .link-url  { font-size: 0.9rem; opacity: 0.75; }
+    .link-title{ font-weight: 900; font-size: 1.05rem; margin-bottom: 4px; }
+    .link-desc{ color: var(--color-text-secondary); line-height: 1.4; font-size: 0.98rem; margin-bottom: 6px; }
+    .link-url{ font-size: 0.9rem; opacity: 0.75; }
 
     /* Footer */
-    footer {
+    footer{
       text-align:center;
       padding: 40px 20px;
       background-color: var(--color-bg);
       border-top: 1px solid #e2e2e2;
       margin-top: 60px;
     }
-    footer p { color: var(--color-text-secondary); margin-bottom: 10px; }
+    footer p{ color: var(--color-text-secondary); margin-bottom: 10px; }
+    .small{ font-size: .95rem; }
 
-    @media (max-width: 480px) {
-      .link-card { padding: 16px; }
-      .link-icon { width: 40px; height: 40px; flex: 0 0 40px; }
-      .section h1 { font-size: 2.1rem; }
-      .section.map-watermark { padding: 28px 18px; }
+    @media (max-width: 480px){
+      header{ padding: 14px 14px; }
+      .brand-name{ font-size: 1.2rem; }
+      .link-card{ padding: 16px; }
+      .link-icon{ width: 40px; height: 40px; flex: 0 0 40px; }
+      .section h1{ font-size: 2.1rem; }
+      .section.map-watermark{ padding: 28px 18px; }
+      .lang-btn{ width: 52px; }
     }
   </style>
 </head>
@@ -260,32 +314,37 @@
   <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-KSSXRMKH"
   height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   <!-- End Google Tag Manager (noscript) -->
+
   <header>
-    <a href="index.html" class="logo" data-lang-key="logo">Travel Rules</a>
+    <a href="index.html" class="brand" aria-label="Travel Rules home">
+      <span class="brand-mark" aria-hidden="true">TR</span>
+      <span class="brand-name" data-lang-key="logo">Travel Rules</span>
+    </a>
 
-    <button class="menu-toggle" id="menuToggle" aria-label="Otwórz menu" aria-controls="primaryNav" aria-expanded="false">&#9776;</button>
+    <div class="header-controls">
+      <button class="icon-btn" id="themeToggle" type="button" aria-label="Toggle theme" aria-pressed="false">
+        <!-- Sun -->
+        <svg class="icon" id="iconSun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <circle cx="12" cy="12" r="4"></circle>
+          <path d="M12 2v2"></path>
+          <path d="M12 20v2"></path>
+          <path d="M4.93 4.93l1.41 1.41"></path>
+          <path d="M17.66 17.66l1.41 1.41"></path>
+          <path d="M2 12h2"></path>
+          <path d="M20 12h2"></path>
+          <path d="M4.93 19.07l1.41-1.41"></path>
+          <path d="M17.66 6.34l1.41-1.41"></path>
+        </svg>
+        <!-- Moon -->
+        <svg class="icon" id="iconMoon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="display:none;">
+          <path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"></path>
+        </svg>
+      </button>
 
-    <nav role="navigation" aria-label="Główne">
-      <ul id="primaryNav">
-        <li><a href="index.html#app" data-lang-key="about">O Aplikacji</a></li>
-        <li><a href="index.html#features" data-lang-key="features">Funkcje</a></li>
-        <li><a href="index.html#updates" data-lang-key="updates">Aktualności</a></li>
-        <li><a href="links.html" data-lang-key="links" aria-current="page">Linki</a></li>
-        <li><a href="index.html#contact" data-lang-key="contact">Kontakt</a></li>
-        <li><a href="index.html#cta" data-lang-key="download">Pobierz</a></li>
-      </ul>
-    </nav>
-
-    <div class="header-extra">
-      <div class="lang-flags" aria-label="Wybór języka">
-        <span class="flag-emoji" data-lang="pl" title="Polski">🇵🇱</span>
-        <span class="flag-emoji" data-lang="en" title="English">🇬🇧</span>
-        <span class="flag-emoji" data-lang="es" title="Español">🇪🇸</span>
-      </div>
-
-      <div class="dark-toggle">
-        <label for="darkModeToggle" data-lang-key="dark_mode" aria-live="polite">Tryb ciemny</label>
-        <input type="checkbox" id="darkModeToggle">
+      <div class="langbar" aria-label="Language switcher">
+        <button class="lang-btn" type="button" data-lang="pl" aria-pressed="true">PL</button>
+        <button class="lang-btn" type="button" data-lang="en" aria-pressed="false">EN</button>
+        <button class="lang-btn" type="button" data-lang="es" aria-pressed="false">ES</button>
       </div>
     </div>
   </header>
@@ -301,8 +360,12 @@
       <p class="group-sub" data-lang-key="links_shop_sub">Produkty cyfrowe, checklisty i poradniki — wybierz wersję dla siebie.</p>
 
       <div class="links-grid" role="list" aria-label="Sklep">
-        <!-- Gumroad -->
-        <a role="listitem" class="link-card" href="https://travelrules.gumroad.com/l/camper-first-trip-prep?utm_source=travelrules.eu&utm_medium=referral&utm_campaign=links_page&utm_content=gumroad" target="_blank" rel="noopener" aria-label="Gumroad eBook: przygotowanie kampera do pierwszej podróży" data-lang-only="en,es">
+        <!-- Gumroad (EN+ES only) -->
+        <a role="listitem" class="link-card"
+           href="https://travelrules.gumroad.com/l/camper-first-trip-prep?utm_source=travelrules.eu&utm_medium=referral&utm_campaign=links_page&utm_content=gumroad"
+           target="_blank" rel="noopener"
+           aria-label="Gumroad eBook"
+           data-lang-only="en,es">
           <span class="link-icon" aria-hidden="true">
             <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
               <path d="M5 4h10a3 3 0 0 1 3 3v13H8a3 3 0 0 0-3 3V4z"></path>
@@ -316,8 +379,12 @@
           </div>
         </a>
 
-        <!-- Gumroad: Checklist -->
-        <a role="listitem" class="link-card" href="https://travelrules.gumroad.com/l/VanlifeTravelChecklist?utm_source=travelrules.eu&utm_medium=referral&utm_campaign=links_page&utm_content=checklist" target="_blank" rel="noopener" aria-label="Gumroad: Foldable Vanlife Travel Checklist" data-lang-only="en,es">
+        <!-- Gumroad: Checklist (EN+ES only) -->
+        <a role="listitem" class="link-card"
+           href="https://travelrules.gumroad.com/l/VanlifeTravelChecklist?utm_source=travelrules.eu&utm_medium=referral&utm_campaign=links_page&utm_content=checklist"
+           target="_blank" rel="noopener"
+           aria-label="Gumroad Checklist"
+           data-lang-only="en,es">
           <span class="link-icon" aria-hidden="true">
             <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
               <path d="M9 6h10"></path>
@@ -336,8 +403,12 @@
           </div>
         </a>
 
-        <!-- Gumroad: Travel Planner Checklist -->
-        <a role="listitem" class="link-card" href="https://travelrules.gumroad.com/l/travelplanner_checklist_print?utm_source=travelrules.eu&utm_medium=referral&utm_campaign=links_page&utm_content=travelplanner" target="_blank" rel="noopener" aria-label="Gumroad: Travel Planner Checklist" data-lang-only="en,es">
+        <!-- Gumroad: Travel Planner Checklist (EN+ES only) -->
+        <a role="listitem" class="link-card"
+           href="https://travelrules.gumroad.com/l/travelplanner_checklist_print?utm_source=travelrules.eu&utm_medium=referral&utm_campaign=links_page&utm_content=travelplanner"
+           target="_blank" rel="noopener"
+           aria-label="Gumroad Travel Planner"
+           data-lang-only="en,es">
           <span class="link-icon" aria-hidden="true">
             <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
               <path d="M9 3h6"></path>
@@ -357,7 +428,11 @@
         </a>
 
         <!-- Naffy (PL only) -->
-        <a role="listitem" class="link-card" href="https://www.naffy.io/travelrules?utm_source=travelrules.eu&utm_medium=referral&utm_campaign=links_page&utm_content=naffy" target="_blank" rel="noopener" aria-label="Sklep Naffy Travel Rules" data-lang-only="pl">
+        <a role="listitem" class="link-card"
+           href="https://www.naffy.io/travelrules?utm_source=travelrules.eu&utm_medium=referral&utm_campaign=links_page&utm_content=naffy"
+           target="_blank" rel="noopener"
+           aria-label="Sklep Naffy Travel Rules"
+           data-lang-only="pl">
           <span class="link-icon" aria-hidden="true">
             <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
               <path d="M6 6h15l-1.5 9h-12z"></path>
@@ -443,191 +518,204 @@
   </main>
 
   <footer>
-    <p>© 2025 Travel Rules. Wszelkie prawa zastrzeżone.</p>
+    <p data-lang-key="footer_rights">© 2025 Travel Rules. Wszelkie prawa zastrzeżone.</p>
     <p class="small">
-      <a href="polityka-prywatnosci.html">Polityka Prywatności</a> •
-      <a href="warunki-korzystania.html">Warunki korzystania</a>
+      <a href="privacy.html" data-lang-key="privacy">Polityka Prywatności</a> •
+      <a href="terms.html" data-lang-key="terms">Warunki korzystania</a>
     </p>
   </footer>
 
   <script>
-    // MENU TOGGLE
-    const menuToggle = document.getElementById('menuToggle');
-    const navUl = document.getElementById('primaryNav');
-    menuToggle.addEventListener('click', () => {
-      const expanded = menuToggle.getAttribute('aria-expanded') === 'true';
-      menuToggle.setAttribute('aria-expanded', String(!expanded));
-      navUl.classList.toggle('show-menu');
-    });
+    (function(){
+      // Shared keys
+      const body = document.body;
+      const savedDark = localStorage.getItem('tr_dark') === '1';
+      const savedLang = localStorage.getItem('tr_lang');
 
-    // Load saved prefs from index (shared keys)
-    const body = document.querySelector('body');
-    const savedTheme = localStorage.getItem('tr_theme');
-    const savedDark = localStorage.getItem('tr_dark') === '1';
-    const savedLang = localStorage.getItem('tr_lang');
+      // Theme toggle (smooth)
+      const themeToggle = document.getElementById('themeToggle');
+      const iconSun = document.getElementById('iconSun');
+      const iconMoon = document.getElementById('iconMoon');
 
-    if (savedTheme) {
-      body.classList.remove('theme-classic');
-      body.classList.add(`theme-${savedTheme}`);
-    }
-
-    if (savedDark) {
-      body.classList.add('dark-mode');
-      const dm = document.getElementById('darkModeToggle');
-      if (dm) dm.checked = true;
-    }
-
-    // Dark toggle
-    const darkModeToggle = document.getElementById('darkModeToggle');
-    darkModeToggle.addEventListener('change', (event) => {
-      if (event.target.checked) {
-        body.classList.add('dark-mode');
-        localStorage.setItem('tr_dark','1');
-      } else {
-        body.classList.remove('dark-mode');
-        localStorage.removeItem('tr_dark');
-      }
-    });
-
-    // Translations for this page
-    const translations = {
-      pl: {
-        logo: "Travel Rules",
-        about: "O Aplikacji",
-        features: "Funkcje",
-        updates: "Aktualności",
-        links: "Linki",
-        download: "Pobierz",
-        contact: "Kontakt",
-        dark_mode: "Tryb ciemny",
-
-        links_title: "Linki",
-        links_intro: "Znajdziesz tu nasz sklep oraz social media.",
-
-        links_shop_title: "Sklep",
-        links_shop_sub: "Produkty cyfrowe, checklisty i poradniki — wybierz wersję dla siebie.",
-        links_social_title: "Social media",
-        links_social_sub: "Nowości, tipy i kulisy — dołącz do społeczności.",
-
-        links_instagram: "Instagram",
-        links_instagram_desc: "Kulisy aplikacji, tipy i nowości.",
-        links_tiktok: "TikTok",
-        links_tiktok_desc: "Szybkie porady i krótkie formaty.",
-        links_youtube: "YouTube",
-        links_youtube_desc: "Dłuższe materiały i poradniki.",
-        links_pinterest: "Pinterest",
-        links_pinterest_desc: "Inspiracje i pomysły do zapisania.",
-
-        links_naffy: "e-book: Przygotuj kampera krok po kroku przed pierwszą podróżą.",
-        links_naffy_desc: "Pierwszy wyjazd kamperem? Ten e-book pomoże Ci ogarnąć wszystko bez stresu: co sprawdzić przed startem, jak spakować się mądrze i o czym najczęściej się zapomina. Dostajesz jasne kroki i checklisty, dzięki którym ruszasz w trasę pewnie i spokojnie."
-      },
-
-      en: {
-        logo: "Travel Rules",
-        about: "About",
-        features: "Features",
-        updates: "Updates",
-        links: "Links",
-        download: "Download",
-        contact: "Contact",
-        dark_mode: "Dark mode",
-
-        links_title: "Links",
-        links_intro: "Find our shop and social media here.",
-
-        links_shop_title: "Shop",
-        links_shop_sub: "Digital products, checklists and guides — pick what you need.",
-        links_social_title: "Social media",
-        links_social_sub: "Updates, tips and behind the scenes — join the community.",
-
-        links_instagram: "Instagram",
-        links_instagram_desc: "Behind the scenes, tips and updates.",
-        links_tiktok: "TikTok",
-        links_tiktok_desc: "Quick tips and short videos.",
-        links_youtube: "YouTube",
-        links_youtube_desc: "Longer videos and guides.",
-        links_pinterest: "Pinterest",
-        links_pinterest_desc: "Inspiration and ideas to save.",
-
-        links_ebook: "e-book: Prepare your motorhome step by step before your first trip.",
-        links_ebook_desc: "First trip in a motorhome? This e-book will help you get everything sorted without stress: what to check before you set off, how to pack smartly, and what people most often forget. You get clear steps and checklists to help you hit the road confidently and calmly.",
-        links_checklist_title: "Foldable Vanlife Travel Checklist — Printable A4 Packing List (★ Essentials)",
-        links_checklist_desc: "This checklist is structured by real packing categories: Trip Info → Bathroom Items → Kitchen Items → Electronics → Tools → Camping → Clothing → Useful Items → Other Essentials (including documents & insurance).",
-        links_planner_title: "Travel Planner Checklist — Printable Trip Organizer (★ Essentials)",
-        links_planner_desc: "A printable planner to keep your trip organized: route & dates, reservations, budget, daily plan, tasks, and notes — all in one clear checklist you can fold and take on the road."
-
-      },
-
-      es: {
-        logo: "Travel Rules",
-        about: "Acerca de",
-        features: "Funciones",
-        updates: "Actualizaciones",
-        links: "Enlaces",
-        download: "Descargar",
-        contact: "Contacto",
-        dark_mode: "Modo oscuro",
-
-        links_title: "Enlaces",
-        links_intro: "Aquí encontrarás nuestra tienda y redes sociales.",
-
-        links_shop_title: "Tienda",
-        links_shop_sub: "Productos digitales, listas y guías — elige lo que necesitas.",
-        links_social_title: "Redes sociales",
-        links_social_sub: "Novedades, consejos y detrás de cámaras — únete a la comunidad.",
-
-        links_instagram: "Instagram",
-        links_instagram_desc: "Detrás de cámaras, consejos y novedades.",
-        links_tiktok: "TikTok",
-        links_tiktok_desc: "Consejos rápidos y vídeos cortos.",
-        links_youtube: "YouTube",
-        links_youtube_desc: "Vídeos más largos y guías.",
-        links_pinterest: "Pinterest",
-        links_pinterest_desc: "Inspiración e ideas para guardar.",
-
-        links_ebook: "e-Book: Prepara tu camper paso a paso antes del primer viaje.",
-        links_ebook_desc: "¿Tu primer viaje en autocaravana? Este libro electrónico te ayudará a organizarlo todo sin estrés: qué comprobar antes de salir, cómo hacer las maletas de forma inteligente y qué es lo que se suele olvidar con más frecuencia. Obtendrás pasos claros y listas de verificación que te permitirán salir a la carretera con confianza y tranquilidad.",
-        links_checklist_title: "Checklist de viaje vanlife plegable — Lista imprimible A4 (★ Esenciales)",
-        links_checklist_desc: "Esta checklist está organizada por categorías reales de equipaje: Info del viaje → Artículos de baño → Cocina → Electrónica → Herramientas → Camping → Ropa → Artículos útiles → Otros esenciales (incluye documentos y seguro).",
-        links_planner_title: "Checklist de planificador de viaje — Organizador imprimible (★ Esenciales)",
-        links_planner_desc: "Un planificador imprimible para llevar tu viaje organizado: ruta y fechas, reservas, presupuesto, plan diario, tareas y notas — todo en una checklist clara que puedes doblar y llevar en la carretera."
-      }
-    };
-
-    function setLanguage(lang) {
-      document.documentElement.lang = lang;
-
-      document.querySelectorAll('[data-lang-key]').forEach(el => {
-        const key = el.getAttribute('data-lang-key');
-        if (translations[lang] && translations[lang][key]) {
-          el.textContent = translations[lang][key];
+      function applyDark(on){
+        body.classList.toggle('dark-mode', !!on);
+        if (themeToggle) themeToggle.setAttribute('aria-pressed', on ? 'true' : 'false');
+        if (iconSun && iconMoon){
+          // If dark is ON -> show moon icon, else show sun icon
+          iconSun.style.display = on ? 'none' : '';
+          iconMoon.style.display = on ? '' : 'none';
         }
+        try{
+          if (on) localStorage.setItem('tr_dark','1');
+          else localStorage.removeItem('tr_dark');
+        }catch(e){}
+      }
+
+      if (savedDark) applyDark(true);
+
+      if (themeToggle){
+        themeToggle.addEventListener('click', () => {
+          applyDark(!body.classList.contains('dark-mode'));
+        });
+      }
+
+      // Translations
+      const translations = {
+        pl: {
+          logo: "Travel Rules",
+          links_title: "Linki",
+          links_intro: "Znajdziesz tu nasz sklep oraz social media.",
+          links_shop_title: "Sklep",
+          links_shop_sub: "Produkty cyfrowe, checklisty i poradniki — wybierz wersję dla siebie.",
+          links_social_title: "Social media",
+          links_social_sub: "Nowości, tipy i kulisy — dołącz do społeczności.",
+          links_instagram: "Instagram",
+          links_instagram_desc: "Kulisy aplikacji, tipy i nowości.",
+          links_tiktok: "TikTok",
+          links_tiktok_desc: "Szybkie porady i krótkie formaty.",
+          links_youtube: "YouTube",
+          links_youtube_desc: "Dłuższe materiały i poradniki.",
+          links_pinterest: "Pinterest",
+          links_pinterest_desc: "Inspiracje i pomysły do zapisania.",
+          links_naffy: "e-book: Przygotuj kampera krok po kroku przed pierwszą podróżą.",
+          links_naffy_desc: "Pierwszy wyjazd kamperem? Ten e-book pomoże Ci ogarnąć wszystko bez stresu: co sprawdzić przed startem, jak spakować się mądrze i o czym najczęściej się zapomina. Dostajesz jasne kroki i checklisty, dzięki którym ruszasz w trasę pewnie i spokojnie.",
+          links_ebook: "e-book: Przygotuj kampera krok po kroku przed pierwszą podróżą.",
+          links_ebook_desc: "Pierwszy wyjazd kamperem? Ten e-book pomoże Ci ogarnąć wszystko bez stresu: co sprawdzić przed startem, jak spakować się mądrze i o czym najczęściej się zapomina. Dostajesz jasne kroki i checklisty, dzięki którym ruszasz w trasę pewnie i spokojnie.",
+          links_checklist_title: "Foldable Vanlife Travel Checklist — Printable A4 Packing List (★ Essentials)",
+          links_checklist_desc: "Ta checklista jest ułożona według realnych kategorii pakowania: Info o podróży → Łazienka → Kuchnia → Elektronika → Narzędzia → Camping → Ubrania → Przydatne rzeczy → Inne (w tym dokumenty i ubezpieczenie).",
+          links_planner_title: "Travel Planner Checklist — Printable Trip Organizer (★ Essentials)",
+          links_planner_desc: "Drukowany planer, który porządkuje wyjazd: trasa i daty, rezerwacje, budżet, plan dnia, zadania i notatki — wszystko w jednej przejrzystej checkliście do złożenia i zabrania w trasę.",
+          privacy: "Polityka Prywatności",
+          terms: "Warunki korzystania",
+          footer_rights: "© 2025 Travel Rules. Wszelkie prawa zastrzeżone.",
+          theme_btn: "Przełącz motyw"
+        },
+        en: {
+          logo: "Travel Rules",
+          links_title: "Links",
+          links_intro: "Find our shop and social media here.",
+          links_shop_title: "Shop",
+          links_shop_sub: "Digital products, checklists and guides — pick what you need.",
+          links_social_title: "Social media",
+          links_social_sub: "Updates, tips and behind the scenes — join the community.",
+          links_instagram: "Instagram",
+          links_instagram_desc: "Behind the scenes, tips and updates.",
+          links_tiktok: "TikTok",
+          links_tiktok_desc: "Quick tips and short videos.",
+          links_youtube: "YouTube",
+          links_youtube_desc: "Longer videos and guides.",
+          links_pinterest: "Pinterest",
+          links_pinterest_desc: "Inspiration and ideas to save.",
+          links_ebook: "e-book: Prepare your motorhome step by step before your first trip.",
+          links_ebook_desc: "First trip in a motorhome? This e-book will help you get everything sorted without stress: what to check before you set off, how to pack smartly, and what people most often forget. Clear steps and checklists so you can hit the road calmly and confidently.",
+          links_checklist_title: "Foldable Vanlife Travel Checklist — Printable A4 Packing List (★ Essentials)",
+          links_checklist_desc: "This checklist is structured by real packing categories: Trip Info → Bathroom Items → Kitchen Items → Electronics → Tools → Camping → Clothing → Useful Items → Other Essentials (including documents & insurance).",
+          links_planner_title: "Travel Planner Checklist — Printable Trip Organizer (★ Essentials)",
+          links_planner_desc: "A printable planner to keep your trip organized: route & dates, reservations, budget, daily plan, tasks, and notes — all in one clear checklist you can fold and take on the road.",
+          privacy: "Privacy Policy",
+          terms: "Terms of Use",
+          footer_rights: "© 2025 Travel Rules. All rights reserved.",
+          theme_btn: "Toggle theme"
+        },
+        es: {
+          logo: "Travel Rules",
+          links_title: "Enlaces",
+          links_intro: "Aquí encontrarás nuestra tienda y redes sociales.",
+          links_shop_title: "Tienda",
+          links_shop_sub: "Productos digitales, listas y guías — elige lo que necesitas.",
+          links_social_title: "Redes sociales",
+          links_social_sub: "Novedades, consejos y detrás de cámaras — únete a la comunidad.",
+          links_instagram: "Instagram",
+          links_instagram_desc: "Detrás de cámaras, consejos y novedades.",
+          links_tiktok: "TikTok",
+          links_tiktok_desc: "Consejos rápidos y vídeos cortos.",
+          links_youtube: "YouTube",
+          links_youtube_desc: "Vídeos más largos y guías.",
+          links_pinterest: "Pinterest",
+          links_pinterest_desc: "Inspiración e ideas para guardar.",
+          links_ebook: "e-Book: Prepara tu camper paso a paso antes del primer viaje.",
+          links_ebook_desc: "¿Tu primer viaje en autocaravana? Este e-book te ayuda a organizarlo todo sin estrés: qué revisar antes de salir, cómo hacer las maletas con cabeza y qué suele olvidarse. Pasos claros y checklists para viajar con calma y seguridad.",
+          links_checklist_title: "Checklist de viaje vanlife plegable — Lista imprimible A4 (★ Esenciales)",
+          links_checklist_desc: "Esta checklist está organizada por categorías reales de equipaje: Info del viaje → Artículos de baño → Cocina → Electrónica → Herramientas → Camping → Ropa → Artículos útiles → Otros esenciales (incluye documentos y seguro).",
+          links_planner_title: "Checklist de planificador de viaje — Organizador imprimible (★ Esenciales)",
+          links_planner_desc: "Un planificador imprimible para llevar tu viaje organizado: ruta y fechas, reservas, presupuesto, plan diario, tareas y notas — todo en una checklist clara que puedes doblar y llevar en la carretera.",
+          privacy: "Política de privacidad",
+          terms: "Términos de uso",
+          footer_rights: "© 2025 Travel Rules. Todos los derechos reservados.",
+          theme_btn: "Cambiar tema"
+        }
+      };
+
+      // Meta translation helpers
+      const metaDesc = document.querySelector('meta[name="description"]');
+      const ogTitle = document.querySelector('meta[property="og:title"]');
+      const ogDesc = document.querySelector('meta[property="og:description"]');
+
+      function setPressed(lang){
+        document.querySelectorAll('.lang-btn').forEach(btn => {
+          btn.setAttribute('aria-pressed', btn.dataset.lang === lang ? 'true' : 'false');
+        });
+      }
+
+      function setLanguage(lang){
+        document.documentElement.lang = lang;
+        const t = translations[lang] || translations.en;
+
+        // Title + meta + og
+        if (lang === 'pl') {
+          document.title = 'Travel Rules – Linki';
+          if (metaDesc) metaDesc.setAttribute('content', 'Social media oraz sklep Travel Rules: Instagram, TikTok, YouTube, Pinterest, Gumroad i Naffy (PL).');
+          if (ogTitle) ogTitle.setAttribute('content', 'Travel Rules – Linki');
+          if (ogDesc) ogDesc.setAttribute('content', 'Social media oraz sklep Travel Rules.');
+        } else if (lang === 'en') {
+          document.title = 'Travel Rules – Links';
+          if (metaDesc) metaDesc.setAttribute('content', 'Travel Rules shop and social media: Instagram, TikTok, YouTube, Pinterest, Gumroad and Naffy (PL).');
+          if (ogTitle) ogTitle.setAttribute('content', 'Travel Rules – Links');
+          if (ogDesc) ogDesc.setAttribute('content', 'Travel Rules shop and social media.');
+        } else if (lang === 'es') {
+          document.title = 'Travel Rules – Enlaces';
+          if (metaDesc) metaDesc.setAttribute('content', 'Tienda y redes sociales de Travel Rules: Instagram, TikTok, YouTube, Pinterest, Gumroad y Naffy (PL).');
+          if (ogTitle) ogTitle.setAttribute('content', 'Travel Rules – Enlaces');
+          if (ogDesc) ogDesc.setAttribute('content', 'Tienda y redes sociales de Travel Rules.');
+        }
+
+        // Apply text nodes
+        document.querySelectorAll('[data-lang-key]').forEach(el => {
+          const key = el.getAttribute('data-lang-key');
+          if (t[key] != null) el.textContent = t[key];
+        });
+
+        // Show/hide language-only elements (comma separated)
+        document.querySelectorAll('[data-lang-only]').forEach(el => {
+          const onlyRaw = (el.getAttribute('data-lang-only') || '').trim();
+          const allowed = onlyRaw.split(',').map(s => s.trim()).filter(Boolean);
+          el.style.display = allowed.includes(lang) ? '' : 'none';
+        });
+
+        // Theme button label (a11y)
+        if (themeToggle) themeToggle.setAttribute('aria-label', t.theme_btn || 'Toggle theme');
+
+        setPressed(lang);
+        try{ localStorage.setItem('tr_lang', lang); }catch(e){}
+      }
+
+      function detectLang(){
+        try{
+          if (savedLang && ['pl','en','es'].includes(savedLang)) return savedLang;
+        }catch(e){}
+        const nav = (navigator.language || 'en').toLowerCase();
+        if (nav.startsWith('pl')) return 'pl';
+        if (nav.startsWith('es')) return 'es';
+        return 'en';
+      }
+
+      // Language buttons
+      document.querySelectorAll('.lang-btn').forEach(btn => {
+        btn.addEventListener('click', () => setLanguage(btn.dataset.lang));
       });
 
-      // Show/hide elements for specific languages (comma separated supported)
-      document.querySelectorAll('[data-lang-only]').forEach(el => {
-        const onlyRaw = (el.getAttribute('data-lang-only') || '').trim();
-        const allowed = onlyRaw.split(',').map(s => s.trim()).filter(Boolean);
-        el.style.display = allowed.includes(lang) ? '' : 'none';
-      });
-    }
-
-    // Language flags
-    const langFlags = document.querySelectorAll('.flag-emoji');
-    langFlags.forEach(flag => {
-      flag.addEventListener('click', () => {
-        const lang = flag.getAttribute('data-lang');
-        setLanguage(lang);
-        localStorage.setItem('tr_lang', lang);
-      });
-    });
-
-    // Init language
-    const initialLang = (savedLang && ['pl','en','es'].includes(savedLang))
-      ? savedLang
-      : (navigator.language || 'pl').slice(0,2);
-
-    setLanguage(['pl','en','es'].includes(initialLang) ? initialLang : 'pl');
+      setLanguage(detectLang());
+    })();
   </script>
 </body>
 </html>

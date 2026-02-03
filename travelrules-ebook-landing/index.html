@@ -1,0 +1,1051 @@
+<!doctype html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <title data-i18n-meta="title">First Camper Trip Prep Ebook (72h/48h/24h Plan + Practical Pages)</title>
+  <meta name="description" content="Step-by-step plan and practical pages to prepare your camper for the first trip. Instant download." data-i18n-meta="description" />
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="Prepare Your Camper for Your First Trip — Without Stress or Guessing" data-i18n-meta="og:title" />
+  <meta property="og:description" content="A simple 72h / 48h / 24h + departure-day plan with practical guidance. Instant download." data-i18n-meta="og:description" />
+  <meta property="og:type" content="website" />
+  <meta property="og:image" content="./assets/images/01-cover.png" data-meta-img-file="01-cover.png" />
+
+  <!-- Twitter -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="First Camper Trip Prep Ebook" data-i18n-meta="twitter:title" />
+  <meta name="twitter:description" content="72h/48h/24h plan + practical pages. Instant download." data-i18n-meta="twitter:description" />
+  <meta name="twitter:image" content="./assets/images/01-cover.png" data-meta-img-file="01-cover.png" />
+
+  <link rel="preload" href="./assets/images/01-cover.png" as="image" data-preload-img-file="01-cover.png" />
+  <link rel="stylesheet" href="./styles.css" />
+
+  <!-- Hub-like language + theme (non-invasive overrides) -->
+  <style>
+    :root{
+      --tr-primary:#29606D;
+      --tr-accent:#DDAA4F;
+      --tr-bg:#ffffff;
+      --tr-text:#0b0f14;
+      --tr-muted:rgba(11,15,20,.72);
+      --tr-card:#ffffff;
+      --tr-border:rgba(11,15,20,.10);
+    }
+    html[data-theme="dark"]{
+      color-scheme: dark;
+      --tr-bg:#0b0f14;
+      --tr-text:#f2f5f7;
+      --tr-muted:rgba(242,245,247,.72);
+      --tr-card:#121822;
+      --tr-border:rgba(242,245,247,.14);
+    }
+
+    /* smooth theme transitions */
+    html, body,
+    .site-header, .site-footer,
+    .hero, .section, .section-alt, .final-cta,
+    .card,
+    .icon-btn, .lang-select,
+    .lightbox-panel, .lightbox-backdrop {
+      transition:
+        background-color .35s ease,
+        color .35s ease,
+        border-color .35s ease,
+        box-shadow .35s ease,
+        filter .35s ease;
+    }
+
+    /* page background + text */
+    body{ background:var(--tr-bg); color:var(--tr-text) !important; }
+
+    /* header */
+    .site-header{ background:var(--tr-bg); border-bottom:1px solid var(--tr-border); }
+    .brand-mark{ background:var(--tr-primary); color:#fff; }
+
+    /* controls */
+    .header-controls{ display:flex; align-items:center; gap:10px; }
+    .icon-btn{
+      width:40px; height:40px; border-radius:999px;
+      border:1px solid var(--tr-border);
+      background:var(--tr-card);
+      color:var(--tr-text);
+      display:inline-flex; align-items:center; justify-content:center;
+      cursor:pointer;
+      transition:transform .12s ease, border-color .12s ease;
+    }
+    .icon-btn:hover{ transform:translateY(-1px); border-color:rgba(41,96,109,.45); }
+    .lang-select{
+      height:40px;
+      border-radius:999px;
+      border:1px solid var(--tr-border);
+      background:var(--tr-card);
+      color:var(--tr-text);
+      padding:0 12px;
+      font-weight:600;
+      cursor:pointer;
+      appearance:none;
+    }
+
+    /* buttons accents */
+    .btn.btn-primary{ background:var(--tr-primary); border-color:var(--tr-primary); }
+    .btn.btn-primary:hover{ filter:brightness(1.05); }
+    .btn.btn-ghost{ border-color:rgba(41,96,109,.35); }
+
+    /* muted text */
+    .muted{ color:var(--tr-muted) !important; }
+
+    /* Fix: some base styles force white text in light mode */
+    html[data-theme="light"] .hero,
+    html[data-theme="light"] .final-cta,
+    html[data-theme="light"] .section,
+    html[data-theme="light"] .section-alt,
+    html[data-theme="light"] .hero-copy,
+    html[data-theme="light"] .hero-copy h1,
+    html[data-theme="light"] .hero-copy p,
+    html[data-theme="light"] .hero-copy li,
+    html[data-theme="light"] h1,
+    html[data-theme="light"] h2,
+    html[data-theme="light"] h3,
+    html[data-theme="light"] p,
+    html[data-theme="light"] li,
+    html[data-theme="light"] summary,
+    html[data-theme="light"] figcaption,
+    html[data-theme="light"] .lead,
+    html[data-theme="light"] .note,
+    html[data-theme="light"] .price-amount,
+    html[data-theme="light"] .price-note,
+    html[data-theme="light"] .trust,
+    html[data-theme="light"] .gallery-label,
+    html[data-theme="light"] .footer-title,
+    html[data-theme="light"] .bonus-mini-title {
+      color: var(--tr-text);
+    }
+
+    /* keep primary button text readable */
+    html[data-theme="light"] .btn.btn-primary{ color:#fff; }
+
+    /* cards + sections */
+    .card{ background:var(--tr-card) !important; border:1px solid var(--tr-border); }
+    .section-alt{ background:rgba(41,96,109,.06) !important; }
+    html[data-theme="dark"] .section-alt{ background:rgba(221,170,79,.06) !important; }
+
+    /* lightbox */
+    .lightbox-panel{ background:var(--tr-card); color:var(--tr-text); }
+    .lightbox-caption{ color:var(--tr-muted); }
+
+    /* small responsive tweak */
+    @media (max-width: 720px){
+      .header-controls{ gap:8px; }
+      .lang-select{ padding:0 10px; }
+    }
+  </style>
+</head>
+
+<body data-gumroad-url="https://travelrules.gumroad.com/l/camper-first-trip-prep">
+  <header class="site-header">
+    <div class="container header-inner">
+      <a class="brand" href="/" aria-label="Travel Rules home">
+        <span class="brand-mark">TR</span>
+        <span class="brand-name" data-i18n="brand_name">Travel Rules</span>
+      </a>
+
+      <div class="header-controls" aria-label="Page controls">
+        <button class="icon-btn" type="button" id="themeToggle" aria-label="Toggle theme" title="Toggle theme">
+          <span id="themeIcon" aria-hidden="true">☀️</span>
+        </button>
+        <select class="lang-select" id="langSelect" aria-label="Language">
+          <option value="en">EN</option>
+          <option value="pl">PL</option>
+          <option value="es">ES</option>
+        </select>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <!-- SECTION 1 — HERO -->
+    <section class="hero" id="top">
+      <div class="container hero-grid">
+        <div class="hero-media">
+          <button class="image-button" data-lightbox="./assets/images/01-cover.png" data-img-file="01-cover.png" data-caption="Ebook cover: How to prepare a camper for the first trip" aria-label="Open cover preview">
+            <img class="shadow" src="./assets/images/01-cover.png" data-img-file="01-cover.png" alt="Ebook cover: How to prepare a camper for the first trip" width="1400" height="1994" loading="eager" />
+          </button>
+        </div>
+
+        <div class="hero-copy">
+          <h1 data-i18n="hero_h1">Prepare Your Camper for Your First Trip — Without Stress or Guessing</h1>
+          <p class="lead" data-i18n-html="hero_lead">
+            A simple <strong>72h / 48h / 24h + departure-day</strong> plan with practical pages to help you avoid the most common first-trip mistakes.
+          </p>
+
+          <ul class="bullets">
+            <li data-i18n="hero_b1">Follow a proven step-by-step prep schedule</li>
+            <li data-i18n="hero_b2">Pack correctly (and safely) using clear category checklists</li>
+            <li data-i18n="hero_b3">Handle common issues fast: water / power / gas</li>
+          </ul>
+
+          <div class="price-row">
+            <div class="price">
+<span class="price-amount" id="priceAmount">$9.99</span>
+              <span class="price-note" data-i18n="hero_price_note">Instant PDF download</span>
+            </div>
+            <div class="trust" data-i18n="hero_trust">Secure checkout</div>
+          </div>
+
+          <div class="cta-row">
+            <a class="btn btn-primary btn-lg" id="heroBuy" href="#" rel="noopener" data-i18n="cta_buy">Buy the ebook</a>
+            <a class="btn btn-ghost btn-lg" href="#preview" data-i18n="cta_samples">See sample pages</a>
+          </div>
+
+          <div class="bonus-mini">
+            <div class="bonus-mini-head" data-i18n="bonus_mini_head">Free bonus included</div>
+            <div class="bonus-mini-body">
+              <div class="protected-media bonus-thumb" aria-label="Bonus card preview (protected)">
+                <div class="protected-image" data-bg-img-file="bonus-dimensions-card.png" style="background-image:url('./assets/images/bonus-dimensions-card.png');"></div>
+              </div>
+              <div class="bonus-mini-text">
+                <p class="bonus-mini-title" data-i18n="bonus_mini_title">Printable card for height/length/weight quick reference</p>
+                <p class="muted" data-i18n="bonus_mini_p">Print it and keep it in your glovebox for quick height/length/weight reference (parking barriers, ferries, tunnels).</p>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 2 — PROBLEM -->
+    <section class="section">
+      <div class="container">
+        <h2 data-i18n="problem_h2">What goes wrong on a first camper trip?</h2>
+        <p class="muted" data-i18n="problem_p">Most first-timers don’t fail because they lack gear — they fail because they miss the small essentials.</p>
+
+        <ul class="bullets bullets-2col">
+          <li data-i18n="problem_b1">Forgetting critical items (adapters, hoses, leveling blocks, etc.)</li>
+          <li data-i18n="problem_b2">Rushing safety checks and missing something obvious</li>
+          <li data-i18n="problem_b3">Overloading the camper or packing weight in the wrong places</li>
+          <li data-i18n="problem_b4">Arriving late with no simple “arrival routine”</li>
+          <li data-i18n="problem_b5">Getting stuck with a basic issue: water / power / gas</li>
+          <li data-i18n="problem_b6">Underestimating real costs (fuel, tolls, campsites, hidden fees)</li>
+        </ul>
+
+        <p class="note" data-i18n="problem_note">This ebook gives you a simple system to prevent these problems.</p>
+      </div>
+    </section>
+
+    <!-- SECTION 3 — SOLUTION -->
+    <section class="section section-alt">
+      <div class="container">
+        <h2 data-i18n="solution_h2">A simple system you can follow in one evening</h2>
+
+        <div class="cards">
+          <article class="card">
+            <h3 data-i18n="solution_c1_h">The 72h / 48h / 24h plan</h3>
+            <p data-i18n="solution_c1_p">Know exactly what to do — and when.</p>
+          </article>
+          <article class="card">
+            <h3 data-i18n="solution_c2_h">Clear prep pages</h3>
+            <p data-i18n="solution_c2_p">Stay organized with simple, practical steps.</p>
+          </article>
+          <article class="card">
+            <h3 data-i18n="solution_c3_h">Quick troubleshooting</h3>
+            <p data-i18n="solution_c3_p">Fix common issues before they ruin your trip.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 4 — WHAT YOU GET -->
+    <section class="section">
+      <div class="container">
+        <h2 data-i18n="what_h2">What you get</h2>
+
+        <ul class="bullets bullets-2col">
+          <li data-i18n="what_b1">PDF ebook (A4), instant download</li>
+          <li data-i18n="what_b2">72h / 48h / 24h + departure-day prep schedule</li>
+          <li data-i18n="what_b3">Inside + outside safety walkaround checklist</li>
+          <li data-i18n="what_b4">Weight & loading basics (avoid overload)</li>
+          <li data-i18n="what_b5">Packing lists by category</li>
+          <li data-i18n="what_b6">Arrival + departure routine (“ready to drive” checklist)</li>
+          <li data-i18n="what_b7">Quick troubleshooting (water / power / gas)</li>
+          <li data-i18n="what_b8">One-page cheat sheets you can print</li>
+          <li data-i18n-html="what_b9"><strong>BONUS:</strong> Camper Dimensions Card (printable)</li>
+        </ul>
+
+        <p class="muted" data-i18n="what_note">Works on phone, tablet, and computer.</p>
+      </div>
+    </section>
+
+    <!-- SECTION 5 — PREP SCHEDULE (killer element) -->
+    <section class="section section-alt" id="system">
+      <div class="container">
+        <div class="section-head">
+          <h2 data-i18n="system_h2">The 72h / 48h / 24h plan (sample)</h2>
+          <p class="muted" data-i18n="system_p">You’ll follow a clear timeline so you don’t do everything last minute. It’s designed for beginners and helps you build confidence before the first departure.</p>
+        </div>
+
+        <button class="image-button wide-image" data-lightbox="./assets/images/04-prep-schedule.png" data-img-file="04-prep-schedule.png" data-caption="Sample page: 24 hours before departure + departure day" aria-label="Open prep schedule preview">
+          <img class="shadow" src="./assets/images/04-prep-schedule.png" data-img-file="04-prep-schedule.png" alt="Sample page: 72h / 48h / 24h preparation schedule" width="1400" height="1980" loading="lazy" />
+        </button>
+
+        <div class="mini-cta">
+          <a class="btn btn-primary" id="systemBuy" href="#" rel="noopener" data-i18n="cta_buy_price">Buy the ebook ($9.99)</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 6 — SAMPLE PAGES -->
+    <section class="section" id="checklists">
+      <div class="container">
+        <h2 data-i18n="sample_h2">Sample pages (inside the ebook)</h2>
+        <p class="muted" data-i18n="sample_p">A quick look inside—two example pages so you can see the format, clarity, and structure.</p>
+
+        <div class="two-up">
+          <figure class="figure">
+            <button class="image-button" data-lightbox="./assets/images/05-minimum-checklist.png" data-img-file="05-minimum-checklist.png" data-caption="Minimum checklist before you leave" aria-label="Open minimum checklist preview">
+              <img class="shadow" src="./assets/images/05-minimum-checklist.png" data-img-file="05-minimum-checklist.png" alt="Sample page: Minimum checklist before you leave" width="1400" height="1980" loading="lazy" />
+            </button>
+            <figcaption data-i18n="sample_cap_1">Minimum checklist before you leave</figcaption>
+          </figure>
+
+          <figure class="figure">
+            <button class="image-button" data-lightbox="./assets/images/06-safety-inspection.png" data-img-file="06-safety-inspection.png" data-caption="Safety walkaround checklist" aria-label="Open safety inspection preview">
+              <img class="shadow" src="./assets/images/06-safety-inspection.png" data-img-file="06-safety-inspection.png" alt="Sample page: Safety walkaround checklist" width="1400" height="1980" loading="lazy" />
+            </button>
+            <figcaption data-i18n="sample_cap_2">Safety walkaround checklist</figcaption>
+          </figure>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 7 — BONUS -->
+    <section class="section section-alt" id="bonus">
+      <div class="container bonus-grid">
+        <div class="bonus-media">
+          <!-- slightly smaller -->
+          <div class="protected-media" style="max-width:420px;margin:0 auto;">
+            <div class="protected-image shadow" data-bg-img-file="bonus-dimensions-card.png" style="background-image:url('./assets/images/bonus-dimensions-card.png');"></div>
+          </div>
+        </div>
+
+        <div class="bonus-copy">
+          <h2 data-i18n="bonus_h2">Free bonus: Camper Dimensions Card</h2>
+          <p class="muted" data-i18n="bonus_p">Keep your key numbers in one place.</p>
+
+          <ul class="bullets">
+            <li data-i18n-html="bonus_b1"><strong>Parking barriers / height limits:</strong> know your height fast</li>
+            <li data-i18n-html="bonus_b2"><strong>Ferries / tunnels:</strong> quick length & width reference</li>
+            <li data-i18n-html="bonus_b3"><strong>Glovebox cheat sheet:</strong> key weights, tires, VIN, and more</li>
+          </ul>
+
+          <p class="note" data-i18n="bonus_note">Print it and keep it in the glovebox.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 8 — PREVIEW GALLERY -->
+    <section class="section" id="preview">
+      <div class="container">
+        <h2 data-i18n="gallery_h2">More sample pages</h2>
+        <p class="muted" data-i18n="gallery_p">These are sample pages — the ebook includes more step-by-step pages and routines.</p>
+
+        <div class="gallery" role="list">
+          <button class="gallery-item" role="listitem" data-lightbox="./assets/images/02-contents.png" data-img-file="02-contents.png" data-caption="Contents">
+            <img src="./assets/images/02-contents.png" data-img-file="02-contents.png" alt="Sample page: Contents" width="1400" height="1980" loading="lazy" />
+            <span class="gallery-label" data-i18n="gallery_l1">Contents</span>
+          </button>
+
+          <button class="gallery-item" role="listitem" data-lightbox="./assets/images/03-common-mistakes.png" data-img-file="03-common-mistakes.png" data-caption="Common beginner mistakes">
+            <img src="./assets/images/03-common-mistakes.png" data-img-file="03-common-mistakes.png" alt="Sample page: Common beginner mistakes" width="1400" height="1980" loading="lazy" />
+            <span class="gallery-label" data-i18n="gallery_l2">Common mistakes</span>
+          </button>
+
+          <button class="gallery-item" role="listitem" data-lightbox="./assets/images/07-weight-cargo.png" data-img-file="07-weight-cargo.png" data-caption="Weight & cargo distribution">
+            <img src="./assets/images/07-weight-cargo.png" data-img-file="07-weight-cargo.png" alt="Sample page: Weight and cargo distribution" width="1400" height="1980" loading="lazy" />
+            <span class="gallery-label" data-i18n="gallery_l3">Weight / cargo</span>
+          </button>
+
+          <button class="gallery-item" role="listitem" data-lightbox="./assets/images/08-troubleshooting.png" data-img-file="08-troubleshooting.png" data-caption="Troubleshooting (leaks / water / power / gas)">
+            <img src="./assets/images/08-troubleshooting.png" data-img-file="08-troubleshooting.png" alt="Sample page: Troubleshooting" width="1400" height="1980" loading="lazy" />
+            <span class="gallery-label" data-i18n="gallery_l4">Troubleshooting</span>
+          </button>
+
+          <button class="gallery-item" role="listitem" data-lightbox="./assets/images/10-electrics-kit.jpg" data-img-file="10-electrics-kit.jpg" data-caption="Electrics & practical kit (essentials)">
+            <img src="./assets/images/10-electrics-kit.jpg" data-img-file="10-electrics-kit.jpg" alt="Sample page: Electrics and practical kit" width="1400" height="1980" loading="lazy" />
+            <span class="gallery-label" data-i18n="gallery_l5">Electrics & kit</span>
+          </button>
+
+          <button class="gallery-item" role="listitem" data-lightbox="./assets/images/11-comfort-checklist.jpg" data-img-file="11-comfort-checklist.jpg" data-caption="Comfort basics (quick checklist)">
+            <img src="./assets/images/11-comfort-checklist.jpg" data-img-file="11-comfort-checklist.jpg" alt="Sample page: Comfort basics" width="1400" height="1980" loading="lazy" />
+            <span class="gallery-label" data-i18n="gallery_l6">Comfort basics</span>
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 9 — WHO IT'S FOR -->
+    <section class="section section-alt" id="for">
+      <div class="container">
+        <h2 data-i18n="for_h2">Who this is for</h2>
+
+        <ul class="bullets bullets-2col">
+          <li data-i18n="for_b1">First-time camper owners and renters</li>
+          <li data-i18n="for_b2">People who want a simple system and fewer mistakes</li>
+          <li data-i18n="for_b3">Anyone who prefers checklists over guessing</li>
+        </ul>
+
+        <div class="divider"></div>
+
+        <h3 class="h3" data-i18n="not_h3">Not for you if…</h3>
+        <ul class="bullets bullets-2col">
+          <li data-i18n="not_b1">You’re looking for advanced mechanical repairs or deep technical servicing</li>
+          <li data-i18n="not_b2">You already have a full professional RV maintenance manual</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- SECTION 10 — FAQ -->
+    <section class="section" id="faq">
+      <div class="container">
+        <h2 data-i18n="faq_h2">FAQ</h2>
+
+        <div class="faq">
+          <details>
+            <summary data-i18n="faq_q1">Will this work for campervans and motorhomes?</summary>
+            <p data-i18n="faq_a1">Yes — the system and checklists are universal for first trips.</p>
+          </details>
+
+          <details>
+            <summary data-i18n="faq_q2">Is it useful if I’m renting a camper?</summary>
+            <p data-i18n="faq_a2">Yes — it helps you check the basics and avoid forgetting essentials.</p>
+          </details>
+
+          <details>
+            <summary data-i18n="faq_q3">Is it US-only or Europe-only?</summary>
+            <p data-i18n="faq_a3">It’s universal. Always follow local laws and manufacturer guidance.</p>
+          </details>
+
+          <details>
+            <summary data-i18n="faq_q4">Can I print some pages?</summary>
+            <p data-i18n="faq_a4">You can print selected pages if you want, but the ebook is primarily designed for easy reading on your phone, tablet, or computer.</p>
+          </details>
+
+          <details>
+            <summary data-i18n="faq_q5">How do I receive it?</summary>
+            <p data-i18n="faq_a5">Instant PDF download after checkout.</p>
+          </details>
+
+          <details>
+            <summary data-i18n="faq_q6">What if it’s not helpful?</summary>
+            <p data-i18n="faq_a6">Reach out to support at travelrules.app@gmail.com and we’ll help you troubleshoot or clarify any step.</p>
+          </details>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 11 — FINAL CTA -->
+    <section class="final-cta">
+      <div class="container final-grid">
+        <div class="final-media" style="display:block;">
+          <img class="shadow" src="./assets/images/01-cover.png" data-img-file="01-cover.png" alt="Ebook cover" width="1400" height="1994" loading="lazy" />
+        </div>
+
+        <div class="final-copy">
+          <h2 data-i18n="final_h2">Ready for your first trip?</h2>
+          <ul class="bullets">
+            <li data-i18n="final_b1">Follow the prep plan and reduce stress</li>
+            <li data-i18n="final_b2">Pack smarter and avoid common mistakes</li>
+            <li data-i18n="final_b3">Drive away confident and prepared</li>
+          </ul>
+
+          <p class="price-line"><strong id="finalPriceAmount">$9.99</strong> • <span data-i18n="final_price_note">Instant download</span></p>
+          <a class="btn btn-primary btn-lg" id="finalBuy" href="#" rel="noopener" data-i18n="cta_buy">Buy the ebook</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- LIGHTBOX -->
+    <div class="lightbox" id="lightbox" hidden aria-hidden="true">
+      <div class="lightbox-backdrop" data-close></div>
+      <div class="lightbox-panel" role="dialog" aria-modal="true" aria-label="Image preview">
+        <button class="lightbox-close" type="button" data-close aria-label="Close preview">×</button>
+        <img id="lightboxImg" alt="" />
+        <div class="lightbox-caption" id="lightboxCaption"></div>
+      </div>
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <div class="footer-col">
+        <div class="footer-title" data-i18n="footer_brand">Travel Rules</div>
+        <p class="muted" data-i18n-html="footer_support">Support: <a href="mailto:travelrules.app@gmail.com">travelrules.app@gmail.com</a></p>
+        <p class="muted" data-i18n="footer_rights">© <span id="year"></span> Travel Rules. All rights reserved.</p>
+      </div>
+
+      <div class="footer-col">
+        <div class="footer-title" data-i18n="footer_legal">Legal</div>
+        <ul class="footer-links">
+          <li><a href="/privacy.html" rel="nofollow noopener" target="_blank" data-i18n="footer_privacy">Privacy policy</a></li>
+          <li><a href="/terms.html" rel="nofollow noopener" target="_blank" data-i18n="footer_terms">Terms</a></li>
+          <li><a href="/cookies.html" rel="nofollow noopener" target="_blank" data-i18n="footer_cookies">Cookies</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <div class="footer-title" data-i18n="footer_disclaimer_title">Disclaimer</div>
+        <p class="muted" data-i18n="footer_disclaimer">This ebook is educational content. Always follow local laws, manufacturer guidance, and safe driving practices.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="./script.js"></script>
+
+  <!-- Language + theme + assets (shared keys: tr_lang, tr_theme) -->
+  <script>
+    (function(){
+      const html = document.documentElement;
+      const themeToggle = document.getElementById('themeToggle');
+      const themeIcon = document.getElementById('themeIcon');
+      const langSelect = document.getElementById('langSelect');
+
+      const BUY_URLS = {
+        en: 'https://travelrules.gumroad.com/l/camper-first-trip-prep',
+        es: 'https://travelrules.gumroad.com/l/camper-first-trip-prep',
+        pl: 'https://www.naffy.io/travelrules/pierwsza-podroz-kamperem-przygotuj-kampera-i-siebie-krok-po-kroku-IwO'
+      };
+
+      const PRICES = {
+  en: '$9.99',
+  es: '$9.99',
+  pl: '36 zł'
+};
+
+function updatePrices(lang){
+  const price = PRICES[lang] || PRICES.en;
+
+  const p1 = document.getElementById('priceAmount');
+  const p2 = document.getElementById('finalPriceAmount');
+
+  if (p1) p1.textContent = price;
+  if (p2) p2.textContent = price;
+}
+
+      // Both EN/ES and PL images are stored in ./assets/images/. We only switch filenames for PL.
+      const PL_FILE_MAP = {
+        '01-cover.png': '01-okladka.png',
+        '02-contents.png': '02-Spis Treści.png',
+        '03-common-mistakes.png': '03-bledy.png',
+        '04-prep-schedule.png': '04-przygotowanie.png',
+        '05-minimum-checklist.png': '05-minimum.png',
+        '06-safety-inspection.png': '06-bezpieczenstwo.png',
+        '07-weight-cargo.png': '07-waga.png',
+        '08-troubleshooting.png': '08-usterki.png',
+        '09-stopping-vs-camping.jpg': '09-na dziko vs kemping.png',
+        '10-electrics-kit.jpg': '10-elektryka.png',
+        '11-comfort-checklist.jpg': '11-komfort .png',
+        '12-gas-checklist.jpg': '12-gaz.png'
+      };
+
+      // Assets shared across languages (kept in ./assets/images/)
+      const SHARED_FILES = new Set([
+        'bonus-dimensions-card.png',
+        'bonus-dimensions-card-pl.png'
+      ]);
+
+      function resolveAssetFile(lang, file){
+        if (lang !== 'pl') return file;
+
+        // Polish bonus card was renamed; map old name to the new file
+        if (file === 'bonus-dimensions-card.png') return 'bonus-dimensions-card-pl.png';
+
+        // Keep shared assets as-is
+        if (SHARED_FILES.has(file)) return file;
+
+        return PL_FILE_MAP[file] || file;
+      }
+
+      function assetBaseFor(lang, originalFile){
+        // All images (EN/ES and PL) live in the same folder now.
+        // We only switch the filename for PL via `resolveAssetFile`.
+        return './assets/images/';
+      }
+
+      function updateBuyLinks(lang){
+        const url = BUY_URLS[lang] || BUY_URLS.en;
+        ['heroBuy','systemBuy','finalBuy'].forEach(id => {
+          const a = document.getElementById(id);
+          if (!a) return;
+          a.href = url;
+          a.target = '_blank';
+          a.rel = 'noopener';
+        });
+        // keep compatibility with existing script.js if it reads this attribute
+        document.body.setAttribute('data-gumroad-url', url);
+      }
+
+      function updateImages(lang){
+        // Update every place where we reference image assets so PL can use Polish graphics.
+
+        
+        document.querySelectorAll('img[data-img-file]').forEach(img => {
+          const original = img.getAttribute('data-img-file');
+          if (!original) return;
+          const file = resolveAssetFile(lang, original);
+          const base = assetBaseFor(lang, original);
+          img.setAttribute('src', base + file);
+        });
+
+        // buttons/cards that open lightbox: data-lightbox
+        document.querySelectorAll('[data-lightbox][data-img-file]').forEach(el => {
+          const original = el.getAttribute('data-img-file');
+          if (!original) return;
+          const file = resolveAssetFile(lang, original);
+          const base = assetBaseFor(lang, original);
+          el.setAttribute('data-lightbox', base + file);
+        });
+
+        // inline background images used for protected previews
+        document.querySelectorAll('[data-bg-img-file]').forEach(el => {
+          const original = el.getAttribute('data-bg-img-file');
+          if (!original) return;
+          const file = resolveAssetFile(lang, original);
+          const base = assetBaseFor(lang, original);
+          el.style.backgroundImage = `url('${base + file}')`;
+        });
+
+        // social meta images
+        document.querySelectorAll('meta[data-meta-img-file]').forEach(m => {
+          const original = m.getAttribute('data-meta-img-file');
+          if (!original) return;
+          const file = resolveAssetFile(lang, original);
+          const base = assetBaseFor(lang, original);
+          m.setAttribute('content', base + file);
+        });
+
+        // preload
+        document.querySelectorAll('link[data-preload-img-file]').forEach(l => {
+          const original = l.getAttribute('data-preload-img-file');
+          if (!original) return;
+          const file = resolveAssetFile(lang, original);
+          const base = assetBaseFor(lang, original);
+          l.setAttribute('href', base + file);
+        });
+      }
+
+      const metaMap = {
+        title: () => document.querySelector('title'),
+        description: () => document.querySelector('meta[name="description"]'),
+        'og:title': () => document.querySelector('meta[property="og:title"]'),
+        'og:description': () => document.querySelector('meta[property="og:description"]'),
+        'twitter:title': () => document.querySelector('meta[name="twitter:title"]'),
+        'twitter:description': () => document.querySelector('meta[name="twitter:description"]')
+      };
+
+      const dict = {
+        en: {
+          meta: {
+            title: 'First Camper Trip Prep Ebook (72h/48h/24h Plan + Practical Pages)',
+            description: 'Step-by-step plan and practical pages to prepare your camper for the first trip. Instant download.',
+            'og:title': 'Prepare Your Camper for Your First Trip — Without Stress or Guessing',
+            'og:description': 'A simple 72h / 48h / 24h + departure-day plan with practical guidance. Instant download.',
+            'twitter:title': 'First Camper Trip Prep Ebook',
+            'twitter:description': '72h/48h/24h plan + practical pages. Instant download.'
+          },
+          t: {
+            brand_name: 'Travel Rules',
+            hero_h1: 'Prepare Your Camper for Your First Trip — Without Stress or Guessing',
+            hero_lead: 'A simple <strong>72h / 48h / 24h + departure-day</strong> plan with practical pages to help you avoid the most common first-trip mistakes.',
+            hero_b1: 'Follow a proven step-by-step prep schedule',
+            hero_b2: 'Pack correctly (and safely) using clear category checklists',
+            hero_b3: 'Handle common issues fast: water / power / gas',
+            hero_price_note: 'Instant PDF download',
+            hero_trust: 'Secure checkout',
+            cta_buy: 'Buy the ebook',
+            cta_buy_price: 'Buy the ebook ($9.99)',
+            cta_samples: 'See sample pages',
+            bonus_mini_head: 'Free bonus included',
+            bonus_mini_title: 'Printable card for height/length/weight quick reference',
+            bonus_mini_p: 'Print it and keep it in your glovebox for quick height/length/weight reference (parking barriers, ferries, tunnels).',
+            problem_h2: 'What goes wrong on a first camper trip?',
+            problem_p: 'Most first-timers don’t fail because they lack gear — they fail because they miss the small essentials.',
+            problem_b1: 'Forgetting critical items (adapters, hoses, leveling blocks, etc.)',
+            problem_b2: 'Rushing safety checks and missing something obvious',
+            problem_b3: 'Overloading the camper or packing weight in the wrong places',
+            problem_b4: 'Arriving late with no simple “arrival routine”',
+            problem_b5: 'Getting stuck with a basic issue: water / power / gas',
+            problem_b6: 'Underestimating real costs (fuel, tolls, campsites, hidden fees)',
+            problem_note: 'This ebook gives you a simple system to prevent these problems.',
+            solution_h2: 'A simple system you can follow in one evening',
+            solution_c1_h: 'The 72h / 48h / 24h plan',
+            solution_c1_p: 'Know exactly what to do — and when.',
+            solution_c2_h: 'Clear prep pages',
+            solution_c2_p: 'Stay organized with simple, practical steps.',
+            solution_c3_h: 'Quick troubleshooting',
+            solution_c3_p: 'Fix common issues before they ruin your trip.',
+            what_h2: 'What you get',
+            what_b1: 'PDF ebook (A4), instant download',
+            what_b2: '72h / 48h / 24h + departure-day prep schedule',
+            what_b3: 'Inside + outside safety walkaround checklist',
+            what_b4: 'Weight & loading basics (avoid overload)',
+            what_b5: 'Packing lists by category',
+            what_b6: 'Arrival + departure routine (“ready to drive” checklist)',
+            what_b7: 'Quick troubleshooting (water / power / gas)',
+            what_b8: 'One-page cheat sheets you can print',
+            what_b9: '<strong>BONUS:</strong> Camper Dimensions Card (printable)',
+            what_note: 'Works on phone, tablet, and computer.',
+            system_h2: 'The 72h / 48h / 24h plan (sample)',
+            system_p: 'You’ll follow a clear timeline so you don’t do everything last minute. It’s designed for beginners and helps you build confidence before the first departure.',
+            sample_h2: 'Sample pages (inside the ebook)',
+            sample_p: 'A quick look inside—two example pages so you can see the format, clarity, and structure.',
+            sample_cap_1: 'Minimum checklist before you leave',
+            sample_cap_2: 'Safety walkaround checklist',
+            bonus_h2: 'Free bonus: Camper Dimensions Card',
+            bonus_p: 'Keep your key numbers in one place.',
+            bonus_b1: '<strong>Parking barriers / height limits:</strong> know your height fast',
+            bonus_b2: '<strong>Ferries / tunnels:</strong> quick length & width reference',
+            bonus_b3: '<strong>Glovebox cheat sheet:</strong> key weights, tires, VIN, and more',
+            bonus_note: 'Print it and keep it in the glovebox.',
+            gallery_h2: 'More sample pages',
+            gallery_p: 'These are sample pages — the ebook includes more step-by-step pages and routines.',
+            gallery_l1: 'Contents',
+            gallery_l2: 'Common mistakes',
+            gallery_l3: 'Weight / cargo',
+            gallery_l4: 'Troubleshooting',
+            gallery_l5: 'Electrics & kit',
+            gallery_l6: 'Comfort basics',
+            for_h2: 'Who this is for',
+            for_b1: 'First-time camper owners and renters',
+            for_b2: 'People who want a simple system and fewer mistakes',
+            for_b3: 'Anyone who prefers checklists over guessing',
+            not_h3: 'Not for you if…',
+            not_b1: 'You’re looking for advanced mechanical repairs or deep technical servicing',
+            not_b2: 'You already have a full professional RV maintenance manual',
+            faq_h2: 'FAQ',
+            faq_q1: 'Will this work for campervans and motorhomes?',
+            faq_a1: 'Yes — the system and checklists are universal for first trips.',
+            faq_q2: 'Is it useful if I’m renting a camper?',
+            faq_a2: 'Yes — it helps you check the basics and avoid forgetting essentials.',
+            faq_q3: 'Is it US-only or Europe-only?',
+            faq_a3: 'It’s universal. Always follow local laws and manufacturer guidance.',
+            faq_q4: 'Can I print some pages?',
+            faq_a4: 'You can print selected pages if you want, but the ebook is primarily designed for easy reading on your phone, tablet, or computer.',
+            faq_q5: 'How do I receive it?',
+            faq_a5: 'Instant PDF download after checkout.',
+            faq_q6: 'What if it’s not helpful?',
+            faq_a6: 'Reach out to support at travelrules.app@gmail.com and we’ll help you troubleshoot or clarify any step.',
+            final_h2: 'Ready for your first trip?',
+            final_b1: 'Follow the prep plan and reduce stress',
+            final_b2: 'Pack smarter and avoid common mistakes',
+            final_b3: 'Drive away confident and prepared',
+            final_price_note: 'Instant download',
+            footer_brand: 'Travel Rules',
+            footer_support: 'Support: <a href="mailto:travelrules.app@gmail.com">travelrules.app@gmail.com</a>',
+            footer_rights: '© ' + (new Date()).getFullYear() + ' Travel Rules. All rights reserved.',
+            footer_legal: 'Legal',
+            footer_privacy: 'Privacy policy',
+            footer_terms: 'Terms',
+            footer_cookies: 'Cookies',
+            footer_disclaimer_title: 'Disclaimer',
+            footer_disclaimer: 'This ebook is educational content. Always follow local laws, manufacturer guidance, and safe driving practices.'
+          }
+        },
+        pl: {
+          meta: {
+            title: 'Ebook: Pierwsza podróż kamperem (plan 72h/48h/24h + praktyczne strony)',
+            description: 'Plan krok po kroku i praktyczne strony, które pomogą przygotować kampera do pierwszej podróży. Natychmiastowy dostęp po zakupie.',
+            'og:title': 'Przygotuj kampera na pierwszą podróż — bez stresu i zgadywania',
+            'og:description': 'Prosty plan 72h / 48h / 24h + dzień wyjazdu oraz praktyczne wskazówki. Natychmiastowy dostęp po zakupie.',
+            'twitter:title': 'Ebook: Pierwsza podróż kamperem',
+            'twitter:description': 'Plan 72h/48h/24h + praktyczne strony. Natychmiastowy dostęp.'
+          },
+          t: {
+            brand_name: 'Travel Rules',
+            hero_h1: 'Przygotuj kampera na pierwszą podróż — bez stresu i zgadywania',
+            hero_lead: 'Prosty plan <strong>72h / 48h / 24h + dzień wyjazdu</strong> oraz praktyczne strony, które pomogą uniknąć typowych błędów pierwszego wyjazdu.',
+            hero_b1: 'Postępuj według sprawdzonego harmonogramu przygotowań',
+            hero_b2: 'Spakuj się mądrze i bezpiecznie dzięki jasnym kategoriom',
+            hero_b3: 'Szybko ogarnij typowe problemy: woda / prąd / gaz',
+            hero_price_note: 'Natychmiastowy dostęp (PDF)',
+            hero_trust: 'Bezpieczna płatność',
+            cta_buy: 'Kup ebook',
+            cta_buy_price: 'Kup ebook (36zł)',
+            cta_samples: 'Zobacz podgląd',
+            bonus_mini_head: 'Gratis w pakiecie',
+            bonus_mini_title: 'Karta wymiarów do szybkiej kontroli (wys./dł./masa)',
+            bonus_mini_p: 'Wydrukuj i trzymaj w schowku — szybkie sprawdzenie wysokości/długości/masy (szlabany, promy, tunele).',
+            problem_h2: 'Co najczęściej psuje pierwszy wyjazd kamperem?',
+            problem_p: 'Większość początkujących nie polega na braku sprzętu — tylko na pominięciu drobnych, ważnych rzeczy.',
+            problem_b1: 'Zapomnienie krytycznych drobiazgów (adaptery, węże, kliny poziomujące itd.)',
+            problem_b2: 'Pośpiech przy kontroli bezpieczeństwa i przeoczenie oczywistości',
+            problem_b3: 'Przeciążenie kampera lub złe rozłożenie ciężaru',
+            problem_b4: 'Wyjazd „na styk” bez prostej rutyny przed startem',
+            problem_b5: 'Utkniecie przez podstawowy problem: woda / prąd / gaz',
+            problem_b6: 'Niedoszacowanie realnych kosztów (paliwo, opłaty, kempingi, ukryte koszty)',
+            problem_note: 'Ten ebook daje prosty system, który zapobiega tym problemom.',
+            solution_h2: 'Prosty system, który ogarniesz w jeden wieczór',
+            solution_c1_h: 'Plan 72h / 48h / 24h',
+            solution_c1_p: 'Wiesz dokładnie co robić — i kiedy.',
+            solution_c2_h: 'Praktyczne strony przygotowań',
+            solution_c2_p: 'Porządek i jasne kroki bez chaosu.',
+            solution_c3_h: 'Szybkie rozwiązywanie problemów',
+            solution_c3_p: 'Napraw podstawy, zanim popsują wyjazd.',
+            what_h2: 'Co dostajesz',
+            what_b1: 'Ebook PDF (A4), natychmiastowy dostęp',
+            what_b2: 'Plan przygotowań: 72h / 48h / 24h + dzień wyjazdu',
+            what_b3: 'Checklisty kontroli bezpieczeństwa (wewnątrz + na zewnątrz)',
+            what_b4: 'Podstawy wagi i załadunku (bez przeciążenia)',
+            what_b5: 'Listy pakowania według kategorii',
+            what_b6: 'Rutyna „gotowy do jazdy” (przyjazd + wyjazd)',
+            what_b7: 'Szybkie rozwiązania problemów: woda / prąd / gaz',
+            what_b8: 'Jednostronicowe ściągi do wydruku',
+            what_b9: '<strong>BONUS:</strong> Karta wymiarów kampera (do wydruku)',
+            what_note: 'Działa na telefonie, tablecie i komputerze.',
+            system_h2: 'Plan 72h / 48h / 24h (podgląd)',
+            system_p: 'Masz jasną oś czasu, więc nie robisz wszystkiego na ostatnią chwilę. To rozwiązanie dla początkujących, które buduje pewność przed pierwszym wyjazdem.',
+            sample_h2: 'Podgląd stron (z wnętrza ebooka)',
+            sample_p: 'Szybki rzut oka — dwie przykładowe strony, żeby zobaczyć format, czytelność i strukturę.',
+            sample_cap_1: 'Minimalna lista przed wyjazdem',
+            sample_cap_2: 'Kontrola bezpieczeństwa (obejście)',
+            bonus_h2: 'Gratis: Karta wymiarów kampera',
+            bonus_p: 'Wszystkie kluczowe liczby w jednym miejscu.',
+            bonus_b1: '<strong>Szlabany / ograniczenia wysokości:</strong> sprawdź wysokość w sekundę',
+            bonus_b2: '<strong>Promy / tunele:</strong> szybka referencja długości i szerokości',
+            bonus_b3: '<strong>Ściąga do schowka:</strong> masa, opony, VIN i inne dane',
+            bonus_note: 'Wydrukuj i trzymaj w schowku.',
+            gallery_h2: 'Więcej podglądu',
+            gallery_p: 'To tylko próbki — ebook zawiera więcej stron krok po kroku i rutyn.',
+            gallery_l1: 'Spis treści',
+            gallery_l2: 'Typowe błędy',
+            gallery_l3: 'Waga / ładunek',
+            gallery_l4: 'Awarie',
+            gallery_l5: 'Elektryka i zestaw',
+            gallery_l6: 'Komfort',
+            for_h2: 'Dla kogo jest ten ebook',
+            for_b1: 'Dla osób jadących pierwszy raz kamperem (własnym lub z wypożyczalni)',
+            for_b2: 'Dla tych, którzy chcą prostego systemu i mniej błędów',
+            for_b3: 'Dla osób, które wolą checklisty niż zgadywanie',
+            not_h3: 'To nie dla Ciebie, jeśli…',
+            not_b1: 'Szukasz zaawansowanych napraw mechanicznych i serwisu',
+            not_b2: 'Masz już profesjonalny podręcznik RV i chcesz tylko technicznych szczegółów',
+            faq_h2: 'FAQ',
+            faq_q1: 'Czy to działa dla campervanów i kamperów?',
+            faq_a1: 'Tak — system jest uniwersalny dla pierwszych wyjazdów.',
+            faq_q2: 'Czy to ma sens, jeśli wynajmuję kampera?',
+            faq_a2: 'Tak — pomoże sprawdzić podstawy i niczego nie zapomnieć.',
+            faq_q3: 'USA czy Europa?',
+            faq_a3: 'Uniwersalne. Zawsze stosuj lokalne przepisy i zalecenia producenta.',
+            faq_q4: 'Czy mogę coś wydrukować?',
+            faq_a4: 'Możesz wydrukować wybrane strony, ale ebook jest głównie zaprojektowany do wygodnego czytania na telefonie/tablecie/komputerze.',
+            faq_q5: 'Jak dostanę ebook?',
+            faq_a5: 'Natychmiastowy dostęp do PDF po zakupie.',
+            faq_q6: 'A jeśli coś będzie niejasne?',
+            faq_a6: 'Napisz na travelrules.app@gmail.com — pomożemy wyjaśnić kroki i rozwiać wątpliwości.',
+            final_h2: 'Gotowy na pierwszy wyjazd?',
+            final_b1: 'Zastosuj plan i zmniejsz stres',
+            final_b2: 'Spakuj się mądrzej i uniknij błędów',
+            final_b3: 'Wyjedź pewnie i przygotowany',
+            final_price_note: 'Natychmiastowy dostęp',
+            footer_brand: 'Travel Rules',
+            footer_support: 'Wsparcie: <a href="mailto:travelrules.app@gmail.com">travelrules.app@gmail.com</a>',
+            footer_rights: '© ' + (new Date()).getFullYear() + ' Travel Rules. Wszelkie prawa zastrzeżone.',
+            footer_legal: 'Prawo',
+            footer_privacy: 'Polityka prywatności',
+            footer_terms: 'Warunki',
+            footer_cookies: 'Cookies',
+            footer_disclaimer_title: 'Disclaimer',
+            footer_disclaimer: 'Ten ebook ma charakter edukacyjny. Zawsze stosuj lokalne przepisy, zalecenia producenta i zasady bezpiecznej jazdy.'
+          }
+        },
+        es: {
+          meta: {
+            title: 'Ebook: Primer viaje en camper (plan 72h/48h/24h + páginas prácticas)',
+            description: 'Plan paso a paso y páginas prácticas para preparar tu camper para el primer viaje. Descarga inmediata.',
+            'og:title': 'Prepara tu camper para el primer viaje — sin estrés ni dudas',
+            'og:description': 'Un plan simple de 72h / 48h / 24h + día de salida con guía práctica. Descarga inmediata.',
+            'twitter:title': 'Ebook: Primer viaje en camper',
+            'twitter:description': 'Plan 72h/48h/24h + páginas prácticas. Descarga inmediata.'
+          },
+          t: {
+            brand_name: 'Travel Rules',
+            hero_h1: 'Prepara tu camper para el primer viaje — sin estrés ni dudas',
+            hero_lead: 'Un plan simple de <strong>72h / 48h / 24h + día de salida</strong> con páginas prácticas para evitar los errores más comunes del primer viaje.',
+            hero_b1: 'Sigue un cronograma paso a paso probado',
+            hero_b2: 'Empaca bien (y de forma segura) con listas por categorías',
+            hero_b3: 'Resuelve rápido problemas comunes: agua / electricidad / gas',
+            hero_price_note: 'Descarga inmediata (PDF)',
+            hero_trust: 'Pago seguro',
+            cta_buy: 'Comprar ebook',
+            cta_buy_price: 'Comprar ebook ($9.99)',
+            cta_samples: 'Ver muestras',
+            bonus_mini_head: 'Bonus incluido',
+            bonus_mini_title: 'Tarjeta rápida de altura/largo/peso para referencia',
+            bonus_mini_p: 'Imprímela y guárdala en la guantera para consultar altura/largo/peso (barreras, ferris, túneles).',
+            problem_h2: '¿Qué suele salir mal en el primer viaje en camper?',
+            problem_p: 'La mayoría de los principiantes no falla por falta de equipo — fallan por olvidar pequeños detalles importantes.',
+            problem_b1: 'Olvidar elementos críticos (adaptadores, mangueras, calzos, etc.)',
+            problem_b2: 'Hacer las revisiones con prisa y pasar por alto algo obvio',
+            problem_b3: 'Sobrecargar el vehículo o colocar mal el peso',
+            problem_b4: 'Llegar tarde sin una rutina simple de salida',
+            problem_b5: 'Quedarse atascado con un problema básico: agua / electricidad / gas',
+            problem_b6: 'Subestimar costos reales (combustible, peajes, campings, extras)',
+            problem_note: 'Este ebook te da un sistema simple para evitar estos problemas.',
+            solution_h2: 'Un sistema simple que puedes seguir en una tarde',
+            solution_c1_h: 'Plan 72h / 48h / 24h',
+            solution_c1_p: 'Sabrás exactamente qué hacer — y cuándo.',
+            solution_c2_h: 'Páginas prácticas de preparación',
+            solution_c2_p: 'Organízate con pasos claros y simples.',
+            solution_c3_h: 'Solución rápida de problemas',
+            solution_c3_p: 'Arregla lo común antes de que arruine el viaje.',
+            what_h2: 'Qué incluye',
+            what_b1: 'Ebook PDF (A4), descarga inmediata',
+            what_b2: 'Cronograma 72h / 48h / 24h + día de salida',
+            what_b3: 'Checklist de seguridad (interior + exterior)',
+            what_b4: 'Básicos de peso y carga (evita sobrepeso)',
+            what_b5: 'Listas por categoría para empacar',
+            what_b6: 'Rutina de llegada y salida (“listo para conducir”)',
+            what_b7: 'Soluciones rápidas (agua / electricidad / gas)',
+            what_b8: 'Hojas resumen para imprimir',
+            what_b9: '<strong>BONUS:</strong> Tarjeta de dimensiones (imprimible)',
+            what_note: 'Funciona en móvil, tablet y ordenador.',
+            system_h2: 'Plan 72h / 48h / 24h (muestra)',
+            system_p: 'Seguirás una línea de tiempo clara para no hacerlo todo a última hora. Está pensado para principiantes y te da confianza antes de la primera salida.',
+            sample_h2: 'Páginas de muestra (dentro del ebook)',
+            sample_p: 'Un vistazo rápido — dos páginas de ejemplo para ver formato, claridad y estructura.',
+            sample_cap_1: 'Checklist mínima antes de salir',
+            sample_cap_2: 'Checklist de seguridad (revisión rápida)',
+            bonus_h2: 'Bonus: Tarjeta de dimensiones del camper',
+            bonus_p: 'Tus números clave en un solo lugar.',
+            bonus_b1: '<strong>Barreras / límites de altura:</strong> consulta la altura al instante',
+            bonus_b2: '<strong>Ferris / túneles:</strong> referencia rápida de largo y ancho',
+            bonus_b3: '<strong>Guía para guantera:</strong> pesos, neumáticos, VIN y más',
+            bonus_note: 'Imprímela y guárdala en la guantera.',
+            gallery_h2: 'Más páginas de muestra',
+            gallery_p: 'Estas son muestras — el ebook incluye más páginas paso a paso y rutinas.',
+            gallery_l1: 'Contenido',
+            gallery_l2: 'Errores comunes',
+            gallery_l3: 'Peso / carga',
+            gallery_l4: 'Problemas',
+            gallery_l5: 'Electricidad y kit',
+            gallery_l6: 'Comodidad',
+            for_h2: 'Para quién es',
+            for_b1: 'Propietarios o alquiler de camper por primera vez',
+            for_b2: 'Quienes quieren un sistema simple y menos errores',
+            for_b3: 'Quienes prefieren checklists en vez de adivinar',
+            not_h3: 'No es para ti si…',
+            not_b1: 'Buscas reparaciones mecánicas avanzadas o servicio técnico profundo',
+            not_b2: 'Ya tienes un manual profesional completo de RV',
+            faq_h2: 'FAQ',
+            faq_q1: '¿Funciona para campervans y autocaravanas?',
+            faq_a1: 'Sí — el sistema es universal para primeros viajes.',
+            faq_q2: '¿Sirve si estoy alquilando un camper?',
+            faq_a2: 'Sí — ayuda a revisar lo básico y no olvidar esenciales.',
+            faq_q3: '¿Solo EE. UU. o Europa?',
+            faq_a3: 'Es universal. Sigue siempre leyes locales y recomendaciones del fabricante.',
+            faq_q4: '¿Puedo imprimir algunas páginas?',
+            faq_a4: 'Puedes imprimir páginas seleccionadas, pero el ebook está pensado principalmente para leerlo en móvil/tablet/ordenador.',
+            faq_q5: '¿Cómo lo recibo?',
+            faq_a5: 'Descarga inmediata del PDF después del pago.',
+            faq_q6: '¿Y si algo no me queda claro?',
+            faq_a6: 'Escríbenos a travelrules.app@gmail.com y te ayudaremos con cualquier paso.',
+            final_h2: '¿Listo para tu primer viaje?',
+            final_b1: 'Sigue el plan y reduce el estrés',
+            final_b2: 'Empaca mejor y evita errores comunes',
+            final_b3: 'Sal a la carretera con confianza',
+            final_price_note: 'Descarga inmediata',
+            footer_brand: 'Travel Rules',
+            footer_support: 'Soporte: <a href="mailto:travelrules.app@gmail.com">travelrules.app@gmail.com</a>',
+            footer_rights: '© ' + (new Date()).getFullYear() + ' Travel Rules. Todos los derechos reservados.',
+            footer_legal: 'Legal',
+            footer_privacy: 'Política de privacidad',
+            footer_terms: 'Términos',
+            footer_cookies: 'Cookies',
+            footer_disclaimer_title: 'Aviso',
+            footer_disclaimer: 'Este ebook es contenido educativo. Sigue siempre las leyes locales, las recomendaciones del fabricante y prácticas de conducción segura.'
+          }
+        }
+      };
+
+      function applyMeta(lang){
+        const m = (dict[lang] && dict[lang].meta) || dict.en.meta;
+        document.querySelectorAll('[data-i18n-meta]').forEach(el => {
+          const key = el.getAttribute('data-i18n-meta');
+          if (!m[key]) return;
+          if (el.tagName.toLowerCase() === 'title') {
+            document.title = m[key];
+          } else {
+            el.setAttribute('content', m[key]);
+          }
+        });
+      }
+
+      function applyText(lang){
+        const t = (dict[lang] && dict[lang].t) || dict.en.t;
+        document.querySelectorAll('[data-i18n]').forEach(el => {
+          const key = el.getAttribute('data-i18n');
+          if (t[key] != null) el.textContent = t[key];
+        });
+        document.querySelectorAll('[data-i18n-html]').forEach(el => {
+          const key = el.getAttribute('data-i18n-html');
+          if (t[key] != null) el.innerHTML = t[key];
+        });
+      }
+
+function setLanguage(lang){
+  html.setAttribute('lang', lang);
+  applyMeta(lang);
+  applyText(lang);
+  updateBuyLinks(lang);
+  updatePrices(lang);
+  updateImages(lang);
+  try{ localStorage.setItem('tr_lang', lang); }catch(e){}
+}
+
+      function getInitialLang(){
+        try{
+          const saved = localStorage.getItem('tr_lang');
+          if (saved && dict[saved]) return saved;
+        }catch(e){}
+        const nav = (navigator.language || 'en').toLowerCase();
+        if (nav.startsWith('pl')) return 'pl';
+        if (nav.startsWith('es')) return 'es';
+        return 'en';
+      }
+
+      function setTheme(theme){
+        html.setAttribute('data-theme', theme);
+        themeIcon.textContent = theme === 'dark' ? '🌙' : '☀️';
+        try{ localStorage.setItem('tr_theme', theme); }catch(e){}
+      }
+
+      function getInitialTheme(){
+        try{
+          const saved = localStorage.getItem('tr_theme');
+          if (saved === 'light' || saved === 'dark') return saved;
+        }catch(e){}
+        return window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+      }
+
+      // init
+      const initialLang = getInitialLang();
+      const initialTheme = getInitialTheme();
+      langSelect.value = initialLang;
+      setTheme(initialTheme);
+      setLanguage(initialLang);
+
+      // events
+      langSelect.addEventListener('change', (e) => setLanguage(e.target.value));
+      themeToggle.addEventListener('click', () => {
+        const cur = html.getAttribute('data-theme') === 'dark' ? 'dark' : 'light';
+        setTheme(cur === 'dark' ? 'light' : 'dark');
+      });
+
+      // Keep year correct if script.js does not do it
+      const y = document.getElementById('year');
+      if (y && !y.textContent) y.textContent = String((new Date()).getFullYear());
+    })();
+  </script>
+</body>
+</html>

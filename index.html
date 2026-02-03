@@ -1,559 +1,1177 @@
-<!DOCTYPE html>
-<html lang="pl">
+<!doctype html>
+<html lang="pl" data-theme="light">
 <head>
-    <!-- Google Tag Manager -->
-  <script>
-    (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-    'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-    })(window,document,'script','dataLayer','GTM-KSSXRMKH');
-  </script>
-  <!-- End Google Tag Manager -->
-  <meta charset="UTF-8" />
-  <!-- Performance: preconnect to external origins used above the fold -->
-  <link rel="preconnect" href="https://www.googletagmanager.com" crossorigin>
-  <link rel="preconnect" href="https://www.google-analytics.com" crossorigin>
-  <link rel="preconnect" href="https://pagead2.googlesyndication.com" crossorigin>
-  <link rel="preconnect" href="https://googleads.g.doubleclick.net" crossorigin>
-  <link rel="preconnect" href="https://tpc.googlesyndication.com" crossorigin>
-  <link rel="preconnect" href="https://tools.applemediaservices.com" crossorigin>
-  <link rel="preconnect" href="https://itunes.apple.com" crossorigin>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Travel Rules — Hub</title>
+  <meta name="description" content="Travel Rules — aplikacja i produkty, które pomagają podróżować spokojniej: ebooki, checklisty, planery i narzędzia." />
 
-  <!-- Performance: preload hero background (largest above-the-fold asset) -->
-  <link rel="preload" as="image" href="images/decor/mountains.png" fetchpriority="high">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5307701268996147"
-     crossorigin="anonymous"></script>
-  <meta name="google-adsense-account" content="ca-pub-5307701268996147">
-  <title>Travel Rules – vanlife tips, checklists & saved spots (iOS)</title>
-  <meta name="description" content="Travel Rules to darmowa aplikacja iOS dla vanlife: codzienne zasady, checklisty, mapa z punktami w pobliżu oraz budowanie planu podróży. Dostępna po polsku, angielsku i hiszpańsku.">
-  <meta name="theme-color" content="#29606D">
-  <meta property="og:type" content="website">
-  <meta property="og:site_name" content="Travel Rules">
-  <meta property="og:title" content="Travel Rules – vanlife tips, checklists & saved spots (iOS)">
-  <meta property="og:description" content="Codzienne zasady, checklisty i zapisy miejsc. Aplikacja iOS dla vanlife.">
-  <meta property="og:image" content="images/og/travelrules_og.jpg">
-  <meta property="og:url" content="https://www.travelrules.eu/">
-  <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="Travel Rules – vanlife tips, checklists & saved spots (iOS)">
-  <meta name="twitter:description" content="Codzienne zasady, checklisty i zapisy miejsc. Aplikacja iOS dla vanlife.">
-  <meta name="twitter:image" content="images/og/travelrules_og.jpg">
-  <link rel="icon" href="/favicon.ico">
+  <!-- Open Graph -->
+  <meta property="og:title" content="Travel Rules — Hub" />
+  <meta property="og:description" content="Aplikacja + ebooki + narzędzia do spokojniejszych podróży." />
+  <meta property="og:type" content="website" />
+  <meta property="og:image" content="./travelrules-ebook-landing/assets/images/01-cover.png" />
 
-  <!-- ✅ JSON-LD przeniesiony do prawidłowego <head> -->
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "SoftwareApplication",
-    "name": "Travel Rules",
-    "applicationCategory": "TravelApplication",
-    "operatingSystem": "iOS",
-    "inLanguage": ["pl", "en", "es"],
-    "offers": {
-      "@type": "Offer",
-      "price": "0",
-      "priceCurrency": "PLN",
-      "category": "Free",
-      "availability": "https://schema.org/InStock"
-    },
-    "url": "https://www.travelrules.eu/",
-    "downloadUrl": "https://apps.apple.com/pl/app/travel-rules/id6451070215?l=pl",
-    "publisher": {"@type": "Organization", "name": "Travel Rules"}
-  }
-  </script>
-
-  <link rel="stylesheet" href="assets/styles.css">
-  
-  <!-- Hotfix: ensure background images resolve correctly even when CSS is in /assets/ -->
   <style>
-    .hero { background-image: url("/images/decor/mountains.png"); }
-    .visual-divider--boat { background-image: url("/images/decor/boat.png"); }
+    :root{
+      --bg: #f6f7f8;
+      --card: #ffffff;
+      --text: #0f172a;
+      --muted: #475569;
+      --border: #e5e7eb;
+      --shadow: 0 10px 30px rgba(2,6,23,.06);
+
+      /* Brand accents (use only for buttons/highlights, not for page background) */
+      --accent: #29606D;   /* teal */
+      --accent2: #DDAA4F;  /* gold */
+
+      --primary: var(--accent);
+      --primaryHover: #214e58;
+      --ring: rgba(41,96,109,.25);
+
+      --radius: 16px;
+      --radiusSm: 12px;
+      --max: 1100px;
+
+      /* Smooth theme transitions */
+      --themeTransition: 260ms ease;
+    }
+
+    /* Dark theme */
+    html[data-theme="dark"]{
+      --bg: #0b1220;
+      --card: #0f172a;
+      --text: #e5e7eb;
+      --muted: #94a3b8;
+      --border: #1f2937;
+      --shadow: 0 16px 40px rgba(0,0,0,.35);
+      --ring: rgba(221,170,79,.18);
+    }
+
+    *{ box-sizing:border-box; }
+    html{ scroll-behavior:smooth; }
+    body{
+      margin:0;
+      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji","Segoe UI Emoji";
+      color: var(--text);
+      background: var(--bg);
+      line-height: 1.6;
+
+      transition:
+        background-color var(--themeTransition),
+        color var(--themeTransition);
+    }
+
+    a{ color: inherit; text-decoration:none; }
+    a:hover{ text-decoration:none; }
+
+    .container{
+      width: min(var(--max), calc(100% - 40px));
+      margin: 0 auto;
+    }
+
+    /* Smooth transitions for key UI blocks */
+    .header, .hero-card, .side-card, .card, .btn, .btn-primary, .btn-ghost,
+    .icon-btn, .lang-btn, .chip, .link-row, .thumb, .brand-mark, .footer{
+      transition:
+        background-color var(--themeTransition),
+        color var(--themeTransition),
+        border-color var(--themeTransition),
+        box-shadow var(--themeTransition);
+    }
+
+    @media (prefers-reduced-motion: reduce){
+      :root{ --themeTransition: 0ms; }
+      html{ scroll-behavior:auto; }
+      .header, .hero-card, .side-card, .card, .btn, .btn-primary, .btn-ghost,
+      .icon-btn, .lang-btn, .chip, .link-row, .thumb, .brand-mark, .footer,
+      body{ transition: none !important; }
+    }
+
+    /* Header (logo/title left, controls right) */
+    .header{
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      background: color-mix(in oklab, var(--bg) 80%, transparent);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid color-mix(in oklab, var(--border) 75%, transparent);
+    }
+    .header-inner{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap: 14px;
+      padding: 14px 0;
+    }
+
+    .brand{
+      display:flex;
+      align-items:center;
+      gap: 10px;
+      font-weight: 800;
+      letter-spacing: .2px;
+    }
+    .brand-mark{
+      width: 38px; height: 38px;
+      border-radius: 12px;
+      display:grid;
+      place-items:center;
+      background: color-mix(in oklab, var(--accent) 12%, transparent);
+      border: 1px solid color-mix(in oklab, var(--accent) 28%, var(--border));
+      box-shadow: 0 6px 18px rgba(2,6,23,.06);
+      font-weight: 900;
+      color: var(--text);
+    }
+    html[data-theme="dark"] .brand-mark{ box-shadow: 0 6px 18px rgba(0,0,0,.35); }
+
+    .header-controls{
+      display:flex;
+      align-items:center;
+      gap:10px;
+    }
+
+    .icon-btn{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      width: 42px;
+      height: 42px;
+      border-radius: 999px;
+      border: 1px solid color-mix(in oklab, var(--border) 90%, transparent);
+      background: color-mix(in oklab, var(--card) 85%, transparent);
+      color: var(--text);
+      box-shadow: 0 10px 22px rgba(2,6,23,.05);
+      cursor: pointer;
+      transition: transform .12s ease, background .12s ease, border-color .12s ease;
+    }
+    html[data-theme="dark"] .icon-btn{ box-shadow: 0 10px 22px rgba(0,0,0,.28); }
+    .icon-btn:hover{ transform: translateY(-1px); }
+    .icon-btn:focus{ outline:none; box-shadow: 0 0 0 6px var(--ring), 0 10px 22px rgba(2,6,23,.05); }
+
+    .langbar{
+      display:flex;
+      gap:8px;
+      flex-wrap:wrap;
+    }
+
+    .lang-btn{
+      border: 1px solid color-mix(in oklab, var(--border) 90%, transparent);
+      background: color-mix(in oklab, var(--card) 92%, transparent);
+      color: var(--text);
+      padding: 10px 12px;
+      border-radius: 999px;
+      cursor: pointer;
+      font-size: .95rem;
+      font-weight: 800;
+      line-height: 1;
+      transition: transform .12s ease, background .12s ease, border-color .12s ease;
+    }
+    .lang-btn:hover{ transform: translateY(-1px); }
+    .lang-btn[aria-pressed="true"]{
+      border-color: color-mix(in oklab, var(--accent) 40%, var(--border));
+      box-shadow: 0 0 0 6px var(--ring);
+    }
+
+    /* Buttons */
+    .btn{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      gap: 10px;
+      padding: 10px 14px;
+      border-radius: 999px;
+      border: 1px solid color-mix(in oklab, var(--border) 90%, transparent);
+      background: var(--card);
+      font-weight: 800;
+      color: var(--text);
+      box-shadow: 0 10px 22px rgba(2,6,23,.05);
+      transition: transform .12s ease, background .12s ease, border-color .12s ease;
+      white-space: nowrap;
+    }
+    html[data-theme="dark"] .btn{ box-shadow: 0 10px 22px rgba(0,0,0,.28); }
+    .btn:hover{ transform: translateY(-1px); }
+    .btn:focus{ outline: none; box-shadow: 0 0 0 6px var(--ring), 0 10px 22px rgba(2,6,23,.05); }
+
+    .btn-primary{
+      background: var(--primary);
+      border-color: color-mix(in oklab, var(--primary) 70%, var(--border));
+      color: #fff;
+    }
+    .btn-primary:hover{
+      background: var(--primaryHover);
+      border-color: color-mix(in oklab, var(--primaryHover) 70%, var(--border));
+    }
+
+    .btn-ghost{
+      background: color-mix(in oklab, var(--card) 88%, transparent);
+    }
+
+    /* Hero */
+    .hero{ padding: 44px 0 10px; }
+    .hero-grid{
+      display:grid;
+      grid-template-columns: 1.15fr .85fr;
+      gap: 22px;
+      align-items: stretch;
+    }
+    .hero-card{
+      background: var(--card);
+      border: 1px solid color-mix(in oklab, var(--border) 90%, transparent);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      padding: 26px;
+    }
+    .hero h1{
+      font-size: clamp(28px, 4vw, 44px);
+      line-height: 1.12;
+      margin: 0 0 12px;
+      letter-spacing: -.6px;
+    }
+    .lead{ margin: 0 0 18px; color: var(--muted); font-size: 1.06rem; }
+
+    .chips{ display:flex; flex-wrap: wrap; gap: 8px; margin: 16px 0 0; }
+    .chip{
+      font-size: .92rem;
+      font-weight: 750;
+      color: var(--muted);
+      background: color-mix(in oklab, var(--card) 92%, transparent);
+      border: 1px solid color-mix(in oklab, var(--accent2) 30%, var(--border));
+      padding: 8px 10px;
+      border-radius: 999px;
+    }
+
+    .hero-actions{ display:flex; flex-wrap: wrap; gap: 10px; margin-top: 18px; }
+
+    .side{ display:grid; gap: 12px; }
+    .side-card{
+      background: var(--card);
+      border: 1px solid color-mix(in oklab, var(--border) 90%, transparent);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      padding: 18px;
+    }
+    .side-title{ font-size: 1rem; margin: 0 0 8px; letter-spacing: -.2px; }
+    .side p{ margin: 0; color: var(--muted); font-size: .98rem; }
+
+    /* Email link */
+    .email-link{
+      font-weight: 800;
+      color: color-mix(in oklab, var(--accent) 75%, var(--text));
+      text-decoration: underline;
+      text-underline-offset: 3px;
+    }
+    .email-link:hover{ opacity: .9; }
+
+    /* Sections */
+    .section{ padding: 30px 0; }
+    .section h2{ margin: 0 0 10px; letter-spacing: -.3px; font-size: clamp(20px, 2.2vw, 28px); }
+    .muted{ color: var(--muted); }
+
+    /* Product cards */
+    .grid{ display:grid; grid-template-columns: repeat(3, 1fr); gap: 14px; margin-top: 16px; }
+    .card{
+      background: var(--card);
+      border: 1px solid color-mix(in oklab, var(--border) 90%, transparent);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      padding: 16px;
+      display:flex;
+      flex-direction: column;
+      gap: 12px;
+      min-height: 320px;
+      overflow: hidden;
+    }
+    .card .top{ display:flex; align-items:center; justify-content: space-between; gap: 10px; }
+
+    .badge{
+      font-size: .82rem;
+      font-weight: 850;
+      color: color-mix(in oklab, var(--accent) 85%, black);
+      background: color-mix(in oklab, var(--accent2) 22%, var(--card));
+      border: 1px solid color-mix(in oklab, var(--accent2) 55%, var(--border));
+      padding: 6px 10px;
+      border-radius: 999px;
+    }
+
+    .icon{
+      width: 40px; height: 40px;
+      border-radius: 14px;
+      display:grid;
+      place-items:center;
+      background: color-mix(in oklab, var(--accent) 8%, transparent);
+      border: 1px solid color-mix(in oklab, var(--accent) 22%, var(--border));
+      color: var(--text);
+    }
+
+    .card h3{ margin: 0; letter-spacing: -.2px; font-size: 1.1rem; }
+    .card p{ margin: 0; color: var(--muted); font-size: .98rem; }
+    .card ul{ margin: 0; padding-left: 18px; color: var(--muted); font-size: .95rem; line-height: 1.55; }
+    .card li{ margin: 6px 0; }
+
+    .card-actions{ margin-top: auto; display:flex; flex-wrap: wrap; gap: 10px; }
+
+    .thumb{
+      width: 100%;
+      aspect-ratio: 16/10;
+      border-radius: var(--radiusSm);
+      border: 1px solid color-mix(in oklab, var(--border) 90%, transparent);
+      overflow:hidden;
+      background: color-mix(in oklab, var(--card) 92%, transparent);
+      position: relative;
+    }
+    .thumb img{ width: 100%; height: 100%; object-fit: cover; display:block; }
+
+    /* Shop & Social (Links) */
+    .grid-2{ display:grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-top: 16px; }
+
+    .link-list{ display:flex; flex-direction:column; gap: 10px; }
+    .link-row{
+      display:flex;
+      gap: 12px;
+      align-items:flex-start;
+      padding: 14px;
+      border-radius: var(--radiusSm);
+      border: 1px solid color-mix(in oklab, var(--border) 90%, transparent);
+      background: color-mix(in oklab, var(--card) 96%, transparent);
+      box-shadow: 0 10px 20px rgba(2,6,23,.04);
+      transition: transform .12s ease, border-color .12s ease, background .12s ease;
+    }
+    html[data-theme="dark"] .link-row{ box-shadow: 0 10px 22px rgba(0,0,0,.22); }
+    .link-row:hover{ transform: translateY(-1px); border-color: color-mix(in oklab, var(--accent) 28%, var(--border)); }
+
+    .link-ico{
+      width: 42px;
+      height: 42px;
+      border-radius: 14px;
+      display:grid;
+      place-items:center;
+      flex: 0 0 42px;
+      background: color-mix(in oklab, var(--accent) 10%, transparent);
+      border: 1px solid color-mix(in oklab, var(--accent) 22%, var(--border));
+      color: var(--text);
+    }
+
+    .link-meta{ min-width: 0; }
+    .link-title{ font-weight: 900; letter-spacing: -.2px; margin: 0 0 4px; }
+    .link-desc{ margin: 0 0 6px; color: var(--muted); font-weight: 650; }
+    .link-url{ font-size: .9rem; color: color-mix(in oklab, var(--muted) 80%, transparent); }
+
+    .section-note{ margin-top: 12px; }
+
+    /* Footer */
+    .footer{ padding: 26px 0 34px; border-top: 1px solid color-mix(in oklab, var(--border) 90%, transparent); margin-top: 18px; }
+    .footer-grid{ display:grid; grid-template-columns: 1.2fr .8fr; gap: 16px; align-items:start; }
+    .footer small, .footer a{ color: var(--muted); font-weight: 650; }
+    .footer a:hover{ text-decoration: underline; }
+    .footer-links{ display:flex; gap: 10px; flex-wrap: wrap; justify-content:flex-end; }
+
+    /* Responsive */
+    @media (max-width: 980px){
+      .hero-grid{ grid-template-columns: 1fr; }
+      .grid{ grid-template-columns: 1fr; }
+      .grid-2{ grid-template-columns: 1fr; }
+      .footer-grid{ grid-template-columns: 1fr; }
+      .footer-links{ justify-content:flex-start; }
+      .header-controls{ gap:8px; }
+      .lang-btn{ padding: 9px 10px; font-size: .92rem; }
+    }
+
+    /* A11y helper */
+    .sr-only{
+      position:absolute !important;
+      width:1px; height:1px;
+      padding:0; margin:-1px;
+      overflow:hidden; clip:rect(0,0,0,0);
+      white-space:nowrap; border:0;
+    }
   </style>
-  
 </head>
 
-<body class="theme-classic">
-  <!-- Google Tag Manager (noscript) -->
-  <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-KSSXRMKH"
-  height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
-  <!-- End Google Tag Manager (noscript) -->
-  <!-- NAGŁÓWEK -->
-  <header>
-    <a href="#" class="logo" data-lang-key="logo">Travel Rules</a>
+<body>
+  <!-- HEADER (only logo/name on the left; theme + language on the right) -->
+  <header class="header">
+    <div class="container header-inner">
+      <a class="brand" href="./index.html" aria-label="Travel Rules home">
+        <span class="brand-mark">TR</span>
+        <span>
+          <span data-i18n="brand_name">Travel Rules</span>
+        </span>
+      </a>
 
-    <!-- HAMBURGER -->
-    <button class="menu-toggle" id="menuToggle" aria-label="Otwórz menu" aria-controls="primaryNav" aria-expanded="false">&#9776;</button>
+      <div class="header-controls" aria-label="Header controls">
+        <button class="icon-btn" id="themeToggle" type="button" aria-label="Toggle theme" aria-pressed="false" title="Theme">
+          <svg id="themeIcon" width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+            <path d="M21 12.8A8.5 8.5 0 0 1 11.2 3a7 7 0 1 0 9.8 9.8Z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/>
+          </svg>
+        </button>
 
-    <nav role="navigation" aria-label="Główne">
-      <ul id="primaryNav">
-        <li><a href="#app" data-lang-key="about">O Aplikacji</a></li>
-        <li><a href="#features" data-lang-key="features">Funkcje</a></li>
-        <li><a href="#updates" data-lang-key="updates">Aktualności</a></li>
-        <li><a href="links.html" data-lang-key="links">Linki</a></li>
-        <li><a href="#contact" data-lang-key="contact">Kontakt</a></li>
-        <li><a href="#cta" data-lang-key="download">Pobierz</a></li>
-        <li class="mobile-only">
-          <a class="nav-pill" href="travel-planer-app/">
-            <span data-lang-key="travel_planner">Travel Planner App</span>
-            <span class="badge-new" aria-hidden="true">NEW</span>
-          </a>
-        </li>
-      </ul>
-    </nav>
-
-    <a class="header-cta header-cta-button" href="travel-planer-app/" aria-label="Travel Planner App">
-      <span class="badge-new" aria-hidden="true">NEW</span>
-      <span data-lang-key="travel_planner">Travel Planner App</span>
-    </a>
-
-    <div class="header-extra">
-      <!-- Wybór motywu (desktop) -->
-      <select class="theme-selector" id="themeSelect">
-        <option value="classic">Classic</option>
-        <option value="mountain">Mountain</option>
-        <option value="beach">Beach</option>
-        <option value="desert">Desert</option>
-        <option value="forest">Forest</option>
-      </select>
-
-      <!-- Ikony flag (mobil / desktop) -->
-      <div class="lang-flags">
-        <span class="flag-emoji" data-lang="pl">🇵🇱</span>
-        <span class="flag-emoji" data-lang="en">🇬🇧</span>
-        <span class="flag-emoji" data-lang="es">🇪🇸</span>
-      </div>
-
-      <!-- Przełącznik ciemny/jasny -->
-      <div class="dark-toggle">
-        <label for="darkModeToggle" data-lang-key="dark_mode" aria-live="polite">Tryb ciemny</label>
-        <input type="checkbox" id="darkModeToggle">
+        <div class="langbar" aria-label="Language switcher">
+          <button class="lang-btn" type="button" data-lang="pl" aria-pressed="true">PL</button>
+          <button class="lang-btn" type="button" data-lang="en" aria-pressed="false">EN</button>
+          <button class="lang-btn" type="button" data-lang="es" aria-pressed="false">ES</button>
+        </div>
       </div>
     </div>
   </header>
 
-  <!-- SEKCJA HERO -->
-  <section class="hero">
-    <div class="hero-text">
-      <h1 data-lang-key="hero_title">Travel Rules</h1>
-      <p data-lang-key="hero_subtitle">Twoje codzienne źródło inspiracji i praktycznych wskazówek.</p>
-      <div class="hero-ctas" style="display:flex;flex-direction:column;align-items:center;gap:16px;">
-      <a href="https://apps.apple.com/pl/app/travel-rules/id6451070215?l=pl" aria-label="Pobierz w App Store" style="display:inline-block;margin-top:10px;">
-          <img src="https://tools.applemediaservices.com/api/badges/download-on-the-app-store/black/pl-pl?size=150x50&releaseDate=1684790400" alt="Pobierz w App Store" width="150" height="50" decoding="async" fetchpriority="high">
-        </a>
+  <main>
+    <!-- HERO -->
+    <section class="hero">
+      <div class="container hero-grid">
+        <div class="hero-card">
+          <h1 data-i18n="hero_h1">Spokojniejsze podróże, mniej chaosu — w jednym miejscu.</h1>
+          <p class="lead" data-i18n-html="hero_lead">
+            Travel Rules to ekosystem prostych narzędzi: aplikacja, ebooki i praktyczne materiały,
+            które pomagają przygotować się do wyjazdu i uniknąć typowych błędów.
+          </p>
 
-        <div style="text-align:center">
-          <a href="#app" data-lang-key="learn_more" style="display:inline-block;background-color: var(--color-primary); color:#fff; padding:15px 24px; border-radius:8px; text-decoration:none;">Dowiedz się więcej</a>
+          <div class="chips" aria-label="Highlights">
+            <span class="chip" data-i18n="chip_1">Checklisty & rutyny</span>
+            <span class="chip" data-i18n="chip_2">Przygotowanie krok po kroku</span>
+            <span class="chip" data-i18n="chip_3">Vanlife • camper • roadtrip</span>
+            <span class="chip" data-i18n="chip_4">PDF + mobile-friendly</span>
+          </div>
+
+          <div class="hero-actions">
+            <a class="btn btn-primary" href="#products" data-i18n="cta_products">Przejdź do produktów</a>
+            <a class="btn" href="./travelrules-ebook-landing/" data-i18n="cta_ebook">Zobacz 
+                
+            </a>
+            <a class="btn btn-ghost" href="./links.html" data-i18n="cta_links">Linki do aplikacji</a>
+          </div>
+        </div>
+
+        <aside class="side" aria-label="Quick info">
+          <div class="side-card">
+            <h3 class="side-title" data-i18n="side_1_h">Szybki start</h3>
+            <p data-i18n="side_1_p">Wybierz produkt poniżej i przejdź do strony z opisem, podglądem i linkami.</p>
+          </div>
+
+          <div class="side-card">
+            <h3 class="side-title" data-i18n="side_2_h">Najpopularniejsze teraz</h3>
+            <p data-i18n-html="side_2_p"><strong>Ebook:</strong> przygotowanie campera na pierwszy wyjazd + podgląd stron.</p>
+          </div>
+
+          <div class="side-card">
+            <h3 class="side-title" data-i18n="side_3_h">Kontakt / wsparcie</h3>
+            <p class="muted">
+              <span data-i18n="side_3_label">Email:</span>
+              <a class="email-link" id="supportEmailLink" href="#" rel="nofollow">—</a>
+            </p>
+          </div>
+        </aside>
+      </div>
+    </section>
+
+    <!-- PRODUCTS -->
+    <section class="section" id="products">
+      <div class="container">
+        <h2 data-i18n="products_h2">Oferta Travel Rules</h2>
+        <p class="muted" data-i18n="products_p">Wybierz, czego potrzebujesz — poniżej masz czytelny skrót i szybkie przejścia.</p>
+
+        <div class="grid">
+          <!-- CARD 1: APP / LINKS -->
+          <article class="card">
+            <div class="top">
+              <span class="badge" data-i18n="badge_app">Aplikacja</span>
+              <div class="icon" aria-hidden="true">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
+                  <path d="M8 3h8a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2Z" stroke="currentColor" stroke-width="2"/>
+                  <path d="M10 6h4" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                </svg>
+              </div>
+            </div>
+
+            <h3 data-i18n="card1_h3">Travel Rules App</h3>
+            <p data-i18n="card1_p">Codzienne zasady w drodze, tipy, lokalizacje i przydatne informacje — wszystko pod ręką.</p>
+
+            <ul>
+              <li data-i18n="card1_li1">Zasady i porady + zapis ulubionych</li>
+              <li data-i18n="card1_li2">Lokalizacje, punkty w okolicy i szybki plan</li>
+              <li data-i18n="card1_li3">Numery alarmowe, zdrowie, ambasady + przypomnienia dokumentów</li>
+              <li data-i18n="card1_li4">Checklisty (gotowe i własne) + eksport</li>
+            </ul>
+
+            <div class="card-actions">
+              <a class="btn btn-primary" href="/travel-rules-app/" data-i18n="card1_btn1">Strona aplikacji</a>
+              <a class="btn" href="https://apps.apple.com/pl/app/travel-rules/id6451070215?l=pl" target="_blank" rel="noopener" data-i18n="card1_btn2">Pobierz</a>
+            </div>
+          </article>
+
+          <!-- CARD 2: EBOOK -->
+          <article class="card">
+            <div class="top">
+              <span class="badge" data-i18n="badge_ebook">Ebook</span>
+              <div class="icon" aria-hidden="true">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
+                  <path d="M4 5a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V5Z" stroke="currentColor" stroke-width="2"/>
+                  <path d="M8 7h8M8 11h8M8 15h6" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                </svg>
+              </div>
+            </div>
+
+            <div class="thumb" aria-label="Ebook preview">
+              <img src="./travelrules-ebook-landing/assets/images/01-cover.png" alt="Ebook cover preview" loading="lazy" />
+            </div>
+
+            <h3 data-i18n="card2_h3">First Camper Trip Prep Ebook</h3>
+            <p data-i18n="card2_p">Konkretny plan 72h/48h/24h + praktyczne strony, które pomagają ogarnąć pierwszy wyjazd.</p>
+
+            <div class="card-actions">
+              <a class="btn btn-primary" href="./travelrules-ebook-landing/" data-i18n="card2_btn1">Zobacz</a>
+              <a class="btn" href="./travelrules-ebook-landing/#preview" data-i18n="card2_btn2">Podgląd stron</a>
+            </div>
+          </article>
+
+          <!-- CARD 3: PLANNER -->
+          <article class="card">
+            <div class="top">
+              <span class="badge" data-i18n="badge_planner">Planner</span>
+              <div class="icon" aria-hidden="true">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
+                  <path d="M9 18 3 20V6l6-2 6 2 6-2v14l-6 2-6-2Z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/>
+                  <path d="M9 4v14M15 6v14" stroke="currentColor" stroke-width="2"/>
+                </svg>
+              </div>
+            </div>
+
+            <h3 data-i18n="card3_h3">Travel Planner App</h3>
+            <p data-i18n="card3_p">Organizacja podróży i budżetu: paliwo, koszty, dziennik, checklisty — wszystko w jednym miejscu.</p>
+
+            <ul>
+              <li data-i18n="card3_li1">Tankowania, opłaty i kalkulator spalania + przelicznik paliwa</li>
+              <li data-i18n="card3_li2">Wydatki i budżet w kategoriach + kursy walut</li>
+              <li data-i18n="card3_li3">Dziennik podróży, własne checklisty z kategoriami</li>
+              <li data-i18n="card3_li4">Eksport planu i danych do PDF</li>
+            </ul>
+
+            <div class="card-actions">
+              <a class="btn btn-primary" href="./travel-planer-app/" data-i18n="card3_btn1">Przejdź do strony</a>
+              <a class="btn" href="./travel-planer-app/" data-i18n="card3_btn2">Szczegóły</a>
+            </div>
+          </article>
         </div>
       </div>
-    </div>
-  </section>
+    </section>
 
-  <!-- SEKCJA "O APLIKACJI"  -->
-  <section id="app" class="section map-watermark">
-    <img class="decor-map" src="images/decor/world-map.png" alt="" aria-hidden="true" loading="lazy" decoding="async">
-    <h2 data-lang-key="about_title">Travel Rules</h2>
-    <p data-lang-key="about_text">Aplikacja, dzięki której odkryjesz uroki vanlife w zupełnie nowy sposób. Codzienne zasady, checklista podróżna, społeczność i wiele więcej – wszystko w eleganckim, minimalistycznym wydaniu.</p>
-  </section>
+    <!-- SHOP & SOCIAL (LINKS) -->
+    <section class="section" id="shop-social">
+      <div class="container">
+        <h2 data-i18n="links_h2">Shop & Social</h2>
+        <p class="muted" data-i18n="links_p">Quick links to products and socials.</p>
 
-  <!-- SEKCJA AKTUALNOŚCI -->
-  <section id="updates" class="section">
-    <h2 data-lang-key="updates_title">Aktualności</h2>
-    <div id="appstore-updates" class="updates" style="background-color: var(--color-card-background); color: var(--color-text-primary);">
-      <p style="opacity:.7">Ładowanie informacji z App Store…</p>
-    </div>
-  </section>
+        <div class="grid-2">
+          <!-- SHOP -->
+          <article class="card" aria-label="Shop links">
+            <div class="top">
+              <span class="badge" data-i18n="links_shop_badge">Shop</span>
+              <div class="icon" aria-hidden="true">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
+                  <path d="M6 6h15l-1.5 9h-12z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                  <path d="M6 6l-2 0" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                  <circle cx="9" cy="20" r="1.5" fill="currentColor" stroke="none"/>
+                  <circle cx="18" cy="20" r="1.5" fill="currentColor" stroke="none"/>
+                </svg>
+              </div>
+            </div>
 
-  <!-- DIVIDER (łódka) -->
-  <section class="visual-divider visual-divider--boat" aria-hidden="true"></section>
+            <h3 data-i18n="links_shop_h">Products</h3>
+            <p class="muted" data-i18n="links_shop_sub">Products tailored to your trip.</p>
 
-  <!-- SEKCJA ROZSZERZONYCH FUNKCJI -->
-  <section id="extended" class="section">
-    <h2 data-lang-key="extended_title">Rozszerzone Funkcje</h2>
-    <div class="extended" style="background-color: var(--color-card-background); color: var(--color-text-primary);">
-      <ul>
-        <li>
-          <strong data-lang-key="extended_loc_title">Zapisywanie lokalizacji:</strong>
-          <span data-lang-key="extended_loc_text">Można teraz zapisywać i łatwo znajdować zapisane lokalizacje na mapie. Możliwość otwierania lokalizacji w Mapach Google i Mapach Apple.</span>
-        </li>
-        <li>
-          <strong data-lang-key="extended_nearby_title">Mapa: punkty w pobliżu + plan podróży:</strong>
-          <span data-lang-key="extended_nearby_text">Nowa mapa pokazuje punkty w pobliżu (np. spoty, parkingi, atrakcje) i pozwala budować prosty plan trasy. Dodawaj miejsca do planu, układaj kolejność i otwieraj nawigację w Mapach Apple lub Google.</span>
-        </li>
-        <li>
-          <strong data-lang-key="extended_rules_title">Nowe zasady podróży:</strong>
-          <span data-lang-key="extended_rules_text">Dodano więcej zasad i poprawiono ich organizację, aby były jeszcze bardziej przydatne.</span>
-        </li>
-        <li>
-          <strong data-lang-key="extended_achievements_title">System osiągnięć:</strong>
-          <span data-lang-key="extended_achievements_text">Możesz teraz zbierać osiągnięcia za korzystanie z aplikacji, takie jak „Regularny podróżnik” i „Mistrz konsekwencji”.</span>
-        </li>
-        <li>
-          <strong data-lang-key="extended_emergency_title">Numery alarmowe dla różnych krajów:</strong>
-          <span data-lang-key="extended_emergency_text">Aplikacja automatycznie rozpoznaje kraj i wyświetla odpowiednie numery alarmowe oraz przydatne linki.</span>
-        </li>
-        <li>
-          <strong data-lang-key="extended_packing_title">Lista rzeczy do spakowania:</strong>
-          <span data-lang-key="extended_packing_text">Teraz możesz utworzyć i spersonalizować listę rzeczy do spakowania przed podróżą.</span>
-        </li>
-        <li>
-          <strong data-lang-key="extended_notifications_title">Nowe powiadomienia:</strong>
-          <span data-lang-key="extended_notifications_text">Możliwość ustawienia powiadomień o zasadach obowiązujących w danym dniu oraz przypomnień o ważnych dokumentach.</span>
-        </li>
-        <li>
-          <strong data-lang-key="extended_docs_title">Powiadomienia o wygasających dokumentach:</strong>
-          <span data-lang-key="extended_docs_text">Dodano opcję otrzymywania powiadomień na miesiąc przed wygaśnięciem ważnych dokumentów.</span>
-        </li>
-        <li>
-          <strong data-lang-key="extended_personalization_title">Personalizacja aplikacji:</strong>
-          <span data-lang-key="extended_personalization_text">Możliwość zmiany motywu kolorystycznego, w tym trybu klasycznego, górskiego, plażowego, pustynnego i leśnego.</span>
-        </li>
-        <li>
-          <strong data-lang-key="extended_improvements_title">Ulepszenia i optymalizacje:</strong>
-          <ul>
-            <li data-lang-key="extended_improvements_text">Naprawiono błędy interfejsu, ulepszono zarządzanie powiadomieniami oraz wyświetlanie reklam.</li>
-          </ul>
-        </li>
-      </ul>
-    </div>
-  </section>
+            <div class="link-list">
+              <!-- Naffy (PL only) -->
+              <a class="link-row" href="https://www.naffy.io/travelrules/pierwsza-podroz-kamperem-przygotuj-kampera-i-siebie-krok-po-kroku-IwO" target="_blank" rel="noopener" data-lang-only="pl">
+                <span class="link-ico" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M5 7h14l-1 12H6L5 7z"/>
+                    <path d="M8 7a4 4 0 0 1 8 0"/>
+                  </svg>
+                </span>
+                <div class="link-meta">
+                  <div class="link-title" data-i18n="naffy_title">Naffy (PL) — sklep Travel Rules</div>
+                  <div class="link-desc" data-i18n="naffy_desc">Ebook i produkty po polsku.</div>
+                  <div class="link-url">naffy.io/travelrules</div>
+                </div>
+              </a>
 
-  <!-- SEKCJA ZRZUTÓW EKRANU -->
-  <section class="section">
-    <h2 data-lang-key="screenshots_title2">Zobacz, jak to wygląda</h2>
-    <div class="screenshots">
-      <img src="images/v3/nearby_points.PNG" alt="Mapa: punkty w pobliżu" width="300" height="650" loading="lazy" decoding="async">
-      <img src="images/v3/trip_plan.PNG" alt="Plan podróży" width="300" height="650" loading="lazy" decoding="async">
-      <img src="images/v2/rule.PNG" alt="Nowy widok zasady" width="300" height="650" loading="lazy" decoding="async">
-      <img src="images/v2/saverule.PNG" alt="Zapisywanie zasady" width="300" height="650" loading="lazy" decoding="async">
-      <img src="images/v2/achievements.PNG" alt="System osiągnięć" width="300" height="650" loading="lazy" decoding="async">
-      <img src="images/v2/packinglistnew.PNG" alt="Nowa lista pakowania" width="300" height="650" loading="lazy" decoding="async">
-      <img src="images/v2/sharelist.PNG" alt="Udostępnianie listy" width="300" height="650" loading="lazy" decoding="async">
-      <img src="images/v2/locallist.PNG" alt="Lista lokalizacji" width="300" height="650" loading="lazy" decoding="async">
-      <img src="images/v2/localespania.PNG" alt="Lokalizacje: Hiszpania" width="300" height="650" loading="lazy" decoding="async">
-      <img src="images/v2/localfrance.PNG" alt="Lokalizacje: Francja" width="300" height="650" loading="lazy" decoding="async">
-      <img src="images/v2/localgermany.PNG" alt="Lokalizacje: Niemcy" width="300" height="650" loading="lazy" decoding="async">
-    </div>
-  </section>
+              <!-- Gumroad (EN/ES) - Ebook -->
+              <a class="link-row" href="https://travelrules.gumroad.com/l/camper-first-trip-prep?utm_source=travelrules.eu&utm_medium=referral&utm_campaign=hub&utm_content=ebook" target="_blank" rel="noopener" data-lang-only="en,es">
+                <span class="link-ico" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M5 4h10a3 3 0 0 1 3 3v13H8a3 3 0 0 0-3 3V4z"/>
+                    <path d="M8 4v16"/>
+                  </svg>
+                </span>
+                <div class="link-meta">
+                  <div class="link-title" data-i18n="gumroad_ebook_title">Gumroad — First Camper Trip Prep Ebook</div>
+                  <div class="link-desc" data-i18n="gumroad_ebook_desc">72h/48h/24h plan + sample pages.</div>
+                  <div class="link-url">travelrules.gumroad.com</div>
+                </div>
+              </a>
 
-  <!-- PRICING (✅ watermark mapa) -->
-  <section id="pricing" class="section map-watermark">
-    <img class="decor-map" src="images/decor/world-map.png" alt="" aria-hidden="true" loading="lazy" decoding="async">
-    <h2>Free vs Premium</h2>
-    <p style="color:var(--color-text-secondary)">Aplikacja jest darmowa. Opcjonalne Premium odblokowuje więcej treści i usuwa reklamy.</p>
-    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:20px;margin-top:20px;text-align:left">
-      <div style="background:var(--color-card-background);padding:24px;border-radius:12px;box-shadow:0 10px 20px var(--color-card-shadow)">
-        <h3 style="margin:0 0 10px">Free</h3>
-        <ul style="margin:0;padding-left:18px;color:var(--color-text-secondary)">
-          <li>Codzienna zasada</li>
-          <li>Lista rzeczy do spakowania</li>
-          <li>Zapisy lokalizacji</li>
-          <li>Reklamy kontekstowe</li>
-        </ul>
-      </div>
-      <div style="background:var(--color-card-background);padding:24px;border-radius:12px;box-shadow:0 10px 20px var(--color-card-shadow)">
-        <h3 style="margin:0 0 10px">Premium</h3>
-        <ul style="margin:0;padding-left:18px;color:var(--color-text-secondary)">
-          <li>Bez reklam</li>
-          <li>Pełny dostęp do zasad</li>
-          <li>Zaawansowane checklisty</li>
-          <li>Wczesny dostęp do nowych funkcji</li>
-        </ul>
-        <div style="margin-top:12px">
-          <a href="#cta" style="text-decoration:none;background:var(--color-primary);color:#fff;padding:10px 16px;border-radius:8px;display:inline-block">Odblokuj w aplikacji</a>
+              <!-- Gumroad (EN/ES) - Vanlife checklist -->
+              <a class="link-row" href="https://travelrules.gumroad.com/l/VanlifeTravelChecklist?utm_source=travelrules.eu&utm_medium=referral&utm_campaign=hub&utm_content=vanlife_checklist" target="_blank" rel="noopener" data-lang-only="en,es">
+                <span class="link-ico" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M4 4h16v16H4z"/>
+                    <path d="M9 6h10"/>
+                    <path d="M9 12h10"/>
+                    <path d="M9 18h10"/>
+                    <path d="M5 6h.01"/>
+                    <path d="M5 12h.01"/>
+                    <path d="M5 18h.01"/>
+                  </svg>
+                </span>
+                <div class="link-meta">
+                  <div class="link-title" data-i18n="gumroad_checklist_title">Gumroad — Vanlife Travel Checklist</div>
+                  <div class="link-desc" data-i18n="gumroad_checklist_desc">Printable A4 packing list (Essentials).</div>
+                  <div class="link-url">travelrules.gumroad.com</div>
+                </div>
+              </a>
+
+              <!-- Gumroad (EN/ES) - Travel planner checklist -->
+              <a class="link-row" href="https://travelrules.gumroad.com/l/travelplanner_checklist_print?utm_source=travelrules.eu&utm_medium=referral&utm_campaign=hub&utm_content=planner_checklist" target="_blank" rel="noopener" data-lang-only="en,es">
+                <span class="link-ico" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round">
+                    <rect x="5" y="5" width="14" height="16" rx="2"/>
+                    <path d="M9 3h6"/>
+                    <path d="M8 10h8"/>
+                    <path d="M8 14h8"/>
+                    <path d="M8 18h5"/>
+                  </svg>
+                </span>
+                <div class="link-meta">
+                  <div class="link-title" data-i18n="gumroad_planner_title">Gumroad — Travel Planner Checklist</div>
+                  <div class="link-desc" data-i18n="gumroad_planner_desc">Trip organizer checklist (Essentials).</div>
+                  <div class="link-url">travelrules.gumroad.com</div>
+                </div>
+              </a>
+            </div>
+
+            <div class="section-note">
+              <a class="btn btn-ghost" href="./links.html" data-i18n="links_open_all">Open full links page</a>
+            </div>
+          </article>
+
+          <!-- SOCIAL -->
+          <article class="card" aria-label="Social links">
+            <div class="top">
+              <span class="badge" data-i18n="links_social_badge">Social</span>
+              <div class="icon" aria-hidden="true">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
+                  <path d="M15 8a3 3 0 1 0-6 0v8a3 3 0 1 0 6 0V8Z" stroke="currentColor" stroke-width="2"/>
+                  <path d="M19 11v2a7 7 0 0 1-14 0v-2" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                </svg>
+              </div>
+            </div>
+
+            <h3 data-i18n="links_social_h">Follow</h3>
+            <p class="muted" data-i18n="links_social_sub2">Updates, tips, and behind the scenes.</p>
+
+            <div class="link-list">
+              <a class="link-row" href="https://www.instagram.com/travelrules.app/" target="_blank" rel="noopener">
+                <span class="link-ico" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round">
+                    <rect x="3" y="3" width="18" height="18" rx="5" ry="5"/>
+                    <circle cx="12" cy="12" r="4"/>
+                    <circle cx="17.5" cy="6.5" r="0.8" fill="currentColor" stroke="none"/>
+                  </svg>
+                </span>
+                <div class="link-meta">
+                  <div class="link-title" data-i18n="social_ig">Instagram</div>
+                  <div class="link-desc" data-i18n="social_ig_desc">Behind the scenes, tips, and updates.</div>
+                  <div class="link-url">@travelrules.app</div>
+                </div>
+              </a>
+
+              <a class="link-row" href="https://www.tiktok.com/@travelrules.app" target="_blank" rel="noopener">
+                <span class="link-ico" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M14 3v10.5a4.5 4.5 0 1 1-3.5-4.4"/>
+                    <path d="M14 7c1.3 1.9 3.1 3 5 3"/>
+                  </svg>
+                </span>
+                <div class="link-meta">
+                  <div class="link-title" data-i18n="social_tt">TikTok</div>
+                  <div class="link-desc" data-i18n="social_tt_desc">Quick tips and short videos.</div>
+                  <div class="link-url">@travelrules.app</div>
+                </div>
+              </a>
+
+              <a class="link-row" href="https://youtube.com/@travelrulesapp?si=vgaI6kc48qq8-F1c" target="_blank" rel="noopener">
+                <span class="link-ico" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M22 12s0-4-0.5-5.5A3 3 0 0 0 19.6 4.6C18 4 12 4 12 4s-6 0-7.6.6A3 3 0 0 0 2.5 6.5C2 8 2 12 2 12s0 4 .5 5.5a3 3 0 0 0 1.9 1.9C6 20 12 20 12 20s6 0 7.6-.6a3 3 0 0 0 1.9-1.9C22 16 22 12 22 12z"/>
+                    <path d="M10 15V9l6 3-6 3z" fill="currentColor" stroke="none"/>
+                  </svg>
+                </span>
+                <div class="link-meta">
+                  <div class="link-title" data-i18n="social_yt">YouTube</div>
+                  <div class="link-desc" data-i18n="social_yt_desc">Longer videos and guides.</div>
+                  <div class="link-url">@travelrulesapp</div>
+                </div>
+              </a>
+
+              <a class="link-row" href="https://pin.it/13VDOuOmK" target="_blank" rel="noopener">
+                <span class="link-ico" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M12 22s7-4.4 7-12a7 7 0 1 0-14 0c0 4.2 2.4 6.8 4.2 6.8 1 0 1.6-.5 1.9-1.1"/>
+                    <path d="M10.7 13.6 10 17l2-1.2"/>
+                  </svg>
+                </span>
+                <div class="link-meta">
+                  <div class="link-title" data-i18n="social_pin">Pinterest</div>
+                  <div class="link-desc" data-i18n="social_pin_desc">Inspiration and ideas to save.</div>
+                  <div class="link-url">Travel Rules</div>
+                </div>
+              </a>
+            </div>
+
+            <div class="section-note">
+              <a class="btn" href="./links.html" data-i18n="links_more">More links</a>
+            </div>
+          </article>
         </div>
       </div>
+    </section>
+
+    <!-- WHY -->
+    <section class="section">
+      <div class="container">
+        <h2 data-i18n="about_h2">Dlaczego Travel Rules?</h2>
+        <p class="muted" data-i18n="about_p">
+          Bo w podróży liczą się proste decyzje i szybki dostęp do rzeczy “na teraz”.
+          Travel Rules zbiera w jednym miejscu rutyny, checklisty, planowanie i praktyczne narzędzia — żebyś jechał spokojniej i pewniej.
+        </p>
+      </div>
+    </section>
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="container footer-grid">
+      <div>
+        <strong data-i18n="footer_brand">Travel Rules</strong><br/>
+        <small>
+          <span data-i18n="footer_support">Support</span>:
+          <a class="email-link" id="footerEmailLink" href="#" rel="nofollow">—</a>
+        </small><br/>
+        <small data-i18n-html="footer_rights_html">© <span id="year"></span> Travel Rules. Wszelkie prawa zastrzeżone.</small>
+      </div>
+      <div class="footer-links" aria-label="Legal links">
+        <a href="./privacy.html" data-i18n="footer_privacy">Privacy</a>
+        <a href="./terms.html" data-i18n="footer_terms">Terms</a>
+        <a href="./cookies.html" data-i18n="footer_cookies">Cookies</a>
+        <a href="./links.html" data-i18n="footer_links">Links</a>
+      </div>
     </div>
-  </section>
-
-
-
-  <!-- CTA -->
-  <section id="cta" class="cta">
-    <h2 data-lang-key="cta_title">Zacznij organizować swoje podróże już teraz!</h2>
-    <p data-lang-key="cta_text">Pobierz Travel Rules na swoje urządzenie iOS. Aplikacja dostępna wyłącznie na iOS – poczuj różnicę dzięki intuicyjnemu interfejsowi i zaawansowanym funkcjom.</p>
-    <div class="download-link" style="display: inline-block; text-align: center;">
-      <a href="https://apps.apple.com/pl/app/travel-rules/id6451070215?l=pl" aria-label="Pobierz w App Store" style="display:inline-block;margin-top:10px;">
-        <img src="https://tools.applemediaservices.com/api/badges/download-on-the-app-store/black/pl-pl?size=200x66&releaseDate=1684790400" alt="Pobierz w App Store" width="200" height="66" decoding="async" loading="lazy">
-      </a>
-    </div>
-  </section>
-
-  <!-- KONTAKT -->
-  <section id="contact" class="section">
-    <h2 data-lang-key="contact_title">Kontakt</h2>
-    <form id="contactForm" action="https://formspree.io/f/myzeeraq" method="POST" novalidate style="max-width: 600px; margin: 0 auto; text-align: left;">
-      <p id="formStatus" aria-live="polite" style="margin-top:10px;color:var(--color-text-secondary)"></p>
-      <label data-lang-key="contact_name" for="name">Imię:</label><br>
-      <input type="text" id="name" name="name" required style="width: 100%; padding: 10px; margin-bottom: 10px;"><br>
-      <label data-lang-key="contact_email" for="email">Email:</label><br>
-      <input type="email" id="email" name="email" required style="width: 100%; padding: 10px; margin-bottom: 10px;"><br>
-      <label data-lang-key="contact_message" for="message">Wiadomość:</label><br>
-      <textarea id="message" name="message" required style="width: 100%; padding: 10px; margin-bottom: 10px;"></textarea><br>
-      <input type="text" name="website" style="display:none">
-      <button type="submit" style="background-color: var(--color-primary); color: #fff; padding: 10px 20px; border: none; border-radius: 5px;">Wyślij</button>
-    </form>
-  </section>
-
-  <!-- STOPKA -->
-  <footer>
-    <p>© 2025 Travel Rules. Wszelkie prawa zastrzeżone.</p>
-    <p class="small">
-      <a href="polityka-prywatnosci.html">Polityka Prywatności</a> •
-      <a href="warunki-korzystania.html">Warunki korzystania</a>
-    </p>
   </footer>
 
-  <script defer src="assets/app.js"></script>
   <script>
-    // Fallback: if assets/app.js is missing or empty, keep core functionality working.
-    if (!window.__TR_APP_INIT__) {
-      window.__TR_APP_INIT__ = true;
+    (function(){
+      // ---- Year ----
+      const yearEl = document.getElementById('year');
+      if (yearEl) yearEl.textContent = new Date().getFullYear();
 
-      document.addEventListener('DOMContentLoaded', () => {
-        /* ========== MENU TOGGLE (MOBILE) ========== */
-        const menuToggle = document.getElementById('menuToggle');
-        const navUl = document.getElementById('primaryNav');
-        if (menuToggle && navUl) {
-          menuToggle.addEventListener('click', () => {
-            const expanded = menuToggle.getAttribute('aria-expanded') === 'true';
-            menuToggle.setAttribute('aria-expanded', String(!expanded));
-            navUl.classList.toggle('show-menu');
+      // ---- Email (obfuscated) ----
+      function setEmailLinks(){
+        const u1 = 'travelrules';
+        const u2 = 'app';
+        const domain = 'gmail.com';
+        const email = `${u1}.${u2}@${domain}`;
 
-            // Close menu after selecting a link (mobile)
-            if (!expanded) {
-              navUl.querySelectorAll('a').forEach(a => {
-                a.addEventListener('click', () => {
-                  menuToggle.setAttribute('aria-expanded', 'false');
-                  navUl.classList.remove('show-menu');
-                }, { once: true });
-              });
-            }
-          });
-        }
+        const a1 = document.getElementById('supportEmailLink');
+        const a2 = document.getElementById('footerEmailLink');
 
-        /* ========== THEME + DARK MODE + LANGUAGE (PERSISTENT) ========== */
-        const body = document.body;
-
-        const themeSelect = document.getElementById('themeSelect');
-        const darkModeToggle = document.getElementById('darkModeToggle');
-        const langFlags = document.querySelectorAll('.flag-emoji');
-
-        const translations = {
-          pl: {
-            logo: "Travel Rules",
-            about: "O Aplikacji",
-            features: "Funkcje",
-            updates: "Aktualności",
-            links: "Linki",
-            travel_planner: "Travel Planner App",
-            download: "Pobierz",
-            contact: "Kontakt",
-            hero_title: "Travel Rules",
-            hero_subtitle: "Twoje codzienne źródło inspiracji i praktycznych wskazówek.",
-            learn_more: "Dowiedz się więcej",
-            about_title: "Travel Rules",
-            about_text: "Aplikacja, dzięki której odkryjesz uroki vanlife w zupełnie nowy sposób. Codzienne zasady, checklisty, zapisy miejsc oraz nowa mapa z punktami w pobliżu i budowanie planu podróży — wszystko w eleganckim, minimalistycznym wydaniu.",
-            screenshots_title: "Zobacz, jak to wygląda",
-            screenshots_title2: "Zobacz, jak to wygląda",
-            updates_title: "Aktualności",
-            extended_title: "Rozszerzone Funkcje",
-            extended_loc_title: "Zapisywanie lokalizacji",
-            extended_loc_text: "Można teraz zapisywać i łatwo znajdować zapisane lokalizacje na mapie. Możliwość otwierania lokalizacji w Mapach Google i Mapach Apple.",
-            extended_nearby_title: "Mapa: punkty w pobliżu + plan podróży",
-            extended_nearby_text: "Nowa mapa pokazuje punkty w pobliżu (np. spoty, parkingi, atrakcje) i pozwala budować prosty plan trasy. Dodawaj miejsca do planu, układaj kolejność i otwieraj nawigację w Mapach Apple lub Google.",
-            extended_rules_title: "Nowe zasady podróży",
-            extended_rules_text: "Dodano więcej zasad i poprawiono ich organizację, aby były jeszcze bardziej przydatne.",
-            extended_achievements_title: "System osiągnięć",
-            extended_achievements_text: "Możesz teraz zbierać osiągnięcia za korzystanie z aplikacji, takie jak „Regularny podróżnik” i „Mistrz konsekwencji”.",
-            extended_emergency_title: "Numery alarmowe dla różnych krajów",
-            extended_emergency_text: "Aplikacja automatycznie rozpoznaje kraj i wyświetla odpowiednie numery alarmowe oraz przydatne linki.",
-            extended_packing_title: "Lista rzeczy do spakowania",
-            extended_packing_text: "Teraz możesz utworzyć i spersonalizować listę rzeczy do spakowania przed podróżą.",
-            extended_notifications_title: "Nowe powiadomienia",
-            extended_notifications_text: "Możliwość ustawienia powiadomień o zasadach obowiązujących w danym dniu oraz przypomnień o ważnych dokumentach.",
-            extended_docs_title: "Powiadomienia o wygasających dokumentach",
-            extended_docs_text: "Dodano opcję otrzymywania powiadomień na miesiąc przed wygaśnięciem ważnych dokumentów.",
-            extended_personalization_title: "Personalizacja aplikacji",
-            extended_personalization_text: "Możliwość zmiany motywu kolorystycznego, w tym trybu klasycznego, górskiego, plażowego, pustynnego i leśnego.",
-            extended_improvements_title: "Ulepszenia i optymalizacje",
-            extended_improvements_text: "Naprawiono błędy interfejsu, ulepszono zarządzanie powiadomieniami oraz wyświetlanie reklam.",
-            cta_title: "Zacznij organizować swoje podróże już teraz!",
-            cta_text: "Pobierz Travel Rules na swoje urządzenie iOS. Aplikacja dostępna wyłącznie na iOS – poczuj różnicę dzięki intuicyjnemu interfejsowi i zaawansowanym funkcjom.",
-            contact_title: "Kontakt",
-            contact_name: "Imię:",
-            contact_email: "Email:",
-            contact_message: "Wiadomość:",
-            dark_mode: "Tryb ciemny"
-          },
-          en: {
-            logo: "Travel Rules",
-            about: "About",
-            features: "Features",
-            updates: "Updates",
-            links: "Links",
-            travel_planner: "Travel Planner App",
-            download: "Download",
-            contact: "Contact",
-            hero_title: "Travel Rules",
-            hero_subtitle: "Your daily source of inspiration and practical tips.",
-            learn_more: "Learn More",
-            about_title: "Travel Rules",
-            about_text: "An app that lets you discover the charm of vanlife in a completely new way. Daily rules, checklists, saved spots, plus a new map with nearby points and an easy trip plan builder — all in an elegant, minimalist design.",
-            screenshots_title: "See How It Looks",
-            screenshots_title2: "See How It Looks",
-            updates_title: "Updates",
-            extended_title: "Extended Features",
-            extended_loc_title: "Location Saving",
-            extended_loc_text: "You can now save locations and easily find them on the map. You can open saved locations in Google Maps and Apple Maps.",
-            extended_nearby_title: "Map: nearby points + trip plan",
-            extended_nearby_text: "A new map shows points nearby (spots, parking, attractions) and lets you build a simple route plan. Add places, reorder them, and open navigation in Apple Maps or Google Maps.",
-            extended_rules_title: "New Travel Rules",
-            extended_rules_text: "More rules have been added and organized to be even more useful.",
-            extended_achievements_title: "Achievement System",
-            extended_achievements_text: "Earn achievements for using the app, such as 'Regular Traveler' and 'Consistency Master'.",
-            extended_emergency_title: "Emergency Numbers for Different Countries",
-            extended_emergency_text: "The app automatically detects your country and displays the appropriate emergency numbers along with useful links.",
-            extended_packing_title: "Packing List",
-            extended_packing_text: "Now you can create and personalize a packing list before your trip.",
-            extended_notifications_title: "New Notifications",
-            extended_notifications_text: "Set notifications for daily rules and reminders for important documents.",
-            extended_docs_title: "Expiring Documents Notifications",
-            extended_docs_text: "A new option to receive notifications one month before important documents expire has been added.",
-            extended_personalization_title: "App Personalization",
-            extended_personalization_text: "Change the color theme with options including classic, mountain, beach, desert, and forest.",
-            extended_improvements_title: "Improvements and Optimizations",
-            extended_improvements_text: "Interface bugs have been fixed, notification management enhanced, and ads now appear in more natural, less intrusive locations.",
-            cta_title: "Start Organizing Your Travels Now!",
-            cta_text: "Download Travel Rules for iOS. Available exclusively on iOS – experience the difference with our intuitive interface and advanced features.",
-            contact_title: "Contact",
-            contact_name: "Name:",
-            contact_email: "Email:",
-            contact_message: "Message:",
-            dark_mode: "Dark mode"
-          },
-          es: {
-            logo: "Travel Rules",
-            about: "Acerca de",
-            features: "Funciones",
-            updates: "Actualizaciones",
-            links: "Enlaces",
-            travel_planner: "Travel Planner App",
-            download: "Descargar",
-            contact: "Contacto",
-            hero_title: "Travel Rules",
-            hero_subtitle: "Tu fuente diaria de inspiración y consejos prácticos.",
-            learn_more: "Saber más",
-            about_title: "Travel Rules",
-            about_text: "Una aplicación que te permite descubrir el encanto del van-life de una manera totalmente nueva. Reglas diarias, listas, lugares guardados y un nuevo mapa con puntos cercanos y creador de plan de viaje — todo con un diseño elegante y minimalista.",
-            screenshots_title: "Mira cómo se ve",
-            screenshots_title2: "Mira cómo se ve",
-            updates_title: "Actualizaciones",
-            extended_title: "Funciones Avanzadas",
-            extended_loc_title: "Guardar Ubicaciones",
-            extended_loc_text: "Ahora puedes guardar ubicaciones y encontrarlas fácilmente en el mapa. Ábrelas en Google Maps o Apple Maps.",
-            extended_nearby_title: "Mapa: puntos cercanos + plan de viaje",
-            extended_nearby_text: "Un nuevo mapa muestra puntos cercanos (spots, aparcamientos, atracciones) y te permite crear un plan de ruta sencillo. Añade lugares, cambia el orden y abre la navegación en Apple Maps o Google Maps.",
-            extended_rules_title: "Nuevas Reglas de Viaje",
-            extended_rules_text: "Se añadieron más reglas y se organizaron para que sean aún más útiles.",
-            extended_achievements_title: "Sistema de Logros",
-            extended_achievements_text: "Consigue logros por usar la app, como «Viajero Frecuente» o «Maestro de la Constancia».",
-            extended_emergency_title: "Números de Emergencia Internacionales",
-            extended_emergency_text: "La app detecta tu país y muestra los números de emergencia y enlaces útiles correspondientes.",
-            extended_packing_title: "Lista de Empaque",
-            extended_packing_text: "Crea y personaliza tu lista de empaque antes de viajar.",
-            extended_notifications_title: "Nuevas Notificaciones",
-            extended_notifications_text: "Configura recordatorios diarios de reglas y alertas para documentos importantes.",
-            extended_docs_title: "Alertas de Documentos por Caducar",
-            extended_docs_text: "Recibe avisos un mes antes de que caduquen documentos importantes.",
-            extended_personalization_title: "Personalización de la App",
-            extended_personalization_text: "Cambia el tema de color: clásico, montaña, playa, desierto o bosque.",
-            extended_improvements_title: "Mejoras y Optimización",
-            extended_improvements_text: "Errores solucionados, notificaciones mejoradas y anuncios menos intrusivos.",
-            cta_title: "¡Empieza a organizar tus viajes ahora!",
-            cta_text: "Descarga Travel Rules para iOS. Disponible exclusivamente en iOS: disfruta de una interfaz intuitiva y funciones avanzadas.",
-            contact_title: "Contacto",
-            contact_name: "Nombre:",
-            contact_email: "Correo:",
-            contact_message: "Mensaje:",
-            dark_mode: "Modo oscuro"
-          }
-        };
-
-        function setLanguage(lang) {
-          document.documentElement.lang = lang;
-          document.querySelectorAll('[data-lang-key]').forEach(el => {
-            const key = el.getAttribute('data-lang-key');
-            if (translations[lang] && translations[lang][key]) {
-              el.textContent = translations[lang][key];
-            }
-          });
-        }
-
-        function applyTheme(themeName) {
-          if (!themeName) return;
-          body.classList.remove('theme-classic', 'theme-mountain', 'theme-beach', 'theme-desert', 'theme-forest');
-          body.classList.add(`theme-${themeName}`);
-          if (themeSelect) themeSelect.value = themeName;
-          localStorage.setItem('tr_theme', themeName);
-        }
-
-        function applyDarkMode(isDark) {
-          if (isDark) {
-            body.classList.add('dark-mode');
-            localStorage.setItem('tr_dark', '1');
-          } else {
-            body.classList.remove('dark-mode');
-            localStorage.removeItem('tr_dark');
-          }
-          if (darkModeToggle) darkModeToggle.checked = !!isDark;
-        }
-
-        /* Load saved prefs */
-        const savedTheme = localStorage.getItem('tr_theme');
-        const savedDark = localStorage.getItem('tr_dark') === '1';
-        const savedLang = localStorage.getItem('tr_lang');
-
-        if (savedTheme) applyTheme(savedTheme);
-        if (savedDark) applyDarkMode(true);
-
-        if (savedLang && ['pl', 'en', 'es'].includes(savedLang)) {
-          setLanguage(savedLang);
-        }
-
-        /* Prefer saved language, then browser */
-        const initialLang = savedLang || (navigator.language ? navigator.language.slice(0, 2) : 'pl');
-        if (['pl', 'en', 'es'].includes(initialLang)) {
-          setLanguage(initialLang);
-        } else {
-          setLanguage('pl');
-        }
-
-        /* Theme select */
-        if (themeSelect) {
-          themeSelect.addEventListener('change', (event) => {
-            applyTheme(event.target.value);
-          });
-        }
-
-        /* Dark mode toggle */
-        if (darkModeToggle) {
-          darkModeToggle.addEventListener('change', (event) => {
-            applyDarkMode(event.target.checked);
-          });
-        }
-
-        /* Language flags */
-        langFlags.forEach(flag => {
-          flag.addEventListener('click', () => {
-            const lang = flag.getAttribute('data-lang');
-            if (!lang) return;
-            setLanguage(lang);
-            localStorage.setItem('tr_lang', lang);
-          });
+        [a1, a2].forEach(a => {
+          if (!a) return;
+          a.textContent = email;
+          a.href = 'mailto:' + email;
         });
+      }
+      setEmailLinks();
+
+      // ---- Theme ----
+      const htmlEl = document.documentElement;
+      const themeBtn = document.getElementById('themeToggle');
+      const themeIcon = document.getElementById('themeIcon');
+
+      function setTheme(theme){
+        htmlEl.setAttribute('data-theme', theme);
+        if (themeBtn) themeBtn.setAttribute('aria-pressed', theme === 'dark' ? 'true' : 'false');
+        if (themeIcon){
+          if (theme === 'dark'){
+            // sun icon
+            themeIcon.innerHTML =
+              '<path d="M12 18a6 6 0 1 0 0-12 6 6 0 0 0 0 12Z" stroke="currentColor" stroke-width="2"/>'+
+              '<path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>';
+          } else {
+            // moon icon
+            themeIcon.innerHTML = '<path d="M21 12.8A8.5 8.5 0 0 1 11.2 3a7 7 0 1 0 9.8 9.8Z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/>';
+          }
+        }
+        try{ localStorage.setItem('tr_theme', theme); }catch(e){}
+      }
+
+      function detectTheme(){
+        try{
+          const saved = localStorage.getItem('tr_theme');
+          if (saved === 'light' || saved === 'dark') return saved;
+        }catch(e){}
+        const prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+        return prefersDark ? 'dark' : 'light';
+      }
+
+      if (themeBtn){
+        themeBtn.addEventListener('click', () => {
+          const current = htmlEl.getAttribute('data-theme') || 'light';
+          setTheme(current === 'dark' ? 'light' : 'dark');
+        });
+      }
+      setTheme(detectTheme());
+
+      // ---- Language (PL/EN/ES) + full-page translation ----
+      const metaDesc = document.querySelector('meta[name="description"]');
+      const ogTitle = document.querySelector('meta[property="og:title"]');
+      const ogDesc = document.querySelector('meta[property="og:description"]');
+
+      const dict = {
+        pl: {
+          page_title: 'Travel Rules — Hub',
+          page_desc: 'Travel Rules — aplikacja i produkty, które pomagają podróżować spokojniej: ebooki, checklisty, planery i narzędzia.',
+
+          brand_name: 'Travel Rules',
+
+          hero_h1: 'Spokojniejsze podróże, mniej chaosu — w jednym miejscu.',
+          hero_lead: 'Travel Rules to ekosystem prostych narzędzi: aplikacja, ebooki i praktyczne materiały, które pomagają przygotować się do wyjazdu i uniknąć typowych błędów.',
+
+          chip_1: 'Checklisty & rutyny',
+          chip_2: 'Przygotowanie krok po kroku',
+          chip_3: 'Vanlife • camper • roadtrip',
+          chip_4: 'PDF + mobile-friendly',
+
+          cta_products: 'Przejdź do produktów',
+          cta_ebook: 'Zobacz ebooka',
+          cta_links: 'Linki do aplikacji',
+
+          side_1_h: 'Szybki start',
+          side_1_p: 'Wybierz produkt poniżej i przejdź do strony z opisem, podglądem i linkami.',
+          side_2_h: 'Najpopularniejsze teraz',
+          side_2_p: '<strong>Ebook:</strong> przygotowanie campera na pierwszy wyjazd + podgląd stron.',
+          side_3_h: 'Kontakt / wsparcie',
+          side_3_label: 'Email:',
+
+          products_h2: 'Oferta Travel Rules',
+          products_p: 'Wybierz, czego potrzebujesz — poniżej masz czytelny skrót i szybkie przejścia.',
+
+          badge_app: 'Aplikacja',
+          badge_ebook: 'Ebook',
+          badge_planner: 'Planner',
+
+          card1_h3: 'Travel Rules App',
+          card1_p: 'Codzienne zasady w drodze, tipy, lokalizacje i przydatne informacje — wszystko pod ręką.',
+          card1_li1: 'Zasady i porady + zapis ulubionych',
+          card1_li2: 'Lokalizacje, punkty w okolicy i szybki plan',
+          card1_li3: 'Numery alarmowe, zdrowie, ambasady + przypomnienia dokumentów',
+          card1_li4: 'Checklisty (gotowe i własne) + eksport',
+          card1_btn1: 'Strona aplikacji',
+          card1_btn2: 'Pobierz',
+
+          card2_h3: 'First Camper Trip Prep Ebook',
+          card2_p: 'Konkretny plan 72h/48h/24h + praktyczne strony, które pomagają ogarnąć pierwszy wyjazd.',
+          card2_btn1: 'Zobacz',
+          card2_btn2: 'Podgląd stron',
+
+          card3_h3: 'Travel Planner App',
+          card3_p: 'Organizacja podróży i budżetu: paliwo, koszty, dziennik, checklisty — wszystko w jednym miejscu.',
+          card3_li1: 'Tankowania, opłaty i kalkulator spalania + przelicznik paliwa',
+          card3_li2: 'Wydatki i budżet w kategoriach + kursy walut',
+          card3_li3: 'Dziennik podróży, własne checklisty z kategoriami',
+          card3_li4: 'Eksport planu i danych do PDF',
+          card3_btn1: 'Przejdź do strony',
+          card3_btn2: 'Szczegóły',
+
+          links_h2: 'Sklep & Social',
+          links_p: 'Szybkie linki do produktów i sociali.',
+          links_shop_badge: 'Sklep',
+          links_shop_h: 'Produkty',
+          links_shop_sub: 'Produkty dopasowane do Twojej podróży.',
+          naffy_title: 'Naffy (PL) — sklep Travel Rules',
+          naffy_desc: 'Ebook i produkty po polsku.',
+          gumroad_ebook_title: 'Gumroad — First Camper Trip Prep Ebook',
+          gumroad_ebook_desc: 'Plan 72h/48h/24h + podgląd stron.',
+          gumroad_checklist_title: 'Gumroad — Vanlife Travel Checklist',
+          gumroad_checklist_desc: 'Lista A4 do pakowania (Essentials).',
+          gumroad_planner_title: 'Gumroad — Travel Planner Checklist',
+          gumroad_planner_desc: 'Organizer podróży (Essentials).',
+          links_open_all: 'Otwórz pełną stronę z linkami',
+
+          links_social_badge: 'Social',
+          links_social_h: 'Obserwuj',
+          links_social_sub2: 'Nowości, tipy i kulisy.',
+          social_ig: 'Instagram',
+          social_ig_desc: 'Kulisy, tipy i nowości.',
+          social_tt: 'TikTok',
+          social_tt_desc: 'Szybkie porady i krótkie formaty.',
+          social_yt: 'YouTube',
+          social_yt_desc: 'Dłuższe materiały i poradniki.',
+          social_pin: 'Pinterest',
+          social_pin_desc: 'Inspiracje i pomysły do zapisania.',
+          links_more: 'Więcej linków',
+
+          about_h2: 'Dlaczego Travel Rules?',
+          about_p: 'Bo w podróży liczą się proste decyzje i szybki dostęp do rzeczy “na teraz”. Travel Rules zbiera w jednym miejscu rutyny, checklisty, planowanie i praktyczne narzędzia — żebyś jechał spokojniej i pewniej.',
+
+          footer_brand: 'Travel Rules',
+          footer_support: 'Support',
+          footer_rights_html: '© <span id="year"></span> Travel Rules. Wszelkie prawa zastrzeżone.',
+          footer_privacy: 'Privacy',
+          footer_terms: 'Terms',
+          footer_cookies: 'Cookies',
+          footer_links: 'Links'
+        },
+        en: {
+          page_title: 'Travel Rules — Hub',
+          page_desc: 'Travel Rules — an app and products that help you travel with less stress: ebooks, guides, planners, and tools.',
+
+          brand_name: 'Travel Rules',
+
+          hero_h1: 'Calmer trips, less chaos — in one place.',
+          hero_lead: 'Travel Rules is a simple toolkit: an app, ebooks, and practical resources that help you prepare for trips and avoid common mistakes.',
+
+          chip_1: 'Checklists & routines',
+          chip_2: 'Step-by-step prep',
+          chip_3: 'Vanlife • camper • roadtrip',
+          chip_4: 'PDF + mobile-friendly',
+
+          cta_products: 'View products',
+          cta_ebook: 'View the ebook',
+          cta_links: 'App links',
+
+          side_1_h: 'Quick start',
+          side_1_p: 'Pick a product below and open its page with details, previews, and links.',
+          side_2_h: 'Most popular right now',
+          side_2_p: '<strong>Ebook:</strong> first camper trip prep + sample pages.',
+          side_3_h: 'Contact / support',
+          side_3_label: 'Email:',
+
+          products_h2: 'Travel Rules offer',
+          products_p: 'Pick what you need — here’s a clean overview with quick access.',
+
+          badge_app: 'App',
+          badge_ebook: 'Ebook',
+          badge_planner: 'Planner',
+
+          card1_h3: 'Travel Rules App',
+          card1_p: 'Daily on-the-road rules, tips, locations and practical info — all in your pocket.',
+          card1_li1: 'Daily rules & tips + save favorites',
+          card1_li2: 'Saved locations, nearby points, and quick local planning',
+          card1_li3: 'Emergency numbers, healthcare, embassies + document reminders',
+          card1_li4: 'Checklists (ready-made and custom) + export',
+          card1_btn1: 'App page',
+          card1_btn2: 'Download',
+
+          card2_h3: 'First Camper Trip Prep Ebook',
+          card2_p: 'A clear 72h/48h/24h plan + practical pages to help you nail your first trip.',
+          card2_btn1: 'Open',
+          card2_btn2: 'Sample pages',
+
+          card3_h3: 'Travel Planner App',
+          card3_p: 'Trip & budget organization: fuel, expenses, journal, checklists — in one place.',
+          card3_li1: 'Fuel logs, tolls, consumption calculator + fuel converter',
+          card3_li2: 'Expenses & category budgets + currency rates',
+          card3_li3: 'Trip journal + custom checklists with categories',
+          card3_li4: 'Export your plan/data to PDF',
+          card3_btn1: 'Go to page',
+          card3_btn2: 'Details',
+
+          links_h2: 'Shop & Social',
+          links_p: 'Quick links to products and socials.',
+          links_shop_badge: 'Shop',
+          links_shop_h: 'Products',
+          links_shop_sub: 'Products tailored to your trip.',
+          naffy_title: 'Naffy (PL) — Travel Rules store',
+          naffy_desc: 'Polish versions of products.',
+          gumroad_ebook_title: 'Gumroad — First Camper Trip Prep Ebook',
+          gumroad_ebook_desc: '72h/48h/24h plan + sample pages.',
+          gumroad_checklist_title: 'Gumroad — Vanlife Travel Checklist',
+          gumroad_checklist_desc: 'Printable A4 packing list (Essentials).',
+          gumroad_planner_title: 'Gumroad — Travel Planner Checklist',
+          gumroad_planner_desc: 'Trip organizer checklist (Essentials).',
+          links_open_all: 'Open full links page',
+
+          links_social_badge: 'Social',
+          links_social_h: 'Follow',
+          links_social_sub2: 'Updates, tips, and behind the scenes.',
+          social_ig: 'Instagram',
+          social_ig_desc: 'Behind the scenes, tips, and updates.',
+          social_tt: 'TikTok',
+          social_tt_desc: 'Quick tips and short videos.',
+          social_yt: 'YouTube',
+          social_yt_desc: 'Longer videos and guides.',
+          social_pin: 'Pinterest',
+          social_pin_desc: 'Inspiration and ideas to save.',
+          links_more: 'More links',
+
+          about_h2: 'Why Travel Rules?',
+          about_p: 'Because traveling is easier when decisions are simple and key info is always at hand. Travel Rules brings routines, checklists, planning and practical tools together — so you can travel calmer and more confident.',
+
+          footer_brand: 'Travel Rules',
+          footer_support: 'Support',
+          footer_rights_html: '© <span id="year"></span> Travel Rules. All rights reserved.',
+          footer_privacy: 'Privacy',
+          footer_terms: 'Terms',
+          footer_cookies: 'Cookies',
+          footer_links: 'Links'
+        },
+        es: {
+          page_title: 'Travel Rules — Hub',
+          page_desc: 'Travel Rules — una app y productos para viajar con menos estrés: ebooks, guías, planificadores y herramientas.',
+
+          brand_name: 'Travel Rules',
+
+          hero_h1: 'Viajes más tranquilos, menos caos — en un solo lugar.',
+          hero_lead: 'Travel Rules es un kit sencillo: una app, ebooks y recursos prácticos que te ayudan a prepararte y evitar errores comunes.',
+
+          chip_1: 'Listas y rutinas',
+          chip_2: 'Preparación paso a paso',
+          chip_3: 'Vanlife • camper • roadtrip',
+          chip_4: 'PDF + móvil',
+
+          cta_products: 'Ver productos',
+          cta_ebook: 'Ver el ebook',
+          cta_links: 'Enlaces de la app',
+
+          side_1_h: 'Inicio rápido',
+          side_1_p: 'Elige un producto y abre su página con detalles, vistas previas y enlaces.',
+          side_2_h: 'Lo más popular ahora',
+          side_2_p: '<strong>Ebook:</strong> preparación del primer viaje en camper + páginas de muestra.',
+          side_3_h: 'Contacto / soporte',
+          side_3_label: 'Email:',
+
+          products_h2: 'Oferta de Travel Rules',
+          products_p: 'Elige lo que necesitas — aquí tienes un resumen claro con accesos rápidos.',
+
+          badge_app: 'App',
+          badge_ebook: 'Ebook',
+          badge_planner: 'Planner',
+
+          card1_h3: 'Travel Rules App',
+          card1_p: 'Reglas diarias, consejos, ubicaciones e info práctica — siempre a mano.',
+          card1_li1: 'Reglas y consejos diarios + guardar favoritos',
+          card1_li2: 'Ubicaciones guardadas, puntos cercanos y planificación local rápida',
+          card1_li3: 'Números de emergencia, salud, embajadas + recordatorios de documentos',
+          card1_li4: 'Checklists (listas y personalizadas) + exportación',
+          card1_btn1: 'Página de la app',
+          card1_btn2: 'Descargar',
+
+          card2_h3: 'First Camper Trip Prep Ebook',
+          card2_p: 'Un plan claro 72h/48h/24h + páginas prácticas para clavar tu primer viaje.',
+          card2_btn1: 'Abrir',
+          card2_btn2: 'Páginas de muestra',
+
+          card3_h3: 'Travel Planner App',
+          card3_p: 'Organiza viaje y presupuesto: combustible, gastos, diario, checklists — en un solo lugar.',
+          card3_li1: 'Registros de combustible, peajes, calculadora de consumo + conversor de combustible',
+          card3_li2: 'Gastos y presupuesto por categorías + tipos de cambio',
+          card3_li3: 'Diario de viaje + checklists personalizadas con categorías',
+          card3_li4: 'Exporta tu plan/datos a PDF',
+          card3_btn1: 'Ir a la página',
+          card3_btn2: 'Detalles',
+
+          links_h2: 'Tienda y redes',
+          links_p: 'Enlaces rápidos a productos y redes.',
+          links_shop_badge: 'Tienda',
+          links_shop_h: 'Productos',
+          links_shop_sub: 'Productos adaptados a tu viaje.',
+          naffy_title: 'Naffy (PL) — tienda Travel Rules',
+          naffy_desc: 'Versiones en polaco de los productos.',
+          gumroad_ebook_title: 'Gumroad — First Camper Trip Prep Ebook',
+          gumroad_ebook_desc: 'Plan 72h/48h/24h + páginas de muestra.',
+          gumroad_checklist_title: 'Gumroad — Vanlife Travel Checklist',
+          gumroad_checklist_desc: 'Lista A4 imprimible (Esenciales).',
+          gumroad_planner_title: 'Gumroad — Travel Planner Checklist',
+          gumroad_planner_desc: 'Checklist organizador (Esenciales).',
+          links_open_all: 'Abrir página completa de enlaces',
+
+          links_social_badge: 'Redes',
+          links_social_h: 'Seguir',
+          links_social_sub2: 'Novedades, consejos y detrás de cámaras.',
+          social_ig: 'Instagram',
+          social_ig_desc: 'Detrás de cámaras, consejos y novedades.',
+          social_tt: 'TikTok',
+          social_tt_desc: 'Consejos rápidos y vídeos cortos.',
+          social_yt: 'YouTube',
+          social_yt_desc: 'Vídeos más largos y guías.',
+          social_pin: 'Pinterest',
+          social_pin_desc: 'Inspiración e ideas para guardar.',
+          links_more: 'Más enlaces',
+
+          about_h2: '¿Por qué Travel Rules?',
+          about_p: 'Porque viajar es más fácil cuando las decisiones son simples y lo importante está siempre a mano. Travel Rules reúne rutinas, checklists, planificación y herramientas prácticas — para viajar más tranquilo y con más confianza.',
+
+          footer_brand: 'Travel Rules',
+          footer_support: 'Soporte',
+          footer_rights_html: '© <span id="year"></span> Travel Rules. Todos los derechos reservados.',
+          footer_privacy: 'Privacidad',
+          footer_terms: 'Términos',
+          footer_cookies: 'Cookies',
+          footer_links: 'Enlaces'
+        }
+      };
+
+      function setPressed(lang){
+        document.querySelectorAll('.lang-btn').forEach(btn => {
+          btn.setAttribute('aria-pressed', btn.dataset.lang === lang ? 'true' : 'false');
+        });
+      }
+
+      function applyLang(lang){
+        const t = dict[lang] || dict.en;
+        document.documentElement.setAttribute('lang', lang);
+        document.title = t.page_title;
+        if (metaDesc) metaDesc.setAttribute('content', t.page_desc);
+        if (ogTitle) ogTitle.setAttribute('content', t.page_title);
+        if (ogDesc) ogDesc.setAttribute('content', t.page_desc);
+
+        document.querySelectorAll('[data-i18n]').forEach(el => {
+          const key = el.getAttribute('data-i18n');
+          if (t[key] != null) el.textContent = t[key];
+        });
+        document.querySelectorAll('[data-i18n-html]').forEach(el => {
+          const key = el.getAttribute('data-i18n-html');
+          if (t[key] != null) el.innerHTML = t[key];
+        });
+
+        // Show/hide elements for specific languages (comma separated supported)
+        document.querySelectorAll('[data-lang-only]').forEach(el => {
+          const onlyRaw = (el.getAttribute('data-lang-only') || '').trim();
+          const allowed = onlyRaw.split(',').map(s => s.trim()).filter(Boolean);
+          el.style.display = allowed.includes(lang) ? '' : 'none';
+        });
+
+        setPressed(lang);
+        try{ localStorage.setItem('tr_lang', lang); }catch(e){}
+      }
+
+      function detectLang(){
+        try{
+          const saved = localStorage.getItem('tr_lang');
+          if (saved && dict[saved]) return saved;
+        }catch(e){}
+        const nav = (navigator.language || 'en').toLowerCase();
+        if (nav.startsWith('pl')) return 'pl';
+        if (nav.startsWith('es')) return 'es';
+        return 'en';
+      }
+
+      document.querySelectorAll('.lang-btn').forEach(btn => {
+        btn.addEventListener('click', () => applyLang(btn.dataset.lang));
       });
-    }
+
+      applyLang(detectLang());
+    })();
   </script>
 </body>
 </html>

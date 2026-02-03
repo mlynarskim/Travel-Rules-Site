@@ -1,32 +1,35 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="https://www.sitemaps.org/schemas/sitemap/0.9">
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>https://travelrules.eu/</loc>
-    <changefreq>weekly</changefreq>
+    <loc>https://www.travelrules.eu/</loc>
     <priority>1.0</priority>
   </url>
-
   <url>
-    <loc>https://travelrules.eu/travel-planer-app/index.html</loc>
-    <changefreq>weekly</changefreq>
+    <loc>https://www.travelrules.eu/links.html</loc>
     <priority>0.8</priority>
   </url>
-
   <url>
-    <loc>https://travelrules.eu/links.html</loc>
-    <changefreq>monthly</changefreq>
+    <loc>https://www.travelrules.eu/travel-rules-app/</loc>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.travelrules.eu/travelrules-ebook-landing/</loc>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.travelrules.eu/travel-planer-app/</loc>
     <priority>0.6</priority>
   </url>
-
   <url>
-    <loc>https://travelrules.eu/polityka-prywatnosci.html</loc>
-    <changefreq>yearly</changefreq>
+    <loc>https://www.travelrules.eu/privacy.html</loc>
     <priority>0.3</priority>
   </url>
-
   <url>
-    <loc>https://travelrules.eu/warunki-korzystania.html</loc>
-    <changefreq>yearly</changefreq>
+    <loc>https://www.travelrules.eu/terms.html</loc>
+    <priority>0.3</priority>
+  </url>
+  <url>
+    <loc>https://www.travelrules.eu/cookies.html</loc>
     <priority>0.3</priority>
   </url>
 </urlset>

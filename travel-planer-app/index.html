@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Planer Podróży</title>
+    <title>Travel Planner — Travel Rules</title>
     <link rel="manifest" href="manifest.json">
     <meta name="theme-color" content="#29606D">
     <style>
@@ -36,24 +36,95 @@
         * { box-sizing: border-box; font-family: 'Inter', system-ui, -apple-system, sans-serif; transition: background-color 0.2s, color 0.2s; }
         body { background-color: var(--bg); color: var(--text); margin: 0; padding-bottom: 110px; line-height: 1.5; }
 
-        header { 
-            background: var(--primary); 
-            color: var(--header-text); 
-            padding: 1rem; 
-            box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1); 
-            position: sticky; top: 0; z-index: 1100;
+        header {
+            background: rgba(255,255,255,0.86);
+            color: var(--text);
+            padding: 0.9rem 1rem;
+            border-bottom: 1px solid rgba(0,0,0,0.08);
+            box-shadow: none;
+            position: sticky;
+            top: 0;
+            z-index: 1100;
+            -webkit-backdrop-filter: blur(10px);
+            backdrop-filter: blur(10px);
         }
-        
-        .header-top { display: flex; justify-content: space-between; align-items: center; max-width: 800px; margin: 0 auto; width: 100%; }
-        h1 { margin: 0; font-size: 1.1rem; font-weight: 700; }
+        [data-theme="dark"] header{
+            background: rgba(16,16,16,0.72);
+            border-bottom: 1px solid rgba(255,255,255,0.12);
+        }
 
-        .settings-bar { display: flex; gap: 12px; align-items: center; }
-        .settings-select { 
-            background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.2); 
-            color: white; padding: 4px 8px; border-radius: 6px; font-size: 0.75rem; cursor: pointer;
+        .header-top {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 800px;
+            margin: 0 auto;
+            width: 100%;
+            gap: 12px;
         }
+
+        .brand{
+            display:flex;
+            align-items:center;
+            gap:10px;
+            text-decoration:none;
+            color: inherit;
+            font-weight: 800;
+            letter-spacing: .2px;
+            min-width: 0;
+        }
+        .brand-mark{
+            display:inline-flex;
+            align-items:center;
+            justify-content:center;
+            width: 34px;
+            height: 34px;
+            border-radius: 10px;
+            color: #fff;
+            background: var(--primary);
+            box-shadow: 0 10px 20px rgba(0,0,0,.12);
+            font-size: 13px;
+            flex: 0 0 auto;
+        }
+        .brand-name{
+            font-size: 0.95rem;
+            font-weight: 800;
+            white-space: nowrap;
+        }
+
+        .settings-bar { display: flex; gap: 10px; align-items: center; flex: 0 0 auto; }
+
+        .settings-select {
+            height: 36px;
+            background: transparent;
+            border: 1px solid rgba(0,0,0,0.12);
+            color: var(--text);
+            padding: 0 10px;
+            border-radius: 10px;
+            font-size: 0.8rem;
+            cursor: pointer;
+            font-weight: 800;
+            letter-spacing: .4px;
+        }
+        [data-theme="dark"] .settings-select{ border-color: rgba(255,255,255,0.18); }
+        .settings-select:hover{ border-color: var(--accent); }
         .settings-select option { color: black; }
-        .theme-toggle { background: none; border: none; color: white; cursor: pointer; padding: 5px; display: flex; align-items: center; }
+
+        .theme-toggle {
+            width: 36px;
+            height: 36px;
+            border-radius: 10px;
+            background: transparent;
+            border: 1px solid rgba(0,0,0,0.12);
+            color: var(--text);
+            cursor: pointer;
+            padding: 0;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+        }
+        [data-theme="dark"] .theme-toggle{ border-color: rgba(255,255,255,0.18); }
+        .theme-toggle:hover{ border-color: var(--primary); }
 
         nav {
             position: fixed; bottom: 0; left: 0; right: 0;
@@ -148,6 +219,98 @@
         .journal-textarea { flex: 1; min-height: 40px; padding: 8px; border-radius: 8px; font-size: 0.85rem; border: 1px solid var(--border); resize: none; overflow: hidden; }
 
         #print-view { display: none; }
+
+        /* Onboarding (first-run guide) */
+        .onboarding-overlay{
+            position: fixed;
+            inset: 0;
+            background: rgba(0,0,0,0.45);
+            display: none;
+            align-items: center;
+            justify-content: center;
+            padding: 16px;
+            z-index: 2000;
+        }
+        .onboarding-overlay.show{ display: flex; }
+
+        .onboarding-card{
+            width: 100%;
+            max-width: 520px;
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: 18px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.25);
+            overflow: hidden;
+        }
+        .onboarding-head{
+            padding: 14px 16px;
+            border-bottom: 1px solid var(--border);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 10px;
+        }
+        .onboarding-title{
+            font-weight: 900;
+            letter-spacing: .2px;
+            font-size: 0.95rem;
+            margin: 0;
+        }
+        .onboarding-close{
+            width: 34px;
+            height: 34px;
+            border-radius: 10px;
+            background: transparent;
+            border: 1px solid var(--border);
+            color: var(--text);
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 900;
+        }
+        .onboarding-close:hover{ border-color: var(--accent); }
+
+        .onboarding-body{ padding: 16px; }
+        .onboarding-kicker{
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            font-weight: 900;
+            color: var(--accent);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-size: 0.65rem;
+            margin-bottom: 10px;
+        }
+        .onboarding-step-title{ font-size: 1.05rem; font-weight: 900; margin: 0 0 6px 0; }
+        .onboarding-step-text{ margin: 0; color: var(--text-muted); font-size: 0.9rem; line-height: 1.45; }
+
+        .onboarding-dots{
+            display: flex;
+            gap: 6px;
+            justify-content: center;
+            padding: 0 16px 10px 16px;
+        }
+        .onboarding-dot{
+            width: 8px;
+            height: 8px;
+            border-radius: 999px;
+            background: var(--border);
+        }
+        .onboarding-dot.active{ background: var(--accent); }
+
+        .onboarding-foot{
+            padding: 12px 16px 16px 16px;
+            display: flex;
+            gap: 10px;
+        }
+        .onboarding-foot .btn{ flex: 1; }
+
+        @media (max-width: 380px){
+            .onboarding-step-title{ font-size: 1rem; }
+            .onboarding-step-text{ font-size: 0.85rem; }
+        }
         @media print {
             nav, header, .no-print, .btn, main { display: none !important; }
             #print-view { display: block !important; padding: 20px; color: black; background: white; font-size: 11pt; }
@@ -164,12 +327,16 @@
 <body data-theme="light">
     <header class="no-print">
         <div class="header-top">
-            <h1 id="ui-title">Planer Podróży</h1>
+            <a class="brand" href="/" aria-label="Travel Rules home">
+                <span class="brand-mark" aria-hidden="true">TR</span>
+                <span class="brand-name">Travel Rules</span>
+            </a>
+
             <div class="settings-bar">
-                <button class="theme-toggle" id="theme-btn">
+                <button class="theme-toggle" id="theme-btn" type="button" aria-label="Toggle theme" title="Toggle theme">
                     <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" id="theme-icon-svg"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg>
                 </button>
-                <select id="lang-select" class="settings-select">
+                <select id="lang-select" class="settings-select" aria-label="Language">
                     <option value="pl">PL</option>
                     <option value="en">EN</option>
                     <option value="es">ES</option>
@@ -358,6 +525,26 @@
 
     <div id="print-view"></div>
 
+    <!-- Onboarding (shown once on first run; reappears after Reset) -->
+    <div id="onboarding" class="onboarding-overlay" role="dialog" aria-modal="true" aria-labelledby="onboarding-title" aria-hidden="true">
+        <div class="onboarding-card" role="document">
+            <div class="onboarding-head">
+                <h2 class="onboarding-title" id="onboarding-title">Start</h2>
+                <button class="onboarding-close" id="onboarding-close" type="button" aria-label="Close">✕</button>
+            </div>
+            <div class="onboarding-body">
+                <div class="onboarding-kicker" id="onboarding-kicker">1/4</div>
+                <h3 class="onboarding-step-title" id="onboarding-step-title">...</h3>
+                <p class="onboarding-step-text" id="onboarding-step-text">...</p>
+            </div>
+            <div class="onboarding-dots" id="onboarding-dots" aria-hidden="true"></div>
+            <div class="onboarding-foot">
+                <button class="btn btn-outline" id="onboarding-prev" type="button">◀</button>
+                <button class="btn btn-primary" id="onboarding-next" type="button">Next</button>
+            </div>
+        </div>
+    </div>
+
     <nav class="no-print">
         <button class="nav-btn active" data-tab="budget"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path></svg><span id="nav-budget">Budżet</span></button>
         <button class="nav-btn" data-tab="expenses"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="1" y="4" width="22" height="16" rx="2"></rect><line x1="1" y1="10" x2="23" y2="10"></line></svg><span id="nav-expenses">Wydatki</span></button>
@@ -367,6 +554,578 @@
         <button class="nav-btn" data-tab="list"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 11 12 14 22 4"></polyline><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"></path></svg><span id="nav-list">Lista</span></button>
         <button class="nav-btn" data-tab="pdf"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16"></path></svg><span id="nav-pdf">PDF</span></button>
     </nav>
+    <script>
+      (function(){
+        const STORAGE_LANG = 'tr_lang';
+        const STORAGE_THEME = 'tr_theme';
+
+        const dict = {
+          pl: {
+            page_title: 'Planer Podróży — Travel Rules',
+            trip_params: 'Parametry Podróży',
+            trip_name: 'Nazwa wyjazdu',
+            from: 'Od',
+            to: 'Do',
+            base_currency: 'Waluta główna',
+            total_budget: 'Budżet całkowity',
+            days: 'Dni',
+            per_day: 'Dziennie',
+            planned_categories: 'Planowane Kategorie',
+            reset_all: 'Zresetuj wszystko',
+
+            add_expense: 'Dodaj Wydatek',
+            when: 'Kiedy',
+            name: 'Nazwa',
+            category: 'Kategoria',
+            amount: 'Kwota',
+            currency: 'Waluta',
+            exchange_rate: 'Kurs',
+            add: 'Dodaj',
+            history: 'Historia',
+
+            fuel_calc: 'Kalkulator Paliwa',
+            distance_km: 'Dystans (km)',
+            consumption: 'Spalanie (L/100km)',
+            price_per_liter: 'Cena za litr',
+            fuel_fx: 'Kurs waluty paliwa',
+            estimated_route_cost: 'SZACOWANY KOSZT TRASY',
+
+            refuel: 'Tankowanie',
+            add_refuel: 'Dodaj Tankowanie',
+            refuel_total: 'SUMA TANKOWANIA:',
+
+            tolls: 'Opłaty, autostrady, bramki',
+            add_toll: 'Dodaj Opłatę',
+            tolls_total: 'SUMA OPŁAT:',
+
+            quick_converter: 'Szybki Przelicznik',
+            refresh_rates: 'Aktualizuj kursy (Online)',
+            exchange_rates: 'Kursy wymiany',
+
+            journal: 'DZIENNIK',
+            journal_title_location: 'Tytuł / Lokalizacja (dziedziczona)',
+            clear_journal: 'Wyczyść cały dziennik',
+
+            packing_progress: 'Postęp pakowania',
+            add_to_list: 'Dodaj do listy',
+
+            pdf_report: 'Generowanie Raportu',
+            pdf_inc_budget: 'PARAMETRY & BUDŻET',
+            pdf_inc_expenses: 'WYDATKI RZECZYWISTE',
+            pdf_inc_transport: 'TRANSPORT',
+            pdf_inc_list: 'LISTA RZECZY',
+            pdf_inc_journal: 'DZIENNIK',
+            export_pdf: 'EKSPORTUJ DO PDF',
+
+            nav_budget: 'Budżet',
+            nav_expenses: 'Wydatki',
+            nav_fuel: 'Opłaty',
+            nav_rates: 'Kursy',
+            nav_journal: 'Dziennik',
+            nav_list: 'Lista',
+            nav_pdf: 'PDF',
+
+            aria_theme: 'Przełącz motyw (jasny/ciemny)',
+            aria_lang: 'Wybór języka',
+            ob_title: 'Start w 60 sekund',
+            ob_next: 'Dalej',
+            ob_start: 'Zaczynamy',
+            ob_close: 'Zamknij',
+            ob_prev: 'Wstecz',
+            ob_s1_k: '1/4',
+            ob_s1_t: 'Ustaw wyjazd i budżet',
+            ob_s1_b: 'W zakładce „Budżet” wpisz daty, walutę główną i budżet całkowity. Dodaj planowane kategorie (np. noclegi, jedzenie).',
+            ob_s2_k: '2/4',
+            ob_s2_t: 'Dodawaj realne wydatki',
+            ob_s2_b: 'W „Wydatki” zapisuj koszty na bieżąco: data, nazwa, kategoria, kwota i waluta. Dzięki temu wiesz, gdzie uciekają pieniądze.',
+            ob_s3_k: '3/4',
+            ob_s3_t: 'Policz transport i opłaty',
+            ob_s3_b: 'W „Opłaty” policz koszt paliwa oraz dodawaj tankowania i autostrady/peaje. Aplikacja sumuje transport.',
+            ob_s4_k: '4/4',
+            ob_s4_t: 'Lista, dziennik i PDF',
+            ob_s4_b: 'Odhaczaj rzeczy w „Lista”, zapisuj notatki w „Dziennik”, a na końcu eksportuj raport w zakładce „PDF”.'
+          },
+          en: {
+            page_title: 'Travel Planner — Travel Rules',
+            trip_params: 'Trip parameters',
+            trip_name: 'Trip name',
+            from: 'From',
+            to: 'To',
+            base_currency: 'Base currency',
+            total_budget: 'Total budget',
+            days: 'Days',
+            per_day: 'Per day',
+            planned_categories: 'Planned categories',
+            reset_all: 'Reset everything',
+
+            add_expense: 'Add expense',
+            when: 'When',
+            name: 'Name',
+            category: 'Category',
+            amount: 'Amount',
+            currency: 'Currency',
+            exchange_rate: 'Exchange rate',
+            add: 'Add',
+            history: 'History',
+
+            fuel_calc: 'Fuel calculator',
+            distance_km: 'Distance (km)',
+            consumption: 'Consumption (L/100km)',
+            price_per_liter: 'Price per liter',
+            fuel_fx: 'Fuel currency rate',
+            estimated_route_cost: 'ESTIMATED ROUTE COST',
+
+            refuel: 'Refueling',
+            add_refuel: 'Add refuel',
+            refuel_total: 'REFUEL TOTAL:',
+
+            tolls: 'Tolls / highways / gates',
+            add_toll: 'Add toll',
+            tolls_total: 'TOLLS TOTAL:',
+
+            quick_converter: 'Quick converter',
+            refresh_rates: 'Refresh rates (Online)',
+            exchange_rates: 'Exchange rates',
+
+            journal: 'JOURNAL',
+            journal_title_location: 'Title / Location (inherited)',
+            clear_journal: 'Clear entire journal',
+
+            packing_progress: 'Packing progress',
+            add_to_list: 'Add to list',
+
+            pdf_report: 'Generate report',
+            pdf_inc_budget: 'PARAMETERS & BUDGET',
+            pdf_inc_expenses: 'ACTUAL EXPENSES',
+            pdf_inc_transport: 'TRANSPORT',
+            pdf_inc_list: 'PACKING LIST',
+            pdf_inc_journal: 'JOURNAL',
+            export_pdf: 'EXPORT TO PDF',
+
+            nav_budget: 'Budget',
+            nav_expenses: 'Expenses',
+            nav_fuel: 'Costs',
+            nav_rates: 'Rates',
+            nav_journal: 'Journal',
+            nav_list: 'List',
+            nav_pdf: 'PDF',
+
+            aria_theme: 'Toggle theme (light/dark)',
+            aria_lang: 'Language',
+            ob_title: 'Start in 60 seconds',
+            ob_next: 'Next',
+            ob_start: 'Let\'s go',
+            ob_close: 'Close',
+            ob_prev: 'Back',
+            ob_s1_k: '1/4',
+            ob_s1_t: 'Set trip & budget',
+            ob_s1_b: 'In “Budget”, enter dates, base currency and total budget. Add planned categories (e.g., accommodation, food).',
+            ob_s2_k: '2/4',
+            ob_s2_t: 'Log real expenses',
+            ob_s2_b: 'In “Expenses”, add costs as you go: date, name, category, amount and currency. It keeps your spending under control.',
+            ob_s3_k: '3/4',
+            ob_s3_t: 'Calculate transport costs',
+            ob_s3_b: 'In “Costs”, estimate fuel and add refuels plus tolls/highways. The app totals your transport.',
+            ob_s4_k: '4/4',
+            ob_s4_t: 'List, journal & PDF',
+            ob_s4_b: 'Tick items in “List”, write notes in “Journal”, then export a report from the “PDF” tab.'
+          },
+          es: {
+            page_title: 'Planificador de viaje — Travel Rules',
+            trip_params: 'Parámetros del viaje',
+            trip_name: 'Nombre del viaje',
+            from: 'Desde',
+            to: 'Hasta',
+            base_currency: 'Moneda base',
+            total_budget: 'Presupuesto total',
+            days: 'Días',
+            per_day: 'Por día',
+            planned_categories: 'Categorías planificadas',
+            reset_all: 'Restablecer todo',
+
+            add_expense: 'Añadir gasto',
+            when: 'Cuándo',
+            name: 'Nombre',
+            category: 'Categoría',
+            amount: 'Importe',
+            currency: 'Moneda',
+            exchange_rate: 'Tipo de cambio',
+            add: 'Añadir',
+            history: 'Historial',
+
+            fuel_calc: 'Calculadora de combustible',
+            distance_km: 'Distancia (km)',
+            consumption: 'Consumo (L/100km)',
+            price_per_liter: 'Precio por litro',
+            fuel_fx: 'Tipo de cambio del combustible',
+            estimated_route_cost: 'COSTE ESTIMADO DE LA RUTA',
+
+            refuel: 'Repostaje',
+            add_refuel: 'Añadir repostaje',
+            refuel_total: 'TOTAL REPOSTAJE:',
+
+            tolls: 'Peajes / autopistas / barreras',
+            add_toll: 'Añadir peaje',
+            tolls_total: 'TOTAL PEAJES:',
+
+            quick_converter: 'Convertidor rápido',
+            refresh_rates: 'Actualizar tipos (Online)',
+            exchange_rates: 'Tipos de cambio',
+
+            journal: 'DIARIO',
+            journal_title_location: 'Título / Ubicación (heredado)',
+            clear_journal: 'Borrar todo el diario',
+
+            packing_progress: 'Progreso de equipaje',
+            add_to_list: 'Añadir a la lista',
+
+            pdf_report: 'Generar informe',
+            pdf_inc_budget: 'PARÁMETROS Y PRESUPUESTO',
+            pdf_inc_expenses: 'GASTOS REALES',
+            pdf_inc_transport: 'TRANSPORTE',
+            pdf_inc_list: 'LISTA DE EQUIPAJE',
+            pdf_inc_journal: 'DIARIO',
+            export_pdf: 'EXPORTAR A PDF',
+
+            nav_budget: 'Presupuesto',
+            nav_expenses: 'Gastos',
+            nav_fuel: 'Costes',
+            nav_rates: 'Tipos',
+            nav_journal: 'Diario',
+            nav_list: 'Lista',
+            nav_pdf: 'PDF',
+
+            aria_theme: 'Cambiar tema (claro/oscuro)',
+            aria_lang: 'Idioma',
+            ob_title: 'Empieza en 60 segundos',
+            ob_next: 'Siguiente',
+            ob_start: 'Empezar',
+            ob_close: 'Cerrar',
+            ob_prev: 'Atrás',
+            ob_s1_k: '1/4',
+            ob_s1_t: 'Configura viaje y presupuesto',
+            ob_s1_b: 'En “Presupuesto”, introduce fechas, moneda base y presupuesto total. Añade categorías planificadas (p. ej., alojamiento, comida).',
+            ob_s2_k: '2/4',
+            ob_s2_t: 'Registra gastos reales',
+            ob_s2_b: 'En “Gastos”, añade costos durante el viaje: fecha, nombre, categoría, importe y moneda. Así controlas el gasto.',
+            ob_s3_k: '3/4',
+            ob_s3_t: 'Calcula transporte y peajes',
+            ob_s3_b: 'En “Costes”, estima combustible y añade repostajes y peajes/autopistas. La app suma el transporte.',
+            ob_s4_k: '4/4',
+            ob_s4_t: 'Lista, diario y PDF',
+            ob_s4_b: 'Marca cosas en “Lista”, escribe notas en “Diario” y al final exporta un informe desde la pestaña “PDF”.'
+          }
+        };
+
+        const body = document.body;
+        const htmlEl = document.documentElement;
+        const themeBtn = document.getElementById('theme-btn');
+        const langSelect = document.getElementById('lang-select');
+
+        // Onboarding (first-run guide)
+        const STORAGE_ONBOARD = 'tr_onboard_v1_done';
+        const onboardingEl = document.getElementById('onboarding');
+        const obTitleEl = document.getElementById('onboarding-title');
+        const obKickerEl = document.getElementById('onboarding-kicker');
+        const obStepTitleEl = document.getElementById('onboarding-step-title');
+        const obStepTextEl = document.getElementById('onboarding-step-text');
+        const obDotsEl = document.getElementById('onboarding-dots');
+        const obPrevBtn = document.getElementById('onboarding-prev');
+        const obNextBtn = document.getElementById('onboarding-next');
+        const obCloseBtn = document.getElementById('onboarding-close');
+
+        let obIndex = 0;
+        let currentLang = 'en';
+
+        function safeGet(k){ try { return localStorage.getItem(k); } catch(e){ return null; } }
+        function safeSet(k,v){ try { localStorage.setItem(k,v); } catch(e){} }
+
+        function detectLang(){
+          const saved = safeGet(STORAGE_LANG);
+          if (saved && dict[saved]) return saved;
+          const nav = (navigator.language || 'en').toLowerCase();
+          if (nav.startsWith('pl')) return 'pl';
+          if (nav.startsWith('es')) return 'es';
+          return 'en';
+        }
+        function detectTheme(){
+          const saved = safeGet(STORAGE_THEME);
+          if (saved === 'dark' || saved === 'light') return saved;
+          const prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+          return prefersDark ? 'dark' : 'light';
+        }
+
+        function setTheme(theme){
+          body.setAttribute('data-theme', theme === 'dark' ? 'dark' : 'light');
+          safeSet(STORAGE_THEME, theme === 'dark' ? 'dark' : 'light');
+        }
+
+        function applyLang(lang){
+          const t = dict[lang] || dict.en;
+          htmlEl.setAttribute('lang', lang);
+          document.title = t.page_title;
+          if (langSelect) langSelect.value = lang;
+          if (themeBtn){
+            themeBtn.setAttribute('aria-label', t.aria_theme);
+            themeBtn.setAttribute('title', t.aria_theme);
+          }
+          if (langSelect) langSelect.setAttribute('aria-label', t.aria_lang);
+
+          const map = {
+            'ui-trip-params': 'trip_params',
+            'ui-trip-name-label': 'trip_name',
+            'ui-from-label': 'from',
+            'ui-to-label': 'to',
+            'ui-base-currency-label': 'base_currency',
+            'ui-total-budget-label': 'total_budget',
+            'ui-days-label': 'days',
+            'ui-daily-label': 'per_day',
+            'ui-planned-cats': 'planned_categories',
+            'btn-reset': 'reset_all',
+
+            'ui-add-expense': 'add_expense',
+            'ui-exp-date-label': 'when',
+            'ui-exp-title-label': 'name',
+            'ui-exp-cat-label': 'category',
+            'ui-exp-amount-label': 'amount',
+            'ui-exp-currency-label': 'currency',
+            'ui-exp-fx-label': 'exchange_rate',
+            'btn-add-exp': 'add',
+            'ui-history-label': 'history',
+
+            'ui-fuel-calc': 'fuel_calc',
+            'ui-fuel-dist-label': 'distance_km',
+            'ui-fuel-cons-label': 'consumption',
+            'ui-fuel-price-label': 'price_per_liter',
+            'ui-fuel-currency-label': 'currency',
+            'ui-fuel-fx-label': 'fuel_fx',
+            'ui-est-fuel-cost-text': 'estimated_route_cost',
+
+            'ui-refuel-card-title': 'refuel',
+            'ui-refuel-date-label': 'when',
+            'ui-refuel-name-label': 'name',
+            'ui-refuel-amount-label': 'amount',
+            'ui-refuel-currency-label': 'currency',
+            'ui-refuel-fx-label': 'exchange_rate',
+            'btn-add-refuel': 'add_refuel',
+            'ui-refuel-sum-label': 'refuel_total',
+
+            'ui-tolls-title': 'tolls',
+            'ui-toll-date-label': 'when',
+            'ui-toll-name-label': 'name',
+            'ui-toll-amount-label': 'amount',
+            'ui-toll-currency-label': 'currency',
+            'ui-toll-fx-label': 'exchange_rate',
+            'btn-add-toll': 'add_toll',
+            'ui-tolls-sum-label': 'tolls_total',
+
+            'ui-converter-title': 'quick_converter',
+            'btn-refresh-rates': 'refresh_rates',
+            'ui-rates-title': 'exchange_rates',
+
+            'ui-journal-header-label': 'journal',
+            'ui-journal-title-label': 'journal_title_location',
+            'btn-clear-journal': 'clear_journal',
+
+            'ui-packing-progress': 'packing_progress',
+            'ui-add-to-list': 'add_to_list',
+
+            'ui-pdf-title': 'pdf_report',
+            'ui-pdf-inc-budget': 'pdf_inc_budget',
+            'ui-pdf-inc-expenses': 'pdf_inc_expenses',
+            'ui-pdf-inc-fuel': 'pdf_inc_transport',
+            'ui-pdf-inc-list': 'pdf_inc_list',
+            'ui-pdf-inc-journal': 'pdf_inc_journal',
+            'btn-gen-pdf': 'export_pdf',
+
+            'nav-budget': 'nav_budget',
+            'nav-expenses': 'nav_expenses',
+            'nav-fuel': 'nav_fuel',
+            'nav-rates': 'nav_rates',
+            'nav-journal': 'nav_journal',
+            'nav-list': 'nav_list',
+            'nav-pdf': 'nav_pdf'
+          };
+
+          Object.keys(map).forEach(id => {
+            const el = document.getElementById(id);
+            if (!el) return;
+            const key = map[id];
+            if (t[key] == null) return;
+            el.textContent = t[key];
+          });
+
+          // placeholders (keep simple)
+          const phIds = ['new-cat-name','new-check-text'];
+          phIds.forEach(pid => {
+            const el = document.getElementById(pid);
+            if (el) el.setAttribute('placeholder', '...');
+          });
+          const phNum = ['new-cat-amount','conv-amount'];
+          phNum.forEach(pid => {
+            const el = document.getElementById(pid);
+            if (el) el.setAttribute('placeholder', '0.00');
+          });
+
+          safeSet(STORAGE_LANG, lang);
+          currentLang = lang;
+          renderOnboarding(lang);
+        }
+
+        function shouldShowOnboarding(){
+          try { return !localStorage.getItem(STORAGE_ONBOARD); } catch(e){ return true; }
+        }
+        function markOnboardingDone(){
+          try { localStorage.setItem(STORAGE_ONBOARD, '1'); } catch(e){}
+        }
+        function clearOnboardingDone(){
+          try { localStorage.removeItem(STORAGE_ONBOARD); } catch(e){}
+        }
+
+        function getOnboardingSlides(lang){
+          const t = dict[lang] || dict.en;
+          return [
+            { k: t.ob_s1_k, title: t.ob_s1_t, body: t.ob_s1_b },
+            { k: t.ob_s2_k, title: t.ob_s2_t, body: t.ob_s2_b },
+            { k: t.ob_s3_k, title: t.ob_s3_t, body: t.ob_s3_b },
+            { k: t.ob_s4_k, title: t.ob_s4_t, body: t.ob_s4_b }
+          ];
+        }
+
+        function renderOnboarding(lang){
+          if (!onboardingEl) return;
+          const t = dict[lang] || dict.en;
+          const slides = getOnboardingSlides(lang);
+          const idx = Math.max(0, Math.min(obIndex, slides.length - 1));
+          obIndex = idx;
+
+          if (obTitleEl) obTitleEl.textContent = t.ob_title;
+          if (obCloseBtn) obCloseBtn.setAttribute('aria-label', t.ob_close);
+          if (obPrevBtn) obPrevBtn.textContent = '◀ ' + (t.ob_prev || 'Back');
+
+          const s = slides[idx];
+          if (obKickerEl) obKickerEl.textContent = s.k;
+          if (obStepTitleEl) obStepTitleEl.textContent = s.title;
+          if (obStepTextEl) obStepTextEl.textContent = s.body;
+
+          // dots
+          if (obDotsEl){
+            obDotsEl.innerHTML = '';
+            for (let i = 0; i < slides.length; i++){
+              const d = document.createElement('div');
+              d.className = 'onboarding-dot' + (i === idx ? ' active' : '');
+              obDotsEl.appendChild(d);
+            }
+          }
+
+          // buttons
+          if (obPrevBtn) obPrevBtn.disabled = (idx === 0);
+          if (obNextBtn){
+            obNextBtn.textContent = (idx === slides.length - 1) ? t.ob_start : t.ob_next;
+          }
+        }
+
+        function showOnboarding(){
+          if (!onboardingEl) return;
+          onboardingEl.classList.add('show');
+          onboardingEl.setAttribute('aria-hidden','false');
+          document.body.style.overflow = 'hidden';
+          renderOnboarding(currentLang);
+        }
+        function hideOnboarding(){
+          if (!onboardingEl) return;
+          onboardingEl.classList.remove('show');
+          onboardingEl.setAttribute('aria-hidden','true');
+          document.body.style.overflow = '';
+        }
+
+        function wireOnboardingEvents(){
+          if (!onboardingEl) return;
+
+          if (obCloseBtn){
+            obCloseBtn.addEventListener('click', () => {
+              // If user closes early, we still mark it as done so it won't annoy.
+              markOnboardingDone();
+              hideOnboarding();
+            });
+          }
+
+          // click outside card closes
+          onboardingEl.addEventListener('click', (e) => {
+            if (e.target === onboardingEl){
+              markOnboardingDone();
+              hideOnboarding();
+            }
+          });
+
+          if (obPrevBtn){
+            obPrevBtn.addEventListener('click', () => {
+              obIndex = Math.max(0, obIndex - 1);
+              renderOnboarding(currentLang);
+            });
+          }
+
+          if (obNextBtn){
+            obNextBtn.addEventListener('click', () => {
+              const slides = getOnboardingSlides(currentLang);
+              if (obIndex >= slides.length - 1){
+                markOnboardingDone();
+                hideOnboarding();
+                return;
+              }
+              obIndex = Math.min(slides.length - 1, obIndex + 1);
+              renderOnboarding(currentLang);
+            });
+          }
+
+          // ESC closes
+          document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape' && onboardingEl.classList.contains('show')){
+              markOnboardingDone();
+              hideOnboarding();
+            }
+          });
+
+          // Reset button should allow onboarding to appear again
+          const resetBtn = document.getElementById('btn-reset');
+          if (resetBtn){
+            resetBtn.addEventListener('click', () => {
+              clearOnboardingDone();
+              // show again after reset action finishes
+              setTimeout(() => {
+                obIndex = 0;
+                showOnboarding();
+              }, 150);
+            });
+          }
+        }
+
+        // init
+        const initialTheme = detectTheme();
+        setTheme(initialTheme);
+        const initialLang = detectLang();
+        applyLang(initialLang);
+
+        // onboarding init
+        currentLang = initialLang;
+        wireOnboardingEvents();
+        if (shouldShowOnboarding()){
+          obIndex = 0;
+          showOnboarding();
+        }
+
+        // events
+        if (themeBtn){
+          themeBtn.addEventListener('click', () => {
+            const now = body.getAttribute('data-theme') || 'light';
+            setTheme(now === 'dark' ? 'light' : 'dark');
+          });
+        }
+        if (langSelect){
+          langSelect.addEventListener('change', (e) => applyLang(e.target.value));
+        }
+      })();
+    </script>
     <script type="module" src="index.js"></script>
 <script type="module" src="/index.tsx"></script>
 </body>
