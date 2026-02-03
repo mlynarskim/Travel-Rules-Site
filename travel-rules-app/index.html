@@ -1,0 +1,694 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+  <!-- Google Tag Manager -->
+  <script>
+    (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+    'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+    })(window,document,'script','dataLayer','GTM-KSSXRMKH');
+  </script>
+  <!-- End Google Tag Manager -->
+
+  <meta charset="UTF-8" />
+  <link rel="preconnect" href="https://www.googletagmanager.com" crossorigin>
+  <link rel="preconnect" href="https://www.google-analytics.com" crossorigin>
+  <link rel="preconnect" href="https://pagead2.googlesyndication.com" crossorigin>
+  <link rel="preconnect" href="https://googleads.g.doubleclick.net" crossorigin>
+  <link rel="preconnect" href="https://tpc.googlesyndication.com" crossorigin>
+  <link rel="preconnect" href="https://tools.applemediaservices.com" crossorigin>
+  <link rel="preconnect" href="https://itunes.apple.com" crossorigin>
+
+  <link rel="preload" as="image" href="/images/decor/mountains.png" fetchpriority="high">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5307701268996147"
+     crossorigin="anonymous"></script>
+  <meta name="google-adsense-account" content="ca-pub-5307701268996147">
+
+  <title>Travel Rules — iOS app for vanlife</title>
+  <meta name="description" content="Travel Rules is a free iOS app for vanlife: daily rules, checklists, saved spots, and a simple trip plan builder. Available in Polish, English, and Spanish.">
+
+  <meta name="theme-color" content="#29606D">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Travel Rules">
+  <meta property="og:title" content="Travel Rules — iOS app for vanlife">
+  <meta property="og:description" content="Daily rules, checklists, and saved spots. iOS app for vanlife.">
+  <meta property="og:image" content="/images/v3/phone_mockup.png">
+  <meta property="og:url" content="https://www.travelrules.eu/">
+
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Travel Rules — iOS app for vanlife">
+  <meta name="twitter:description" content="Daily rules, checklists, and saved spots. iOS app for vanlife.">
+  <meta name="twitter:image" content="/images/v3/phone_mockup.png">
+
+  <link rel="icon" href="/favicon.ico">
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    "name": "Travel Rules",
+    "applicationCategory": "TravelApplication",
+    "operatingSystem": "iOS",
+    "inLanguage": ["pl", "en", "es"],
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "PLN",
+      "category": "Free",
+      "availability": "https://schema.org/InStock"
+    },
+    "url": "https://www.travelrules.eu/",
+    "downloadUrl": "https://apps.apple.com/pl/app/travel-rules/id6451070215?l=pl",
+    "publisher": {"@type": "Organization", "name": "Travel Rules"}
+  }
+  </script>
+
+  <link rel="stylesheet" href="/assets/styles.css">
+
+  <style>
+    :root{
+      --tr-accent:#DDAA4F;
+      --tr-primary:#29606D;
+    }
+
+    /* Hotfix: ensure background images resolve correctly even when CSS is in /assets/ */
+    .hero { background-image: url("/images/decor/mountains.png"); }
+    .visual-divider--boat { background-image: url("/images/decor/boat.png"); }
+
+    /* Minimal top bar (hub-like) */
+    .topbar{
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 14px;
+      padding: 14px 18px;
+      border-bottom: 1px solid rgba(0,0,0,.08);
+      background: rgba(255,255,255,.86);
+      -webkit-backdrop-filter: blur(10px);
+      backdrop-filter: blur(10px);
+    }
+    body.dark-mode .topbar{
+      background: rgba(16,16,16,.72);
+      border-bottom: 1px solid rgba(255,255,255,.12);
+    }
+
+    .brand{
+      display:flex;
+      align-items:center;
+      gap:10px;
+      text-decoration:none;
+      color: inherit;
+      font-weight: 800;
+      letter-spacing: .2px;
+    }
+    .brand-mark{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      width: 36px;
+      height: 36px;
+      border-radius: 10px;
+      color: #fff;
+      background: var(--tr-primary);
+      box-shadow: 0 10px 20px rgba(0,0,0,.12);
+      font-size: 14px;
+    }
+    .brand-name{ font-size: 16px; }
+
+    .topbar-controls{
+      display:flex;
+      align-items:center;
+      gap:10px;
+    }
+
+    .icon-btn{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      width: 40px;
+      height: 40px;
+      border-radius: 12px;
+      border: 1px solid rgba(0,0,0,.12);
+      background: transparent;
+      cursor:pointer;
+    }
+    body.dark-mode .icon-btn{ border-color: rgba(255,255,255,.18); }
+    .icon-btn:hover{ border-color: var(--tr-primary); }
+
+    .lang-select{
+      height: 40px;
+      border-radius: 12px;
+      padding: 0 12px;
+      border: 1px solid rgba(0,0,0,.12);
+      background: transparent;
+      color: inherit;
+      cursor: pointer;
+      font-weight: 700;
+      letter-spacing: .4px;
+    }
+    body.dark-mode .lang-select{ border-color: rgba(255,255,255,.18); }
+    .lang-select:hover{ border-color: var(--tr-accent); }
+
+    /* Small accents without changing page background */
+    a[style*="background-color: var(--color-primary)"],
+    a[style*="background:var(--color-primary)"],
+    a[style*="background: var(--color-primary)"]{
+      background: var(--tr-primary) !important;
+    }
+  </style>
+</head>
+
+<body class="theme-classic">
+  <!-- Google Tag Manager (noscript) -->
+  <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-KSSXRMKH"
+  height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+  <!-- End Google Tag Manager (noscript) -->
+
+  <!-- TOP BAR -->
+  <header class="topbar">
+    <a href="/" class="brand" aria-label="Travel Rules home">
+      <span class="brand-mark" aria-hidden="true">TR</span>
+      <span class="brand-name">Travel Rules</span>
+    </a>
+
+    <div class="topbar-controls" aria-label="Page controls">
+      <button class="icon-btn" type="button" id="themeToggle" aria-label="Toggle theme" title="Toggle theme">
+        <span class="icon" aria-hidden="true">🌙</span>
+      </button>
+
+      <select id="langSelect" class="lang-select" aria-label="Language">
+        <option value="pl">PL</option>
+        <option value="en">EN</option>
+        <option value="es">ES</option>
+      </select>
+    </div>
+  </header>
+
+  <!-- SEKCJA HERO -->
+  <section class="hero">
+    <div class="hero-text">
+      <h1 data-lang-key="hero_title">Travel Rules</h1>
+      <p data-lang-key="hero_subtitle">Twoje codzienne źródło inspiracji i praktycznych wskazówek.</p>
+
+      <div class="hero-ctas" style="display:flex;flex-direction:column;align-items:center;gap:16px;">
+        <a data-appstore-link href="https://apps.apple.com/pl/app/travel-rules/id6451070215?l=pl"
+           aria-label="Pobierz w App Store" style="display:inline-block;margin-top:10px;">
+          <img data-appstore-badge data-badge-size="150x50"
+               src="https://tools.applemediaservices.com/api/badges/download-on-the-app-store/black/pl-pl?size=150x50&releaseDate=1684790400"
+               alt="Pobierz w App Store" width="150" height="50" decoding="async" fetchpriority="high">
+        </a>
+
+        <div style="text-align:center">
+          <a href="#app" data-lang-key="learn_more"
+             style="display:inline-block;background-color: var(--color-primary); color:#fff; padding:15px 24px; border-radius:8px; text-decoration:none;">
+            Dowiedz się więcej
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SEKCJA "O APLIKACJI"  -->
+  <section id="app" class="section map-watermark">
+    <img class="decor-map" src="/images/decor/world-map.png" alt="" aria-hidden="true" loading="lazy" decoding="async">
+    <h2 data-lang-key="about_title">Travel Rules</h2>
+    <p data-lang-key="about_text">
+      Aplikacja, dzięki której odkryjesz uroki vanlife w zupełnie nowy sposób. Codzienne zasady, checklista podróżna,
+      społeczność i wiele więcej – wszystko w eleganckim, minimalistycznym wydaniu.
+    </p>
+  </section>
+
+  <!-- SEKCJA AKTUALNOŚCI -->
+  <section id="updates" class="section">
+    <h2 data-lang-key="updates_title">Aktualności</h2>
+    <div id="appstore-updates" class="updates" style="background-color: var(--color-card-background); color: var(--color-text-primary);">
+      <p style="opacity:.7" data-lang-key="updates_loading">Ładowanie informacji z App Store…</p>
+    </div>
+  </section>
+
+  <!-- DIVIDER (łódka) -->
+  <section class="visual-divider visual-divider--boat" aria-hidden="true"></section>
+
+  <!-- SEKCJA ROZSZERZONYCH FUNKCJI -->
+  <section id="extended" class="section">
+    <h2 data-lang-key="extended_title">Rozszerzone Funkcje</h2>
+    <div class="extended" style="background-color: var(--color-card-background); color: var(--color-text-primary);">
+      <ul>
+        <li>
+          <strong data-lang-key="extended_loc_title">Zapisywanie lokalizacji:</strong>
+          <span data-lang-key="extended_loc_text">Można teraz zapisywać i łatwo znajdować zapisane lokalizacje na mapie. Możliwość otwierania lokalizacji w Mapach Google i Mapach Apple.</span>
+        </li>
+        <li>
+          <strong data-lang-key="extended_nearby_title">Mapa: punkty w pobliżu + plan podróży:</strong>
+          <span data-lang-key="extended_nearby_text">Nowa mapa pokazuje punkty w pobliżu (np. spoty, parkingi, atrakcje) i pozwala budować prosty plan trasy. Dodawaj miejsca do planu, układaj kolejność i otwieraj nawigację w Mapach Apple lub Google.</span>
+        </li>
+        <li>
+          <strong data-lang-key="extended_rules_title">Nowe zasady podróży:</strong>
+          <span data-lang-key="extended_rules_text">Dodano więcej zasad i poprawiono ich organizację, aby były jeszcze bardziej przydatne.</span>
+        </li>
+        <li>
+          <strong data-lang-key="extended_achievements_title">System osiągnięć:</strong>
+          <span data-lang-key="extended_achievements_text">Możesz teraz zbierać osiągnięcia za korzystanie z aplikacji, takie jak „Regularny podróżnik” i „Mistrz konsekwencji”.</span>
+        </li>
+        <li>
+          <strong data-lang-key="extended_emergency_title">Numery alarmowe dla różnych krajów:</strong>
+          <span data-lang-key="extended_emergency_text">Aplikacja automatycznie rozpoznaje kraj i wyświetla odpowiednie numery alarmowe oraz przydatne linki.</span>
+        </li>
+        <li>
+          <strong data-lang-key="extended_packing_title">Lista rzeczy do spakowania:</strong>
+          <span data-lang-key="extended_packing_text">Teraz możesz utworzyć i spersonalizować listę rzeczy do spakowania przed podróżą.</span>
+        </li>
+        <li>
+          <strong data-lang-key="extended_notifications_title">Nowe powiadomienia:</strong>
+          <span data-lang-key="extended_notifications_text">Możliwość ustawienia powiadomień o zasadach obowiązujących w danym dniu oraz przypomnień o ważnych dokumentach.</span>
+        </li>
+        <li>
+          <strong data-lang-key="extended_docs_title">Powiadomienia o wygasających dokumentach:</strong>
+          <span data-lang-key="extended_docs_text">Dodano opcję otrzymywania powiadomień na miesiąc przed wygaśnięciem ważnych dokumentów.</span>
+        </li>
+        <li>
+          <strong data-lang-key="extended_personalization_title">Personalizacja aplikacji:</strong>
+          <span data-lang-key="extended_personalization_text">Możliwość zmiany motywu kolorystycznego, w tym trybu klasycznego, górskiego, plażowego, pustynnego i leśnego.</span>
+        </li>
+        <li>
+          <strong data-lang-key="extended_improvements_title">Ulepszenia i optymalizacje:</strong>
+          <ul>
+            <li data-lang-key="extended_improvements_text">Naprawiono błędy interfejsu, ulepszono zarządzanie powiadomieniami oraz wyświetlanie reklam.</li>
+          </ul>
+        </li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- SEKCJA ZRZUTÓW EKRANU -->
+  <section class="section">
+    <h2 data-lang-key="screenshots_title2">Zobacz, jak to wygląda</h2>
+    <div class="screenshots">
+      <img src="/images/v3/nearby_points.PNG" alt="Mapa: punkty w pobliżu" width="300" height="650" loading="lazy" decoding="async">
+      <img src="/images/v3/trip_plan.PNG" alt="Plan podróży" width="300" height="650" loading="lazy" decoding="async">
+      <img src="/images/v2/rule.PNG" alt="Nowy widok zasady" width="300" height="650" loading="lazy" decoding="async">
+      <img src="/images/v2/saverule.PNG" alt="Zapisywanie zasady" width="300" height="650" loading="lazy" decoding="async">
+      <img src="/images/v2/achievements.PNG" alt="System osiągnięć" width="300" height="650" loading="lazy" decoding="async">
+      <img src="/images/v2/packinglistnew.PNG" alt="Nowa lista pakowania" width="300" height="650" loading="lazy" decoding="async">
+      <img src="/images/v2/sharelist.PNG" alt="Udostępnianie listy" width="300" height="650" loading="lazy" decoding="async">
+      <img src="/images/v2/locallist.PNG" alt="Lista lokalizacji" width="300" height="650" loading="lazy" decoding="async">
+      <img src="/images/v2/localespania.PNG" alt="Lokalizacje: Hiszpania" width="300" height="650" loading="lazy" decoding="async">
+      <img src="/images/v2/localfrance.PNG" alt="Lokalizacje: Francja" width="300" height="650" loading="lazy" decoding="async">
+      <img src="/images/v2/localgermany.PNG" alt="Lokalizacje: Niemcy" width="300" height="650" loading="lazy" decoding="async">
+    </div>
+  </section>
+
+  <!-- PRICING -->
+  <section id="pricing" class="section map-watermark">
+    <img class="decor-map" src="/images/decor/world-map.png" alt="" aria-hidden="true" loading="lazy" decoding="async">
+    <h2 data-lang-key="pricing_title">Free vs Premium</h2>
+    <p style="color:var(--color-text-secondary)" data-lang-key="pricing_subtitle">Aplikacja jest darmowa. Opcjonalne Premium odblokowuje więcej treści i usuwa reklamy.</p>
+
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:20px;margin-top:20px;text-align:left">
+      <div style="background:var(--color-card-background);padding:24px;border-radius:12px;box-shadow:0 10px 20px var(--color-card-shadow)">
+        <h3 style="margin:0 0 10px" data-lang-key="pricing_free_title">Free</h3>
+        <ul style="margin:0;padding-left:18px;color:var(--color-text-secondary)">
+          <li data-lang-key="pricing_free_li1">Codzienna zasada</li>
+          <li data-lang-key="pricing_free_li2">Lista rzeczy do spakowania</li>
+          <li data-lang-key="pricing_free_li3">Zapisy lokalizacji</li>
+          <li data-lang-key="pricing_free_li4">Reklamy kontekstowe</li>
+        </ul>
+      </div>
+
+      <div style="background:var(--color-card-background);padding:24px;border-radius:12px;box-shadow:0 10px 20px var(--color-card-shadow)">
+        <h3 style="margin:0 0 10px" data-lang-key="pricing_premium_title">Premium</h3>
+        <ul style="margin:0;padding-left:18px;color:var(--color-text-secondary)">
+          <li data-lang-key="pricing_premium_li1">Bez reklam</li>
+          <li data-lang-key="pricing_premium_li2">Pełny dostęp do zasad</li>
+          <li data-lang-key="pricing_premium_li3">Zaawansowane checklisty</li>
+          <li data-lang-key="pricing_premium_li4">Wczesny dostęp do nowych funkcji</li>
+        </ul>
+        <div style="margin-top:12px">
+          <a href="#cta" data-lang-key="pricing_unlock"
+             style="text-decoration:none;background:var(--color-primary);color:#fff;padding:10px 16px;border-radius:8px;display:inline-block">
+            Odblokuj w aplikacji
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section id="cta" class="cta">
+    <h2 data-lang-key="cta_title">Zacznij organizować swoje podróże już teraz!</h2>
+    <p data-lang-key="cta_text">Pobierz Travel Rules na swoje urządzenie iOS. Aplikacja dostępna wyłącznie na iOS – poczuj różnicę dzięki intuicyjnemu interfejsowi i zaawansowanym funkcjom.</p>
+
+    <div class="download-link" style="display: inline-block; text-align: center;">
+      <a data-appstore-link href="https://apps.apple.com/pl/app/travel-rules/id6451070215?l=pl"
+         aria-label="Pobierz w App Store" style="display:inline-block;margin-top:10px;">
+        <img data-appstore-badge data-badge-size="200x66"
+             src="https://tools.applemediaservices.com/api/badges/download-on-the-app-store/black/pl-pl?size=200x66&releaseDate=1684790400"
+             alt="Pobierz w App Store" width="200" height="66" decoding="async" loading="lazy">
+      </a>
+    </div>
+  </section>
+
+  <!-- STOPKA -->
+  <footer>
+    <p data-lang-key="footer_rights">© 2025 Travel Rules. Wszelkie prawa zastrzeżone.</p>
+    <p class="small">
+      <a href="/privacy.html" data-lang-key="footer_privacy">Polityka Prywatności</a> •
+      <a href="/terms.html" data-lang-key="footer_terms">Warunki korzystania</a> •
+      <a href="/cookies.html" data-lang-key="footer_cookies">Polityka Cookies</a>
+    </p>
+  </footer>
+
+  <script defer src="/assets/app.js"></script>
+
+  <script>
+    // Fallback: if assets/app.js is missing or empty, keep core functionality working.
+    if (!window.__TR_APP_INIT__) {
+      window.__TR_APP_INIT__ = true;
+
+      document.addEventListener('DOMContentLoaded', () => {
+        const body = document.body;
+        const htmlEl = document.documentElement;
+
+        const metaDesc = document.querySelector('meta[name="description"]');
+        const ogTitle = document.querySelector('meta[property="og:title"]');
+        const ogDesc = document.querySelector('meta[property="og:description"]');
+        const twTitle = document.querySelector('meta[name="twitter:title"]');
+        const twDesc = document.querySelector('meta[name="twitter:description"]');
+
+        const themeToggle = document.getElementById('themeToggle');
+        const themeIcon = themeToggle ? themeToggle.querySelector('.icon') : null;
+        const langSelect = document.getElementById('langSelect');
+
+        const appStoreLinks = Array.from(document.querySelectorAll('[data-appstore-link]'));
+        const appStoreBadges = Array.from(document.querySelectorAll('[data-appstore-badge]'));
+
+        const translations = {
+          pl: {
+            meta_title: "Travel Rules — aplikacja iOS dla vanlife",
+            meta_description: "Travel Rules to darmowa aplikacja iOS dla vanlife: codzienne zasady, checklisty, mapa z punktami w pobliżu oraz budowanie planu podróży. Dostępna po polsku, angielsku i hiszpańsku.",
+            og_title: "Travel Rules — aplikacja iOS dla vanlife",
+            og_description: "Codzienne zasady, checklisty i zapisy miejsc. Aplikacja iOS dla vanlife.",
+
+            hero_title: "Travel Rules",
+            hero_subtitle: "Twoje codzienne źródło inspiracji i praktycznych wskazówek.",
+            learn_more: "Dowiedz się więcej",
+
+            about_title: "Travel Rules",
+            about_text: "Aplikacja, dzięki której odkryjesz uroki vanlife w zupełnie nowy sposób. Codzienne zasady, checklisty, zapisy miejsc oraz nowa mapa z punktami w pobliżu i budowanie planu podróży — wszystko w eleganckim, minimalistycznym wydaniu.",
+
+            screenshots_title2: "Zobacz, jak to wygląda",
+
+            updates_title: "Aktualności",
+            updates_loading: "Ładowanie informacji z App Store…",
+
+            extended_title: "Rozszerzone Funkcje",
+            extended_loc_title: "Zapisywanie lokalizacji:",
+            extended_loc_text: "Można teraz zapisywać i łatwo znajdować zapisane lokalizacje na mapie. Możliwość otwierania lokalizacji w Mapach Google i Mapach Apple.",
+            extended_nearby_title: "Mapa: punkty w pobliżu + plan podróży:",
+            extended_nearby_text: "Nowa mapa pokazuje punkty w pobliżu (np. spoty, parkingi, atrakcje) i pozwala budować prosty plan trasy. Dodawaj miejsca do planu, układaj kolejność i otwieraj nawigację w Mapach Apple lub Google.",
+            extended_rules_title: "Nowe zasady podróży:",
+            extended_rules_text: "Dodano więcej zasad i poprawiono ich organizację, aby były jeszcze bardziej przydatne.",
+            extended_achievements_title: "System osiągnięć:",
+            extended_achievements_text: "Możesz teraz zbierać osiągnięcia za korzystanie z aplikacji, takie jak „Regularny podróżnik” i „Mistrz konsekwencji”.",
+            extended_emergency_title: "Numery alarmowe dla różnych krajów:",
+            extended_emergency_text: "Aplikacja automatycznie rozpoznaje kraj i wyświetla odpowiednie numery alarmowe oraz przydatne linki.",
+            extended_packing_title: "Lista rzeczy do spakowania:",
+            extended_packing_text: "Teraz możesz utworzyć i spersonalizować listę rzeczy do spakowania przed podróżą.",
+            extended_notifications_title: "Nowe powiadomienia:",
+            extended_notifications_text: "Możliwość ustawienia powiadomień o zasadach obowiązujących w danym dniu oraz przypomnień o ważnych dokumentach.",
+            extended_docs_title: "Powiadomienia o wygasających dokumentach:",
+            extended_docs_text: "Dodano opcję otrzymywania powiadomień na miesiąc przed wygaśnięciem ważnych dokumentów.",
+            extended_personalization_title: "Personalizacja aplikacji:",
+            extended_personalization_text: "Możliwość zmiany motywu kolorystycznego, w tym trybu klasycznego, górskiego, plażowego, pustynnego i leśnego.",
+            extended_improvements_title: "Ulepszenia i optymalizacje:",
+            extended_improvements_text: "Naprawiono błędy interfejsu, ulepszono zarządzanie powiadomieniami oraz wyświetlanie reklam.",
+
+            pricing_title: "Free vs Premium",
+            pricing_subtitle: "Aplikacja jest darmowa. Opcjonalne Premium odblokowuje więcej treści i usuwa reklamy.",
+            pricing_free_title: "Free",
+            pricing_free_li1: "Codzienna zasada",
+            pricing_free_li2: "Lista rzeczy do spakowania",
+            pricing_free_li3: "Zapisy lokalizacji",
+            pricing_free_li4: "Reklamy kontekstowe",
+            pricing_premium_title: "Premium",
+            pricing_premium_li1: "Bez reklam",
+            pricing_premium_li2: "Pełny dostęp do zasad",
+            pricing_premium_li3: "Zaawansowane checklisty",
+            pricing_premium_li4: "Wczesny dostęp do nowych funkcji",
+            pricing_unlock: "Odblokuj w aplikacji",
+
+            cta_title: "Zacznij organizować swoje podróże już teraz!",
+            cta_text: "Pobierz Travel Rules na swoje urządzenie iOS. Aplikacja dostępna wyłącznie na iOS – poczuj różnicę dzięki intuicyjnemu interfejsowi i zaawansowanym funkcjom.",
+
+            footer_rights: "© 2025 Travel Rules. Wszelkie prawa zastrzeżone.",
+            footer_privacy: "Polityka Prywatności",
+            footer_terms: "Warunki korzystania",
+            footer_cookies: "Polityka Cookies",
+
+            appstore_alt: "Pobierz w App Store",
+            theme_toggle_aria: "Przełącz motyw (jasny/ciemny)"
+          },
+
+          en: {
+            meta_title: "Travel Rules — iOS app for vanlife",
+            meta_description: "Travel Rules is a free iOS app for vanlife: daily rules, checklists, saved spots, and a simple trip plan builder. Available in Polish, English, and Spanish.",
+            og_title: "Travel Rules — iOS app for vanlife",
+            og_description: "Daily rules, checklists, and saved spots. iOS app for vanlife.",
+
+            hero_title: "Travel Rules",
+            hero_subtitle: "Your daily source of inspiration and practical tips.",
+            learn_more: "Learn more",
+
+            about_title: "Travel Rules",
+            about_text: "An app that lets you discover vanlife with confidence. Daily rules, checklists, saved spots, plus a map with nearby points and an easy trip plan builder — all in a clean, minimalist design.",
+
+            screenshots_title2: "See how it looks",
+
+            updates_title: "Updates",
+            updates_loading: "Loading App Store updates…",
+
+            extended_title: "Extended features",
+            extended_loc_title: "Save locations:",
+            extended_loc_text: "Save locations and find them easily on the map. Open saved spots in Google Maps and Apple Maps.",
+            extended_nearby_title: "Map: nearby points + trip plan:",
+            extended_nearby_text: "A new map shows nearby points (spots, parking, attractions) and lets you build a simple route plan. Add places, reorder them, and open navigation in Apple Maps or Google Maps.",
+            extended_rules_title: "More travel rules:",
+            extended_rules_text: "More rules were added and organized to be even more useful.",
+            extended_achievements_title: "Achievements:",
+            extended_achievements_text: "Earn achievements for using the app, such as “Regular Traveler” and “Consistency Master”.",
+            extended_emergency_title: "Emergency numbers by country:",
+            extended_emergency_text: "The app automatically detects your country and shows the right emergency numbers and helpful links.",
+            extended_packing_title: "Packing list:",
+            extended_packing_text: "Create and personalize a packing list before your trip.",
+            extended_notifications_title: "Notifications:",
+            extended_notifications_text: "Daily rule notifications and reminders for important documents.",
+            extended_docs_title: "Expiring documents reminders:",
+            extended_docs_text: "Get a reminder one month before important documents expire.",
+            extended_personalization_title: "Personalization:",
+            extended_personalization_text: "Change the color theme (classic, mountain, beach, desert, forest).",
+            extended_improvements_title: "Improvements:",
+            extended_improvements_text: "UI fixes, better notification management, and improved ad display.",
+
+            pricing_title: "Free vs Premium",
+            pricing_subtitle: "The app is free. Optional Premium unlocks more content and removes ads.",
+            pricing_free_title: "Free",
+            pricing_free_li1: "Daily rule",
+            pricing_free_li2: "Packing list",
+            pricing_free_li3: "Saved locations",
+            pricing_free_li4: "Contextual ads",
+            pricing_premium_title: "Premium",
+            pricing_premium_li1: "No ads",
+            pricing_premium_li2: "Full access to rules",
+            pricing_premium_li3: "Advanced checklists",
+            pricing_premium_li4: "Early access to new features",
+            pricing_unlock: "Unlock in the app",
+
+            cta_title: "Start organizing your travels today!",
+            cta_text: "Download Travel Rules for iOS. Available exclusively on iOS — enjoy an intuitive interface and powerful features.",
+
+            footer_rights: "© 2025 Travel Rules. All rights reserved.",
+            footer_privacy: "Privacy Policy",
+            footer_terms: "Terms of Use",
+            footer_cookies: "Cookie Policy",
+
+            appstore_alt: "Download on the App Store",
+            theme_toggle_aria: "Toggle theme (light/dark)"
+          },
+
+          es: {
+            meta_title: "Travel Rules — app iOS para vanlife",
+            meta_description: "Travel Rules es una app gratuita para iOS para vanlife: reglas diarias, checklists, mapa de puntos cercanos, lugares guardados y un planificador de viaje sencillo. Disponible en polaco, inglés y español.",
+            og_title: "Travel Rules — app iOS para vanlife",
+            og_description: "Reglas diarias, checklists y lugares guardados. App iOS para vanlife.",
+
+            hero_title: "Travel Rules",
+            hero_subtitle: "Tu fuente diaria de inspiración y consejos prácticos.",
+            learn_more: "Ver más",
+
+            about_title: "Travel Rules",
+            about_text: "Una app para disfrutar del vanlife con confianza: reglas diarias, checklists, lugares guardados y un mapa con puntos cercanos y un planificador sencillo — con un diseño limpio y minimalista.",
+
+            screenshots_title2: "Mira cómo se ve",
+
+            updates_title: "Actualizaciones",
+            updates_loading: "Cargando actualizaciones de App Store…",
+
+            extended_title: "Funciones avanzadas",
+            extended_loc_title: "Guardar ubicaciones:",
+            extended_loc_text: "Guarda lugares y encuéntralos fácilmente en el mapa. Ábrelos en Google Maps o Apple Maps.",
+            extended_nearby_title: "Mapa: puntos cercanos + plan de viaje:",
+            extended_nearby_text: "El nuevo mapa muestra puntos cercanos (spots, parking, atracciones) y te permite crear una ruta sencilla. Añade lugares, reordena y abre la navegación en Apple Maps o Google Maps.",
+            extended_rules_title: "Más reglas de viaje:",
+            extended_rules_text: "Se añadieron más reglas y se organizaron para que sean aún más útiles.",
+            extended_achievements_title: "Logros:",
+            extended_achievements_text: "Consigue logros por usar la app, como “Viajero frecuente” y “Maestro de la constancia”.",
+            extended_emergency_title: "Números de emergencia por país:",
+            extended_emergency_text: "La app detecta tu país y muestra los números de emergencia correctos y enlaces útiles.",
+            extended_packing_title: "Lista de equipaje:",
+            extended_packing_text: "Crea y personaliza tu lista antes del viaje.",
+            extended_notifications_title: "Notificaciones:",
+            extended_notifications_text: "Recordatorios de reglas diarias y alertas de documentos importantes.",
+            extended_docs_title: "Avisos de documentos por caducar:",
+            extended_docs_text: "Recibe un recordatorio un mes antes de que caduquen documentos importantes.",
+            extended_personalization_title: "Personalización:",
+            extended_personalization_text: "Cambia el tema de color (clásico, montaña, playa, desierto, bosque).",
+            extended_improvements_title: "Mejoras:",
+            extended_improvements_text: "Correcciones de UI, mejor gestión de notificaciones y mejor visualización de anuncios.",
+
+            pricing_title: "Gratis vs Premium",
+            pricing_subtitle: "La app es gratuita. Premium opcional desbloquea más contenido y elimina anuncios.",
+            pricing_free_title: "Gratis",
+            pricing_free_li1: "Regla diaria",
+            pricing_free_li2: "Lista de equipaje",
+            pricing_free_li3: "Ubicaciones guardadas",
+            pricing_free_li4: "Anuncios contextuales",
+            pricing_premium_title: "Premium",
+            pricing_premium_li1: "Sin anuncios",
+            pricing_premium_li2: "Acceso completo a reglas",
+            pricing_premium_li3: "Checklists avanzadas",
+            pricing_premium_li4: "Acceso anticipado a nuevas funciones",
+            pricing_unlock: "Desbloquear en la app",
+
+            cta_title: "¡Empieza a organizar tus viajes hoy!",
+            cta_text: "Descarga Travel Rules para iOS. Disponible solo en iOS — una interfaz intuitiva y funciones potentes.",
+
+            footer_rights: "© 2025 Travel Rules. Todos los derechos reservados.",
+            footer_privacy: "Política de Privacidad",
+            footer_terms: "Términos de uso",
+            footer_cookies: "Política de Cookies",
+
+            appstore_alt: "Descargar en App Store",
+            theme_toggle_aria: "Cambiar tema (claro/oscuro)"
+          }
+        };
+
+        function safeGet(key){ try { return localStorage.getItem(key); } catch(e) { return null; } }
+        function safeSet(key, val){ try { localStorage.setItem(key, val); } catch(e) {} }
+
+        function setAppStoreLocale(lang){
+          const map = {
+            pl: { country: 'pl', l: 'pl', badge: 'pl-pl' },
+            en: { country: 'us', l: 'en', badge: 'en-us' },
+            es: { country: 'es', l: 'es', badge: 'es-es' }
+          };
+          const cfg = map[lang] || map.en;
+          const href = `https://apps.apple.com/${cfg.country}/app/travel-rules/id6451070215?l=${cfg.l}`;
+
+          const t = translations[lang] || translations.en;
+
+          appStoreLinks.forEach(a => {
+            a.setAttribute('href', href);
+            a.setAttribute('aria-label', t.appstore_alt);
+          });
+
+          appStoreBadges.forEach(img => {
+            const size = img.getAttribute('data-badge-size') || '150x50';
+            img.setAttribute('src', `https://tools.applemediaservices.com/api/badges/download-on-the-app-store/black/${cfg.badge}?size=${encodeURIComponent(size)}&releaseDate=1684790400`);
+            img.setAttribute('alt', t.appstore_alt);
+          });
+        }
+
+        function applyLanguage(lang){
+          const t = translations[lang] || translations.en;
+          htmlEl.setAttribute('lang', lang);
+
+          if (t.meta_title) document.title = t.meta_title;
+          if (metaDesc && t.meta_description) metaDesc.setAttribute('content', t.meta_description);
+          if (ogTitle && t.og_title) ogTitle.setAttribute('content', t.og_title);
+          if (ogDesc && t.og_description) ogDesc.setAttribute('content', t.og_description);
+          if (twTitle && t.og_title) twTitle.setAttribute('content', t.og_title);
+          if (twDesc && t.og_description) twDesc.setAttribute('content', t.og_description);
+
+          document.querySelectorAll('[data-lang-key]').forEach(el => {
+            const key = el.getAttribute('data-lang-key');
+            if (t[key] != null) el.textContent = t[key];
+          });
+          document.querySelectorAll('[data-lang-key-html]').forEach(el => {
+            const key = el.getAttribute('data-lang-key-html');
+            if (t[key] != null) el.innerHTML = t[key];
+          });
+
+          if (themeToggle && t.theme_toggle_aria) {
+            themeToggle.setAttribute('aria-label', t.theme_toggle_aria);
+            themeToggle.setAttribute('title', t.theme_toggle_aria);
+          }
+
+          setAppStoreLocale(lang);
+          if (langSelect) langSelect.value = lang;
+
+          safeSet('tr_lang', lang);
+        }
+
+        function applyTheme(theme){
+          const isDark = theme === 'dark';
+          body.classList.toggle('dark-mode', isDark);
+          safeSet('tr_theme', theme);
+          if (themeIcon) themeIcon.textContent = isDark ? '☀️' : '🌙';
+        }
+
+        function detectLang(){
+          const saved = safeGet('tr_lang');
+          if (saved && translations[saved]) return saved;
+          const nav = (navigator.language || 'en').toLowerCase();
+          if (nav.startsWith('pl')) return 'pl';
+          if (nav.startsWith('es')) return 'es';
+          return 'en';
+        }
+
+        function detectTheme(){
+          const saved = safeGet('tr_theme');
+          if (saved === 'dark' || saved === 'light') return saved;
+          const prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+          return prefersDark ? 'dark' : 'light';
+        }
+
+        // Init
+        const initialLang = detectLang();
+        const initialTheme = detectTheme();
+        applyTheme(initialTheme);
+        applyLanguage(initialLang);
+
+        // Events
+        if (themeToggle) {
+          themeToggle.addEventListener('click', () => {
+            const next = body.classList.contains('dark-mode') ? 'light' : 'dark';
+            applyTheme(next);
+          });
+        }
+
+        if (langSelect) {
+          langSelect.addEventListener('change', (e) => {
+            applyLanguage(e.target.value);
+          });
+        }
+      });
+    }
+  </script>
+</body>
+</html>
