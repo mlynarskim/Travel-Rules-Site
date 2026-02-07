@@ -366,6 +366,31 @@
     .footer a:hover{ text-decoration: underline; }
     .footer-links{ display:flex; gap: 10px; flex-wrap: wrap; justify-content:flex-end; }
 
+    /* Blog */
+    .blog-grid{ display:grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-top: 16px; }
+    .post-meta{ display:flex; flex-wrap:wrap; gap: 8px; align-items:center; color: var(--muted); font-weight: 700; font-size: .92rem; }
+    .post-meta .dot{ opacity: .6; }
+    .tag{ font-size: .8rem; font-weight: 850; padding: 4px 10px; border-radius: 999px;
+      background: color-mix(in oklab, var(--accent) 8%, transparent);
+      border: 1px solid color-mix(in oklab, var(--accent) 22%, var(--border));
+      color: color-mix(in oklab, var(--accent) 78%, var(--text));
+    }
+    .post-title{ margin: 0; letter-spacing: -.2px; font-size: 1.15rem; }
+    .post-excerpt{ margin: 0; color: var(--muted); }
+    .post-actions{ display:flex; gap: 10px; flex-wrap:wrap; margin-top: 6px; }
+
+    .post-view{ padding-top: 6px; }
+    .post-view h3{ margin: 6px 0 10px; font-size: clamp(22px, 2.6vw, 34px); line-height: 1.18; letter-spacing: -.5px; }
+    .post-content{ color: var(--text); }
+    .post-content p{ margin: 10px 0; color: color-mix(in oklab, var(--text) 92%, var(--muted)); }
+    .post-content h4{ margin: 18px 0 8px; letter-spacing: -.2px; }
+    .post-content ul{ margin: 10px 0 10px; padding-left: 18px; }
+    .post-content li{ margin: 6px 0; }
+
+    @media (max-width: 980px){
+      .blog-grid{ grid-template-columns: 1fr; }
+    }
+
     /* Responsive */
     @media (max-width: 980px){
       .hero-grid{ grid-template-columns: 1fr; }
@@ -435,10 +460,9 @@
 
           <div class="hero-actions">
             <a class="btn btn-primary" href="#products" data-i18n="cta_products">Przejdź do produktów</a>
-            <a class="btn" href="./travelrules-ebook-landing/" data-i18n="cta_ebook">Zobacz 
-                
-            </a>
+            <a class="btn" href="./travelrules-ebook-landing/" data-i18n="cta_ebook">Zobacz</a>
             <a class="btn btn-ghost" href="./links.html" data-i18n="cta_links">Linki do aplikacji</a>
+            <a class="btn" href="#blog" data-i18n="cta_blog">Blog</a>
           </div>
         </div>
 
@@ -736,6 +760,20 @@
       </div>
     </section>
 
+    <!-- BLOG -->
+    <section class="section" id="blog">
+      <div class="container">
+        <h2 data-i18n="blog_h2">Blog / Wpisy</h2>
+        <p class="muted" data-i18n="blog_p">Krótkie poradniki i aktualizacje. Wybierz wpis, żeby przeczytać całość.</p>
+
+        <div class="hero-card" style="padding:18px; margin-top: 14px;">
+          <div class="post-meta" id="blogStatus" aria-live="polite"></div>
+          <div class="post-view" id="postView" style="display:none;"></div>
+          <div id="blogList" class="blog-grid"></div>
+        </div>
+      </div>
+    </section>
+
     <!-- WHY -->
     <section class="section">
       <div class="container">
@@ -764,6 +802,7 @@
         <a href="./terms.html" data-i18n="footer_terms">Terms</a>
         <a href="./cookies.html" data-i18n="footer_cookies">Cookies</a>
         <a href="./links.html" data-i18n="footer_links">Links</a>
+        <a href="#blog" data-i18n="footer_blog">Blog</a>
       </div>
     </div>
   </footer>
@@ -854,6 +893,15 @@
           cta_products: 'Przejdź do produktów',
           cta_ebook: 'Zobacz ebooka',
           cta_links: 'Linki do aplikacji',
+          cta_blog: 'Blog',
+
+          blog_h2: 'Blog / Wpisy',
+          blog_p: 'Krótkie poradniki i aktualizacje. Wybierz wpis, żeby przeczytać całość.',
+          blog_read: 'Czytaj',
+          blog_back: 'Wróć do listy',
+          blog_loading: 'Tłumaczę wpis…',
+          blog_translated: 'Tłumaczenie automatyczne',
+          blog_original: 'Oryginał',
 
           side_1_h: 'Szybki start',
           side_1_p: 'Wybierz produkt poniżej i przejdź do strony z opisem, podglądem i linkami.',
@@ -929,7 +977,8 @@
           footer_privacy: 'Privacy',
           footer_terms: 'Terms',
           footer_cookies: 'Cookies',
-          footer_links: 'Links'
+          footer_links: 'Links',
+          footer_blog: 'Blog'
         },
         en: {
           page_title: 'Travel Rules — Hub',
@@ -948,6 +997,15 @@
           cta_products: 'View products',
           cta_ebook: 'View the ebook',
           cta_links: 'App links',
+          cta_blog: 'Blog',
+
+          blog_h2: 'Blog / Posts',
+          blog_p: 'Short guides and updates. Pick a post to read the full version.',
+          blog_read: 'Read',
+          blog_back: 'Back to list',
+          blog_loading: 'Translating post…',
+          blog_translated: 'Auto translation',
+          blog_original: 'Original',
 
           side_1_h: 'Quick start',
           side_1_p: 'Pick a product below and open its page with details, previews, and links.',
@@ -1023,7 +1081,8 @@
           footer_privacy: 'Privacy',
           footer_terms: 'Terms',
           footer_cookies: 'Cookies',
-          footer_links: 'Links'
+          footer_links: 'Links',
+          footer_blog: 'Blog'
         },
         es: {
           page_title: 'Travel Rules — Hub',
@@ -1042,6 +1101,15 @@
           cta_products: 'Ver productos',
           cta_ebook: 'Ver el ebook',
           cta_links: 'Enlaces de la app',
+          cta_blog: 'Blog',
+
+          blog_h2: 'Blog / Artículos',
+          blog_p: 'Guías cortas y novedades. Elige un artículo para leer la versión completa.',
+          blog_read: 'Leer',
+          blog_back: 'Volver a la lista',
+          blog_loading: 'Traduciendo el artículo…',
+          blog_translated: 'Traducción automática',
+          blog_original: 'Original',
 
           side_1_h: 'Inicio rápido',
           side_1_p: 'Elige un producto y abre su página con detalles, vistas previas y enlaces.',
@@ -1117,7 +1185,8 @@
           footer_privacy: 'Privacidad',
           footer_terms: 'Términos',
           footer_cookies: 'Cookies',
-          footer_links: 'Enlaces'
+          footer_links: 'Enlaces',
+          footer_blog: 'Blog'
         }
       };
 
@@ -1171,6 +1240,214 @@
       });
 
       applyLang(detectLang());
+     
+      const BLOG_SOURCE_LANG = 'pl';
+
+      const blogEls = {
+        list: document.getElementById('blogList'),
+        view: document.getElementById('postView'),
+        status: document.getElementById('blogStatus')
+      };
+
+     // Blog posts are loaded from an external JSON file (preferred)
+// File: ./blog/posts.json
+let posts = [];
+      const POSTS_JSON_URL = './blog/posts.json';
+      let _postsLoaded = false;
+
+      async function loadPostsOnce(){
+        if (_postsLoaded) return;
+        _postsLoaded = true;
+
+        try{
+          const res = await fetch(POSTS_JSON_URL, { cache: 'no-store' });
+          if (!res.ok) throw new Error('posts.json not found');
+          const data = await res.json();
+          if (Array.isArray(data)){
+            posts = data;
+          } else if (data && Array.isArray(data.posts)){
+            posts = data.posts;
+          }
+        }catch(e){
+          // Fallback: use inline posts
+        }
+      }
+
+      function formatDateISO(iso, lang){
+        try{
+          const d = new Date(iso + 'T00:00:00');
+          return new Intl.DateTimeFormat(lang, { year:'numeric', month:'short', day:'2-digit' }).format(d);
+        }catch(e){
+          return iso;
+        }
+      }
+
+      function escapeHtml(s){
+        return String(s)
+          .replaceAll('&','&amp;')
+          .replaceAll('<','&lt;')
+          .replaceAll('>','&gt;')
+          .replaceAll('"','&quot;')
+          .replaceAll("'",'&#039;');
+      }
+
+      async function translateViaEndpoint(text, target, source){
+        if (!TRANSLATE_ENDPOINT) return null;
+        try{
+          const res = await fetch(TRANSLATE_ENDPOINT, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ q: text, source, target, format: 'html' })
+          });
+          if (!res.ok) return null;
+          const data = await res.json();
+          if (data && typeof data.translatedText === 'string') return data.translatedText;
+          return null;
+        }catch(e){
+          return null;
+        }
+      }
+
+      function cacheKey(postId, field, lang){
+        return `tr_blog_${postId}_${field}_${lang}`;
+      }
+
+      async function getPostField(post, field, lang){
+        const bucket = post[field] || {};
+        if (bucket[lang]) return { value: bucket[lang], isAuto: false, isOriginal: lang === (post.sourceLang || BLOG_SOURCE_LANG) };
+
+        try{
+          const cached = localStorage.getItem(cacheKey(post.id, field, lang));
+          if (cached) return { value: cached, isAuto: true, isOriginal: false };
+        }catch(e){}
+
+        const source = post.sourceLang || BLOG_SOURCE_LANG;
+        const sourceVal = bucket[source];
+        if (!sourceVal) return { value: '', isAuto: false, isOriginal: false };
+
+        const translated = await translateViaEndpoint(sourceVal, lang, source);
+        if (translated){
+          try{ localStorage.setItem(cacheKey(post.id, field, lang), translated); }catch(e){}
+          return { value: translated, isAuto: true, isOriginal: false };
+        }
+
+        return { value: sourceVal, isAuto: false, isOriginal: true };
+      }
+
+      function getHashParams(){
+        const h = (location.hash || '').replace(/^#/, '');
+        const out = {};
+        if (!h) return out;
+        h.split('&').forEach(part => {
+          const [k,v] = part.split('=');
+          if (!k) return;
+          out[decodeURIComponent(k)] = v ? decodeURIComponent(v) : '';
+        });
+        return out;
+      }
+
+      function setStatusHtml(html){
+        if (!blogEls.status) return;
+        blogEls.status.innerHTML = html;
+      }
+
+      function setStatusText(text){
+        if (!blogEls.status) return;
+        blogEls.status.textContent = text;
+      }
+
+      async function renderBlogList(lang){
+        if (!blogEls.list) return;
+        if (blogEls.view) blogEls.view.style.display = 'none';
+        blogEls.list.style.display = '';
+        setStatusText('');
+
+        const sorted = [...posts].sort((a,b) => (b.date || '').localeCompare(a.date || ''));
+
+        const cards = [];
+        for (const p of sorted){
+          const title = await getPostField(p, 'title', lang);
+          const excerpt = await getPostField(p, 'excerpt', lang);
+
+          const metaDate = formatDateISO(p.date, lang);
+          const tags = (p.tags || []).slice(0,4).map(t => `<span class="tag">${escapeHtml(t)}</span>`).join(' ');
+
+          cards.push(`
+            <article class="card" style="min-height: 0;">
+              <div class="post-meta">
+                <span>${escapeHtml(metaDate)}</span>
+                <span class="dot">•</span>
+                <span>${tags}</span>
+              </div>
+              <h3 class="post-title">${escapeHtml(title.value || '')}</h3>
+              <p class="post-excerpt">${escapeHtml(excerpt.value || '')}</p>
+              <div class="post-actions">
+                <a class="btn btn-primary" href="#post=${encodeURIComponent(p.id)}">${escapeHtml((dict[lang]||dict.en).blog_read)}</a>
+              </div>
+            </article>
+          `);
+        }
+
+        blogEls.list.innerHTML = cards.join('');
+      }
+
+      async function renderPost(lang, postId){
+        if (!blogEls.view || !blogEls.list) return;
+
+        const post = posts.find(p => p.id === postId);
+        if (!post){
+          location.hash = '#blog';
+          return;
+        }
+
+        blogEls.list.style.display = 'none';
+        blogEls.view.style.display = '';
+
+        const t = dict[lang] || dict.en;
+        setStatusText(t.blog_loading);
+
+        const title = await getPostField(post, 'title', lang);
+        const content = await getPostField(post, 'contentHtml', lang);
+        const metaDate = formatDateISO(post.date, lang);
+
+        const statusBits = [];
+        if (content.isAuto) statusBits.push(`<span class="tag">${escapeHtml(t.blog_translated)}</span>`);
+        if (content.isOriginal) statusBits.push(`<span class="tag">${escapeHtml(t.blog_original)}</span>`);
+
+        setStatusHtml(`
+          <span>${escapeHtml(metaDate)}</span>
+          <span class="dot">•</span>
+          ${(post.tags||[]).slice(0,6).map(x => `<span class="tag">${escapeHtml(x)}</span>`).join(' ')}
+          ${statusBits.length ? `<span class="dot">•</span>${statusBits.join(' ')}` : ''}
+        `);
+
+        blogEls.view.innerHTML = `
+          <a class="btn btn-ghost" href="#blog">← ${escapeHtml(t.blog_back)}</a>
+          <h3>${escapeHtml(title.value || '')}</h3>
+          <div class="post-content">${content.value || ''}</div>
+        `;
+      }
+
+      async function renderBlogFromHash(){
+        const lang = (document.documentElement.getAttribute('lang') || 'en');
+        const params = getHashParams();
+        if (!params.post){
+          await renderBlogList(lang);
+          return;
+        }
+        await renderPost(lang, params.post);
+      }
+
+      window.addEventListener('hashchange', () => { loadPostsOnce().then(() => renderBlogFromHash()); });
+
+      // Re-render blog when language changes
+      const _applyLang = applyLang;
+      applyLang = function(lang){
+        _applyLang(lang);
+        loadPostsOnce().then(() => renderBlogFromHash());
+      };
+
+      loadPostsOnce().then(() => renderBlogFromHash());
     })();
   </script>
 </body>
