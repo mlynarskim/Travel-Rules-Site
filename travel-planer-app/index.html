@@ -94,37 +94,47 @@
 
         .settings-bar { display: flex; gap: 10px; align-items: center; flex: 0 0 auto; }
 
-        .settings-select {
-            height: 36px;
-            background: transparent;
-            border: 1px solid rgba(0,0,0,0.12);
-            color: var(--text);
-            padding: 0 10px;
-            border-radius: 10px;
-            font-size: 0.8rem;
-            cursor: pointer;
-            font-weight: 800;
-            letter-spacing: .4px;
-        }
-        [data-theme="dark"] .settings-select{ border-color: rgba(255,255,255,0.18); }
-        .settings-select:hover{ border-color: var(--accent); }
-        .settings-select option { color: black; }
+        .icon-btn{
+  width: 40px;
+  height: 40px;
+  padding: 0;
+  flex: 0 0 40px;
+  border-radius: 999px;
+  border: 1px solid rgba(0,0,0,0.12);
+  background: rgba(255,255,255,0.92);
+  color: var(--text);
+  font-size: 18px;
+  line-height: 1;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: transform .12s ease, border-color .12s ease;
+}
+[data-theme="dark"] .icon-btn{
+  background: rgba(30,41,59,0.75);
+  border-color: rgba(255,255,255,0.18);
+}
+.icon-btn:hover{ transform: translateY(-1px); border-color: rgba(41,96,109,.45); }
 
-        .theme-toggle {
-            width: 36px;
-            height: 36px;
-            border-radius: 10px;
-            background: transparent;
-            border: 1px solid rgba(0,0,0,0.12);
-            color: var(--text);
-            cursor: pointer;
-            padding: 0;
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-        }
-        [data-theme="dark"] .theme-toggle{ border-color: rgba(255,255,255,0.18); }
-        .theme-toggle:hover{ border-color: var(--primary); }
+.lang-select{
+  height: 40px;
+  border-radius: 999px;
+  border: 1px solid rgba(0,0,0,0.12);
+  background: rgba(255,255,255,0.92);
+  color: var(--text);
+  padding: 0 12px;
+  font-weight: 800;
+  cursor: pointer;
+  appearance: none;
+}
+[data-theme="dark"] .lang-select{
+  background: rgba(30,41,59,0.75);
+  border-color: rgba(255,255,255,0.18);
+}
+.lang-select:hover{ border-color: var(--accent); }
+.lang-select option{ color: black; }
+        
 
         nav {
             position: fixed; bottom: 0; left: 0; right: 0;
@@ -332,16 +342,17 @@
                 <span class="brand-name">Travel Rules</span>
             </a>
 
-            <div class="settings-bar">
-                <button class="theme-toggle" id="theme-btn" type="button" aria-label="Toggle theme" title="Toggle theme">
-                    <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" id="theme-icon-svg"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg>
-                </button>
-                <select id="lang-select" class="settings-select" aria-label="Language">
-                    <option value="pl">PL</option>
-                    <option value="en">EN</option>
-                    <option value="es">ES</option>
-                </select>
-            </div>
+         <div class="settings-bar">
+  <button class="icon-btn" id="theme-btn" type="button" aria-label="Toggle theme" title="Toggle theme">
+    <span id="themeIcon" aria-hidden="true">☀️</span>
+  </button>
+
+  <select id="lang-select" class="lang-select" aria-label="Language">
+    <option value="pl">PL</option>
+    <option value="en">EN</option>
+    <option value="es">ES</option>
+  </select>
+</div>
         </div>
     </header>
 
@@ -855,11 +866,16 @@
           return prefersDark ? 'dark' : 'light';
         }
 
-        function setTheme(theme){
-          body.setAttribute('data-theme', theme === 'dark' ? 'dark' : 'light');
-          safeSet(STORAGE_THEME, theme === 'dark' ? 'dark' : 'light');
-        }
+       function setTheme(theme){
+  const t = theme === 'dark' ? 'dark' : 'light';
+  body.setAttribute('data-theme', t);
+  safeSet(STORAGE_THEME, t);
 
+  const themeIcon = document.getElementById('themeIcon');
+  if (themeIcon){
+    themeIcon.textContent = t === 'dark' ? '🌙' : '☀️';
+  }
+}
         function applyLang(lang){
           const t = dict[lang] || dict.en;
           htmlEl.setAttribute('lang', lang);
