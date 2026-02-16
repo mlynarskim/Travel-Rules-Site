@@ -5,7 +5,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Travel Rules — Hub</title>
   <meta name="description" content="Travel Rules — aplikacja i produkty, które pomagają podróżować spokojniej: ebooki, checklisty, planery i narzędzia." />
-
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5307701268996147"
+     crossorigin="anonymous"></script>
   <!-- Open Graph -->
   <meta property="og:title" content="Travel Rules — Hub" />
   <meta property="og:description" content="Aplikacja + ebooki + narzędzia do spokojniejszych podróży." />
@@ -141,6 +142,7 @@
       border: 1px solid color-mix(in oklab, var(--border) 90%, transparent);
       background: color-mix(in oklab, var(--card) 85%, transparent);
       color: var(--text);
+      font-size: 18px;
       box-shadow: 0 10px 22px rgba(2,6,23,.05);
       cursor: pointer;
       transition: transform .12s ease, background .12s ease, border-color .12s ease;
@@ -149,29 +151,21 @@
     .icon-btn:hover{ transform: translateY(-1px); }
     .icon-btn:focus{ outline:none; box-shadow: 0 0 0 6px var(--ring), 0 10px 22px rgba(2,6,23,.05); }
 
-    .langbar{
-      display:flex;
-      gap:8px;
-      flex-wrap:wrap;
-    }
-
-    .lang-btn{
+    .lang-select{
+      height: 42px;
+      border-radius: 999px;
       border: 1px solid color-mix(in oklab, var(--border) 90%, transparent);
       background: color-mix(in oklab, var(--card) 92%, transparent);
       color: var(--text);
-      padding: 10px 12px;
-      border-radius: 999px;
-      cursor: pointer;
-      font-size: .95rem;
+      padding: 0 12px;
       font-weight: 800;
       line-height: 1;
-      transition: transform .12s ease, background .12s ease, border-color .12s ease;
+      cursor: pointer;
+      appearance: none;
+      box-shadow: 0 10px 22px rgba(2,6,23,.05);
     }
-    .lang-btn:hover{ transform: translateY(-1px); }
-    .lang-btn[aria-pressed="true"]{
-      border-color: color-mix(in oklab, var(--accent) 40%, var(--border));
-      box-shadow: 0 0 0 6px var(--ring);
-    }
+    html[data-theme="dark"] .lang-select{ box-shadow: 0 10px 22px rgba(0,0,0,.28); }
+    .lang-select:focus{ outline:none; box-shadow: 0 0 0 6px var(--ring), 0 10px 22px rgba(2,6,23,.05); }
 
     /* Buttons */
     .btn{
@@ -319,8 +313,82 @@
       overflow:hidden;
       background: color-mix(in oklab, var(--card) 92%, transparent);
       position: relative;
+
+      /* small cover/frame */
+      padding: 8px;
+      box-shadow: inset 0 1px 0 rgba(255,255,255,.35);
+      cursor: pointer;
+      transition: transform .14s ease, box-shadow .14s ease, border-color .14s ease;
     }
-    .thumb img{ width: 100%; height: 100%; object-fit: cover; display:block; }
+
+    html[data-theme="dark"] .thumb{
+      box-shadow: inset 0 1px 0 rgba(255,255,255,.10);
+    }
+
+    .thumb img{
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display:block;
+      border-radius: calc(var(--radiusSm) - 6px);
+      transition: transform .22s ease;
+      will-change: transform;
+    }
+
+    /* subtle cover overlay */
+    .thumb::after{
+      content:"";
+      position:absolute;
+      inset: 8px;
+      border-radius: calc(var(--radiusSm) - 6px);
+      pointer-events:none;
+      background: linear-gradient(
+        to bottom,
+        rgba(255,255,255,.18),
+        rgba(255,255,255,0) 40%,
+        rgba(0,0,0,.10)
+      );
+      mix-blend-mode: normal;
+      transition: opacity .22s ease;
+    }
+
+    html[data-theme="dark"] .thumb::after{
+      background: linear-gradient(
+        to bottom,
+        rgba(255,255,255,.10),
+        rgba(255,255,255,0) 45%,
+        rgba(0,0,0,.22)
+      );
+    }
+
+    /* Thumb hover (subtle lift + image zoom) */
+    .thumb:hover{
+      transform: translateY(-2px);
+      border-color: color-mix(in oklab, var(--accent) 28%, var(--border));
+      box-shadow: 0 14px 34px rgba(2,6,23,.10);
+    }
+    html[data-theme="dark"] .thumb:hover{
+      box-shadow: 0 14px 34px rgba(0,0,0,.35);
+    }
+
+    .thumb:hover img{
+      transform: scale(1.03);
+    }
+
+    .thumb:hover::after{
+      opacity: .85;
+    }
+
+    /* Keyboard focus for accessibility */
+    .thumb:focus-within,
+    .thumb:focus-visible{
+      outline: none;
+      box-shadow: 0 0 0 6px var(--ring), 0 14px 34px rgba(2,6,23,.10);
+    }
+    html[data-theme="dark"] .thumb:focus-within,
+    html[data-theme="dark"] .thumb:focus-visible{
+      box-shadow: 0 0 0 6px var(--ring), 0 14px 34px rgba(0,0,0,.35);
+    }
 
     /* Shop & Social (Links) */
     .grid-2{ display:grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-top: 16px; }
@@ -399,7 +467,7 @@
       .footer-grid{ grid-template-columns: 1fr; }
       .footer-links{ justify-content:flex-start; }
       .header-controls{ gap:8px; }
-      .lang-btn{ padding: 9px 10px; font-size: .92rem; }
+      .lang-select{ height: 42px; padding: 0 10px; font-size: .92rem; }
     }
 
     /* A11y helper */
@@ -424,18 +492,16 @@
         </span>
       </a>
 
-      <div class="header-controls" aria-label="Header controls">
-        <button class="icon-btn" id="themeToggle" type="button" aria-label="Toggle theme" aria-pressed="false" title="Theme">
-          <svg id="themeIcon" width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-            <path d="M21 12.8A8.5 8.5 0 0 1 11.2 3a7 7 0 1 0 9.8 9.8Z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/>
-          </svg>
+      <div class="header-controls" aria-label="Page controls">
+        <button class="icon-btn" id="themeToggle" type="button" aria-label="Toggle theme" aria-pressed="false" title="Toggle theme">
+          <span id="themeIcon" aria-hidden="true">☀️</span>
         </button>
 
-        <div class="langbar" aria-label="Language switcher">
-          <button class="lang-btn" type="button" data-lang="pl" aria-pressed="true">PL</button>
-          <button class="lang-btn" type="button" data-lang="en" aria-pressed="false">EN</button>
-          <button class="lang-btn" type="button" data-lang="es" aria-pressed="false">ES</button>
-        </div>
+        <select class="lang-select" id="langSelect" aria-label="Language">
+          <option value="pl">PL</option>
+          <option value="en">EN</option>
+          <option value="es">ES</option>
+        </select>
       </div>
     </div>
   </header>
@@ -517,6 +583,10 @@
               <li data-i18n="card1_li4">Checklisty (gotowe i własne) + eksport</li>
             </ul>
 
+            <div class="thumb" aria-label="Travel Rules App preview">
+              <img src="./images/v3/travel%20rules%20app.png" alt="Travel Rules App preview" loading="lazy" />
+            </div>
+
             <div class="card-actions">
               <a class="btn btn-primary" href="/travel-rules-app/" data-i18n="card1_btn1">Strona aplikacji</a>
               <a class="btn" href="https://apps.apple.com/pl/app/travel-rules/id6451070215?l=pl" target="_blank" rel="noopener" data-i18n="card1_btn2">Pobierz</a>
@@ -569,6 +639,10 @@
               <li data-i18n="card3_li3">Dziennik podróży, własne checklisty z kategoriami</li>
               <li data-i18n="card3_li4">Eksport planu i danych do PDF</li>
             </ul>
+
+            <div class="thumb" aria-label="Travel Planner App preview">
+              <img src="./images/v3/travel%20planer.png" alt="Travel Planner App preview" loading="lazy" />
+            </div>
 
             <div class="card-actions">
               <a class="btn btn-primary" href="./travel-planer-app/" data-i18n="card3_btn1">Przejdź do strony</a>
@@ -837,21 +911,13 @@
       const themeIcon = document.getElementById('themeIcon');
 
       function setTheme(theme){
-        htmlEl.setAttribute('data-theme', theme);
-        if (themeBtn) themeBtn.setAttribute('aria-pressed', theme === 'dark' ? 'true' : 'false');
-        if (themeIcon){
-          if (theme === 'dark'){
-            // sun icon
-            themeIcon.innerHTML =
-              '<path d="M12 18a6 6 0 1 0 0-12 6 6 0 0 0 0 12Z" stroke="currentColor" stroke-width="2"/>'+
-              '<path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>';
-          } else {
-            // moon icon
-            themeIcon.innerHTML = '<path d="M21 12.8A8.5 8.5 0 0 1 11.2 3a7 7 0 1 0 9.8 9.8Z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/>';
-          }
-        }
-        try{ localStorage.setItem('tr_theme', theme); }catch(e){}
-      }
+  htmlEl.setAttribute('data-theme', theme);
+  if (themeBtn) themeBtn.setAttribute('aria-pressed', theme === 'dark' ? 'true' : 'false');
+  if (themeIcon){
+    themeIcon.textContent = theme === 'dark' ? '🌙' : '☀️';
+  }
+  try{ localStorage.setItem('tr_theme', theme); }catch(e){}
+}
 
       function detectTheme(){
         try{
@@ -926,7 +992,7 @@
           card1_btn1: 'Strona aplikacji',
           card1_btn2: 'Pobierz',
 
-          card2_h3: 'First Camper Trip Prep Ebook',
+          card2_h3: 'ebook "Jak przygotować Kampera do pierwszej podróży. ',
           card2_p: 'Konkretny plan 72h/48h/24h + praktyczne strony, które pomagają ogarnąć pierwszy wyjazd.',
           card2_btn1: 'Zobacz',
           card2_btn2: 'Podgląd stron',
@@ -1190,11 +1256,7 @@
         }
       };
 
-      function setPressed(lang){
-        document.querySelectorAll('.lang-btn').forEach(btn => {
-          btn.setAttribute('aria-pressed', btn.dataset.lang === lang ? 'true' : 'false');
-        });
-      }
+      const langSelect = document.getElementById('langSelect');
 
       function applyLang(lang){
         const t = dict[lang] || dict.en;
@@ -1220,7 +1282,7 @@
           el.style.display = allowed.includes(lang) ? '' : 'none';
         });
 
-        setPressed(lang);
+        if (langSelect) langSelect.value = lang;
         try{ localStorage.setItem('tr_lang', lang); }catch(e){}
       }
 
@@ -1235,9 +1297,9 @@
         return 'en';
       }
 
-      document.querySelectorAll('.lang-btn').forEach(btn => {
-        btn.addEventListener('click', () => applyLang(btn.dataset.lang));
-      });
+      if (langSelect){
+        langSelect.addEventListener('change', (e) => applyLang(e.target.value));
+      }
 
       applyLang(detectLang());
      

@@ -38,6 +38,10 @@
       transition: background-color .28s ease, color .28s ease;
     }
 
+    :root{
+      --page-max: 1100px;
+    }
+
     /* THEMES (consistent with hub) */
     body.theme-classic{
       --color-primary: #29606D;
@@ -76,15 +80,21 @@
 
     /* HEADER (like hub / screenshot) */
     header{
-      display:flex;
-      align-items:center;
-      justify-content:space-between;
-      padding: 18px 22px;
       position: sticky;
       top: 0;
       z-index: 10;
       background-color: var(--color-bg);
       border-bottom: 1px solid #e2e2e2;
+    }
+
+    .header-inner{
+      max-width: var(--page-max);
+      margin: 0 auto;
+      width: 100%;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      padding: 18px 22px;
     }
 
     .brand{
@@ -119,72 +129,61 @@
     }
 
     .header-controls{
-      display:flex;
-      align-items:center;
-      gap: 12px;
-    }
+  display:flex;
+  align-items:center;
+  gap: 12px;
+}
 
-    .icon-btn{
-      width: 44px;
-      height: 44px;
-      border-radius: 999px;
-      border: 1px solid #e2e2e2;
-      background: #fff;
-      color: var(--color-text-primary);
-      display:grid;
-      place-items:center;
-      cursor:pointer;
-      transition: transform .15s ease, background-color .28s ease, border-color .28s ease;
-    }
-    body.dark-mode .icon-btn{
-      background: #242424;
-      border-color: rgba(255,255,255,0.12);
-    }
-    .icon-btn:hover{ transform: translateY(-1px); }
+/* Theme button: circle + same icon size everywhere */
+.icon-btn{
+  width: 40px;
+  height: 40px;
+  border-radius: 999px;
+  border: 1px solid #e2e2e2;
+  background: #fff;
+  color: var(--color-text-primary);
+  display:grid;
+  place-items:center;
+  cursor:pointer;
+  transition: transform .15s ease, background-color .28s ease, border-color .28s ease;
+  flex: 0 0 40px;
+}
+body.dark-mode .icon-btn{
+  background: #242424;
+  border-color: rgba(255,255,255,0.12);
+}
+.icon-btn:hover{ transform: translateY(-1px); }
 
-    .icon{
-      width: 20px;
-      height: 20px;
-      display:block;
-    }
+.icon-emoji{
+  font-size: 18px;
+  line-height: 1;
+  display:block;
+  transform: translateY(-0.5px);
+  user-select: none;
+}
 
-    .langbar{
-      display:flex;
-      align-items:center;
-      gap: 10px;
-    }
-
-    .lang-btn{
-      width: 54px;
-      height: 44px;
-      border-radius: 999px;
-      border: 1px solid #e2e2e2;
-      background: #fff;
-      color: var(--color-text-primary);
-      cursor:pointer;
-      font-weight: 800;
-      letter-spacing: .5px;
-      transition: background-color .28s ease, border-color .28s ease, transform .15s ease;
-    }
-    .lang-btn:hover{ transform: translateY(-1px); }
-    .lang-btn[aria-pressed="true"]{
-      border-color: rgba(41,96,109,0.35);
-      background: rgba(41,96,109,0.08);
-    }
-    body.dark-mode .lang-btn{
-      background: #242424;
-      border-color: rgba(255,255,255,0.12);
-      color: var(--color-text-primary);
-    }
-    body.dark-mode .lang-btn[aria-pressed="true"]{
-      border-color: rgba(221,170,79,0.35);
-      background: rgba(221,170,79,0.10);
-    }
+/* Language select: same look as other pages */
+.lang-select{
+  height: 40px;
+  border-radius: 12px;
+  padding: 0 12px;
+  border: 1px solid #e2e2e2;
+  background: #fff;
+  color: var(--color-text-primary);
+  cursor: pointer;
+  font-weight: 800;
+  letter-spacing: .5px;
+}
+body.dark-mode .lang-select{
+  background: #242424;
+  border-color: rgba(255,255,255,0.12);
+  color: var(--color-text-primary);
+}
 
     /* SECTION layout */
     .section{
       width: 100%;
-      max-width: 1200px;
+      max-width: var(--page-max);
       margin: 50px auto;
       padding: 0 20px;
       text-align: center;
@@ -298,7 +297,7 @@
     .small{ font-size: .95rem; }
 
     @media (max-width: 480px){
-      header{ padding: 14px 14px; }
+      .header-inner{ padding: 14px 14px; }
       .brand-name{ font-size: 1.2rem; }
       .link-card{ padding: 16px; }
       .link-icon{ width: 40px; height: 40px; flex: 0 0 40px; }
@@ -316,35 +315,22 @@
   <!-- End Google Tag Manager (noscript) -->
 
   <header>
-    <a href="index.html" class="brand" aria-label="Travel Rules home">
-      <span class="brand-mark" aria-hidden="true">TR</span>
-      <span class="brand-name" data-lang-key="logo">Travel Rules</span>
-    </a>
+    <div class="header-inner">
+      <a href="index.html" class="brand" aria-label="Travel Rules home">
+        <span class="brand-mark" aria-hidden="true">TR</span>
+        <span class="brand-name" data-lang-key="logo">Travel Rules</span>
+      </a>
 
-    <div class="header-controls">
-      <button class="icon-btn" id="themeToggle" type="button" aria-label="Toggle theme" aria-pressed="false">
-        <!-- Sun -->
-        <svg class="icon" id="iconSun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-          <circle cx="12" cy="12" r="4"></circle>
-          <path d="M12 2v2"></path>
-          <path d="M12 20v2"></path>
-          <path d="M4.93 4.93l1.41 1.41"></path>
-          <path d="M17.66 17.66l1.41 1.41"></path>
-          <path d="M2 12h2"></path>
-          <path d="M20 12h2"></path>
-          <path d="M4.93 19.07l1.41-1.41"></path>
-          <path d="M17.66 6.34l1.41-1.41"></path>
-        </svg>
-        <!-- Moon -->
-        <svg class="icon" id="iconMoon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="display:none;">
-          <path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"></path>
-        </svg>
-      </button>
+      <div class="header-controls">
+        <button class="icon-btn" id="themeToggle" type="button" aria-label="Toggle theme" aria-pressed="false" title="Toggle theme">
+          <span class="icon-emoji" id="themeIcon" aria-hidden="true">🌙</span>
+        </button>
 
-      <div class="langbar" aria-label="Language switcher">
-        <button class="lang-btn" type="button" data-lang="pl" aria-pressed="true">PL</button>
-        <button class="lang-btn" type="button" data-lang="en" aria-pressed="false">EN</button>
-        <button class="lang-btn" type="button" data-lang="es" aria-pressed="false">ES</button>
+        <select id="langSelect" class="lang-select" aria-label="Language">
+          <option value="pl">PL</option>
+          <option value="en">EN</option>
+          <option value="es">ES</option>
+        </select>
       </div>
     </div>
   </header>
@@ -532,24 +518,19 @@
       const savedDark = localStorage.getItem('tr_dark') === '1';
       const savedLang = localStorage.getItem('tr_lang');
 
-      // Theme toggle (smooth)
-      const themeToggle = document.getElementById('themeToggle');
-      const iconSun = document.getElementById('iconSun');
-      const iconMoon = document.getElementById('iconMoon');
+     const themeToggle = document.getElementById('themeToggle');
+const iconSun = document.getElementById('iconSun');
+const iconMoon = document.getElementById('iconMoon');
 
       function applyDark(on){
-        body.classList.toggle('dark-mode', !!on);
-        if (themeToggle) themeToggle.setAttribute('aria-pressed', on ? 'true' : 'false');
-        if (iconSun && iconMoon){
-          // If dark is ON -> show moon icon, else show sun icon
-          iconSun.style.display = on ? 'none' : '';
-          iconMoon.style.display = on ? '' : 'none';
-        }
-        try{
-          if (on) localStorage.setItem('tr_dark','1');
-          else localStorage.removeItem('tr_dark');
-        }catch(e){}
-      }
+  body.classList.toggle('dark-mode', !!on);
+  if (themeToggle) themeToggle.setAttribute('aria-pressed', on ? 'true' : 'false');
+  if (themeIcon) themeIcon.textContent = on ? '☀️' : '🌙';
+  try{
+    if (on) localStorage.setItem('tr_dark','1');
+    else localStorage.removeItem('tr_dark');
+  }catch(e){}
+}
 
       if (savedDark) applyDark(true);
 
@@ -652,10 +633,9 @@
       const ogDesc = document.querySelector('meta[property="og:description"]');
 
       function setPressed(lang){
-        document.querySelectorAll('.lang-btn').forEach(btn => {
-          btn.setAttribute('aria-pressed', btn.dataset.lang === lang ? 'true' : 'false');
-        });
-      }
+  const langSelect = document.getElementById('langSelect');
+  if (langSelect) langSelect.value = lang;
+}
 
       function setLanguage(lang){
         document.documentElement.lang = lang;
@@ -694,6 +674,7 @@
 
         // Theme button label (a11y)
         if (themeToggle) themeToggle.setAttribute('aria-label', t.theme_btn || 'Toggle theme');
+        if (themeToggle) themeToggle.setAttribute('title', t.theme_btn || 'Toggle theme');
 
         setPressed(lang);
         try{ localStorage.setItem('tr_lang', lang); }catch(e){}
@@ -709,10 +690,10 @@
         return 'en';
       }
 
-      // Language buttons
-      document.querySelectorAll('.lang-btn').forEach(btn => {
-        btn.addEventListener('click', () => setLanguage(btn.dataset.lang));
-      });
+const langSelect = document.getElementById('langSelect');
+if (langSelect){
+  langSelect.addEventListener('change', (e) => setLanguage(e.target.value));
+}
 
       setLanguage(detectLang());
     })();

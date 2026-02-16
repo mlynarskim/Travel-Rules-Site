@@ -72,7 +72,137 @@
     :root{
       --tr-accent:#DDAA4F;
       --tr-primary:#29606D;
+      --tr-page-max: 1120px;
     }
+
+    /* Constrain page width like other pages (keep full-width background elements where possible) */
+    .topbar,
+    .hero-text,
+    .section,
+    .cta,
+    footer{
+      max-width: var(--tr-page-max);
+      margin-left: auto;
+      margin-right: auto;
+      width: 100%;
+      box-sizing: border-box;
+    }
+
+    /* Keep visual dividers full-bleed */
+    .visual-divider{
+      max-width: none;
+    }
+
+    /* Spacing polish for key sections (match other pages feel) */
+    #app.section{
+      padding-top: 88px;
+      padding-bottom: 88px;
+      padding-left: 24px;
+      padding-right: 24px;
+    }
+
+/* PRICING: full-bleed background (map) + constrained content */
+    #pricing.section.map-watermark{
+      max-width: none;          
+      width: 100%;
+      margin-left: 0;
+      margin-right: 0;
+      position: relative;
+      overflow: hidden;
+      padding-top: 96px;
+      padding-bottom: 96px;
+      padding-left: 0;
+      padding-right: 0;
+      box-sizing: border-box;
+    }
+
+    /* Map image goes full screen width */
+    #pricing.section.map-watermark .decor-map{
+      position: absolute;
+      inset: 0;
+      width: 100vw;
+      height: 100%;
+      left: 50%;
+      transform: translateX(-50%);
+      object-fit: cover;
+      object-position: center;
+      opacity: 0.12;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    /* Content stays in the same max width as the rest of the page */
+    #pricing.section.map-watermark > :not(.decor-map){
+      position: relative;
+      z-index: 1;
+      max-width: var(--tr-page-max);
+      margin-left: auto;
+      margin-right: auto;
+      width: 100%;
+      box-sizing: border-box;
+      padding-left: 24px;
+      padding-right: 24px;
+    }
+#updates.section{
+  padding-top: 88px;
+  padding-bottom: 88px;
+  padding-left: 24px;
+  padding-right: 24px;
+}
+
+/* Updates card (rounded, breathable) */
+#appstore-updates.updates{
+  border-radius: 20px;
+  padding: 22px 22px;
+  overflow: hidden;
+  min-height: 92px;
+}
+    /* CTA: more inner padding + rounded corners */
+    #cta.cta{
+      padding: 84px 24px;
+      border-radius: 24px;
+      overflow: hidden; /* ensures rounded corners clip background */
+      margin-top: 48px;
+      margin-bottom: 48px;
+    }
+
+    /* Keep headings breathing room */
+    #app.section h2,
+    #pricing.section h2,
+    #cta.cta h2{
+      margin-top: 0;
+      margin-bottom: 18px;
+    }
+
+    #app.section p,
+    #pricing.section p,
+    #cta.cta p{
+      margin-top: 0;
+      margin-bottom: 22px;
+    }
+
+@media (max-width: 720px){
+  #app.section,
+  #updates.section{
+    padding-top: 68px;
+    padding-bottom: 68px;
+    padding-left: 18px;
+    padding-right: 18px;
+  }
+
+  /* PRICING keeps full-bleed background; adjust vertical spacing */
+  #pricing.section.map-watermark{
+    padding-top: 68px;
+    padding-bottom: 68px;
+  }
+  #pricing.section.map-watermark > :not(.decor-map){
+    padding-left: 18px;
+    padding-right: 18px;
+  }
+
+  #cta.cta{ padding: 64px 18px; border-radius: 20px; }
+  #appstore-updates.updates{ border-radius: 16px; padding: 18px 18px; }
+}
 
     /* Hotfix: ensure background images resolve correctly even when CSS is in /assets/ */
     .hero { background-image: url("/images/decor/mountains.png"); }
@@ -133,17 +263,23 @@
       justify-content:center;
       width: 40px;
       height: 40px;
-      border-radius: 12px;
+      padding: 0;
+      flex: 0 0 40px;
+      border-radius: 999px;
       border: 1px solid rgba(0,0,0,.12);
       background: transparent;
+      color: inherit;
+      font-size: 18px;
+      line-height: 1;
       cursor:pointer;
+      transition: transform .12s ease, border-color .12s ease;
     }
     body.dark-mode .icon-btn{ border-color: rgba(255,255,255,.18); }
-    .icon-btn:hover{ border-color: var(--tr-primary); }
+    .icon-btn:hover{ transform: translateY(-1px); border-color: rgba(41,96,109,.45); }
 
     .lang-select{
       height: 40px;
-      border-radius: 12px;
+      border-radius: 999px;
       padding: 0 12px;
       border: 1px solid rgba(0,0,0,.12);
       background: transparent;
@@ -151,6 +287,7 @@
       cursor: pointer;
       font-weight: 700;
       letter-spacing: .4px;
+      appearance: none;
     }
     body.dark-mode .lang-select{ border-color: rgba(255,255,255,.18); }
     .lang-select:hover{ border-color: var(--tr-accent); }
@@ -179,7 +316,7 @@
 
     <div class="topbar-controls" aria-label="Page controls">
       <button class="icon-btn" type="button" id="themeToggle" aria-label="Toggle theme" title="Toggle theme">
-        <span class="icon" aria-hidden="true">🌙</span>
+        <span class="icon" aria-hidden="true">☀️</span>
       </button>
 
       <select id="langSelect" class="lang-select" aria-label="Language">
@@ -387,7 +524,7 @@
 
         const appStoreLinks = Array.from(document.querySelectorAll('[data-appstore-link]'));
         const appStoreBadges = Array.from(document.querySelectorAll('[data-appstore-badge]'));
-
+const updatesBox = document.getElementById('appstore-updates');
         const translations = {
           pl: {
             meta_title: "Travel Rules — aplikacja iOS dla vanlife",
@@ -406,7 +543,7 @@
 
             updates_title: "Aktualności",
             updates_loading: "Ładowanie informacji z App Store…",
-
+            updates_error: "Nie udało się pobrać aktualności z App Store. Spróbuj ponownie później.",
             extended_title: "Rozszerzone Funkcje",
             extended_loc_title: "Zapisywanie lokalizacji:",
             extended_loc_text: "Można teraz zapisywać i łatwo znajdować zapisane lokalizacje na mapie. Możliwość otwierania lokalizacji w Mapach Google i Mapach Apple.",
@@ -472,7 +609,7 @@
 
             updates_title: "Updates",
             updates_loading: "Loading App Store updates…",
-
+updates_error: "Couldn't load App Store updates. Please try again later.",
             extended_title: "Extended features",
             extended_loc_title: "Save locations:",
             extended_loc_text: "Save locations and find them easily on the map. Open saved spots in Google Maps and Apple Maps.",
@@ -538,7 +675,7 @@
 
             updates_title: "Actualizaciones",
             updates_loading: "Cargando actualizaciones de App Store…",
-
+updates_error: "No se pudieron cargar las actualizaciones de App Store. Inténtalo más tarde.",
             extended_title: "Funciones avanzadas",
             extended_loc_title: "Guardar ubicaciones:",
             extended_loc_text: "Guarda lugares y encuéntralos fácilmente en el mapa. Ábrelos en Google Maps o Apple Maps.",
@@ -641,7 +778,7 @@
 
           setAppStoreLocale(lang);
           if (langSelect) langSelect.value = lang;
-
+body.setAttribute('data-current-lang', lang);
           safeSet('tr_lang', lang);
         }
 
@@ -649,7 +786,7 @@
           const isDark = theme === 'dark';
           body.classList.toggle('dark-mode', isDark);
           safeSet('tr_theme', theme);
-          if (themeIcon) themeIcon.textContent = isDark ? '☀️' : '🌙';
+          if (themeIcon) themeIcon.textContent = isDark ? '🌙' : '☀️';
         }
 
         function detectLang(){
@@ -673,7 +810,17 @@
         const initialTheme = detectTheme();
         applyTheme(initialTheme);
         applyLanguage(initialLang);
-
+// Updates fallback: if nothing loads, replace the loading state with a friendly message
+setTimeout(() => {
+  if (!updatesBox) return;
+  const hasLoading = updatesBox.querySelector('[data-lang-key="updates_loading"]');
+  const hasRealContent = updatesBox.querySelector('a, li, article, .update-item');
+  if (hasLoading && !hasRealContent) {
+    const lang = body.getAttribute('data-current-lang') || initialLang;
+    const t = translations[lang] || translations.en;
+    updatesBox.innerHTML = `<p style="opacity:.85">${t.updates_error || translations.en.updates_error}</p>`;
+  }
+}, 6000);
         // Events
         if (themeToggle) {
           themeToggle.addEventListener('click', () => {
