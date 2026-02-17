@@ -459,6 +459,7 @@
       .blog-grid{ grid-template-columns: 1fr; }
     }
 
+
     /* Responsive */
     @media (max-width: 980px){
       .hero-grid{ grid-template-columns: 1fr; }
@@ -834,16 +835,23 @@
       </div>
     </section>
 
-    <!-- BLOG -->
+    <!-- BLOG (SEO-friendly: render cards on the page, no iframe) -->
     <section class="section" id="blog">
       <div class="container">
         <h2 data-i18n="blog_h2">Blog / Wpisy</h2>
         <p class="muted" data-i18n="blog_p">Krótkie poradniki i aktualizacje. Wybierz wpis, żeby przeczytać całość.</p>
 
-        <div class="hero-card" style="padding:18px; margin-top: 14px;">
+        <div class="hero-card" style="margin-top:14px;">
           <div class="post-meta" id="blogStatus" aria-live="polite"></div>
-          <div class="post-view" id="postView" style="display:none;"></div>
-          <div id="blogList" class="blog-grid"></div>
+          <div id="latestPosts" class="blog-grid"></div>
+
+          <div class="section-note" style="margin-top:12px;display:flex;gap:10px;flex-wrap:wrap;">
+            <a class="btn btn-ghost" href="/blog/index.html" data-i18n="blog_open_all">Otwórz blog</a>
+          </div>
+
+          <noscript>
+            <p class="muted">JavaScript jest wyłączony — otwórz <a class="email-link" href="/blog/index.html">stronę bloga</a>.</p>
+          </noscript>
         </div>
       </div>
     </section>
@@ -968,6 +976,8 @@
           blog_loading: 'Tłumaczę wpis…',
           blog_translated: 'Tłumaczenie automatyczne',
           blog_original: 'Oryginał',
+          blog_open_all: 'Otwórz blog',
+          blog_empty: 'Brak wpisów do wyświetlenia.',
 
           side_1_h: 'Szybki start',
           side_1_p: 'Wybierz produkt poniżej i przejdź do strony z opisem, podglądem i linkami.',
@@ -1072,6 +1082,8 @@
           blog_loading: 'Translating post…',
           blog_translated: 'Auto translation',
           blog_original: 'Original',
+          blog_open_all: 'Open blog',
+          blog_empty: 'No posts to display.',
 
           side_1_h: 'Quick start',
           side_1_p: 'Pick a product below and open its page with details, previews, and links.',
@@ -1176,6 +1188,8 @@
           blog_loading: 'Traduciendo el artículo…',
           blog_translated: 'Traducción automática',
           blog_original: 'Original',
+          blog_open_all: 'Abrir blog',
+          blog_empty: 'No hay artículos para mostrar.',
 
           side_1_h: 'Inicio rápido',
           side_1_p: 'Elige un producto y abre su página con detalles, vistas previas y enlaces.',
@@ -1302,46 +1316,13 @@
       }
 
       applyLang(detectLang());
-     
-      const BLOG_SOURCE_LANG = 'pl';
 
-      const blogEls = {
-        list: document.getElementById('blogList'),
-        view: document.getElementById('postView'),
-        status: document.getElementById('blogStatus')
-      };
+      // ---- Blog (render latest posts on this page, no iframe) ----
+      const blogStatusEl = document.getElementById('blogStatus');
+      const latestPostsEl = document.getElementById('latestPosts');
 
-     // Blog posts are loaded from an external JSON file (preferred)
-// File: ./blog/posts.json
-let posts = [];
-      const POSTS_JSON_URL = './blog/posts.json';
-      let _postsLoaded = false;
-
-      async function loadPostsOnce(){
-        if (_postsLoaded) return;
-        _postsLoaded = true;
-
-        try{
-          const res = await fetch(POSTS_JSON_URL, { cache: 'no-store' });
-          if (!res.ok) throw new Error('posts.json not found');
-          const data = await res.json();
-          if (Array.isArray(data)){
-            posts = data;
-          } else if (data && Array.isArray(data.posts)){
-            posts = data.posts;
-          }
-        }catch(e){
-          // Fallback: use inline posts
-        }
-      }
-
-      function formatDateISO(iso, lang){
-        try{
-          const d = new Date(iso + 'T00:00:00');
-          return new Intl.DateTimeFormat(lang, { year:'numeric', month:'short', day:'2-digit' }).format(d);
-        }catch(e){
-          return iso;
-        }
+      function setBlogStatus(t){
+        if (blogStatusEl) blogStatusEl.textContent = t || '';
       }
 
       function escapeHtml(s){
@@ -1353,163 +1334,94 @@ let posts = [];
           .replaceAll("'",'&#039;');
       }
 
-      async function translateViaEndpoint(text, target, source){
-        if (!TRANSLATE_ENDPOINT) return null;
+      function formatDateISO(iso){
         try{
-          const res = await fetch(TRANSLATE_ENDPOINT, {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ q: text, source, target, format: 'html' })
-          });
-          if (!res.ok) return null;
-          const data = await res.json();
-          if (data && typeof data.translatedText === 'string') return data.translatedText;
-          return null;
+          const d = new Date(iso + 'T00:00:00');
+          return new Intl.DateTimeFormat(document.documentElement.lang || 'pl', {
+            year:'numeric', month:'short', day:'2-digit'
+          }).format(d);
         }catch(e){
-          return null;
+          return iso || '';
         }
       }
 
-      function cacheKey(postId, field, lang){
-        return `tr_blog_${postId}_${field}_${lang}`;
+      function pickLangField(obj){
+        if (!obj) return '';
+        const lang = document.documentElement.lang || 'pl';
+        return obj[lang] || obj.pl || obj.en || obj.es || '';
       }
 
-      async function getPostField(post, field, lang){
-        const bucket = post[field] || {};
-        if (bucket[lang]) return { value: bucket[lang], isAuto: false, isOriginal: lang === (post.sourceLang || BLOG_SOURCE_LANG) };
+      async function loadLatestPosts(){
+        if (!latestPostsEl) return;
+        setBlogStatus('');
 
         try{
-          const cached = localStorage.getItem(cacheKey(post.id, field, lang));
-          if (cached) return { value: cached, isAuto: true, isOriginal: false };
-        }catch(e){}
+          // Source of truth for the homepage cards
+          const res = await fetch('/blog/data/posts.json', { cache: 'no-store' });
+          if (!res.ok) throw new Error('posts.json not found');
 
-        const source = post.sourceLang || BLOG_SOURCE_LANG;
-        const sourceVal = bucket[source];
-        if (!sourceVal) return { value: '', isAuto: false, isOriginal: false };
+          const data = await res.json();
+          const posts = Array.isArray(data) ? data : (data && Array.isArray(data.posts) ? data.posts : []);
 
-        const translated = await translateViaEndpoint(sourceVal, lang, source);
-        if (translated){
-          try{ localStorage.setItem(cacheKey(post.id, field, lang), translated); }catch(e){}
-          return { value: translated, isAuto: true, isOriginal: false };
+          const sorted = [...posts].sort((a,b) => (b.date||'').localeCompare(a.date||''));
+          const latest = sorted.slice(0, 6);
+
+          if (!latest.length){
+            setBlogStatus((dict[document.documentElement.lang] || dict.en).blog_empty || '');
+            latestPostsEl.innerHTML = '';
+            return;
+          }
+
+          const t = dict[document.documentElement.lang] || dict.en;
+          const readLabel = t.blog_read || 'Read';
+
+          latestPostsEl.innerHTML = latest.map(p => {
+            const title = escapeHtml(pickLangField(p.title));
+            const excerpt = escapeHtml(pickLangField(p.excerpt));
+            const metaDate = escapeHtml(formatDateISO(p.date || ''));
+            const tags = (p.tags || []).slice(0,4).map(tag => `<span class="tag">${escapeHtml(tag)}</span>`).join(' ');
+
+            // Prefer SEO-friendly generated pages if present (your generator can create /blog/p/<id>.<lang>.html)
+            const lang = document.documentElement.lang || 'en';
+            const seoHref = `/blog/p/${encodeURIComponent(p.id)}.${encodeURIComponent(lang)}.html`;
+            const fallbackHref = `/blog/post.html?id=${encodeURIComponent(p.id)}&lang=${encodeURIComponent(lang)}`;
+
+            return `
+              <article class="card">
+                <div class="post-meta">
+                  <span>${metaDate}</span>
+                  ${tags ? `<span class="dot">•</span><span>${tags}</span>` : ''}
+                </div>
+                <h3 class="post-title">${title}</h3>
+                <p class="post-excerpt">${excerpt}</p>
+                <div class="post-actions">
+                  <a class="btn btn-primary" href="${seoHref}" data-fallback-href="${fallbackHref}">${escapeHtml(readLabel)}</a>
+                </div>
+              </article>
+            `;
+          }).join('');
+
+          // If the SEO-friendly file doesn't exist (during local dev before generation), fall back to dynamic post.html
+          latestPostsEl.querySelectorAll('a[data-fallback-href]').forEach(a => {
+            a.addEventListener('click', () => {
+              // no-op; just keeps attribute for debugging
+            });
+          });
+        }catch(e){
+          setBlogStatus('Nie udało się wczytać postów.');
+          latestPostsEl.innerHTML = '';
         }
-
-        return { value: sourceVal, isAuto: false, isOriginal: true };
       }
 
-      function getHashParams(){
-        const h = (location.hash || '').replace(/^#/, '');
-        const out = {};
-        if (!h) return out;
-        h.split('&').forEach(part => {
-          const [k,v] = part.split('=');
-          if (!k) return;
-          out[decodeURIComponent(k)] = v ? decodeURIComponent(v) : '';
-        });
-        return out;
-      }
-
-      function setStatusHtml(html){
-        if (!blogEls.status) return;
-        blogEls.status.innerHTML = html;
-      }
-
-      function setStatusText(text){
-        if (!blogEls.status) return;
-        blogEls.status.textContent = text;
-      }
-
-      async function renderBlogList(lang){
-        if (!blogEls.list) return;
-        if (blogEls.view) blogEls.view.style.display = 'none';
-        blogEls.list.style.display = '';
-        setStatusText('');
-
-        const sorted = [...posts].sort((a,b) => (b.date || '').localeCompare(a.date || ''));
-
-        const cards = [];
-        for (const p of sorted){
-          const title = await getPostField(p, 'title', lang);
-          const excerpt = await getPostField(p, 'excerpt', lang);
-
-          const metaDate = formatDateISO(p.date, lang);
-          const tags = (p.tags || []).slice(0,4).map(t => `<span class="tag">${escapeHtml(t)}</span>`).join(' ');
-
-          cards.push(`
-            <article class="card" style="min-height: 0;">
-              <div class="post-meta">
-                <span>${escapeHtml(metaDate)}</span>
-                <span class="dot">•</span>
-                <span>${tags}</span>
-              </div>
-              <h3 class="post-title">${escapeHtml(title.value || '')}</h3>
-              <p class="post-excerpt">${escapeHtml(excerpt.value || '')}</p>
-              <div class="post-actions">
-                <a class="btn btn-primary" href="#post=${encodeURIComponent(p.id)}">${escapeHtml((dict[lang]||dict.en).blog_read)}</a>
-              </div>
-            </article>
-          `);
-        }
-
-        blogEls.list.innerHTML = cards.join('');
-      }
-
-      async function renderPost(lang, postId){
-        if (!blogEls.view || !blogEls.list) return;
-
-        const post = posts.find(p => p.id === postId);
-        if (!post){
-          location.hash = '#blog';
-          return;
-        }
-
-        blogEls.list.style.display = 'none';
-        blogEls.view.style.display = '';
-
-        const t = dict[lang] || dict.en;
-        setStatusText(t.blog_loading);
-
-        const title = await getPostField(post, 'title', lang);
-        const content = await getPostField(post, 'contentHtml', lang);
-        const metaDate = formatDateISO(post.date, lang);
-
-        const statusBits = [];
-        if (content.isAuto) statusBits.push(`<span class="tag">${escapeHtml(t.blog_translated)}</span>`);
-        if (content.isOriginal) statusBits.push(`<span class="tag">${escapeHtml(t.blog_original)}</span>`);
-
-        setStatusHtml(`
-          <span>${escapeHtml(metaDate)}</span>
-          <span class="dot">•</span>
-          ${(post.tags||[]).slice(0,6).map(x => `<span class="tag">${escapeHtml(x)}</span>`).join(' ')}
-          ${statusBits.length ? `<span class="dot">•</span>${statusBits.join(' ')}` : ''}
-        `);
-
-        blogEls.view.innerHTML = `
-          <a class="btn btn-ghost" href="#blog">← ${escapeHtml(t.blog_back)}</a>
-          <h3>${escapeHtml(title.value || '')}</h3>
-          <div class="post-content">${content.value || ''}</div>
-        `;
-      }
-
-      async function renderBlogFromHash(){
-        const lang = (document.documentElement.getAttribute('lang') || 'en');
-        const params = getHashParams();
-        if (!params.post){
-          await renderBlogList(lang);
-          return;
-        }
-        await renderPost(lang, params.post);
-      }
-
-      window.addEventListener('hashchange', () => { loadPostsOnce().then(() => renderBlogFromHash()); });
-
-      // Re-render blog when language changes
+      // Reload latest posts when language changes
       const _applyLang = applyLang;
       applyLang = function(lang){
         _applyLang(lang);
-        loadPostsOnce().then(() => renderBlogFromHash());
+        loadLatestPosts();
       };
 
-      loadPostsOnce().then(() => renderBlogFromHash());
+      // Initial load
+      loadLatestPosts();
     })();
   </script>
 </body>
