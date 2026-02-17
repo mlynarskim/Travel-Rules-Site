@@ -1,0 +1,444 @@
+<!doctype html>
+<html lang="pl" data-theme="light">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Blog — Travel Rules</title>
+  <meta name="description" content="Blog Travel Rules: poradniki, aktualizacje i krótkie wpisy." />
+
+  <style>
+    :root{
+      --bg:#f6f7f8; --card:#fff; --text:#0f172a; --muted:#475569; --border:#e5e7eb;
+      --accent:#29606D; --ring:rgba(41,96,109,.25);
+      --radius:16px; --shadow:0 10px 30px rgba(2,6,23,.06); --max:1100px;
+    }
+    html[data-theme="dark"]{
+      --bg:#0b1220; --card:#0f172a; --text:#e5e7eb; --muted:#94a3b8; --border:#1f2937;
+      --shadow:0 16px 40px rgba(0,0,0,.35); --ring:rgba(221,170,79,.18);
+    }
+
+    body{
+      margin:0;
+      font-family: ui-sans-serif,system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial;
+      color:var(--text);
+      background:var(--bg);
+      line-height:1.6;
+    }
+    a{color:inherit;text-decoration:none}
+
+    .container{width:min(var(--max), calc(100% - 40px)); margin:0 auto;}
+    .section{padding:30px 0}
+    .hero-card{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);box-shadow:var(--shadow);padding:18px}
+    .muted{color:var(--muted)}
+    .blog-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:16px}
+    @media (max-width:980px){.blog-grid{grid-template-columns:1fr}}
+    .card{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);box-shadow:var(--shadow);padding:16px}
+    .post-meta{display:flex;flex-wrap:wrap;gap:8px;align-items:center;color:var(--muted);font-weight:700;font-size:.92rem}
+    .dot{opacity:.6}
+    .tag{
+      font-size:.8rem;font-weight:850;padding:4px 10px;border-radius:999px;
+      background: color-mix(in oklab, var(--accent) 8%, transparent);
+      border:1px solid color-mix(in oklab, var(--accent) 22%, var(--border));
+      color: color-mix(in oklab, var(--accent) 78%, var(--text));
+    }
+    .post-title{margin:10px 0 6px;letter-spacing:-.2px;font-size:1.15rem}
+    .post-excerpt{margin:0;color:var(--muted)}
+    .btn{display:inline-flex;align-items:center;justify-content:center;padding:10px 14px;border-radius:999px;border:1px solid var(--border);background:var(--card);font-weight:800}
+    .btn-primary{background:var(--accent);border-color:color-mix(in oklab, var(--accent) 70%, var(--border));color:#fff}
+
+    /* Embed mode: bez tła + bez dodatkowych marginesów */
+    html[data-embed="1"]{ height:auto; min-height:0; }
+    html[data-embed="1"] body{ background: transparent; height:auto; min-height:0; margin:0; }
+    html[data-embed="1"] .section{ padding: 0; }
+    html[data-embed="1"] h2{ margin-top: 0; }
+
+    /* Prevent height feedback loops inside iframe */
+    html[data-embed="1"] #blogApp{ height:auto; min-height:0; }
+  </style>
+</head>
+
+<body>
+  <section class="section" id="blogApp">
+    <div class="container">
+      <h2 id="i18nBlogH2">Blog / Wpisy</h2>
+      <p class="muted" id="i18nBlogP">Krótkie poradniki i aktualizacje. Wybierz wpis, żeby przeczytać całość.</p>
+
+      <div class="hero-card" style="margin-top:14px;">
+        <div class="post-meta" id="blogStatus" aria-live="polite"></div>
+        <div id="blogList" class="blog-grid"></div>
+      </div>
+    </div>
+  </section>
+
+  <script>
+    (function(){
+      const params = new URLSearchParams(location.search);
+      const isEmbed = params.get('embed') === '1';
+      const forcedLang = params.get('lang'); // optional
+
+      // ---- Theme (sync with main site) ----
+      const forcedTheme = params.get('theme'); // optional: light|dark
+
+      function detectTheme(){
+        // 1) URL param
+        if (forcedTheme === 'light' || forcedTheme === 'dark') return forcedTheme;
+
+        // 2) localStorage used by the hub (tr_theme)
+        try{
+          const saved = localStorage.getItem('tr_theme');
+          if (saved === 'light' || saved === 'dark') return saved;
+        }catch(e){}
+
+        // 3) OS preference
+        const prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+        return prefersDark ? 'dark' : 'light';
+      }
+
+      let currentTheme = null;
+
+      function applyTheme(theme){
+        if (theme !== 'light' && theme !== 'dark') return;
+        if (currentTheme === theme) return;
+        currentTheme = theme;
+
+        // Set data-theme so CSS variables update
+        document.documentElement.setAttribute('data-theme', theme);
+        // Improve native UI rendering + ensure consistent repaint
+        try{ document.documentElement.style.colorScheme = theme; }catch(e){}
+
+        // Force a reflow so the browser doesn't keep stale computed colors in some embed cases
+        // (helps when parent toggles theme and iframe is resized at the same time)
+        try{ void document.documentElement.offsetHeight; }catch(e){}
+      }
+
+      // Apply immediately so text is readable even before posts load
+      applyTheme(detectTheme());
+
+      // Allow parent (hub) to push theme changes in embed mode
+      if (isEmbed) {
+        window.addEventListener('message', (ev) => {
+          const data = ev && ev.data;
+          if (!data || typeof data !== 'object') return;
+          if (data.type === 'tr-set-theme' && (data.theme === 'light' || data.theme === 'dark')) {
+            applyTheme(data.theme);
+            // Recompute height after theme switch
+            scheduleHeight();
+          }
+        });
+      }
+
+      // Fallback: keep theme in sync even if parent only toggles localStorage (no postMessage).
+      // NOTE: the `storage` event does NOT fire in the same tab that writes localStorage,
+      // so we use a light polling strategy in embed mode.
+      if (isEmbed) {
+        // React to OS theme changes too
+        try {
+          const mq = window.matchMedia('(prefers-color-scheme: dark)');
+          const onMq = () => {
+            if (forcedTheme !== 'light' && forcedTheme !== 'dark') {
+              applyTheme(detectTheme());
+              scheduleHeight();
+            }
+          };
+          if (mq && mq.addEventListener) mq.addEventListener('change', onMq);
+          else if (mq && mq.addListener) mq.addListener(onMq);
+        } catch(e) {}
+
+        // Poll localStorage/theme changes (low frequency)
+        setInterval(() => {
+          // If theme is forced via URL, do not override
+          if (forcedTheme === 'light' || forcedTheme === 'dark') return;
+          const next = detectTheme();
+          if (next !== currentTheme) {
+            applyTheme(next);
+            scheduleHeight();
+          }
+        }, 800);
+
+        // Also re-check on focus/visibility (covers tab switches)
+        window.addEventListener('focus', () => {
+          if (forcedTheme === 'light' || forcedTheme === 'dark') return;
+          applyTheme(detectTheme());
+          scheduleHeight();
+        });
+        document.addEventListener('visibilitychange', () => {
+          if (document.visibilityState !== 'visible') return;
+          if (forcedTheme === 'light' || forcedTheme === 'dark') return;
+          applyTheme(detectTheme());
+          scheduleHeight();
+        });
+      }
+
+      if (isEmbed) {
+        document.documentElement.setAttribute('data-embed', '1');
+      }
+      if (forcedLang) {
+        document.documentElement.setAttribute('lang', forcedLang);
+      }
+
+      // ---- Tags (slug -> label) ----
+      // Keep tags in posts.json as *slugs* (no spaces, no PL chars), e.g. "europa", "vanlife", "oszczedzanie".
+      // Here we map slugs to human labels per language. Extend whenever you add new tags.
+      const TAG_LABELS = {
+        europa: { pl: 'Europa', en: 'Europe', es: 'Europa' },
+        ranking: { pl: 'Ranking', en: 'Ranking', es: 'Ranking' },
+        dzieci: { pl: 'Dzieci', en: 'Kids', es: 'Niños' },
+        podroze: { pl: 'Podróże', en: 'Travel', es: 'Viajes' },
+        rodzina: { pl: 'Rodzina', en: 'Family', es: 'Familia' },
+        poradnik: { pl: 'Poradnik', en: 'Guide', es: 'Guía' },
+        vanlife: { pl: 'Vanlife', en: 'Vanlife', es: 'Vanlife' },
+        roadtrip: { pl: 'Road trip', en: 'Road trip', es: 'Road trip' },
+        bezpieczenstwo: { pl: 'Bezpieczeństwo', en: 'Safety', es: 'Seguridad' },
+        oszczedzanie: { pl: 'Oszczędzanie', en: 'Saving', es: 'Ahorro' },
+        kuchnia: { pl: 'Kuchnia', en: 'Kitchen', es: 'Cocina' },
+        gotowanie: { pl: 'Gotowanie', en: 'Cooking', es: 'Cocinar' },
+        digitalnomad: { pl: 'Digital nomad', en: 'Digital nomad', es: 'Nómada digital' },
+        workation: { pl: 'Workation', en: 'Workation', es: 'Workation' },
+        organizacja: { pl: 'Organizacja', en: 'Organization', es: 'Organización' },
+        budzet: { pl: 'Budżet', en: 'Budget', es: 'Presupuesto' },
+        kempingi: { pl: 'Kempingi', en: 'Campsites', es: 'Campings' },
+        wildcamping: { pl: 'Na dziko', en: 'Wild camping', es: 'Acampada libre' },
+        prawo: { pl: 'Prawo', en: 'Law', es: 'Ley' },
+        zwierzeta: { pl: 'Zwierzęta', en: 'Pets', es: 'Mascotas' }
+      };
+
+      function prettyTagFallback(slug){
+        return String(slug || '')
+          .replace(/[-_]+/g, ' ')
+          .replace(/\b\w/g, (m) => m.toUpperCase())
+          .trim();
+      }
+
+      function tagLabel(slug){
+        const lang = getLang();
+        const entry = TAG_LABELS[String(slug || '').toLowerCase()];
+        return (entry && (entry[lang] || entry.en || entry.pl || entry.es)) || prettyTagFallback(slug);
+      }
+
+      function tagUrl(slug){
+        const lang = getLang();
+        // Static tag pages generated by scripts/generate-blog.mjs
+        return `/blog/t/${encodeURIComponent(slug)}.${lang}.html`;
+      }
+
+      const i18n = {
+        pl: {
+          page_title: 'Blog — Travel Rules',
+          h2: 'Blog / Wpisy',
+          p: 'Krótkie poradniki i aktualizacje. Wybierz wpis, żeby przeczytać całość.',
+          read: 'Czytaj',
+          status_load_error: 'Nie udało się wczytać postów.',
+          meta_desc: 'Blog Travel Rules: poradniki, aktualizacje i krótkie wpisy.'
+        },
+        en: {
+          page_title: 'Blog — Travel Rules',
+          h2: 'Blog / Posts',
+          p: 'Short guides and updates. Pick a post to read the full version.',
+          read: 'Read',
+          status_load_error: "Couldn't load posts.",
+          meta_desc: 'Travel Rules blog: guides, updates, and short posts.'
+        },
+        es: {
+          page_title: 'Blog — Travel Rules',
+          h2: 'Blog / Artículos',
+          p: 'Guías cortas y novedades. Elige un artículo para leer la versión completa.',
+          read: 'Leer',
+          status_load_error: 'No se pudieron cargar los artículos.',
+          meta_desc: 'Blog de Travel Rules: guías, novedades y entradas cortas.'
+        }
+      };
+
+      function getLang(){
+        const l = (document.documentElement.getAttribute('lang') || 'pl').toLowerCase();
+        return (l === 'pl' || l === 'en' || l === 'es') ? l : 'en';
+      }
+
+      function t(key){
+        const lang = getLang();
+        return (i18n[lang] && i18n[lang][key]) || (i18n.en && i18n.en[key]) || '';
+      }
+
+      function applyI18nStatic(){
+        const h2 = document.getElementById('i18nBlogH2');
+        const p = document.getElementById('i18nBlogP');
+        if (h2) h2.textContent = t('h2');
+        if (p) p.textContent = t('p');
+        document.title = t('page_title') || document.title;
+        const meta = document.querySelector('meta[name="description"]');
+        if (meta) meta.setAttribute('content', t('meta_desc'));
+      }
+
+      const POSTS_JSON_URL = '/blog/data/posts.json';
+      const listEl = document.getElementById('blogList');
+      const statusEl = document.getElementById('blogStatus');
+
+      function setStatusText(txt){ if(statusEl) statusEl.textContent = txt || ''; }
+
+      function escapeHtml(s){
+        return String(s)
+          .replaceAll('&','&amp;')
+          .replaceAll('<','&lt;')
+          .replaceAll('>','&gt;')
+          .replaceAll('"','&quot;')
+          .replaceAll("'",'&#039;');
+      }
+
+      function formatDateISO(iso){
+        try{
+          const d = new Date(iso + 'T00:00:00');
+          return new Intl.DateTimeFormat(getLang(), { year:'numeric', month:'short', day:'2-digit' }).format(d);
+        }catch(e){ return iso; }
+      }
+
+      function pickLangField(obj){
+        if (!obj) return '';
+        const lang = getLang();
+        return obj[lang] || obj.pl || obj.en || obj.es || '';
+      }
+
+      // ---- iframe height reporting (embed only) ----
+      let _lastSentHeight = 0;
+      let _heightTimer = null;
+
+      function computeHeight(){
+        const app = document.getElementById('blogApp');
+        if (!app) return 0;
+
+        // Measure actual content height (independent of iframe viewport height)
+        const top = app.getBoundingClientRect().top;
+
+        // Find the lowest visible edge among children (content-driven)
+        let bottom = app.getBoundingClientRect().bottom;
+        const children = app.children;
+        for (let i = 0; i < children.length; i++) {
+          const r = children[i].getBoundingClientRect();
+          if (r.bottom > bottom) bottom = r.bottom;
+        }
+
+        const h = Math.max(0, Math.ceil(bottom - top));
+        return h;
+      }
+
+      function sendHeight(){
+        if (!isEmbed) return;
+        try{
+          const h = computeHeight() + 2;
+          if (Math.abs(h - _lastSentHeight) < 2) return;
+          _lastSentHeight = h;
+          parent.postMessage({ type: 'tr-blog-height', height: h }, '*');
+        }catch(e){}
+      }
+
+      function scheduleHeight(){
+        if (!isEmbed) return;
+        if (_heightTimer) clearTimeout(_heightTimer);
+        _heightTimer = setTimeout(sendHeight, 0);
+      }
+
+      if (isEmbed) {
+        window.addEventListener('message', (ev) => {
+          const data = ev && ev.data;
+          if (!data || typeof data !== 'object') return;
+          if (data.type === 'tr-blog-request-height') scheduleHeight();
+        });
+      }
+
+      async function loadPosts(){
+        setStatusText('');
+        try{
+          const res = await fetch(POSTS_JSON_URL, { cache:'no-store' });
+          if(!res.ok) throw new Error('posts.json not found');
+          const data = await res.json();
+          const posts = Array.isArray(data) ? data : (data && Array.isArray(data.posts) ? data.posts : []);
+          render(posts);
+          requestAnimationFrame(scheduleHeight);
+        }catch(e){
+          setStatusText(t('status_load_error'));
+          scheduleHeight();
+        }
+      }
+
+      function buildPostUrl(postId){
+        const lang = getLang();
+
+        // When embedded (iframe), keep query-param version to stay inside the embed flow.
+        if (isEmbed) {
+          const url = new URL('/blog/post.html', window.location.origin);
+          url.searchParams.set('id', postId);
+          url.searchParams.set('embed', '1');
+          if (lang) url.searchParams.set('lang', lang);
+          return url.pathname + url.search;
+        }
+
+        // Normal (SEO) navigation: static, pre-generated pages.
+        return `/blog/p/${encodeURIComponent(postId)}.${lang}.html`;
+      }
+
+      function render(posts){
+        if(!listEl) return;
+
+        
+
+        
+
+        
+
+        const lang = document.documentElement.lang || 'pl';
+const lang = document.documentElement.lang || 'pl';
+const sorted = [...posts].sort((a,b) => (b.date||'').localeCompare(a.date||''));
+        const cards = sorted.map(p => {
+          const title = escapeHtml(pickLangField(p.title));
+          const excerpt = escapeHtml(pickLangField(p.excerpt));
+          const metaDate = formatDateISO(p.date || '');
+          const tags = (p.tags||[])
+            .slice(0,4)
+            .map(tag => {
+              const slug = String(tag || '').toLowerCase();
+              const label = tagLabel(slug);
+              return `<a class="tag" href="${tagUrl(slug)}">${escapeHtml(label)}</a>`;
+            })
+            .join(' ');
+
+          return `
+            <article class="card">
+              <div class="post-meta">
+                <span>${escapeHtml(metaDate)}</span>
+                ${tags ? `<span class="dot">•</span><span>${tags}</span>` : ''}
+              </div>
+              <h3 class="post-title">${title}</h3>
+              <p class="post-excerpt">${excerpt}</p>
+              <div style="margin-top:10px;display:flex;gap:10px;flex-wrap:wrap;">
+                <a class="btn btn-primary" href="${buildPostUrl(p.id)}">${escapeHtml(t('read'))}</a>
+              </div>
+            </article>
+          `;
+        });
+
+        listEl.innerHTML = cards.join('');
+        requestAnimationFrame(scheduleHeight);
+      }
+
+      window.addEventListener('resize', () => scheduleHeight());
+      window.addEventListener('pageshow', () => {
+        scheduleHeight();
+        setTimeout(scheduleHeight, 200);
+      });
+
+      if (isEmbed && 'ResizeObserver' in window) {
+        const app = document.getElementById('blogApp');
+        if (app){
+          const ro = new ResizeObserver(() => scheduleHeight());
+          ro.observe(app);
+        }
+      }
+
+      // Apply translations for static UI
+      applyI18nStatic();
+
+      // Initial height (prevents blank area while loading)
+      scheduleHeight();
+      loadPosts();
+    })();
+  </script>
+</body>
+</html>

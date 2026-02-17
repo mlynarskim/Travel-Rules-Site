@@ -1,0 +1,244 @@
+<!doctype html>
+<html lang="pl" data-theme="light">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Post — Travel Rules</title>
+  <meta name="description" content="Wpis na blogu Travel Rules." />
+
+  <style>
+    :root{
+      --bg:#f6f7f8; --card:#fff; --text:#0f172a; --muted:#475569; --border:#e5e7eb;
+      --accent:#29606D; --ring:rgba(41,96,109,.25);
+      --radius:16px; --shadow:0 10px 30px rgba(2,6,23,.06); --max:1100px;
+    }
+    html[data-theme="dark"]{
+      --bg:#0b1220; --card:#0f172a; --text:#e5e7eb; --muted:#94a3b8; --border:#1f2937;
+      --shadow:0 16px 40px rgba(0,0,0,.35); --ring:rgba(221,170,79,.18);
+    }
+
+    body{margin:0;font-family:ui-sans-serif,system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial;color:var(--text);background:var(--bg);line-height:1.65}
+    a{color:inherit;text-decoration:none}
+    .container{width:min(var(--max), calc(100% - 40px)); margin:0 auto;}
+    .section{padding:30px 0}
+    .card{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);box-shadow:var(--shadow);padding:18px}
+    .muted{color:var(--muted)}
+    .btn{display:inline-flex;align-items:center;justify-content:center;padding:10px 14px;border-radius:999px;border:1px solid var(--border);background:var(--card);font-weight:800}
+    .btn-ghost{background:color-mix(in oklab, var(--card) 88%, transparent)}
+    .tag{
+      font-size:.8rem;font-weight:850;padding:4px 10px;border-radius:999px;
+      background: color-mix(in oklab, var(--accent) 8%, transparent);
+      border:1px solid color-mix(in oklab, var(--accent) 22%, var(--border));
+      color: color-mix(in oklab, var(--accent) 78%, var(--text));
+    }
+    .post-meta{display:flex;flex-wrap:wrap;gap:8px;align-items:center;color:var(--muted);font-weight:700;font-size:.92rem;margin-bottom:10px}
+    .dot{opacity:.6}
+    h1{margin:10px 0 12px;letter-spacing:-.5px;line-height:1.15;font-size:clamp(24px, 3vw, 40px)}
+    .content p{margin:10px 0;color:color-mix(in oklab, var(--text) 92%, var(--muted))}
+    .content h2,.content h3{margin:18px 0 8px}
+    .content ul{margin:10px 0 10px;padding-left:18px}
+    .content li{margin:6px 0}
+
+    /* Embed mode (iframe): no background and no extra outer padding */
+    html[data-embed="1"] body{ background: transparent; }
+    html[data-embed="1"] .section{ padding: 0; }
+  </style>
+</head>
+
+<body>
+  <section class="section">
+    <div class="container">
+      <a class="btn btn-ghost" id="backToBlog" href="/blog/index.html">← Wróć do bloga</a>
+
+      <div class="card" style="margin-top:14px">
+        <div class="post-meta" id="meta"></div>
+        <h1 id="title">Ładowanie…</h1>
+        <div class="content" id="content"></div>
+      </div>
+    </div>
+  </section>
+
+  <script>
+    (function(){
+      const params = new URLSearchParams(location.search);
+      const isEmbed = params.get('embed') === '1';
+      const forcedLang = params.get('lang');
+
+      // ---- Theme sync (works both standalone and embedded) ----
+      const THEME_KEY = 'tr_theme';
+
+      function detectTheme(){
+        try{
+          const saved = localStorage.getItem(THEME_KEY);
+          if (saved === 'light' || saved === 'dark') return saved;
+        }catch(e){}
+        const prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+        return prefersDark ? 'dark' : 'light';
+      }
+
+      function applyTheme(theme){
+        const t = (theme === 'dark' || theme === 'light') ? theme : detectTheme();
+        document.documentElement.setAttribute('data-theme', t);
+      }
+
+      // Initial theme
+      applyTheme(detectTheme());
+
+      // React to system theme changes
+      try{
+        const mq = window.matchMedia('(prefers-color-scheme: dark)');
+        if (mq && mq.addEventListener) mq.addEventListener('change', () => applyTheme(detectTheme()));
+        else if (mq && mq.addListener) mq.addListener(() => applyTheme(detectTheme()));
+      }catch(e){}
+
+      // Embedded pages won't receive same-tab storage events reliably, so poll.
+      let _lastTheme = null;
+      function pollTheme(){
+        const t = detectTheme();
+        if (t !== _lastTheme){
+          _lastTheme = t;
+          applyTheme(t);
+          scheduleHeight();
+        }
+      }
+      _lastTheme = detectTheme();
+      setInterval(pollTheme, 800);
+      window.addEventListener('focus', pollTheme);
+      document.addEventListener('visibilitychange', pollTheme);
+
+      // Allow parent to push theme directly if it wants
+      window.addEventListener('message', (ev) => {
+        const d = ev && ev.data;
+        if (d && d.type === 'tr-theme' && (d.theme === 'dark' || d.theme === 'light')){
+          try{ localStorage.setItem(THEME_KEY, d.theme); }catch(e){}
+          applyTheme(d.theme);
+          scheduleHeight();
+        }
+      });
+
+      // posts.json lives under /blog/data/
+      const POSTS_JSON_URL = '/blog/data/posts.json';
+      const id = params.get('id');
+
+      const titleEl = document.getElementById('title');
+      const contentEl = document.getElementById('content');
+      const metaEl = document.getElementById('meta');
+
+      // Keep correct back link inside iframe (preserve embed/lang)
+      const backLink = document.getElementById('backToBlog');
+      if (backLink) {
+        const u = new URL('/blog/index.html', window.location.origin);
+        if (isEmbed) u.searchParams.set('embed', '1');
+        if (forcedLang) u.searchParams.set('lang', forcedLang);
+        backLink.href = u.pathname + u.search;
+      }
+
+      function escapeHtml(s){
+        return String(s)
+          .replaceAll('&','&amp;')
+          .replaceAll('<','&lt;')
+          .replaceAll('>','&gt;')
+          .replaceAll('"','&quot;')
+          .replaceAll("'",'&#039;');
+      }
+      function formatDateISO(iso){
+        try{
+          const d = new Date(iso + 'T00:00:00');
+          return new Intl.DateTimeFormat(document.documentElement.lang || 'pl', {year:'numeric',month:'short',day:'2-digit'}).format(d);
+        }catch(e){ return iso; }
+      }
+
+      function pickLangField(obj, fallbackLang){
+        if (!obj) return '';
+        const lang = document.documentElement.lang || 'pl';
+        return obj[lang] || (fallbackLang && obj[fallbackLang]) || obj.pl || obj.en || obj.es || '';
+      }
+
+      // ---- iframe height reporting (debounced + change detection to avoid infinite loops) ----
+      let _lastH = 0;
+      let _hTimer = 0;
+      function notifyHeight(){
+        if (!isEmbed) return;
+        try{
+          const h = Math.max(
+            document.body.scrollHeight,
+            document.documentElement.scrollHeight,
+            document.body.offsetHeight,
+            document.documentElement.offsetHeight
+          );
+          const next = Math.round(h || 0);
+          if (!next || Math.abs(next - _lastH) < 2) return;
+          _lastH = next;
+          parent.postMessage({ type:'tr-blog-height', height: next }, '*');
+        }catch(e){}
+      }
+      function scheduleHeight(){
+        if (!isEmbed) return;
+        clearTimeout(_hTimer);
+        _hTimer = setTimeout(notifyHeight, 60);
+      }
+
+      window.addEventListener('resize', () => scheduleHeight());
+      window.addEventListener('message', (ev) => {
+        const d = ev && ev.data;
+        if (d && d.type === 'tr-blog-request-height') scheduleHeight();
+      });
+      if ('ResizeObserver' in window) {
+        const ro = new ResizeObserver(() => scheduleHeight());
+        ro.observe(document.documentElement);
+      }
+
+      async function load(){
+        if(!id){
+          titleEl.textContent = 'Brak ID posta';
+          contentEl.innerHTML = '<p class="muted">Otwórz wpis z listy bloga.</p>';
+          scheduleHeight();
+          return;
+        }
+
+        try{
+          const res = await fetch(POSTS_JSON_URL, { cache:'no-store' });
+          if(!res.ok) throw new Error('posts.json not found');
+          const data = await res.json();
+          const posts = Array.isArray(data) ? data : (data && Array.isArray(data.posts) ? data.posts : []);
+          const post = posts.find(p => p.id === id);
+
+          if(!post){
+            titleEl.textContent = 'Nie znaleziono posta';
+            contentEl.innerHTML = '<p class="muted">Ten wpis nie istnieje lub ma inne ID.</p>';
+            scheduleHeight();
+            return;
+          }
+
+          const source = post.sourceLang || 'pl';
+
+          const title = pickLangField(post.title, source);
+          const html = pickLangField(post.contentHtml, source);
+          const tags = (post.tags||[]).map(t => `<span class="tag">${escapeHtml(t)}</span>`).join(' ');
+          const date = post.date ? formatDateISO(post.date) : '';
+
+          document.title = title ? (title + ' — Travel Rules') : 'Post — Travel Rules';
+
+          titleEl.textContent = title || 'Wpis';
+          contentEl.innerHTML = html || '<p class="muted">Brak treści.</p>';
+
+          metaEl.innerHTML = `
+            <span>${escapeHtml(date)}</span>
+            ${tags ? `<span class="dot">•</span>${tags}` : ''}
+          `;
+
+          requestAnimationFrame(scheduleHeight);
+          setTimeout(scheduleHeight, 120);
+          setTimeout(scheduleHeight, 600);
+        }catch(e){
+          titleEl.textContent = 'Błąd ładowania';
+          contentEl.innerHTML = '<p class="muted">Nie udało się wczytać treści.</p>';
+          scheduleHeight();
+        }
+      }
+
+      load();
+    })();
+  </script>
+</body>
+</html>
