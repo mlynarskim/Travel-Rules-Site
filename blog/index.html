@@ -268,7 +268,7 @@
         if (meta) meta.setAttribute('content', t('meta_desc'));
       }
 
-      const POSTS_JSON_URL = '/blog/data/posts.json';
+      const POSTS_JSON_URL = 'data/posts.json';
       const listEl = document.getElementById('blogList');
       const statusEl = document.getElementById('blogStatus');
 
@@ -353,7 +353,15 @@
           render(posts);
           requestAnimationFrame(scheduleHeight);
         }catch(e){
-          setStatusText(t('status_load_error'));
+          console.error('[blog] Failed to load posts:', e);
+          const hint = isEmbed
+            ? ' (embed)'
+            : '';
+          setStatusText(t('status_load_error') + hint + ' — sprawdź w konsoli oraz czy /blog/data/posts.json istnieje');
+          // Show a visible hint inside the list area as well (so page is never "empty")
+          if (listEl) {
+            listEl.innerHTML = `<div class="card"><p class="muted" style="margin:0">${escapeHtml(t('status_load_error'))}. Otwórz DevTools → Console/Network i sprawdź, czy plik <code>/blog/data/posts.json</code> zwraca 200 oraz czy JSON jest poprawny.</p></div>`;
+          }
           scheduleHeight();
         }
       }
@@ -376,15 +384,7 @@
 
       function render(posts){
         if(!listEl) return;
-
-        
-
-        
-
-        
-
         const lang = document.documentElement.lang || 'pl';
-const lang = document.documentElement.lang || 'pl';
 const sorted = [...posts].sort((a,b) => (b.date||'').localeCompare(a.date||''));
         const cards = sorted.map(p => {
           const title = escapeHtml(pickLangField(p.title));
