@@ -65,7 +65,9 @@
 
       <div class="hero-card" style="margin-top:14px;">
         <div class="post-meta" id="blogStatus" aria-live="polite"></div>
+        <div id="blogFilters" style="margin-top:10px;display:flex;gap:8px;flex-wrap:wrap"></div>
         <div id="blogList" class="blog-grid"></div>
+        <div id="blogPagination" style="margin-top:16px;display:flex;gap:8px;flex-wrap:wrap"></div>
       </div>
     </div>
   </section>
@@ -271,6 +273,17 @@
       const POSTS_JSON_URL = 'data/posts.json';
       const listEl = document.getElementById('blogList');
       const statusEl = document.getElementById('blogStatus');
+      const filtersEl = document.getElementById('blogFilters');
+      const paginationEl = document.getElementById('blogPagination');
+
+      let ALL_POSTS = [];
+      let CURRENT_PAGE = 1;
+
+      // Read tag from URL (?tag=vanlife)
+      const urlParams = new URLSearchParams(location.search);
+      let ACTIVE_TAG = urlParams.get('tag') ? String(urlParams.get('tag')).toLowerCase() : null;
+
+      const POSTS_PER_PAGE = 6;
 
       function setStatusText(txt){ if(statusEl) statusEl.textContent = txt || ''; }
 
@@ -350,7 +363,10 @@
           if(!res.ok) throw new Error('posts.json not found');
           const data = await res.json();
           const posts = Array.isArray(data) ? data : (data && Array.isArray(data.posts) ? data.posts : []);
-          render(posts);
+          ALL_POSTS = posts || [];
+          CURRENT_PAGE = 1;
+          render();
+          renderFilters();
           requestAnimationFrame(scheduleHeight);
         }catch(e){
           console.error('[blog] Failed to load posts:', e);
@@ -382,24 +398,34 @@
         return `/blog/p/${encodeURIComponent(postId)}.${lang}.html`;
       }
 
-      function render(posts){
+      function render(){
         if(!listEl) return;
-        
-        
-        
-        
-        
-        const sorted = [...posts].sort((a,b) => (b.date||'').localeCompare(a.date||''));
-        const cards = sorted.map(p => {
+
+        let posts = [...ALL_POSTS];
+
+        if (ACTIVE_TAG) {
+          posts = posts.filter(p => (p.tags || []).map(t => String(t).toLowerCase()).includes(ACTIVE_TAG));
+        }
+
+        const sorted = posts.sort((a,b) => (b.date||'').localeCompare(a.date||''));
+
+        const totalPages = Math.max(1, Math.ceil(sorted.length / POSTS_PER_PAGE));
+        if (CURRENT_PAGE > totalPages) CURRENT_PAGE = totalPages;
+
+        const start = (CURRENT_PAGE - 1) * POSTS_PER_PAGE;
+        const pagePosts = sorted.slice(start, start + POSTS_PER_PAGE);
+
+        const cards = pagePosts.map(p => {
           const title = escapeHtml(pickLangField(p.title));
           const excerpt = escapeHtml(pickLangField(p.excerpt));
           const metaDate = formatDateISO(p.date || '');
+
           const tags = (p.tags||[])
             .slice(0,4)
             .map(tag => {
               const slug = String(tag || '').toLowerCase();
               const label = tagLabel(slug);
-              return `<a class="tag" href="${tagUrl(slug)}">${escapeHtml(label)}</a>`;
+              return `<span class="tag" data-tag="${slug}" style="cursor:pointer">${escapeHtml(label)}</span>`;
             })
             .join(' ');
 
@@ -419,7 +445,95 @@
         });
 
         listEl.innerHTML = cards.join('');
+
+        listEl.querySelectorAll('.tag').forEach(el => {
+          el.addEventListener('click', () => {
+            ACTIVE_TAG = el.dataset.tag;
+            CURRENT_PAGE = 1;
+            render();
+            renderPagination();
+          });
+        });
+
+        renderPagination();
         requestAnimationFrame(scheduleHeight);
+      }
+
+      function renderFilters(){
+        if (!filtersEl) return;
+
+        // Count how many times each tag appears
+        const tagCount = {};
+        ALL_POSTS.forEach(p => {
+          (p.tags || []).forEach(t => {
+            const slug = String(t).toLowerCase();
+            tagCount[slug] = (tagCount[slug] || 0) + 1;
+          });
+        });
+
+        // Sort tags by frequency and keep top 10
+        const tags = Object.entries(tagCount)
+          .sort((a,b) => b[1] - a[1])
+          .slice(0,10)
+          .map(entry => entry[0]);
+
+        const buttons = [
+          `<button class="btn ${ACTIVE_TAG===null?'btn-primary':''}" data-tag="all">All</button>`,
+          ...tags.map(t => `<button class="btn ${ACTIVE_TAG===t?'btn-primary':''}" data-tag="${t}">${escapeHtml(tagLabel(t))}</button>`)
+        ];
+
+        filtersEl.innerHTML = buttons.join('');
+
+        filtersEl.querySelectorAll('button').forEach(btn => {
+          btn.addEventListener('click', () => {
+            const tag = btn.dataset.tag;
+            ACTIVE_TAG = tag === 'all' ? null : tag;
+            CURRENT_PAGE = 1;
+
+            // update URL so filter can be shared
+            const u = new URL(location.href);
+            if (ACTIVE_TAG) u.searchParams.set('tag', ACTIVE_TAG);
+            else u.searchParams.delete('tag');
+            history.replaceState({}, '', u);
+
+            render();
+            renderFilters();
+          });
+        });
+      }
+
+      function renderPagination(){
+        if (!paginationEl) return;
+
+        let posts = [...ALL_POSTS];
+        if (ACTIVE_TAG) {
+          posts = posts.filter(p => (p.tags || []).map(t => String(t).toLowerCase()).includes(ACTIVE_TAG));
+        }
+
+        const totalPages = Math.max(1, Math.ceil(posts.length / POSTS_PER_PAGE));
+
+        const buttons = [];
+
+        if (CURRENT_PAGE > 1) {
+          buttons.push(`<button class="btn" data-page="${CURRENT_PAGE-1}">Prev</button>`);
+        }
+
+        for (let i = 1; i <= totalPages; i++) {
+          buttons.push(`<button class="btn ${i===CURRENT_PAGE?'btn-primary':''}" data-page="${i}">${i}</button>`);
+        }
+
+        if (CURRENT_PAGE < totalPages) {
+          buttons.push(`<button class="btn" data-page="${CURRENT_PAGE+1}">Next</button>`);
+        }
+
+        paginationEl.innerHTML = buttons.join('');
+
+        paginationEl.querySelectorAll('button').forEach(btn => {
+          btn.addEventListener('click', () => {
+            CURRENT_PAGE = Number(btn.dataset.page);
+            render();
+          });
+        });
       }
 
       window.addEventListener('resize', () => scheduleHeight());
