@@ -384,8 +384,12 @@
 
       function render(posts){
         if(!listEl) return;
-        const lang = document.documentElement.lang || 'pl';
-const sorted = [...posts].sort((a,b) => (b.date||'').localeCompare(a.date||''));
+        
+        
+        
+        
+        
+        const sorted = [...posts].sort((a,b) => (b.date||'').localeCompare(a.date||''));
         const cards = sorted.map(p => {
           const title = escapeHtml(pickLangField(p.title));
           const excerpt = escapeHtml(pickLangField(p.excerpt));
