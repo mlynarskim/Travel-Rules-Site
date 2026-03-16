@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="google-adsense-account" content="ca-pub-5307701268996147">
   <title>Polityka Prywatności — Travel Rules</title>
-  <meta name="description" content="Polityka Prywatności aplikacji Travel Rules na iOS. Informacje o danych lokalnych, bezpieczeństwie, subskrypcjach, reklamach i kontaktach.">
+  <meta name="description" content="Polityka Prywatności aplikacji Travel Rules na iOS. Informacje o Firebase, asystencie AI, RODO, subskrypcjach i prawach użytkownika.">
   <style>
     :root{
       --bg:#f9f9f9;
@@ -100,7 +100,7 @@
   <header>
     <h1 data-i18n="pp_title">Polityka Prywatności</h1>
     <p class="small" data-i18n-html="app_line">Aplikacja: <strong>Travel Rules</strong> (iOS)</p>
-    <p class="meta" data-i18n="updated_line">Ostatnia aktualizacja: 23 września 2025</p>
+    <p class="meta" data-i18n="updated_line">Ostatnia aktualizacja: 16 marca 2026</p>
 
     <div class="langbar" aria-label="Language switcher">
       <button class="lang-btn" type="button" data-lang="pl" aria-pressed="true">Polski</button>
@@ -112,96 +112,160 @@
   <main>
     <div class="toc" aria-label="Spis treści">
       <strong data-i18n="toc_title">Spis treści:</strong><br>
-      <a href="#1" data-i18n="toc_1">1. Wprowadzenie</a>
-      <a href="#2" data-i18n="toc_2">2. Brak gromadzenia danych</a>
-      <a href="#3" data-i18n="toc_3">3. Dane na urządzeniu</a>
-      <a href="#4" data-i18n="toc_4">4. Bezpieczeństwo</a>
-      <a href="#5" data-i18n="toc_5">5. Reklamy i analityka</a>
-      <a href="#6" data-i18n="toc_6">6. Zmiany dokumentu</a>
-      <a href="#7" data-i18n="toc_7">7. Subskrypcje i zakupy</a>
-      <a href="#8" data-i18n="toc_8">8. Kontakt</a>
-      <a href="#9" data-i18n="toc_9">9. Postanowienia końcowe</a>
+      <a href="#1" data-i18n="toc_1">1. Administrator danych</a>
+      <a href="#2" data-i18n="toc_2">2. Zakres zbieranych danych</a>
+      <a href="#3" data-i18n="toc_3">3. Cele i podstawa prawna</a>
+      <a href="#4" data-i18n="toc_4">4. Firebase i usługi zewnętrzne</a>
+      <a href="#5" data-i18n="toc_5">5. Asystent AI (SAM)</a>
+      <a href="#6" data-i18n="toc_6">6. Przekazywanie danych poza EOG</a>
+      <a href="#7" data-i18n="toc_7">7. Twoje prawa (RODO)</a>
+      <a href="#8" data-i18n="toc_8">8. Bezpieczeństwo</a>
+      <a href="#9" data-i18n="toc_9">9. Reklamy i analityka</a>
+      <a href="#10" data-i18n="toc_10">10. Subskrypcje i zakupy</a>
+      <a href="#11" data-i18n="toc_11">11. Zmiany dokumentu</a>
+      <a href="#12" data-i18n="toc_12">12. Kontakt</a>
     </div>
 
     <section id="1">
-      <h2 data-i18n="s1_h">1. Wprowadzenie</h2>
-      <p data-i18n="s1_p">Aplikacja Travel Rules została zaprojektowana z poszanowaniem prywatności. Aplikacja nie zbiera ani nie przetwarza danych osobowych użytkowników na naszych serwerach. Większość informacji i ustawień działa lokalnie na urządzeniu.</p>
+      <h2 data-i18n="s1_h">1. Administrator danych</h2>
+      <p data-i18n-html="s1_p">Administratorem danych osobowych przetwarzanych w związku z korzystaniem z aplikacji jest: <strong>Mateusz Młynarski</strong>, kontakt: <a href="mailto:mlynarski.mateusz@gmail.com">mlynarski.mateusz@gmail.com</a>.</p>
     </section>
 
     <section id="2">
-      <h2 data-i18n="s2_h">2. Brak gromadzenia danych po stronie serwera</h2>
-      <p data-i18n="s2_p">Nie prowadzimy zewnętrznej bazy danych użytkowników i nie profilujemy ich. Funkcje aplikacji działają lokalnie, a dane pozostają na urządzeniu użytkownika, z wyjątkiem informacji niezbędnych do realizacji zakupów w aplikacji (patrz pkt 7).</p>
+      <h2 data-i18n="s2_h">2. Zakres zbieranych danych</h2>
+      <p data-i18n="s2_intro">Aplikacja została zaprojektowana tak, aby zbierać minimum informacji niezbędnych do działania. Nie zbieramy danych osobowych takich jak imię, nazwisko, adres e-mail ani numer telefonu. Przetwarzane przez nas dane obejmują:</p>
+      <ul data-i18n-html="s2_ul">
+        <li><strong>Anonimowy identyfikator urządzenia (Firebase Auth):</strong> Przy pierwszym uruchomieniu aplikacja tworzy anonimowe konto Firebase. Nie wiąże się ono z żadnymi danymi osobowymi.</li>
+        <li><strong>Profil podróżnika (Firestore):</strong> Preferencje podróżnicze: styl jazdy, typ pojazdu, informacje o towarzyszach podróży (np. dzieci, zwierzęta), budżet. Dane te umożliwiają synchronizację ustawień między urządzeniami.</li>
+        <li><strong>Licznik zapytań AI:</strong> Dzienna liczba zapytań wysłanych do asystenta SAM, służąca do zarządzania limitami planu bezpłatnego i Premium.</li>
+        <li><strong>Anonimowe logi diagnostyczne (Crashlytics):</strong> Anonimowe raporty błędów technicznych aplikacji, niezawierające danych osobowych.</li>
+        <li><strong>Dane transakcyjne:</strong> Paragon zakupu (receipt) od Apple, służący wyłącznie do weryfikacji statusu subskrypcji.</li>
+      </ul>
+      <div class="card" data-i18n="s2_card">Notatki, listy pakowania i zapisane lokalizacje są przechowywane wyłącznie lokalnie na Twoim urządzeniu i nie są nigdy wysyłane na żadne serwery.</div>
     </section>
 
     <section id="3">
-      <h2 data-i18n="s3_h">3. Użytkowanie danych na urządzeniu</h2>
-      <p data-i18n="s3_p">Dane konfiguracyjne (np. wybrany motyw, lista rzeczy, zapisane lokalizacje) są przechowywane lokalnie na urządzeniu. Służą wyłącznie zapewnieniu działania funkcji aplikacji i nie są wysyłane do nas.</p>
+      <h2 data-i18n="s3_h">3. Cele i podstawa prawna przetwarzania</h2>
+      <ul data-i18n-html="s3_ul">
+        <li><strong>Świadczenie usługi / wykonanie umowy (art. 6 ust. 1 lit. b RODO):</strong> Anonimowe uwierzytelnianie, synchronizacja profilu podróżnika, przesyłanie zapytań do asystenta AI (SAM), weryfikacja statusu subskrypcji.</li>
+        <li><strong>Prawnie uzasadniony interes administratora (art. 6 ust. 1 lit. f RODO):</strong> Zbieranie anonimowych logów błędów (Crashlytics) w celu wykrywania i naprawiania usterek technicznych.</li>
+      </ul>
+      <p data-i18n="s3_retention">Dane profilu podróżnika i licznik zapytań są przechowywane przez czas istnienia anonimowego konta Firebase — możesz je usunąć w każdej chwili bezpośrednio z poziomu ustawień aplikacji. Logi diagnostyczne są automatycznie usuwane po 90 dniach.</p>
     </section>
 
     <section id="4">
-      <h2 data-i18n="s4_h">4. Bezpieczeństwo</h2>
-      <p data-i18n="s4_p">Nie przechowujemy danych użytkowników na naszych serwerach, co ogranicza ryzyko naruszeń. Rekomendujemy stosowanie blokady ekranu i aktualizowanie systemu oraz aplikacji, a także tworzenie kopii zapasowych urządzenia.</p>
+      <h2 data-i18n="s4_h">4. Firebase i usługi zewnętrzne</h2>
+      <p data-i18n="s4_intro">Aplikacja korzysta z platformy Google Firebase (Google LLC). Poniżej opisujemy każdą z używanych usług:</p>
+      <ul data-i18n-html="s4_ul">
+        <li><strong>Firebase Authentication:</strong> Tworzy anonimowe konto urządzenia bez zbierania danych osobowych. Służy do przypisania limitów zapytań do konkretnego urządzenia.</li>
+        <li><strong>Cloud Firestore:</strong> Baza danych przechowująca profil podróżnika (styl podróży, typ pojazdu, towarzysze) oraz dzienny licznik zapytań AI. Dane są powiązane wyłącznie z anonimowym ID urządzenia.</li>
+        <li><strong>Firebase Crashlytics:</strong> Zbiera anonimowe raporty awarii aplikacji (typ błędu, wersja systemu iOS, model urządzenia w formie zagregowanej). Nie zawierają danych osobowych.</li>
+      </ul>
+      <div class="card" data-i18n-html="s4_card">Informacje o przetwarzaniu danych przez Google Firebase dostępne są w <a href="https://firebase.google.com/support/privacy" target="_blank" rel="noopener">Polityce prywatności Firebase</a> oraz ogólnej <a href="https://policies.google.com/privacy" target="_blank" rel="noopener">Polityce prywatności Google</a>.</div>
     </section>
 
     <section id="5">
-      <h2 data-i18n="s5_h">5. Reklamy i analityka</h2>
-      <p data-i18n="s5_p">Aplikacja może korzystać z usług firm trzecich (np. Apple, Google) w celu wyświetlania reklam lub anonimowych statystyk. Jeżeli takie narzędzia zostaną włączone, przetwarzanie odbywa się zgodnie z politykami prywatności tych dostawców. Możesz ograniczać personalizację reklam i udostępnianie danych w ustawieniach iOS.</p>
+      <h2 data-i18n="s5_h">5. Asystent AI (SAM) i Google Gemini</h2>
+      <p data-i18n="s5_intro">Asystent podróżniczy SAM działa w oparciu o modele językowe Google Gemini (API). W związku z używaniem asystenta:</p>
+      <ul data-i18n-html="s5_ul">
+        <li>Treść zapytań wysyłanych do SAM (wpisany tekst oraz parametry profilu podróżnika) jest przesyłana do Google Gemini API w celu wygenerowania odpowiedzi.</li>
+        <li>Nie przesyłamy do Google Gemini żadnych danych osobowych — zapytania ograniczają się do treści rozmowy i anonimowych parametrów podróży.</li>
+        <li>Historia rozmów jest przechowywana lokalnie na urządzeniu i nie jest zapisywana na naszych serwerach.</li>
+        <li>Odpowiedzi SAM mają charakter wyłącznie informacyjny i nie stanowią oficjalnych porad prawnych ani nawigacyjnych.</li>
+      </ul>
+      <div class="card" data-i18n-html="s5_card">Informacje o przetwarzaniu danych przez Google Gemini dostępne są w <a href="https://ai.google.dev/gemini-api/terms" target="_blank" rel="noopener">Warunkach korzystania z Gemini API</a> oraz <a href="https://policies.google.com/privacy" target="_blank" rel="noopener">Polityce prywatności Google</a>.</div>
     </section>
 
     <section id="6">
-      <h2 data-i18n="s6_h">6. Zmiany w Polityce Prywatności</h2>
-      <p data-i18n="s6_p">Polityka może być aktualizowana. Bieżąca wersja jest zawsze dostępna na tej stronie. Istotne zmiany będziemy komunikować wewnątrz aplikacji lub w opisie w App Store.</p>
+      <h2 data-i18n="s6_h">6. Przekazywanie danych poza EOG</h2>
+      <p data-i18n="s6_p">Korzystanie z usług Google Firebase i Google Gemini API wiąże się z przesyłaniem danych na serwery Google, które mogą znajdować się poza Europejskim Obszarem Gospodarczym (m.in. w USA). Google zapewnia odpowiedni poziom ochrony danych poprzez stosowanie Standardowych Klauzul Umownych (SCC) zatwierdzonych przez Komisję Europejską zgodnie z art. 46 ust. 2 lit. c RODO. Więcej informacji: <a href="https://policies.google.com/privacy/frameworks" target="_blank" rel="noopener">google.com/privacy/frameworks</a>.</p>
     </section>
 
     <section id="7">
-      <h2 data-i18n="s7_h">7. Zakupy w aplikacji i subskrypcje</h2>
-      <p data-i18n="s7_p1">Aplikacja oferuje płatne, automatycznie odnawialne subskrypcje zapewniające dostęp do funkcji premium:</p>
+      <h2 data-i18n="s7_h">7. Twoje prawa (RODO)</h2>
+      <p data-i18n="s7_intro">Jako osoba, której dane dotyczą, przysługują Ci następujące prawa:</p>
       <ul data-i18n-html="s7_ul">
+        <li><strong>Prawo dostępu (art. 15 RODO):</strong> Możesz zażądać informacji o tym, jakie dane przetwarzamy.</li>
+        <li><strong>Prawo do sprostowania (art. 16 RODO):</strong> Możesz zaktualizować swój profil podróżnika bezpośrednio w ustawieniach aplikacji.</li>
+        <li><strong>Prawo do usunięcia (art. 17 RODO):</strong> Możesz usunąć wszystkie dane powiązane z Twoim urządzeniem, korzystając z opcji <strong>„Usuń konto i dane"</strong> w ustawieniach aplikacji.</li>
+        <li><strong>Prawo do ograniczenia przetwarzania (art. 18 RODO):</strong> Możesz złożyć wniosek drogą mailową.</li>
+        <li><strong>Prawo do przenoszenia danych (art. 20 RODO):</strong> Dotyczy danych przetwarzanych na podstawie wykonania umowy.</li>
+        <li><strong>Prawo sprzeciwu (art. 21 RODO):</strong> Możesz wnieść sprzeciw wobec przetwarzania na podstawie prawnie uzasadnionego interesu (logi diagnostyczne).</li>
+        <li><strong>Prawo do skargi:</strong> Przysługuje Ci prawo do wniesienia skargi do organu nadzorczego — w Polsce jest nim <a href="https://uodo.gov.pl" target="_blank" rel="noopener">Prezes Urzędu Ochrony Danych Osobowych (UODO)</a>.</li>
+      </ul>
+      <p data-i18n="s7_note">Ponieważ dane przechowywane są anonimowo (bez e-maila ani imienia), realizacja praw innych niż usunięcie danych może wymagać podania anonimowego identyfikatora Firebase Twojego urządzenia w celu weryfikacji.</p>
+    </section>
+
+    <section id="8">
+      <h2 data-i18n="s8_h">8. Bezpieczeństwo</h2>
+      <p data-i18n="s8_p">Stosujemy szyfrowanie danych w transmisji (SSL/TLS) oraz reguły bezpieczeństwa Firebase Firestore ograniczające dostęp do danych wyłącznie dla uwierzytelnionego urządzenia. Dane profilowe nie zawierają informacji umożliwiających bezpośrednią identyfikację osoby. Rekomendujemy stosowanie blokady ekranu, regularne aktualizowanie systemu iOS i aplikacji oraz tworzenie kopii zapasowych urządzenia.</p>
+    </section>
+
+    <section id="9">
+      <h2 data-i18n="s9_h">9. Reklamy i analityka</h2>
+      <p data-i18n="s9_p">Aplikacja w planie bezpłatnym może wyświetlać reklamy obsługiwane przez usługi Apple lub Google. Przetwarzanie danych na potrzeby reklam odbywa się zgodnie z politykami prywatności tych dostawców. Możesz ograniczyć personalizację reklam i śledzenie w ustawieniach iOS: <strong>Ustawienia &gt; Prywatność i bezpieczeństwo &gt; Śledzenie</strong>.</p>
+      <h3 data-i18n="s9_analytics_h">9.1. Firebase Analytics — zbierane zdarzenia</h3>
+      <p data-i18n="s9_analytics_intro">Aplikacja korzysta z Firebase Analytics (Google LLC) w celu anonimowego pomiaru aktywności użytkowników i ulepszania doświadczeń. Żadne ze zdarzeń nie jest powiązane z danymi osobowymi. Zbierane kategorie zdarzeń:</p>
+      <ul data-i18n-html="s9_analytics_ul">
+        <li><strong>Onboarding:</strong> uruchomienie, ukończenie lub pominięcie procesu konfiguracji (bez treści odpowiedzi).</li>
+        <li><strong>Asystent AI (SAM):</strong> wysłanie zapytania (tylko długość tekstu), otrzymanie odpowiedzi (długość odpowiedzi), osiągnięcie dziennego limitu.</li>
+        <li><strong>Paywall:</strong> wyświetlenie ekranu zakupu, konwersja (ID produktu Apple), zamknięcie bez zakupu.</li>
+        <li><strong>Korzystanie z treści:</strong> wyświetlenie lub zapisanie przepisu, udostępnienie przepisu, zaznaczenie pozycji na checkliście, tworzenie i ukończenie listy, tworzenie planu podróży.</li>
+        <li><strong>Funkcje premium:</strong> eksport PDF, zapis lokalizacji (liczba zapisanych).</li>
+        <li><strong>Osiągnięcia i powiadomienia:</strong> odblokowanie osiągnięcia, otwarcie powiadomienia push.</li>
+        <li><strong>Sesja:</strong> otwarcie aplikacji (numer sesji, status premium, dni od instalacji — wszystko anonimowe).</li>
+      </ul>
+    </section>
+
+    <section id="10">
+      <h2 data-i18n="s10_h">10. Zakupy w aplikacji i subskrypcje</h2>
+      <p data-i18n="s10_p1">Aplikacja oferuje płatne, automatycznie odnawialne subskrypcje zapewniające dostęp do funkcji premium:</p>
+      <ul data-i18n-html="s10_ul">
         <li><strong>Subskrypcja miesięczna</strong> – odnawiana co miesiąc.</li>
         <li><strong>Subskrypcja roczna</strong> – odnawiana co rok.</li>
       </ul>
 
-      <div class="card" data-i18n-html="s7_card">
+      <div class="card" data-i18n-html="s10_card">
         <strong>Ceny:</strong> Ceny mogą różnić się w zależności od regionu i waluty. Dokładna cena jest wyświetlana w aplikacji i w App Store <em>przed</em> potwierdzeniem zakupu.
       </div>
 
-      <h3 data-i18n="s7_1_h">7.1. Rozliczenia i odnowienia</h3>
-      <ul data-i18n-html="s7_1_ul">
+      <h3 data-i18n="s10_1_h">10.1. Rozliczenia i odnowienia</h3>
+      <ul data-i18n-html="s10_1_ul">
         <li>Płatność zostanie pobrana z <strong>konta Apple ID</strong> po potwierdzeniu zakupu.</li>
         <li>Subskrypcja <strong>odnawia się automatycznie</strong>, chyba że auto-odnawianie zostanie wyłączone co najmniej <strong>24 godziny</strong> przed końcem bieżącego okresu.</li>
-        <li>Opłata za <strong>odnowienie</strong> zostanie naliczona w ciągu 24 godzin przed końcem bieżącego okresu i może różnić się w zależności od planu oraz regionu.</li>
+        <li>Opłata za <strong>odnowienie</strong> zostanie naliczona w ciągu 24 godzin przed końcem bieżącego okresu.</li>
         <li>Jeżeli oferowany jest okres próbny, <strong>niewykorzystana część</strong> okresu próbnego może zostać utracona po wykupieniu subskrypcji.</li>
       </ul>
 
-      <h3 data-i18n="s7_2_h">7.2. Zarządzanie subskrypcjami</h3>
-      <p data-i18n-html="s7_2_p">Użytkownik może zarządzać subskrypcjami oraz wyłączyć auto-odnawianie w ustawieniach iOS: <strong>Ustawienia &gt; [Twoje imię] &gt; Subskrypcje</strong> lub bezpośrednio przez konto App Store. Linki pomocnicze Apple:</p>
+      <h3 data-i18n="s10_2_h">10.2. Zarządzanie subskrypcjami</h3>
+      <p data-i18n-html="s10_2_p">Użytkownik może zarządzać subskrypcjami oraz wyłączyć auto-odnawianie w ustawieniach iOS: <strong>Ustawienia &gt; [Twoje imię] &gt; Subskrypcje</strong> lub bezpośrednio przez konto App Store. Linki pomocnicze Apple:</p>
       <ul>
         <li><a href="https://support.apple.com/pl-pl/HT202039" target="_blank" rel="noopener">Jak wyświetlać, zmieniać lub anulować subskrypcje</a></li>
         <li><a href="https://reportaproblem.apple.com/" target="_blank" rel="noopener">Zwroty i zgłaszanie problemów (Apple)</a></li>
       </ul>
 
-      <h3 data-i18n="s7_3_h">7.3. Przywracanie zakupów</h3>
-      <p data-i18n-html="s7_3_p">W aplikacji dostępna jest funkcja <strong>„Przywróć zakupy”</strong> (Restore Purchases), która umożliwia odtworzenie wcześniej wykupionego dostępu premium po reinstalacji aplikacji lub zmianie urządzenia, o ile używasz tego samego Apple ID.</p>
+      <h3 data-i18n="s10_3_h">10.3. Przywracanie zakupów</h3>
+      <p data-i18n-html="s10_3_p">W aplikacji dostępna jest funkcja <strong>„Przywróć zakupy"</strong> (Restore Purchases), która umożliwia odtworzenie wcześniej wykupionego dostępu premium po reinstalacji aplikacji lub zmianie urządzenia, o ile używasz tego samego Apple ID.</p>
 
-      <h3 data-i18n="s7_4_h">7.4. Dane transakcyjne i prywatność</h3>
-      <ul data-i18n-html="s7_4_ul">
+      <h3 data-i18n="s10_4_h">10.4. Dane transakcyjne i prywatność</h3>
+      <ul data-i18n-html="s10_4_ul">
         <li>Proces płatności i weryfikacji subskrypcji odbywa się poprzez infrastrukturę Apple (App Store / Apple Media Services).</li>
         <li>Otrzymujemy od Apple <strong>paragon transakcyjny (receipt)</strong> lub jego wynik weryfikacji służący wyłącznie do potwierdzania statusu subskrypcji i odblokowania funkcji premium. Nie łączymy go z danymi osobowymi po naszej stronie.</li>
         <li>Nie przechowujemy danych kart płatniczych. Płatności obsługuje Apple zgodnie ze swoją <a href="https://www.apple.com/legal/privacy/pl/" target="_blank" rel="noopener">Polityką prywatności</a> i <a href="https://www.apple.com/legal/internet-services/itunes/pl/terms.html" target="_blank" rel="noopener">Warunkami świadczenia usług medialnych</a>.</li>
       </ul>
 
-      <h3 data-i18n="s7_5_h">7.5. Zwroty</h3>
-      <p data-i18n-html="s7_5_p">Wnioski o zwrot środków obsługuje Apple. Jeżeli chcesz poprosić o zwrot, skorzystaj z serwisu <a href="https://reportaproblem.apple.com/" target="_blank" rel="noopener">reportaproblem.apple.com</a>.</p>
+      <h3 data-i18n="s10_5_h">10.5. Zwroty</h3>
+      <p data-i18n-html="s10_5_p">Wnioski o zwrot środków obsługuje Apple. Jeżeli chcesz poprosić o zwrot, skorzystaj z serwisu <a href="https://reportaproblem.apple.com/" target="_blank" rel="noopener">reportaproblem.apple.com</a>.</p>
     </section>
 
-    <section id="8">
-      <h2 data-i18n="s8_h">8. Kontakt</h2>
-      <p data-i18n-html="s8_p">W razie pytań dotyczących prywatności lub subskrypcji skontaktuj się z nami: <a href="mailto:mlynarski.mateusz@gmail.com">mlynarski.mateusz@gmail.com</a>.</p>
+    <section id="11">
+      <h2 data-i18n="s11_h">11. Zmiany w Polityce Prywatności</h2>
+      <p data-i18n="s11_p">Polityka może być aktualizowana. Bieżąca wersja jest zawsze dostępna na tej stronie. Istotne zmiany będziemy komunikować wewnątrz aplikacji lub w opisie w App Store.</p>
     </section>
 
-    <section id="9">
-      <h2 data-i18n="s9_h">9. Postanowienia końcowe</h2>
-      <p data-i18n-html="s9_p">Korzystając z aplikacji akceptujesz niniejszą Politykę Prywatności oraz zasady subskrypcji opisane powyżej. W zakresie zakupów i subskrypcji zastosowanie mają także warunki Apple Media Services oraz polityki Apple dotyczące prywatności i płatności.</p>
+    <section id="12">
+      <h2 data-i18n="s12_h">12. Kontakt</h2>
+      <p data-i18n-html="s12_p">W razie pytań dotyczących prywatności, realizacji praw RODO lub subskrypcji skontaktuj się z nami: <a href="mailto:mlynarski.mateusz@gmail.com">mlynarski.mateusz@gmail.com</a>.</p>
     </section>
   </main>
 
@@ -210,7 +274,6 @@
     <p class="small">
       <a href="privacy.html" data-i18n="footer_privacy">Polityka Prywatności</a> •
       <a href="terms.html" data-i18n="footer_terms">Warunki korzystania</a> •
-      <a href="cookies.html" data-i18n="footer_cookies">Cookies</a> •
       <a href="cookies.html" data-i18n="footer_cookies">Cookies</a>
     </p>
   </footer>
@@ -223,155 +286,218 @@
       const dict = {
         pl: {
           page_title: 'Polityka Prywatności — Travel Rules',
-          page_desc: 'Polityka Prywatności aplikacji Travel Rules na iOS. Informacje o danych lokalnych, bezpieczeństwie, subskrypcjach, reklamach i kontaktach.',
+          page_desc: 'Polityka Prywatności aplikacji Travel Rules na iOS. Informacje o Firebase, asystencie AI, RODO, subskrypcjach i prawach użytkownika.',
           pp_title: 'Polityka Prywatności',
           app_line: 'Aplikacja: <strong>Travel Rules</strong> (iOS)',
-          updated_line: 'Ostatnia aktualizacja: 23 września 2025',
+          updated_line: 'Ostatnia aktualizacja: 16 marca 2026',
           toc_title: 'Spis treści:',
-          toc_1: '1. Wprowadzenie',
-          toc_2: '2. Brak gromadzenia danych',
-          toc_3: '3. Dane na urządzeniu',
-          toc_4: '4. Bezpieczeństwo',
-          toc_5: '5. Reklamy i analityka',
-          toc_6: '6. Zmiany dokumentu',
-          toc_7: '7. Subskrypcje i zakupy',
-          toc_8: '8. Kontakt',
-          toc_9: '9. Postanowienia końcowe',
-          s1_h: '1. Wprowadzenie',
-          s1_p: 'Aplikacja Travel Rules została zaprojektowana z poszanowaniem prywatności. Aplikacja nie zbiera ani nie przetwarza danych osobowych użytkowników na naszych serwerach. Większość informacji i ustawień działa lokalnie na urządzeniu.',
-          s2_h: '2. Brak gromadzenia danych po stronie serwera',
-          s2_p: 'Nie prowadzimy zewnętrznej bazy danych użytkowników i nie profilujemy ich. Funkcje aplikacji działają lokalnie, a dane pozostają na urządzeniu użytkownika, z wyjątkiem informacji niezbędnych do realizacji zakupów w aplikacji (patrz pkt 7).',
-          s3_h: '3. Użytkowanie danych na urządzeniu',
-          s3_p: 'Dane konfiguracyjne (np. wybrany motyw, lista rzeczy, zapisane lokalizacje) są przechowywane lokalnie na urządzeniu. Służą wyłącznie zapewnieniu działania funkcji aplikacji i nie są wysyłane do nas.',
-          s4_h: '4. Bezpieczeństwo',
-          s4_p: 'Nie przechowujemy danych użytkowników na naszych serwerach, co ogranicza ryzyko naruszeń. Rekomendujemy stosowanie blokady ekranu i aktualizowanie systemu oraz aplikacji, a także tworzenie kopii zapasowych urządzenia.',
-          s5_h: '5. Reklamy i analityka',
-          s5_p: 'Aplikacja może korzystać z usług firm trzecich (np. Apple, Google) w celu wyświetlania reklam lub anonimowych statystyk. Jeżeli takie narzędzia zostaną włączone, przetwarzanie odbywa się zgodnie z politykami prywatności tych dostawców. Możesz ograniczać personalizację reklam i udostępnianie danych w ustawieniach iOS.',
-          s6_h: '6. Zmiany w Polityce Prywatności',
-          s6_p: 'Polityka może być aktualizowana. Bieżąca wersja jest zawsze dostępna na tej stronie. Istotne zmiany będziemy komunikować wewnątrz aplikacji lub w opisie w App Store.',
-          s7_h: '7. Zakupy w aplikacji i subskrypcje',
-          s7_p1: 'Aplikacja oferuje płatne, automatycznie odnawialne subskrypcje zapewniające dostęp do funkcji premium:',
-          s7_ul: '<li><strong>Subskrypcja miesięczna</strong> – odnawiana co miesiąc.</li><li><strong>Subskrypcja roczna</strong> – odnawiana co rok.</li>',
-          s7_card: '<strong>Ceny:</strong> Ceny mogą różnić się w zależności od regionu i waluty. Dokładna cena jest wyświetlana w aplikacji i w App Store <em>przed</em> potwierdzeniem zakupu.',
-          s7_1_h: '7.1. Rozliczenia i odnowienia',
-          s7_1_ul: '<li>Płatność zostanie pobrana z <strong>konta Apple ID</strong> po potwierdzeniu zakupu.</li><li>Subskrypcja <strong>odnawia się automatycznie</strong>, chyba że auto-odnawianie zostanie wyłączone co najmniej <strong>24 godziny</strong> przed końcem bieżącego okresu.</li><li>Opłata za <strong>odnowienie</strong> zostanie naliczona w ciągu 24 godzin przed końcem bieżącego okresu i może różnić się w zależności od planu oraz regionu.</li><li>Jeżeli oferowany jest okres próbny, <strong>niewykorzystana część</strong> okresu próbnego może zostać utracona po wykupieniu subskrypcji.</li>',
-          s7_2_h: '7.2. Zarządzanie subskrypcjami',
-          s7_2_p: 'Użytkownik może zarządzać subskrypcjami oraz wyłączyć auto-odnawianie w ustawieniach iOS: <strong>Ustawienia &gt; [Twoje imię] &gt; Subskrypcje</strong> lub bezpośrednio przez konto App Store. Linki pomocnicze Apple:',
-          s7_3_h: '7.3. Przywracanie zakupów',
-          s7_3_p: 'W aplikacji dostępna jest funkcja <strong>„Przywróć zakupy”</strong> (Restore Purchases), która umożliwia odtworzenie wcześniej wykupionego dostępu premium po reinstalacji aplikacji lub zmianie urządzenia, o ile używasz tego samego Apple ID.',
-          s7_4_h: '7.4. Dane transakcyjne i prywatność',
-          s7_4_ul: '<li>Proces płatności i weryfikacji subskrypcji odbywa się poprzez infrastrukturę Apple (App Store / Apple Media Services).</li><li>Otrzymujemy od Apple <strong>paragon transakcyjny (receipt)</strong> lub jego wynik weryfikacji służący wyłącznie do potwierdzania statusu subskrypcji i odblokowania funkcji premium. Nie łączymy go z danymi osobowymi po naszej stronie.</li><li>Nie przechowujemy danych kart płatniczych. Płatności obsługuje Apple zgodnie ze swoją <a href="https://www.apple.com/legal/privacy/pl/" target="_blank" rel="noopener">Polityką prywatności</a> i <a href="https://www.apple.com/legal/internet-services/itunes/pl/terms.html" target="_blank" rel="noopener">Warunkami świadczenia usług medialnych</a>.</li>',
-          s7_5_h: '7.5. Zwroty',
-          s7_5_p: 'Wnioski o zwrot środków obsługuje Apple. Jeżeli chcesz poprosić o zwrot, skorzystaj z serwisu <a href="https://reportaproblem.apple.com/" target="_blank" rel="noopener">reportaproblem.apple.com</a>.',
-          s8_h: '8. Kontakt',
-          s8_p: 'W razie pytań dotyczących prywatności lub subskrypcji skontaktuj się z nami: <a href="mailto:mlynarski.mateusz@gmail.com">mlynarski.mateusz@gmail.com</a>.',
-          s9_h: '9. Postanowienia końcowe',
-          s9_p: 'Korzystając z aplikacji akceptujesz niniejszą Politykę Prywatności oraz zasady subskrypcji opisane powyżej. W zakresie zakupów i subskrypcji zastosowanie mają także warunki Apple Media Services oraz polityki Apple dotyczące prywatności i płatności.',
+          toc_1: '1. Administrator danych',
+          toc_2: '2. Zakres zbieranych danych',
+          toc_3: '3. Cele i podstawa prawna',
+          toc_4: '4. Firebase i usługi zewnętrzne',
+          toc_5: '5. Asystent AI (SAM)',
+          toc_6: '6. Przekazywanie danych poza EOG',
+          toc_7: '7. Twoje prawa (RODO)',
+          toc_8: '8. Bezpieczeństwo',
+          toc_9: '9. Reklamy i analityka',
+          toc_10: '10. Subskrypcje i zakupy',
+          toc_11: '11. Zmiany dokumentu',
+          toc_12: '12. Kontakt',
+          s1_h: '1. Administrator danych',
+          s1_p: 'Administratorem danych osobowych przetwarzanych w związku z korzystaniem z aplikacji jest: <strong>Mateusz Młynarski</strong>, kontakt: <a href="mailto:mlynarski.mateusz@gmail.com">mlynarski.mateusz@gmail.com</a>.',
+          s2_h: '2. Zakres zbieranych danych',
+          s2_intro: 'Aplikacja została zaprojektowana tak, aby zbierać minimum informacji niezbędnych do działania. Nie zbieramy danych osobowych takich jak imię, nazwisko, adres e-mail ani numer telefonu. Przetwarzane przez nas dane obejmują:',
+          s2_ul: '<li><strong>Anonimowy identyfikator urządzenia (Firebase Auth):</strong> Przy pierwszym uruchomieniu aplikacja tworzy anonimowe konto Firebase. Nie wiąże się ono z żadnymi danymi osobowymi.</li><li><strong>Profil podróżnika (Firestore):</strong> Preferencje podróżnicze: styl jazdy, typ pojazdu, informacje o towarzyszach podróży (np. dzieci, zwierzęta), budżet. Dane te umożliwiają synchronizację ustawień między urządzeniami.</li><li><strong>Licznik zapytań AI:</strong> Dzienna liczba zapytań wysłanych do asystenta SAM, służąca do zarządzania limitami planu bezpłatnego i Premium.</li><li><strong>Anonimowe logi diagnostyczne (Crashlytics):</strong> Anonimowe raporty błędów technicznych aplikacji, niezawierające danych osobowych.</li><li><strong>Dane transakcyjne:</strong> Paragon zakupu (receipt) od Apple, służący wyłącznie do weryfikacji statusu subskrypcji.</li>',
+          s2_card: 'Notatki, listy pakowania i zapisane lokalizacje są przechowywane wyłącznie lokalnie na Twoim urządzeniu i nie są nigdy wysyłane na żadne serwery.',
+          s3_h: '3. Cele i podstawa prawna przetwarzania',
+          s3_ul: '<li><strong>Świadczenie usługi / wykonanie umowy (art. 6 ust. 1 lit. b RODO):</strong> Anonimowe uwierzytelnianie, synchronizacja profilu podróżnika, przesyłanie zapytań do asystenta AI (SAM), weryfikacja statusu subskrypcji.</li><li><strong>Prawnie uzasadniony interes administratora (art. 6 ust. 1 lit. f RODO):</strong> Zbieranie anonimowych logów błędów (Crashlytics) w celu wykrywania i naprawiania usterek technicznych.</li>',
+          s3_retention: 'Dane profilu podróżnika i licznik zapytań są przechowywane przez czas istnienia anonimowego konta Firebase — możesz je usunąć w każdej chwili bezpośrednio z poziomu ustawień aplikacji. Logi diagnostyczne są automatycznie usuwane po 90 dniach.',
+          s4_h: '4. Firebase i usługi zewnętrzne',
+          s4_intro: 'Aplikacja korzysta z platformy Google Firebase (Google LLC). Poniżej opisujemy każdą z używanych usług:',
+          s4_ul: '<li><strong>Firebase Authentication:</strong> Tworzy anonimowe konto urządzenia bez zbierania danych osobowych. Służy do przypisania limitów zapytań do konkretnego urządzenia.</li><li><strong>Cloud Firestore:</strong> Baza danych przechowująca profil podróżnika (styl podróży, typ pojazdu, towarzysze) oraz dzienny licznik zapytań AI. Dane są powiązane wyłącznie z anonimowym ID urządzenia.</li><li><strong>Firebase Crashlytics:</strong> Zbiera anonimowe raporty awarii aplikacji (typ błędu, wersja systemu iOS, model urządzenia w formie zagregowanej). Nie zawierają danych osobowych.</li>',
+          s4_card: 'Informacje o przetwarzaniu danych przez Google Firebase dostępne są w <a href="https://firebase.google.com/support/privacy" target="_blank" rel="noopener">Polityce prywatności Firebase</a> oraz ogólnej <a href="https://policies.google.com/privacy" target="_blank" rel="noopener">Polityce prywatności Google</a>.',
+          s5_h: '5. Asystent AI (SAM) i Google Gemini',
+          s5_intro: 'Asystent podróżniczy SAM działa w oparciu o modele językowe Google Gemini (API). W związku z używaniem asystenta:',
+          s5_ul: '<li>Treść zapytań wysyłanych do SAM (wpisany tekst oraz parametry profilu podróżnika) jest przesyłana do Google Gemini API w celu wygenerowania odpowiedzi.</li><li>Nie przesyłamy do Google Gemini żadnych danych osobowych — zapytania ograniczają się do treści rozmowy i anonimowych parametrów podróży.</li><li>Historia rozmów jest przechowywana lokalnie na urządzeniu i nie jest zapisywana na naszych serwerach.</li><li>Odpowiedzi SAM mają charakter wyłącznie informacyjny i nie stanowią oficjalnych porad prawnych ani nawigacyjnych.</li>',
+          s5_card: 'Informacje o przetwarzaniu danych przez Google Gemini dostępne są w <a href="https://ai.google.dev/gemini-api/terms" target="_blank" rel="noopener">Warunkach korzystania z Gemini API</a> oraz <a href="https://policies.google.com/privacy" target="_blank" rel="noopener">Polityce prywatności Google</a>.',
+          s6_h: '6. Przekazywanie danych poza EOG',
+          s6_p: 'Korzystanie z usług Google Firebase i Google Gemini API wiąże się z przesyłaniem danych na serwery Google, które mogą znajdować się poza Europejskim Obszarem Gospodarczym (m.in. w USA). Google zapewnia odpowiedni poziom ochrony danych poprzez stosowanie Standardowych Klauzul Umownych (SCC) zatwierdzonych przez Komisję Europejską zgodnie z art. 46 ust. 2 lit. c RODO. Więcej informacji: <a href="https://policies.google.com/privacy/frameworks" target="_blank" rel="noopener">google.com/privacy/frameworks</a>.',
+          s7_h: '7. Twoje prawa (RODO)',
+          s7_intro: 'Jako osoba, której dane dotyczą, przysługują Ci następujące prawa:',
+          s7_ul: '<li><strong>Prawo dostępu (art. 15 RODO):</strong> Możesz zażądać informacji o tym, jakie dane przetwarzamy.</li><li><strong>Prawo do sprostowania (art. 16 RODO):</strong> Możesz zaktualizować swój profil podróżnika bezpośrednio w ustawieniach aplikacji.</li><li><strong>Prawo do usunięcia (art. 17 RODO):</strong> Możesz usunąć wszystkie dane powiązane z Twoim urządzeniem, korzystając z opcji <strong>„Usuń konto i dane"</strong> w ustawieniach aplikacji.</li><li><strong>Prawo do ograniczenia przetwarzania (art. 18 RODO):</strong> Możesz złożyć wniosek drogą mailową.</li><li><strong>Prawo do przenoszenia danych (art. 20 RODO):</strong> Dotyczy danych przetwarzanych na podstawie wykonania umowy.</li><li><strong>Prawo sprzeciwu (art. 21 RODO):</strong> Możesz wnieść sprzeciw wobec przetwarzania na podstawie prawnie uzasadnionego interesu (logi diagnostyczne).</li><li><strong>Prawo do skargi:</strong> Przysługuje Ci prawo do wniesienia skargi do organu nadzorczego — w Polsce jest nim <a href="https://uodo.gov.pl" target="_blank" rel="noopener">Prezes Urzędu Ochrony Danych Osobowych (UODO)</a>.</li>',
+          s7_note: 'Ponieważ dane przechowywane są anonimowo (bez e-maila ani imienia), realizacja praw innych niż usunięcie danych może wymagać podania anonimowego identyfikatora Firebase Twojego urządzenia w celu weryfikacji.',
+          s8_h: '8. Bezpieczeństwo',
+          s8_p: 'Stosujemy szyfrowanie danych w transmisji (SSL/TLS) oraz reguły bezpieczeństwa Firebase Firestore ograniczające dostęp do danych wyłącznie dla uwierzytelnionego urządzenia. Dane profilowe nie zawierają informacji umożliwiających bezpośrednią identyfikację osoby. Rekomendujemy stosowanie blokady ekranu, regularne aktualizowanie systemu iOS i aplikacji oraz tworzenie kopii zapasowych urządzenia.',
+          s9_h: '9. Reklamy i analityka',
+          s9_p: 'Aplikacja w planie bezpłatnym może wyświetlać reklamy obsługiwane przez usługi Apple lub Google. Przetwarzanie danych na potrzeby reklam odbywa się zgodnie z politykami prywatności tych dostawców. Możesz ograniczyć personalizację reklam i śledzenie w ustawieniach iOS: Ustawienia > Prywatność i bezpieczeństwo > Śledzenie.',
+          s9_analytics_h: '9.1. Firebase Analytics — zbierane zdarzenia',
+          s9_analytics_intro: 'Aplikacja korzysta z Firebase Analytics (Google LLC) w celu anonimowego pomiaru aktywności użytkowników i ulepszania doświadczeń. Żadne ze zdarzeń nie jest powiązane z danymi osobowymi. Zbierane kategorie zdarzeń:',
+          s9_analytics_ul: '<li><strong>Onboarding:</strong> uruchomienie, ukończenie lub pominięcie procesu konfiguracji (bez treści odpowiedzi).</li><li><strong>Asystent AI (SAM):</strong> wysłanie zapytania (tylko długość tekstu), otrzymanie odpowiedzi (długość odpowiedzi), osiągnięcie dziennego limitu.</li><li><strong>Paywall:</strong> wyświetlenie ekranu zakupu, konwersja (ID produktu Apple), zamknięcie bez zakupu.</li><li><strong>Korzystanie z treści:</strong> wyświetlenie lub zapisanie przepisu, udostępnienie przepisu, zaznaczenie pozycji na checkliście, tworzenie i ukończenie listy, tworzenie planu podróży.</li><li><strong>Funkcje premium:</strong> eksport PDF, zapis lokalizacji (liczba zapisanych).</li><li><strong>Osiągnięcia i powiadomienia:</strong> odblokowanie osiągnięcia, otwarcie powiadomienia push.</li><li><strong>Sesja:</strong> otwarcie aplikacji (numer sesji, status premium, dni od instalacji — wszystko anonimowe).</li>',
+          s10_h: '10. Zakupy w aplikacji i subskrypcje',
+          s10_p1: 'Aplikacja oferuje płatne, automatycznie odnawialne subskrypcje zapewniające dostęp do funkcji premium:',
+          s10_ul: '<li><strong>Subskrypcja miesięczna</strong> – odnawiana co miesiąc.</li><li><strong>Subskrypcja roczna</strong> – odnawiana co rok.</li>',
+          s10_card: '<strong>Ceny:</strong> Ceny mogą różnić się w zależności od regionu i waluty. Dokładna cena jest wyświetlana w aplikacji i w App Store <em>przed</em> potwierdzeniem zakupu.',
+          s10_1_h: '10.1. Rozliczenia i odnowienia',
+          s10_1_ul: '<li>Płatność zostanie pobrana z <strong>konta Apple ID</strong> po potwierdzeniu zakupu.</li><li>Subskrypcja <strong>odnawia się automatycznie</strong>, chyba że auto-odnawianie zostanie wyłączone co najmniej <strong>24 godziny</strong> przed końcem bieżącego okresu.</li><li>Opłata za <strong>odnowienie</strong> zostanie naliczona w ciągu 24 godzin przed końcem bieżącego okresu i może różnić się w zależności od planu oraz regionu.</li><li>Jeżeli oferowany jest okres próbny, <strong>niewykorzystana część</strong> okresu próbnego może zostać utracona po wykupieniu subskrypcji.</li>',
+          s10_2_h: '10.2. Zarządzanie subskrypcjami',
+          s10_2_p: 'Użytkownik może zarządzać subskrypcjami oraz wyłączyć auto-odnawianie w ustawieniach iOS: <strong>Ustawienia &gt; [Twoje imię] &gt; Subskrypcje</strong> lub bezpośrednio przez konto App Store. Linki pomocnicze Apple:',
+          s10_3_h: '10.3. Przywracanie zakupów',
+          s10_3_p: 'W aplikacji dostępna jest funkcja <strong>„Przywróć zakupy"</strong> (Restore Purchases), która umożliwia odtworzenie wcześniej wykupionego dostępu premium po reinstalacji aplikacji lub zmianie urządzenia, o ile używasz tego samego Apple ID.',
+          s10_4_h: '10.4. Dane transakcyjne i prywatność',
+          s10_4_ul: '<li>Proces płatności i weryfikacji subskrypcji odbywa się poprzez infrastrukturę Apple (App Store / Apple Media Services).</li><li>Otrzymujemy od Apple <strong>paragon transakcyjny (receipt)</strong> lub jego wynik weryfikacji służący wyłącznie do potwierdzania statusu subskrypcji i odblokowania funkcji premium. Nie łączymy go z danymi osobowymi po naszej stronie.</li><li>Nie przechowujemy danych kart płatniczych. Płatności obsługuje Apple zgodnie ze swoją <a href="https://www.apple.com/legal/privacy/pl/" target="_blank" rel="noopener">Polityką prywatności</a> i <a href="https://www.apple.com/legal/internet-services/itunes/pl/terms.html" target="_blank" rel="noopener">Warunkami świadczenia usług medialnych</a>.</li>',
+          s10_5_h: '10.5. Zwroty',
+          s10_5_p: 'Wnioski o zwrot środków obsługuje Apple. Jeżeli chcesz poprosić o zwrot, skorzystaj z serwisu <a href="https://reportaproblem.apple.com/" target="_blank" rel="noopener">reportaproblem.apple.com</a>.',
+          s11_h: '11. Zmiany w Polityce Prywatności',
+          s11_p: 'Polityka może być aktualizowana. Bieżąca wersja jest zawsze dostępna na tej stronie. Istotne zmiany będziemy komunikować wewnątrz aplikacji lub w opisie w App Store.',
+          s12_h: '12. Kontakt',
+          s12_p: 'W razie pytań dotyczących prywatności, realizacji praw RODO lub subskrypcji skontaktuj się z nami: <a href="mailto:mlynarski.mateusz@gmail.com">mlynarski.mateusz@gmail.com</a>.',
           footer_rights: '© 2025 Travel Rules. Wszelkie prawa zastrzeżone.',
           footer_privacy: 'Polityka Prywatności',
-          footer_terms: 'Warunki korzystania',          footer_cookies: 'Cookies',
+          footer_terms: 'Warunki korzystania',
           footer_cookies: 'Cookies'
         },
         en: {
           page_title: 'Privacy Policy — Travel Rules',
-          page_desc: 'Privacy Policy for the Travel Rules iOS app. Information about on-device data, security, subscriptions, ads/analytics, and contact.',
+          page_desc: 'Privacy Policy for the Travel Rules iOS app. Information about Firebase, AI assistant, GDPR rights, subscriptions, and data security.',
           pp_title: 'Privacy Policy',
           app_line: 'App: <strong>Travel Rules</strong> (iOS)',
-          updated_line: 'Last updated: September 23, 2025',
+          updated_line: 'Last updated: March 16, 2026',
           toc_title: 'Table of contents:',
-          toc_1: '1. Introduction',
-          toc_2: '2. No server-side data collection',
-          toc_3: '3. On-device data',
-          toc_4: '4. Security',
-          toc_5: '5. Ads & analytics',
-          toc_6: '6. Changes to this policy',
-          toc_7: '7. Subscriptions & purchases',
-          toc_8: '8. Contact',
-          toc_9: '9. Final provisions',
-          s1_h: '1. Introduction',
-          s1_p: 'The Travel Rules app is designed with privacy in mind. The app does not collect or process users’ personal data on our servers. Most information and settings work locally on your device.',
-          s2_h: '2. No server-side data collection',
-          s2_p: 'We do not maintain an external user database and we do not profile users. App features run locally and your data stays on your device, except for information necessary to complete in-app purchases (see section 7).',
-          s3_h: '3. On-device data',
-          s3_p: 'Configuration data (e.g., selected theme, packing lists, saved locations) is stored locally on your device. It is only used to provide app functionality and is not sent to us.',
-          s4_h: '4. Security',
-          s4_p: 'We do not store user data on our servers, which reduces the risk of breaches. We recommend using a device screen lock, keeping iOS and the app up to date, and making regular device backups.',
-          s5_h: '5. Ads & analytics',
-          s5_p: 'The app may use third-party services (e.g., Apple, Google) to display ads or provide anonymous usage statistics. If such tools are enabled, processing occurs according to the providers’ privacy policies. You can limit ad personalization and data sharing in iOS settings.',
-          s6_h: '6. Changes to this Privacy Policy',
-          s6_p: 'This policy may be updated. The current version is always available on this page. Material changes will be communicated inside the app or in the App Store description.',
-          s7_h: '7. Subscriptions & in-app purchases',
-          s7_p1: 'The app offers paid, automatically renewing subscriptions that provide access to premium features:',
-          s7_ul: '<li><strong>Monthly subscription</strong> — renews every month.</li><li><strong>Annual subscription</strong> — renews every year.</li>',
-          s7_card: '<strong>Pricing:</strong> Prices may vary by region and currency. The exact price is shown in the app and in the App Store <em>before</em> you confirm your purchase.',
-          s7_1_h: '7.1. Billing and renewals',
-          s7_1_ul: '<li>Payment will be charged to your <strong>Apple ID account</strong> at confirmation of purchase.</li><li>The subscription <strong>renews automatically</strong> unless auto-renew is turned off at least <strong>24 hours</strong> before the end of the current period.</li><li>The renewal fee will be charged within 24 hours prior to the end of the current period and may vary depending on the plan and region.</li><li>If a free trial is offered, any <strong>unused portion</strong> of the trial may be forfeited when you purchase a subscription.</li>',
-          s7_2_h: '7.2. Managing subscriptions',
-          s7_2_p: 'You can manage subscriptions and turn off auto-renewal in iOS: <strong>Settings &gt; [Your Name] &gt; Subscriptions</strong> or via your App Store account. Helpful Apple links:',
-          s7_3_h: '7.3. Restoring purchases',
-          s7_3_p: 'The app includes a <strong>“Restore Purchases”</strong> feature that lets you restore previously purchased premium access after reinstalling the app or switching devices, as long as you use the same Apple ID.',
-          s7_4_h: '7.4. Transaction data and privacy',
-          s7_4_ul: '<li>Payment processing and subscription verification are handled through Apple infrastructure (App Store / Apple Media Services).</li><li>We receive a <strong>transaction receipt</strong> (or the result of its verification) solely to confirm your subscription status and unlock premium features. We do not link it to personal data on our side.</li><li>We do not store payment card data. Payments are handled by Apple under its <a href="https://www.apple.com/legal/privacy/" target="_blank" rel="noopener">Privacy Policy</a> and <a href="https://www.apple.com/legal/internet-services/itunes/" target="_blank" rel="noopener">Media Services Terms</a>.</li>',
-          s7_5_h: '7.5. Refunds',
-          s7_5_p: 'Refund requests are handled by Apple. To request a refund, use <a href="https://reportaproblem.apple.com/" target="_blank" rel="noopener">reportaproblem.apple.com</a>.',
-          s8_h: '8. Contact',
-          s8_p: 'If you have questions about privacy or subscriptions, contact us at: <a href="mailto:mlynarski.mateusz@gmail.com">mlynarski.mateusz@gmail.com</a>.',
-          s9_h: '9. Final provisions',
-          s9_p: 'By using the app you accept this Privacy Policy and the subscription rules described above. For purchases and subscriptions, Apple Media Services terms and Apple’s privacy and payment policies also apply.',
+          toc_1: '1. Data Controller',
+          toc_2: '2. Data we collect',
+          toc_3: '3. Purposes & legal basis',
+          toc_4: '4. Firebase & third-party services',
+          toc_5: '5. AI Assistant (SAM)',
+          toc_6: '6. Transfers outside the EEA',
+          toc_7: '7. Your rights (GDPR)',
+          toc_8: '8. Security',
+          toc_9: '9. Ads & analytics',
+          toc_10: '10. Subscriptions & purchases',
+          toc_11: '11. Changes to this policy',
+          toc_12: '12. Contact',
+          s1_h: '1. Data Controller',
+          s1_p: 'The controller of personal data processed in connection with the use of the App is: <strong>Mateusz Młynarski</strong>, contact: <a href="mailto:mlynarski.mateusz@gmail.com">mlynarski.mateusz@gmail.com</a>.',
+          s2_h: '2. Data we collect',
+          s2_intro: 'The App is designed to collect the minimum information needed to operate. We do not collect personal data such as your name, email address, or phone number. The data we process includes:',
+          s2_ul: '<li><strong>Anonymous device identifier (Firebase Auth):</strong> On first launch, the App creates an anonymous Firebase account. This is not linked to any personal data.</li><li><strong>Travel profile (Firestore):</strong> Travel preferences: driving style, vehicle type, travel companion information (e.g., children, pets), budget. This data enables settings synchronization across devices.</li><li><strong>AI query counter:</strong> The daily number of queries sent to the SAM assistant, used to manage free and Premium plan limits.</li><li><strong>Anonymous diagnostic logs (Crashlytics):</strong> Anonymous technical error reports with no personal data.</li><li><strong>Transaction data:</strong> A purchase receipt from Apple, used solely to verify subscription status.</li>',
+          s2_card: 'Notes, packing lists, and saved locations are stored exclusively on your device and are never sent to any server.',
+          s3_h: '3. Purposes and legal basis for processing',
+          s3_ul: '<li><strong>Performance of a contract (Art. 6(1)(b) GDPR):</strong> Anonymous authentication, travel profile synchronization, forwarding queries to the AI assistant (SAM), subscription status verification.</li><li><strong>Legitimate interests of the controller (Art. 6(1)(f) GDPR):</strong> Collection of anonymous crash logs (Crashlytics) to detect and fix technical issues.</li>',
+          s3_retention: 'Travel profile data and the query counter are retained for as long as the anonymous Firebase account exists — you can delete them at any time from the app settings. Diagnostic logs are automatically deleted after 90 days.',
+          s4_h: '4. Firebase and third-party services',
+          s4_intro: 'The App uses the Google Firebase platform (Google LLC). Below we describe each service used:',
+          s4_ul: '<li><strong>Firebase Authentication:</strong> Creates an anonymous device account without collecting personal data. Used to assign query limits to a specific device.</li><li><strong>Cloud Firestore:</strong> Database storing the travel profile (travel style, vehicle type, companions) and the daily AI query counter. Data is linked only to the anonymous device ID.</li><li><strong>Firebase Crashlytics:</strong> Collects anonymous app crash reports (error type, iOS version, device model in aggregated form). No personal data is included.</li>',
+          s4_card: 'For information on how Google Firebase processes data, see the <a href="https://firebase.google.com/support/privacy" target="_blank" rel="noopener">Firebase Privacy</a> page and the general <a href="https://policies.google.com/privacy" target="_blank" rel="noopener">Google Privacy Policy</a>.',
+          s5_h: '5. AI Assistant (SAM) and Google Gemini',
+          s5_intro: 'The SAM travel assistant is powered by Google Gemini language models (API). When using the assistant:',
+          s5_ul: '<li>The content of queries sent to SAM (typed text and travel profile parameters) is transmitted to the Google Gemini API to generate a response.</li><li>We do not send any personal data to Google Gemini — queries are limited to conversation content and anonymous travel parameters.</li><li>Conversation history is stored locally on your device and is not saved on our servers.</li><li>SAM\'s responses are for informational purposes only and do not constitute official legal or navigational advice.</li>',
+          s5_card: 'For information on how Google Gemini processes data, see the <a href="https://ai.google.dev/gemini-api/terms" target="_blank" rel="noopener">Gemini API Terms of Service</a> and the <a href="https://policies.google.com/privacy" target="_blank" rel="noopener">Google Privacy Policy</a>.',
+          s6_h: '6. Transfers outside the EEA',
+          s6_p: 'Using Google Firebase and Google Gemini API involves transferring data to Google servers, which may be located outside the European Economic Area (including in the USA). Google ensures an adequate level of data protection through Standard Contractual Clauses (SCCs) approved by the European Commission under Art. 46(2)(c) GDPR. More information: <a href="https://policies.google.com/privacy/frameworks" target="_blank" rel="noopener">google.com/privacy/frameworks</a>.',
+          s7_h: '7. Your rights (GDPR)',
+          s7_intro: 'As a data subject, you have the following rights:',
+          s7_ul: '<li><strong>Right of access (Art. 15 GDPR):</strong> You can request information about what data we process.</li><li><strong>Right to rectification (Art. 16 GDPR):</strong> You can update your travel profile directly in the app settings.</li><li><strong>Right to erasure (Art. 17 GDPR):</strong> You can delete all data associated with your device using the <strong>"Delete account and data"</strong> option in the app settings.</li><li><strong>Right to restriction of processing (Art. 18 GDPR):</strong> You can submit a request by email.</li><li><strong>Right to data portability (Art. 20 GDPR):</strong> Applies to data processed on the basis of contract performance.</li><li><strong>Right to object (Art. 21 GDPR):</strong> You can object to processing based on legitimate interests (diagnostic logs).</li><li><strong>Right to lodge a complaint:</strong> You have the right to lodge a complaint with a supervisory authority — in Poland, this is the <a href="https://uodo.gov.pl" target="_blank" rel="noopener">President of the Personal Data Protection Office (UODO)</a>.</li>',
+          s7_note: 'Since data is stored anonymously (without email or name), exercising rights other than erasure may require providing your anonymous Firebase device ID for verification.',
+          s8_h: '8. Security',
+          s8_p: 'We use data encryption in transit (SSL/TLS) and Firebase Firestore security rules that restrict data access to the authenticated device only. Profile data does not contain directly identifying information. We recommend using a screen lock, keeping iOS and the app up to date, and making regular device backups.',
+          s9_h: '9. Ads & analytics',
+          s9_p: 'The App may display ads in the free plan served by Apple or Google services. Data processing for advertising purposes is governed by those providers\' privacy policies. You can limit ad personalization and tracking in iOS settings: Settings > Privacy & Security > Tracking.',
+          s9_analytics_h: '9.1. Firebase Analytics — collected events',
+          s9_analytics_intro: 'The App uses Firebase Analytics (Google LLC) for anonymous measurement of user activity and UX improvement. None of the events are linked to personal data. Categories of events collected:',
+          s9_analytics_ul: '<li><strong>Onboarding:</strong> start, completion or skipping of the setup flow (no content of answers).</li><li><strong>AI Assistant (SAM):</strong> query sent (text length only), response received (response length), daily limit reached.</li><li><strong>Paywall:</strong> purchase screen shown, conversion (Apple product ID), dismissed without purchase.</li><li><strong>Content usage:</strong> rule viewed or saved, rule shared, checklist item checked, list created and completed, trip plan created.</li><li><strong>Premium features:</strong> PDF export, location saved (count of saved locations).</li><li><strong>Achievements & notifications:</strong> achievement unlocked, push notification opened.</li><li><strong>Session:</strong> app open (session number, premium status, days since install — all anonymous).</li>',
+          s10_h: '10. Subscriptions & in-app purchases',
+          s10_p1: 'The App offers paid, automatically renewing subscriptions that provide access to premium features:',
+          s10_ul: '<li><strong>Monthly subscription</strong> — renews every month.</li><li><strong>Annual subscription</strong> — renews every year.</li>',
+          s10_card: '<strong>Pricing:</strong> Prices may vary by region and currency. The exact price is shown in the app and in the App Store <em>before</em> you confirm your purchase.',
+          s10_1_h: '10.1. Billing and renewals',
+          s10_1_ul: '<li>Payment will be charged to your <strong>Apple ID account</strong> at confirmation of purchase.</li><li>The subscription <strong>renews automatically</strong> unless auto-renew is turned off at least <strong>24 hours</strong> before the end of the current period.</li><li>The renewal fee will be charged within 24 hours prior to the end of the current period and may vary depending on the plan and region.</li><li>If a free trial is offered, any <strong>unused portion</strong> of the trial may be forfeited when you purchase a subscription.</li>',
+          s10_2_h: '10.2. Managing subscriptions',
+          s10_2_p: 'You can manage subscriptions and turn off auto-renewal in iOS: <strong>Settings &gt; [Your Name] &gt; Subscriptions</strong> or via your App Store account. Helpful Apple links:',
+          s10_3_h: '10.3. Restoring purchases',
+          s10_3_p: 'The App includes a <strong>"Restore Purchases"</strong> feature that lets you restore previously purchased premium access after reinstalling the app or switching devices, as long as you use the same Apple ID.',
+          s10_4_h: '10.4. Transaction data and privacy',
+          s10_4_ul: '<li>Payment processing and subscription verification are handled through Apple infrastructure (App Store / Apple Media Services).</li><li>We receive a <strong>transaction receipt</strong> (or the result of its verification) solely to confirm your subscription status and unlock premium features. We do not link it to personal data on our side.</li><li>We do not store payment card data. Payments are handled by Apple under its <a href="https://www.apple.com/legal/privacy/" target="_blank" rel="noopener">Privacy Policy</a> and <a href="https://www.apple.com/legal/internet-services/itunes/" target="_blank" rel="noopener">Media Services Terms</a>.</li>',
+          s10_5_h: '10.5. Refunds',
+          s10_5_p: 'Refund requests are handled by Apple. To request a refund, use <a href="https://reportaproblem.apple.com/" target="_blank" rel="noopener">reportaproblem.apple.com</a>.',
+          s11_h: '11. Changes to this Privacy Policy',
+          s11_p: 'This policy may be updated. The current version is always available on this page. Material changes will be communicated inside the app or in the App Store description.',
+          s12_h: '12. Contact',
+          s12_p: 'If you have questions about privacy, GDPR rights, or subscriptions, contact us at: <a href="mailto:mlynarski.mateusz@gmail.com">mlynarski.mateusz@gmail.com</a>.',
           footer_rights: '© 2025 Travel Rules. All rights reserved.',
           footer_privacy: 'Privacy Policy',
-          footer_terms: 'Terms of Use',          footer_cookies: 'Cookies',
+          footer_terms: 'Terms of Use',
           footer_cookies: 'Cookies'
         },
         es: {
           page_title: 'Política de Privacidad — Travel Rules',
-          page_desc: 'Política de Privacidad de la app Travel Rules para iOS. Información sobre datos en el dispositivo, seguridad, suscripciones, anuncios/analítica y contacto.',
+          page_desc: 'Política de Privacidad de la app Travel Rules para iOS. Información sobre Firebase, asistente AI, RGPD, suscripciones y seguridad de datos.',
           pp_title: 'Política de Privacidad',
           app_line: 'Aplicación: <strong>Travel Rules</strong> (iOS)',
-          updated_line: 'Última actualización: 23 de septiembre de 2025',
+          updated_line: 'Última actualización: 16 de marzo de 2026',
           toc_title: 'Índice:',
-          toc_1: '1. Introducción',
-          toc_2: '2. Sin recopilación de datos en servidor',
-          toc_3: '3. Datos en el dispositivo',
-          toc_4: '4. Seguridad',
-          toc_5: '5. Anuncios y analítica',
-          toc_6: '6. Cambios en esta política',
-          toc_7: '7. Suscripciones y compras',
-          toc_8: '8. Contacto',
-          toc_9: '9. Disposiciones finales',
-          s1_h: '1. Introducción',
-          s1_p: 'La app Travel Rules está diseñada pensando en la privacidad. La app no recopila ni procesa datos personales de los usuarios en nuestros servidores. La mayoría de la información y ajustes funcionan localmente en tu dispositivo.',
-          s2_h: '2. Sin recopilación de datos en servidor',
-          s2_p: 'No mantenemos una base de datos externa de usuarios y no realizamos perfiles. Las funciones de la app se ejecutan localmente y tus datos permanecen en tu dispositivo, excepto la información necesaria para completar compras dentro de la app (ver sección 7).',
-          s3_h: '3. Datos en el dispositivo',
-          s3_p: 'Los datos de configuración (por ejemplo, tema seleccionado, listas de cosas, ubicaciones guardadas) se almacenan localmente en tu dispositivo. Solo se usan para que la app funcione y no se nos envían.',
-          s4_h: '4. Seguridad',
-          s4_p: 'No almacenamos datos de usuarios en nuestros servidores, lo que reduce el riesgo de incidentes. Recomendamos usar bloqueo de pantalla, mantener iOS y la app actualizados y realizar copias de seguridad del dispositivo.',
-          s5_h: '5. Anuncios y analítica',
-          s5_p: 'La app puede usar servicios de terceros (por ejemplo, Apple, Google) para mostrar anuncios o estadísticas anónimas. Si se habilitan estas herramientas, el tratamiento se realiza según las políticas de privacidad de los proveedores. Puedes limitar la personalización de anuncios y el uso compartido de datos en los ajustes de iOS.',
-          s6_h: '6. Cambios en la Política de Privacidad',
-          s6_p: 'Esta política puede actualizarse. La versión vigente siempre está disponible en esta página. Los cambios importantes se comunicarán dentro de la app o en la descripción de la App Store.',
-          s7_h: '7. Suscripciones y compras en la app',
-          s7_p1: 'La app ofrece suscripciones de pago con renovación automática que dan acceso a funciones premium:',
-          s7_ul: '<li><strong>Suscripción mensual</strong> — se renueva cada mes.</li><li><strong>Suscripción anual</strong> — se renueva cada año.</li>',
-          s7_card: '<strong>Precios:</strong> Los precios pueden variar según la región y la moneda. El precio exacto se muestra en la app y en la App Store <em>antes</em> de confirmar la compra.',
-          s7_1_h: '7.1. Cobro y renovaciones',
-          s7_1_ul: '<li>El pago se cargará a tu <strong>cuenta de Apple ID</strong> al confirmar la compra.</li><li>La suscripción <strong>se renueva automáticamente</strong> a menos que se desactive la renovación automática al menos <strong>24 horas</strong> antes de que termine el período actual.</li><li>El cargo de renovación se realizará dentro de las 24 horas previas al fin del período actual y puede variar según el plan y la región.</li><li>Si hay prueba gratuita, cualquier <strong>parte no utilizada</strong> de la prueba puede perderse al comprar una suscripción.</li>',
-          s7_2_h: '7.2. Gestión de suscripciones',
-          s7_2_p: 'Puedes gestionar suscripciones y desactivar la renovación automática en iOS: <strong>Ajustes &gt; [Tu nombre] &gt; Suscripciones</strong> o desde tu cuenta de App Store. Enlaces útiles de Apple:',
-          s7_3_h: '7.3. Restaurar compras',
-          s7_3_p: 'La app incluye la función <strong>“Restaurar compras”</strong> (Restore Purchases), que permite restaurar el acceso premium comprado anteriormente tras reinstalar la app o cambiar de dispositivo, siempre que uses el mismo Apple ID.',
-          s7_4_h: '7.4. Datos de transacción y privacidad',
-          s7_4_ul: '<li>El procesamiento de pagos y la verificación de suscripciones se realiza mediante la infraestructura de Apple (App Store / Apple Media Services).</li><li>Recibimos un <strong>recibo de transacción</strong> (o el resultado de su verificación) únicamente para confirmar el estado de tu suscripción y desbloquear funciones premium. No lo vinculamos con datos personales por nuestra parte.</li><li>No almacenamos datos de tarjetas. Los pagos los gestiona Apple según su <a href="https://www.apple.com/legal/privacy/" target="_blank" rel="noopener">Política de Privacidad</a> y los <a href="https://www.apple.com/legal/internet-services/itunes/" target="_blank" rel="noopener">Términos de servicios multimedia</a>.</li>',
-          s7_5_h: '7.5. Reembolsos',
-          s7_5_p: 'Las solicitudes de reembolso las gestiona Apple. Para solicitar un reembolso, usa <a href="https://reportaproblem.apple.com/" target="_blank" rel="noopener">reportaproblem.apple.com</a>.',
-          s8_h: '8. Contacto',
-          s8_p: 'Si tienes preguntas sobre privacidad o suscripciones, contáctanos en: <a href="mailto:mlynarski.mateusz@gmail.com">mlynarski.mateusz@gmail.com</a>.',
-          s9_h: '9. Disposiciones finales',
-          s9_p: 'Al usar la app aceptas esta Política de Privacidad y las reglas de suscripción descritas arriba. Para compras y suscripciones, también se aplican los términos de Apple Media Services y las políticas de privacidad y pago de Apple.',
+          toc_1: '1. Responsable del tratamiento',
+          toc_2: '2. Datos que recopilamos',
+          toc_3: '3. Fines y base jurídica',
+          toc_4: '4. Firebase y servicios externos',
+          toc_5: '5. Asistente AI (SAM)',
+          toc_6: '6. Transferencias fuera del EEE',
+          toc_7: '7. Tus derechos (RGPD)',
+          toc_8: '8. Seguridad',
+          toc_9: '9. Anuncios y analítica',
+          toc_10: '10. Suscripciones y compras',
+          toc_11: '11. Cambios en esta política',
+          toc_12: '12. Contacto',
+          s1_h: '1. Responsable del tratamiento',
+          s1_p: 'El responsable del tratamiento de datos personales relacionados con el uso de la App es: <strong>Mateusz Młynarski</strong>, contacto: <a href="mailto:mlynarski.mateusz@gmail.com">mlynarski.mateusz@gmail.com</a>.',
+          s2_h: '2. Datos que recopilamos',
+          s2_intro: 'La App está diseñada para recopilar el mínimo de información necesaria para funcionar. No recopilamos datos personales como nombre, apellido, dirección de correo electrónico ni número de teléfono. Los datos que tratamos incluyen:',
+          s2_ul: '<li><strong>Identificador de dispositivo anónimo (Firebase Auth):</strong> En el primer inicio, la App crea una cuenta anónima de Firebase. No está vinculada a ningún dato personal.</li><li><strong>Perfil de viaje (Firestore):</strong> Preferencias de viaje: estilo de conducción, tipo de vehículo, información sobre acompañantes (p. ej., niños, mascotas), presupuesto. Estos datos permiten sincronizar ajustes entre dispositivos.</li><li><strong>Contador de consultas AI:</strong> El número diario de consultas enviadas al asistente SAM, usado para gestionar los límites del plan gratuito y Premium.</li><li><strong>Registros de diagnóstico anónimos (Crashlytics):</strong> Informes anónimos de errores técnicos de la app, sin datos personales.</li><li><strong>Datos de transacción:</strong> Un recibo de compra de Apple, utilizado únicamente para verificar el estado de la suscripción.</li>',
+          s2_card: 'Las notas, listas de equipaje y ubicaciones guardadas se almacenan exclusivamente en tu dispositivo y nunca se envían a ningún servidor.',
+          s3_h: '3. Fines y base jurídica del tratamiento',
+          s3_ul: '<li><strong>Ejecución de un contrato (art. 6.1.b RGPD):</strong> Autenticación anónima, sincronización del perfil de viaje, envío de consultas al asistente AI (SAM), verificación del estado de la suscripción.</li><li><strong>Interés legítimo del responsable (art. 6.1.f RGPD):</strong> Recopilación de registros de errores anónimos (Crashlytics) para detectar y corregir problemas técnicos.</li>',
+          s3_retention: 'Los datos del perfil de viaje y el contador de consultas se conservan mientras exista la cuenta anónima de Firebase — puedes eliminarlos en cualquier momento desde los ajustes de la app. Los registros de diagnóstico se eliminan automáticamente tras 90 días.',
+          s4_h: '4. Firebase y servicios externos',
+          s4_intro: 'La App utiliza la plataforma Google Firebase (Google LLC). A continuación describimos cada servicio empleado:',
+          s4_ul: '<li><strong>Firebase Authentication:</strong> Crea una cuenta anónima de dispositivo sin recopilar datos personales. Se usa para asignar límites de consultas a un dispositivo concreto.</li><li><strong>Cloud Firestore:</strong> Base de datos que almacena el perfil de viaje (estilo de viaje, tipo de vehículo, acompañantes) y el contador diario de consultas AI. Los datos están vinculados únicamente al ID anónimo del dispositivo.</li><li><strong>Firebase Crashlytics:</strong> Recopila informes anónimos de fallos de la app (tipo de error, versión de iOS, modelo de dispositivo de forma agregada). No contienen datos personales.</li>',
+          s4_card: 'Para más información sobre cómo Google Firebase procesa los datos, consulta la <a href="https://firebase.google.com/support/privacy" target="_blank" rel="noopener">Privacidad de Firebase</a> y la <a href="https://policies.google.com/privacy" target="_blank" rel="noopener">Política de privacidad de Google</a>.',
+          s5_h: '5. Asistente AI (SAM) y Google Gemini',
+          s5_intro: 'El asistente de viaje SAM funciona con los modelos de lenguaje Google Gemini (API). Al usar el asistente:',
+          s5_ul: '<li>El contenido de las consultas enviadas a SAM (texto introducido y parámetros del perfil de viaje) se transmite a la API de Google Gemini para generar una respuesta.</li><li>No enviamos datos personales a Google Gemini — las consultas se limitan al contenido de la conversación y parámetros de viaje anónimos.</li><li>El historial de conversaciones se almacena localmente en tu dispositivo y no se guarda en nuestros servidores.</li><li>Las respuestas de SAM tienen carácter exclusivamente informativo y no constituyen asesoramiento legal ni de navegación oficial.</li>',
+          s5_card: 'Para más información sobre cómo Google Gemini procesa los datos, consulta los <a href="https://ai.google.dev/gemini-api/terms" target="_blank" rel="noopener">Términos de uso de la API de Gemini</a> y la <a href="https://policies.google.com/privacy" target="_blank" rel="noopener">Política de privacidad de Google</a>.',
+          s6_h: '6. Transferencias fuera del EEE',
+          s6_p: 'El uso de Google Firebase y la API de Google Gemini implica la transferencia de datos a servidores de Google que pueden estar ubicados fuera del Espacio Económico Europeo (incluidos EE.UU.). Google garantiza un nivel adecuado de protección mediante Cláusulas Contractuales Estándar (SCC) aprobadas por la Comisión Europea conforme al art. 46.2.c RGPD. Más información: <a href="https://policies.google.com/privacy/frameworks" target="_blank" rel="noopener">google.com/privacy/frameworks</a>.',
+          s7_h: '7. Tus derechos (RGPD)',
+          s7_intro: 'Como interesado, tienes los siguientes derechos:',
+          s7_ul: '<li><strong>Derecho de acceso (art. 15 RGPD):</strong> Puedes solicitar información sobre qué datos tratamos.</li><li><strong>Derecho de rectificación (art. 16 RGPD):</strong> Puedes actualizar tu perfil de viaje directamente en los ajustes de la app.</li><li><strong>Derecho de supresión (art. 17 RGPD):</strong> Puedes eliminar todos los datos asociados a tu dispositivo usando la opción <strong>"Eliminar cuenta y datos"</strong> en los ajustes de la app.</li><li><strong>Derecho a la limitación del tratamiento (art. 18 RGPD):</strong> Puedes presentar una solicitud por correo electrónico.</li><li><strong>Derecho a la portabilidad (art. 20 RGPD):</strong> Aplica a los datos tratados con base en la ejecución de un contrato.</li><li><strong>Derecho de oposición (art. 21 RGPD):</strong> Puedes oponerte al tratamiento basado en interés legítimo (registros de diagnóstico).</li><li><strong>Derecho a presentar reclamación:</strong> Tienes derecho a presentar una reclamación ante la autoridad de control — en España, la <a href="https://www.aepd.es" target="_blank" rel="noopener">Agencia Española de Protección de Datos (AEPD)</a>.</li>',
+          s7_note: 'Dado que los datos se almacenan de forma anónima (sin correo ni nombre), ejercer derechos distintos a la supresión puede requerir facilitar el identificador anónimo de Firebase de tu dispositivo para verificación.',
+          s8_h: '8. Seguridad',
+          s8_p: 'Utilizamos cifrado de datos en tránsito (SSL/TLS) y reglas de seguridad de Firebase Firestore que restringen el acceso a los datos únicamente al dispositivo autenticado. Los datos del perfil no contienen información que permita identificar directamente a una persona. Recomendamos usar bloqueo de pantalla, mantener iOS y la app actualizados y realizar copias de seguridad periódicas del dispositivo.',
+          s9_h: '9. Anuncios y analítica',
+          s9_p: 'La App puede mostrar anuncios en el plan gratuito servidos por Apple o Google. El tratamiento de datos con fines publicitarios se rige por las políticas de privacidad de esos proveedores. Puedes limitar la personalización de anuncios y el seguimiento en los ajustes de iOS: Ajustes > Privacidad y seguridad > Rastreo.',
+          s9_analytics_h: '9.1. Firebase Analytics — eventos recopilados',
+          s9_analytics_intro: 'La app usa Firebase Analytics (Google LLC) para la medición anónima de la actividad de usuarios y la mejora de la experiencia. Ningún evento está vinculado a datos personales. Categorías de eventos recopilados:',
+          s9_analytics_ul: '<li><strong>Onboarding:</strong> inicio, finalización u omisión del flujo de configuración (sin contenido de respuestas).</li><li><strong>Asistente AI (SAM):</strong> consulta enviada (solo longitud del texto), respuesta recibida (longitud de respuesta), límite diario alcanzado.</li><li><strong>Paywall:</strong> pantalla de compra mostrada, conversión (ID de producto Apple), cierre sin compra.</li><li><strong>Uso de contenido:</strong> norma vista o guardada, norma compartida, ítem de checklist marcado, lista creada y completada, plan de viaje creado.</li><li><strong>Funciones premium:</strong> exportación PDF, ubicación guardada (número de ubicaciones guardadas).</li><li><strong>Logros y notificaciones:</strong> logro desbloqueado, notificación push abierta.</li><li><strong>Sesión:</strong> apertura de la app (número de sesión, estado premium, días desde la instalación — todo anónimo).</li>',
+          s10_h: '10. Suscripciones y compras en la app',
+          s10_p1: 'La app ofrece suscripciones de pago con renovación automática que dan acceso a funciones premium:',
+          s10_ul: '<li><strong>Suscripción mensual</strong> — se renueva cada mes.</li><li><strong>Suscripción anual</strong> — se renueva cada año.</li>',
+          s10_card: '<strong>Precios:</strong> Los precios pueden variar según la región y la moneda. El precio exacto se muestra en la app y en la App Store <em>antes</em> de confirmar la compra.',
+          s10_1_h: '10.1. Cobro y renovaciones',
+          s10_1_ul: '<li>El pago se cargará a tu <strong>cuenta de Apple ID</strong> al confirmar la compra.</li><li>La suscripción <strong>se renueva automáticamente</strong> a menos que se desactive la renovación automática al menos <strong>24 horas</strong> antes de que termine el período actual.</li><li>El cargo de renovación se realizará dentro de las 24 horas previas al fin del período actual y puede variar según el plan y la región.</li><li>Si hay prueba gratuita, cualquier <strong>parte no utilizada</strong> de la prueba puede perderse al comprar una suscripción.</li>',
+          s10_2_h: '10.2. Gestión de suscripciones',
+          s10_2_p: 'Puedes gestionar suscripciones y desactivar la renovación automática en iOS: <strong>Ajustes &gt; [Tu nombre] &gt; Suscripciones</strong> o desde tu cuenta de App Store. Enlaces útiles de Apple:',
+          s10_3_h: '10.3. Restaurar compras',
+          s10_3_p: 'La app incluye la función <strong>"Restaurar compras"</strong> (Restore Purchases), que permite restaurar el acceso premium comprado anteriormente tras reinstalar la app o cambiar de dispositivo, siempre que uses el mismo Apple ID.',
+          s10_4_h: '10.4. Datos de transacción y privacidad',
+          s10_4_ul: '<li>El procesamiento de pagos y la verificación de suscripciones se realiza mediante la infraestructura de Apple (App Store / Apple Media Services).</li><li>Recibimos un <strong>recibo de transacción</strong> (o el resultado de su verificación) únicamente para confirmar el estado de tu suscripción y desbloquear funciones premium. No lo vinculamos con datos personales por nuestra parte.</li><li>No almacenamos datos de tarjetas. Los pagos los gestiona Apple según su <a href="https://www.apple.com/legal/privacy/" target="_blank" rel="noopener">Política de Privacidad</a> y los <a href="https://www.apple.com/legal/internet-services/itunes/" target="_blank" rel="noopener">Términos de servicios multimedia</a>.</li>',
+          s10_5_h: '10.5. Reembolsos',
+          s10_5_p: 'Las solicitudes de reembolso las gestiona Apple. Para solicitar un reembolso, usa <a href="https://reportaproblem.apple.com/" target="_blank" rel="noopener">reportaproblem.apple.com</a>.',
+          s11_h: '11. Cambios en la Política de Privacidad',
+          s11_p: 'Esta política puede actualizarse. La versión vigente siempre está disponible en esta página. Los cambios importantes se comunicarán dentro de la app o en la descripción de la App Store.',
+          s12_h: '12. Contacto',
+          s12_p: 'Si tienes preguntas sobre privacidad, derechos RGPD o suscripciones, contáctanos en: <a href="mailto:mlynarski.mateusz@gmail.com">mlynarski.mateusz@gmail.com</a>.',
           footer_rights: '© 2025 Travel Rules. Todos los derechos reservados.',
           footer_privacy: 'Política de Privacidad',
-          footer_terms: 'Términos de uso',          footer_cookies: 'Cookies',
+          footer_terms: 'Términos de uso',
           footer_cookies: 'Cookies'
         }
       };
