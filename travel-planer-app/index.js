@@ -113,7 +113,7 @@ const DEFAULT_STATE = {
     ],
     expenses: [],
     fuel: { distanceKm: 0, consumptionLPer100: 0, fuelPricePerL: 0, currency: 'PLN', fxRateToBase: 1, tollsList: [], refuelList: [] },
-    currency: { manualRates: { 'PLN': 1, 'EUR': 4.30, 'USD': 3.90, 'GBP': 5.00, 'CHF': 4.50 } },
+    currency: { manualRates: { 'PLN': 1, 'EUR': 4.30, 'USD': 3.90, 'GBP': 5.00, 'CHF': 4.50 }, ratesLastUpdated: null },
     journal: { entries: {}, dayTitles: {} },
     checklist: [],
     lastChecklistGroup: '',
@@ -177,19 +177,32 @@ const resetInputs = () => {
     });
 };
 
-const updateRatesFromApi = async () => {
+const updateRatesFromApi = async (force = false) => {
+    const CACHE_MS = 60 * 60 * 1000; // 1 godzina
+    const lastUpdated = state.currency.ratesLastUpdated;
+    if (!force && lastUpdated && (Date.now() - lastUpdated) < CACHE_MS) {
+        renderRates(); return;
+    }
+    const statusEl = getEl('rates-status');
+    if (statusEl) { statusEl.textContent = '⟳ Pobieranie kursów...'; statusEl.style.color = 'var(--text-muted)'; }
     try {
         const base = state.trip.baseCurrency;
         const resp = await fetch(`https://api.frankfurter.app/latest?from=${base}`);
+        if (!resp.ok) throw new Error(`HTTP ${resp.status}`);
         const data = await resp.json();
         if (data && data.rates) {
             Object.keys(state.currency.manualRates).forEach(code => {
                 if (code === base) state.currency.manualRates[code] = 1;
                 else if (data.rates[code]) state.currency.manualRates[code] = 1 / data.rates[code];
             });
+            state.currency.ratesLastUpdated = Date.now();
+            if (statusEl) { statusEl.textContent = '✓ Aktualne — ' + new Date().toLocaleTimeString(); statusEl.style.color = 'var(--success, #22c55e)'; }
             save(); render();
         }
-    } catch (e) { console.warn("Błąd API kursów walut:", e); }
+    } catch (e) {
+        console.warn("Błąd API kursów walut:", e);
+        if (statusEl) { statusEl.textContent = '⚠ Brak połączenia — kursy mogą być nieaktualne'; statusEl.style.color = 'var(--warning, #f59e0b)'; }
+    }
 };
 
 // --- PDF EXPORT ---
@@ -357,6 +370,11 @@ const renderFuelAndTransport = () => {
 const renderRates = () => {
     const list = getEl('rates-list'); if(!list) return;
     list.innerHTML = Object.keys(state.currency.manualRates).filter(k => k !== state.trip.baseCurrency).map(code => `<div class="form-group grid" style="grid-template-columns:1fr 2fr; align-items:center;"><label>1 ${code} =</label><input type="text" class="rate-input" data-code="${code}" value="${state.currency.manualRates[code].toFixed(2)}"></div>`).join('');
+    const statusEl = getEl('rates-status');
+    if (statusEl && state.currency.ratesLastUpdated) {
+        statusEl.textContent = '✓ Aktualne — ' + new Date(state.currency.ratesLastUpdated).toLocaleTimeString();
+        statusEl.style.color = 'var(--success, #22c55e)';
+    }
 };
 
 const renderJournal = () => {
@@ -451,7 +469,7 @@ document.addEventListener('click', (e) => {
     }
     if (t.classList.contains('check-toggle')) { const item = state.checklist.find(i => i.id == t.dataset.id); if(item) item.checked = t.checked; save(); renderChecklist(); }
     if (t.classList.contains('remove-check')) { state.checklist = state.checklist.filter(i => i.id != t.dataset.id); save(); renderChecklist(); }
-    if (t.id === 'btn-refresh-rates') updateRatesFromApi();
+    if (t.id === 'btn-refresh-rates') updateRatesFromApi(true);
     if (t.id === 'btn-clear-journal') { if(confirm(i18n[state.settings.lang].confirm_clear_journal)) { state.journal.entries = {}; state.journal.dayTitles = {}; save(); renderJournal(); } }
     if (t.id === 'journal-month-prev') { state.ui.currentMonth = (state.ui.currentMonth + 11) % 12; save(); renderJournal(); }
     if (t.id === 'journal-month-next') { state.ui.currentMonth = (state.ui.currentMonth + 1) % 12; save(); renderJournal(); }
