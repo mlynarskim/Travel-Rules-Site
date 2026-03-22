@@ -586,13 +586,15 @@
 
     <div class="slider-wrap">
       <div class="slider-track" id="sliderTrack">
-        <div class="slide"><img src="/images/v4/startscreen.png" alt="Travel Rules home screen" loading="lazy" decoding="async"></div>
-        <div class="slide"><img src="/images/v4/ai_sam.PNG" alt="SAM AI Assistant" loading="lazy" decoding="async"></div>
-        <div class="slide"><img src="/images/v4/plan_wyjazdu.PNG" alt="Trip planner" loading="lazy" decoding="async"></div>
-        <div class="slide"><img src="/images/v4/poi.PNG" alt="Map nearby points" loading="lazy" decoding="async"></div>
-        <div class="slide"><img src="/images/v4/checklista.PNG" alt="Packing checklist" loading="lazy" decoding="async"></div>
-        <div class="slide"><img src="/images/v4/powiadomienia.png" alt="Document reminders" loading="lazy" decoding="async"></div>
-        <div class="slide"><img src="/images/v4/numery_alarmowe.png" alt="Emergency numbers" loading="lazy" decoding="async"></div>
+        <div class="slide"><img data-screen-idx="1" src="/images/v4/pl/screen_pl1.png" alt="Screen 1" loading="lazy" decoding="async"></div>
+        <div class="slide"><img data-screen-idx="2" src="/images/v4/pl/screen_pl2.png" alt="Screen 2" loading="lazy" decoding="async"></div>
+        <div class="slide"><img data-screen-idx="3" src="/images/v4/pl/screen_pl3.png" alt="Screen 3" loading="lazy" decoding="async"></div>
+        <div class="slide"><img data-screen-idx="4" src="/images/v4/pl/screen_pl4.png" alt="Screen 4" loading="lazy" decoding="async"></div>
+        <div class="slide"><img data-screen-idx="5" src="/images/v4/pl/screen_pl5.png" alt="Screen 5" loading="lazy" decoding="async"></div>
+        <div class="slide"><img data-screen-idx="6" src="/images/v4/pl/screen_pl6.png" alt="Screen 6" loading="lazy" decoding="async"></div>
+        <div class="slide"><img data-screen-idx="7" src="/images/v4/pl/screen_pl7.png" alt="Screen 7" loading="lazy" decoding="async"></div>
+        <div class="slide"><img data-screen-idx="8" src="/images/v4/pl/screen_pl8.png" alt="Screen 8" loading="lazy" decoding="async"></div>
+        <div class="slide"><img data-screen-idx="9" src="/images/v4/pl/screen_pl9.png" alt="Screen 9" loading="lazy" decoding="async"></div>
       </div>
       <div class="slider-dots" id="sliderDots"></div>
     </div>
@@ -1158,6 +1160,14 @@
             themeToggle.setAttribute('aria-label', t.theme_toggle_aria);
             themeToggle.setAttribute('title', t.theme_toggle_aria);
           }
+
+          // Update language-specific screenshots
+          const validLangs = ['pl', 'en', 'es'];
+          const screenLang = validLangs.includes(lang) ? lang : 'en';
+          document.querySelectorAll('[data-screen-idx]').forEach(function(img) {
+            const idx = img.getAttribute('data-screen-idx');
+            img.src = '/images/v4/' + screenLang + '/screen_' + screenLang + idx + '.png';
+          });
 
           setAppStoreLocale(lang);
           if (langSelect) langSelect.value = lang;
