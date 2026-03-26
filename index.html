@@ -585,7 +585,7 @@
             </ul>
 
             <div class="thumb" aria-label="Travel Rules App preview">
-              <img id="appScreenThumb" src="./images/v4/pl/screen_pl1.png" alt="Travel Rules App preview" loading="lazy" />
+<img id="appScreenThumb" src="./images/v3/travel rules app.png" alt="Travel Rules App preview" loading="lazy">
             </div>
 
             <div class="card-actions">
@@ -1296,17 +1296,7 @@
           el.style.display = allowed.includes(lang) ? '' : 'none';
         });
 
-        // Update language-specific app screenshot thumbnail
-        const appThumb = document.getElementById('appScreenThumb');
-        if (appThumb) {
-          const validLangs = ['pl', 'en', 'es'];
-          const screenLang = validLangs.includes(lang) ? lang : 'en';
-          appThumb.src = './images/v4/' + screenLang + '/screen_' + screenLang + '1.png';
-        }
-
-        if (langSelect) langSelect.value = lang;
-        try{ localStorage.setItem('tr_lang', lang); }catch(e){}
-      }
+        
 
       function detectLang(){
         try{
