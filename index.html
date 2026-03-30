@@ -11,7 +11,7 @@
   <meta property="og:title" content="Travel Rules — Hub" />
   <meta property="og:description" content="Aplikacja + ebooki + narzędzia do spokojniejszych podróży." />
   <meta property="og:type" content="website" />
-  <meta property="og:image" content="./travelrules-ebook-landing/assets/images/01-cover.png" />
+  <meta property="og:image" content="./ebook/assets/images/01-cover.png" />
 
   <style>
     :root{
@@ -527,7 +527,7 @@
 
           <div class="hero-actions">
             <a class="btn btn-primary" href="#products" data-i18n="cta_products">Przejdź do produktów</a>
-            <a class="btn" href="./travelrules-ebook-landing/" data-i18n="cta_ebook">Zobacz</a>
+            <a class="btn" href="./ebook/" data-i18n="cta_ebook">Zobacz</a>
             <a class="btn btn-ghost" href="./links.html" data-i18n="cta_links">Linki do aplikacji</a>
             <a class="btn" href="#blog" data-i18n="cta_blog">Blog</a>
           </div>
@@ -589,7 +589,7 @@
             </div>
 
             <div class="card-actions">
-              <a class="btn btn-primary" href="/travel-rules-app/" data-i18n="card1_btn1">Strona aplikacji</a>
+              <a class="btn btn-primary" href="/app/" data-i18n="card1_btn1">Strona aplikacji</a>
               <a class="btn" href="https://apps.apple.com/pl/app/travel-rules/id6451070215?l=pl" target="_blank" rel="noopener" data-i18n="card1_btn2">Pobierz</a>
             </div>
           </article>
@@ -607,15 +607,15 @@
             </div>
 
             <div class="thumb" aria-label="Ebook preview">
-              <img src="./travelrules-ebook-landing/assets/images/01-cover.png" alt="Ebook cover preview" loading="lazy" />
+              <img src="./ebook/assets/images/01-cover.png" alt="Ebook cover preview" loading="lazy" />
             </div>
 
             <h3 data-i18n="card2_h3">First Camper Trip Prep Ebook</h3>
             <p data-i18n="card2_p">Konkretny plan 72h/48h/24h + praktyczne strony, które pomagają ogarnąć pierwszy wyjazd.</p>
 
             <div class="card-actions">
-              <a class="btn btn-primary" href="./travelrules-ebook-landing/" data-i18n="card2_btn1">Zobacz</a>
-              <a class="btn" href="./travelrules-ebook-landing/#preview" data-i18n="card2_btn2">Podgląd stron</a>
+              <a class="btn btn-primary" href="./ebook/" data-i18n="card2_btn1">Zobacz</a>
+              <a class="btn" href="./ebook/#preview" data-i18n="card2_btn2">Podgląd stron</a>
             </div>
           </article>
 
@@ -646,8 +646,8 @@
             </div>
 
             <div class="card-actions">
-              <a class="btn btn-primary" href="./travel-planer-app/" data-i18n="card3_btn1">Przejdź do strony</a>
-              <a class="btn" href="./travel-planer-app/" data-i18n="card3_btn2">Szczegóły</a>
+              <a class="btn btn-primary" href="./planer/" data-i18n="card3_btn1">Przejdź do strony</a>
+              <a class="btn" href="./planer/" data-i18n="card3_btn2">Szczegóły</a>
             </div>
           </article>
         </div>
@@ -1296,7 +1296,8 @@
           el.style.display = allowed.includes(lang) ? '' : 'none';
         });
 
-        
+        if (langSelect) langSelect.value = lang;
+      }
 
       function detectLang(){
         try{
