@@ -1223,5 +1223,43 @@
       });
     }
   </script>
+
+  <!-- ═══════════════════════════════════════════════════════════════
+       GA4 — App Store Click Tracking
+       Śledzi kliknięcia w przyciski App Store i przekazuje do GA4
+       zdarzenie "app_store_click" wraz z parametrami UTM
+       ═══════════════════════════════════════════════════════════════ -->
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+
+      // Odczytaj UTM params z aktualnego URL (np. travelrules.eu/ig → redirect z UTM)
+      var params = new URLSearchParams(window.location.search);
+      var utmSource   = params.get('utm_source')   || 'direct';
+      var utmMedium   = params.get('utm_medium')   || 'none';
+      var utmCampaign = params.get('utm_campaign') || 'none';
+
+      // Znajdź wszystkie przyciski App Store (używają atrybutu data-appstore-link)
+      document.querySelectorAll('[data-appstore-link]').forEach(function (link) {
+        link.addEventListener('click', function () {
+          if (typeof gtag !== 'function') return;
+
+          // Odczytaj aktualny href w momencie kliknięcia
+          // (href jest dynamicznie zmieniany przez language switcher)
+          var destination = link.getAttribute('href') || '';
+
+          gtag('event', 'app_store_click', {
+            'store_type':    'ios',
+            'link_url':      destination,
+            'utm_source':    utmSource,
+            'utm_medium':    utmMedium,
+            'utm_campaign':  utmCampaign,
+            'page_language': document.documentElement.lang || 'pl'
+          });
+        });
+      });
+
+    });
+  </script>
+  <!-- ══ koniec App Store tracking ═══════════════════════════════════ -->
 </body>
 </html>
