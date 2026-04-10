@@ -11,7 +11,7 @@ Travel Rules is a free iOS app that helps travellers plan trips, pack smart, and
 - Languages: Polish, English, Spanish
 
 ## Features
-- AI trip planner — conversational AI travel assistant for route planning
+- AI trip planner — conversational AI travel assistant for route planning'
 - Country travel rules — entry requirements, camping laws, visa info
 - Packing checklist — customisable lists for van life and road trips
 - GPS map — offline-capable map for campers and van lifers
@@ -23,12 +23,28 @@ Van lifers, campers, road trippers, backpackers, digital nomads, families travel
 ## Keywords
 van life, vanlife, kamper, road trip, camping, AI trip planner, travel planner, packing list, travel rules, entry requirements, wild camping, backpacking, digital nomad
 
+## Pricing
+- Free tier: 3 AI questions/day, 5 tips/day
+- Trip Pass: $1.99 (7 days full access)
+- Premium Monthly: $4.99/month
+- Premium Annual: $29.99/year
+
 ## Website sections
 - Homepage: https://travelrules.eu/
 - App landing page: https://travelrules.eu/app/
 - Travel Planner tool: https://travelrules.eu/planer/
 - Ebook (camper trip prep): https://travelrules.eu/ebook/
 - Blog (van life guides): https://travelrules.eu/blog/
+
+## Additional products
+- Ebook (PL): https://www.naffy.io/travelrules
+- Travel Planner PDF: https://travelrules.gumroad.com/l/travelplanner_checklist_print
+- Vanlife Checklist: https://travelrules.gumroad.com/l/VanlifeTravelChecklist
+
+## Social
+- TikTok: https://www.tiktok.com/@travelrules.app
+- Instagram: https://www.instagram.com/travelrules.app/
+- YouTube: https://youtube.com/@travelrulesapp
 
 ## Developer
 - Mateusz Młynarski, indie iOS developer
