@@ -470,6 +470,169 @@
       margin-left: 6px;
       vertical-align: middle;
     }
+
+    /* Android waitlist button (hero) */
+    .android-badge-btn{
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 13px 24px;
+      border-radius: 999px;
+      border: none;
+      background: #fff;
+      color: var(--tr-primary);
+      font-size: 15px;
+      font-weight: 800;
+      cursor: pointer;
+      transition: background .18s, transform .12s, box-shadow .18s;
+      letter-spacing: .1px;
+      box-shadow: 0 4px 18px rgba(0,0,0,0.22);
+    }
+    .android-badge-btn:hover{
+      background: #f0f8f9;
+      transform: translateY(-2px);
+      box-shadow: 0 8px 24px rgba(0,0,0,0.28);
+    }
+
+    /* Modal overlay */
+    .android-modal-overlay{
+      position: fixed;
+      inset: 0;
+      z-index: 9000;
+      background: rgba(0,0,0,0.55);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 16px;
+      backdrop-filter: blur(3px);
+      -webkit-backdrop-filter: blur(3px);
+      animation: androidFadeIn .22s ease;
+    }
+    .android-modal-overlay[hidden]{ display: none !important; }
+
+    @keyframes androidFadeIn{
+      from { opacity: 0; }
+      to   { opacity: 1; }
+    }
+
+    .android-modal-box{
+      position: relative;
+      background: var(--color-card-background, #fff);
+      border-radius: 20px;
+      padding: 40px 32px 32px;
+      max-width: 420px;
+      width: 100%;
+      box-shadow: 0 24px 64px rgba(0,0,0,0.22);
+      text-align: center;
+      animation: androidSlideUp .26s cubic-bezier(0.34,1.56,0.64,1);
+    }
+    body.dark-mode .android-modal-box{
+      background: #1a2a2d;
+      color: #f0f0f0;
+    }
+
+    @keyframes androidSlideUp{
+      from { transform: translateY(28px) scale(0.97); opacity: 0; }
+      to   { transform: translateY(0) scale(1); opacity: 1; }
+    }
+
+    .android-modal-close{
+      position: absolute;
+      top: 14px;
+      right: 14px;
+      width: 32px;
+      height: 32px;
+      border: none;
+      background: transparent;
+      font-size: 16px;
+      cursor: pointer;
+      color: var(--color-text-secondary, #888);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: background .14s;
+    }
+    .android-modal-close:hover{ background: rgba(0,0,0,.08); }
+    body.dark-mode .android-modal-close:hover{ background: rgba(255,255,255,.1); }
+
+    .android-modal-icon{
+      font-size: 48px;
+      margin-bottom: 12px;
+      line-height: 1;
+    }
+
+    .android-modal-box h2{
+      margin: 0 0 10px;
+      font-size: 22px;
+      color: var(--tr-primary);
+    }
+
+    .android-modal-box p{
+      margin: 0 0 20px;
+      color: var(--color-text-secondary, #666);
+      font-size: 15px;
+      line-height: 1.55;
+    }
+
+    .android-modal-form{
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .android-modal-form input[type="email"]{
+      width: 100%;
+      padding: 12px 16px;
+      border-radius: 10px;
+      border: 1.5px solid rgba(0,0,0,.15);
+      font-size: 15px;
+      background: var(--color-bg, #fff);
+      color: inherit;
+      box-sizing: border-box;
+      outline: none;
+      transition: border-color .15s;
+    }
+    body.dark-mode .android-modal-form input[type="email"]{
+      background: #0f1e21;
+      border-color: rgba(255,255,255,.2);
+      color: #f0f0f0;
+    }
+    .android-modal-form input[type="email"]:focus{
+      border-color: var(--tr-primary);
+    }
+
+    .android-modal-submit{
+      padding: 12px 24px;
+      border-radius: 10px;
+      border: none;
+      background: var(--tr-primary);
+      color: #fff;
+      font-size: 15px;
+      font-weight: 700;
+      cursor: pointer;
+      transition: opacity .15s, transform .12s;
+    }
+    .android-modal-submit:hover{ opacity: .88; transform: translateY(-1px); }
+    .android-modal-submit:disabled{ opacity: .5; cursor: not-allowed; transform: none; }
+
+    .android-modal-success{
+      color: #2a7a4f;
+      font-weight: 700;
+      font-size: 15px;
+      margin: 0;
+    }
+    body.dark-mode .android-modal-success{ color: #6ecf9a; }
+
+    .android-modal-error{
+      color: #c0392b;
+      font-size: 14px;
+      margin: 0;
+    }
+
+    @media (max-width: 480px){
+      .android-modal-box{ padding: 36px 20px 24px; }
+    }
   </style>
 </head>
 
@@ -512,6 +675,10 @@
                src="https://tools.applemediaservices.com/api/badges/download-on-the-app-store/black/pl-pl?size=200x66&releaseDate=1684790400"
                alt="Pobierz w App Store" width="200" height="66" decoding="async" fetchpriority="high">
         </a>
+        <button id="androidWaitlistBtn" type="button" class="android-badge-btn" aria-haspopup="dialog">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" style="flex-shrink:0"><path d="M17.523 15.341A5.98 5.98 0 0 0 18 13a5.98 5.98 0 0 0-.477-2.341l1.85-1.073a.5.5 0 0 0-.5-.866l-1.865 1.08A6 6 0 0 0 13 8.05V6h1a.5.5 0 0 0 0-1h-4a.5.5 0 0 0 0 1h1v2.05A6 6 0 0 0 7.992 9.8L6.127 8.72a.5.5 0 0 0-.5.866l1.85 1.073A5.98 5.98 0 0 0 7 13c0 .82.164 1.601.477 2.341l-1.85 1.073a.5.5 0 0 0 .5.866l1.865-1.08A6 6 0 0 0 11 17.95V19h-1a.5.5 0 0 0 0 1h4a.5.5 0 0 0 0-1h-1v-2.05a6 6 0 0 0 3.008-1.559l1.865 1.08a.5.5 0 0 0 .5-.866l-1.85-1.073ZM12 17a4 4 0 1 1 0-8 4 4 0 0 1 0 8Zm1-4a1 1 0 1 1-2 0 1 1 0 0 1 2 0Z"/></svg>
+          <span data-lang-key="android_badge_btn">Powiadom mnie o premierze Android</span>
+        </button>
       </div>
     </div>
   </section>
@@ -863,6 +1030,30 @@
     </div>
   </section>
 
+  <!-- ANDROID WAITLIST MODAL -->
+  <div id="androidModal" class="android-modal-overlay" role="dialog" aria-modal="true" aria-labelledby="androidModalTitle" hidden>
+    <div class="android-modal-box">
+      <button class="android-modal-close" id="androidModalClose" type="button" aria-label="Zamknij">✕</button>
+      <div class="android-modal-icon" aria-hidden="true">🤖</div>
+      <h2 id="androidModalTitle" data-lang-key="android_modal_title">Android jest w drodze!</h2>
+      <p data-lang-key="android_modal_text">Dołącz do listy oczekujących — powiadomimy Cię, gdy aplikacja pojawi się w Google Play.</p>
+      <form id="androidWaitlistForm" class="android-modal-form" novalidate>
+        <input
+          type="email"
+          id="androidEmailInput"
+          name="email"
+          required
+          autocomplete="email"
+          data-lang-key-placeholder="android_email_placeholder"
+          placeholder="Twój adres e-mail"
+        />
+        <button type="submit" class="android-modal-submit" data-lang-key="android_submit">Zapisz się</button>
+      </form>
+      <p id="androidSuccessMsg" class="android-modal-success" hidden data-lang-key="android_success">Zapisano! Damy Ci znać.</p>
+      <p id="androidErrorMsg" class="android-modal-error" hidden data-lang-key="android_error">Coś poszło nie tak. Spróbuj ponownie.</p>
+    </div>
+  </div>
+
   <!-- FOOTER -->
   <footer>
     <p data-lang-key="footer_rights">© 2025 Travel Rules. Wszelkie prawa zastrzeżone.</p>
@@ -972,7 +1163,15 @@
             footer_cookies: "Polityka Cookies",
 
             appstore_alt: "Pobierz w App Store",
-            theme_toggle_aria: "Przełącz motyw (jasny/ciemny)"
+            theme_toggle_aria: "Przełącz motyw (jasny/ciemny)",
+
+            android_badge_btn: "Powiadom mnie o premierze Android",
+            android_modal_title: "Android jest w drodze!",
+            android_modal_text: "Dołącz do listy oczekujących — powiadomimy Cię, gdy aplikacja pojawi się w Google Play.",
+            android_email_placeholder: "Twój adres e-mail",
+            android_submit: "Zapisz się",
+            android_success: "Gotowe! Damy Ci znać gdy pojawi się na Androidzie.",
+            android_error: "Coś poszło nie tak. Spróbuj ponownie."
           },
 
           en: {
@@ -1050,7 +1249,15 @@
             footer_cookies: "Cookie Policy",
 
             appstore_alt: "Download on the App Store",
-            theme_toggle_aria: "Toggle theme (light/dark)"
+            theme_toggle_aria: "Toggle theme (light/dark)",
+
+            android_badge_btn: "Notify me when Android launches",
+            android_modal_title: "Android is on the way!",
+            android_modal_text: "Join the waitlist — we'll notify you when the app lands on Google Play.",
+            android_email_placeholder: "Your email address",
+            android_submit: "Join waitlist",
+            android_success: "You're on the list! We'll let you know when it's on Android.",
+            android_error: "Something went wrong. Please try again."
           },
 
           es: {
@@ -1128,7 +1335,15 @@
             footer_cookies: "Política de Cookies",
 
             appstore_alt: "Descargar en App Store",
-            theme_toggle_aria: "Cambiar tema (claro/oscuro)"
+            theme_toggle_aria: "Cambiar tema (claro/oscuro)",
+
+            android_badge_btn: "Avísame cuando llegue Android",
+            android_modal_title: "¡Android está en camino!",
+            android_modal_text: "Únete a la lista de espera — te avisaremos cuando la app llegue a Google Play.",
+            android_email_placeholder: "Tu dirección de correo",
+            android_submit: "Unirse a la lista",
+            android_success: "¡Apuntado! Te avisaremos cuando llegue a Android.",
+            android_error: "Algo salió mal. Por favor, inténtalo de nuevo."
           }
         };
 
@@ -1175,6 +1390,10 @@
           document.querySelectorAll('[data-lang-key-html]').forEach(el => {
             const key = el.getAttribute('data-lang-key-html');
             if (t[key] != null) el.innerHTML = t[key];
+          });
+          document.querySelectorAll('[data-lang-key-placeholder]').forEach(el => {
+            const key = el.getAttribute('data-lang-key-placeholder');
+            if (t[key] != null) el.setAttribute('placeholder', t[key]);
           });
 
           if (themeToggle && t.theme_toggle_aria) {
@@ -1277,5 +1496,108 @@
     });
   </script>
   <!-- ══ koniec App Store tracking ═══════════════════════════════════ -->
+
+  <!-- ═══════════════════════════════════════════════════════════════
+       Android Waitlist Modal
+       ▸ Otwiera się po kliknięciu przycisku "Android — zapisz się"
+       ▸ Auto-wyświetla się po 15 s (raz na sesję)
+       ▸ Formularz wysyła POST do Formspree — podmień FORMSPREE_ENDPOINT
+       ═══════════════════════════════════════════════════════════════ -->
+  <script>
+  (function(){
+    // ── Konfiguracja ─────────────────────────────────────────────────
+    // Utwórz darmowe konto na https://formspree.io i podmień poniższy endpoint
+    var FORMSPREE_ENDPOINT = 'https://formspree.io/f/mlgvrddj';
+    var AUTO_SHOW_DELAY_MS = 15000; // 15 sekund
+    // ─────────────────────────────────────────────────────────────────
+
+    var SESSION_KEY = 'tr_android_modal_shown';
+
+    var overlay    = document.getElementById('androidModal');
+    var openBtn    = document.getElementById('androidWaitlistBtn');
+    var closeBtn   = document.getElementById('androidModalClose');
+    var form       = document.getElementById('androidWaitlistForm');
+    var emailInput = document.getElementById('androidEmailInput');
+    var submitBtn  = form ? form.querySelector('.android-modal-submit') : null;
+    var successMsg = document.getElementById('androidSuccessMsg');
+    var errorMsg   = document.getElementById('androidErrorMsg');
+
+    if (!overlay) return;
+
+    function openModal(){
+      overlay.hidden = false;
+      document.body.style.overflow = 'hidden';
+      if (emailInput) emailInput.focus();
+    }
+
+    function closeModal(){
+      overlay.hidden = true;
+      document.body.style.overflow = '';
+    }
+
+    if (openBtn) openBtn.addEventListener('click', openModal);
+    if (closeBtn) closeBtn.addEventListener('click', closeModal);
+
+    overlay.addEventListener('click', function(e){
+      if (e.target === overlay) closeModal();
+    });
+
+    document.addEventListener('keydown', function(e){
+      if (e.key === 'Escape' && !overlay.hidden) closeModal();
+    });
+
+    // Auto-show once per session
+    try {
+      if (!sessionStorage.getItem(SESSION_KEY)) {
+        setTimeout(function(){
+          if (overlay.hidden) {
+            openModal();
+            sessionStorage.setItem(SESSION_KEY, '1');
+          }
+        }, AUTO_SHOW_DELAY_MS);
+      }
+    } catch(e){}
+
+    // Form submission
+    if (form) {
+      form.addEventListener('submit', function(e){
+        e.preventDefault();
+        if (!emailInput || !emailInput.value) return;
+
+        if (successMsg) successMsg.hidden = true;
+        if (errorMsg) errorMsg.hidden = true;
+        if (submitBtn) submitBtn.disabled = true;
+
+        var email = emailInput.value.trim();
+
+        // GA4 event
+        if (typeof gtag === 'function') {
+          gtag('event', 'android_waitlist_signup', {
+            'page_language': document.documentElement.lang || 'pl'
+          });
+        }
+
+        fetch(FORMSPREE_ENDPOINT, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+          body: JSON.stringify({ email: email, source: 'android-waitlist' })
+        })
+        .then(function(res){
+          if (res.ok) {
+            form.hidden = true;
+            if (successMsg) successMsg.hidden = false;
+          } else {
+            throw new Error('server_error');
+          }
+        })
+        .catch(function(){
+          if (submitBtn) submitBtn.disabled = false;
+          if (errorMsg) errorMsg.hidden = false;
+        });
+      });
+    }
+  })();
+  </script>
+  <!-- ══ koniec Android Waitlist Modal ════════════════════════════════ -->
 </body>
 </html>
