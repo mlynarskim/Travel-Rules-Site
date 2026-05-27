@@ -1,16 +1,4 @@
 (() => {
-  const gumroadUrl = document.body.dataset.gumroadUrl || "https://gumroad.com/l/REPLACE_ME";
-
-  // Wire all Buy buttons
-  const buyIds = ["headerBuy", "mobileBuy", "heroBuy", "systemBuy", "finalBuy"];
-  buyIds.forEach(id => {
-    const el = document.getElementById(id);
-    if (!el) return;
-    el.href = gumroadUrl;
-    el.target = "_blank";
-    el.rel = "noopener";
-  });
-
   // Footer year
   const y = document.getElementById("year");
   if (y) y.textContent = String(new Date().getFullYear());
@@ -83,8 +71,4 @@
     el.addEventListener("mousedown", (e) => e.preventDefault());
   });
 
-  // Guard: if Gumroad URL is not replaced, show console hint
-  if (gumroadUrl.includes("REPLACE_ME")) {
-    console.warn("[Travel Rules landing] Replace data-gumroad-url on <body> with your Gumroad product link.");
-  }
-})(); 
+})();
