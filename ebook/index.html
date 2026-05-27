@@ -34,6 +34,7 @@
 
   <link rel="preload" href="./assets/images/01-cover.webp" as="image" type="image/webp" data-preload-img-file="01-cover.webp" />
   <link rel="stylesheet" href="./styles.css" />
+  <script src="https://app.lemonsqueezy.com/js/lemon.js" defer></script>
 
   <!-- Hub-like language + theme (non-invasive overrides) -->
   <style>
@@ -185,7 +186,7 @@
   </style>
 </head>
 
-<body data-gumroad-url="https://travelrules.gumroad.com/l/camper-first-trip-prep">
+<body>
   <header class="site-header">
     <div class="container header-inner">
       <a class="brand" href="/" aria-label="Travel Rules home">
@@ -581,9 +582,9 @@
       const langSelect = document.getElementById('langSelect');
 
       const BUY_URLS = {
-        en: 'https://travelrules.gumroad.com/l/camper-first-trip-prep',
-        es: 'https://travelrules.gumroad.com/l/camper-first-trip-prep',
-        pl: 'https://www.naffy.io/travelrules/pierwsza-podroz-kamperem-przygotuj-kampera-i-siebie-krok-po-kroku-IwO'
+        en: 'https://travelrules.lemonsqueezy.com/checkout/buy/d58e2768-5249-4ca3-836b-4098b253fd53',
+        es: 'https://travelrules.lemonsqueezy.com/checkout/buy/d58e2768-5249-4ca3-836b-4098b253fd53',
+        pl: 'https://travelrules.lemonsqueezy.com/checkout/buy/95d0b3a9-13d7-48af-91a0-f1efa3b3a02f'
       };
 
       const PRICES = {
@@ -648,11 +649,10 @@ function updatePrices(lang){
           const a = document.getElementById(id);
           if (!a) return;
           a.href = url;
-          a.target = '_blank';
-          a.rel = 'noopener';
+          a.classList.add('lemonsqueezy-button');
+          a.removeAttribute('target');
+          a.removeAttribute('rel');
         });
-        // keep compatibility with existing script.js if it reads this attribute
-        document.body.setAttribute('data-gumroad-url', url);
       }
 
       function updateImages(lang){
