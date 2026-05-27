@@ -24,15 +24,15 @@
   <meta property="og:description" content="A simple 72h / 48h / 24h + departure-day plan with practical guidance. Instant download." data-i18n-meta="og:description" />
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://travelrules.eu/ebook/" />
-  <meta property="og:image" content="https://travelrules.eu/ebook/assets/images/01-cover.png" data-meta-img-file="01-cover.png" />
+  <meta property="og:image" content="https://travelrules.eu/ebook/assets/images/01-cover.webp" data-meta-img-file="01-cover.webp" />
 
   <!-- Twitter -->
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="First Camper Trip Prep Ebook" data-i18n-meta="twitter:title" />
   <meta name="twitter:description" content="72h/48h/24h plan + practical pages. Instant download." data-i18n-meta="twitter:description" />
-  <meta name="twitter:image" content="./assets/images/01-cover.png" data-meta-img-file="01-cover.png" />
+  <meta name="twitter:image" content="./assets/images/01-cover.webp" data-meta-img-file="01-cover.webp" />
 
-  <link rel="preload" href="./assets/images/01-cover.png" as="image" data-preload-img-file="01-cover.png" />
+  <link rel="preload" href="./assets/images/01-cover.webp" as="image" type="image/webp" data-preload-img-file="01-cover.webp" />
   <link rel="stylesheet" href="./styles.css" />
 
   <!-- Hub-like language + theme (non-invasive overrides) -->
@@ -155,6 +155,33 @@
       .header-controls{ gap:8px; }
       .lang-select{ padding:0 10px; }
     }
+
+    /* guarantee box */
+    .guarantee-box{
+      display:flex; align-items:flex-start; gap:18px;
+      background:color-mix(in oklab, var(--tr-primary) 8%, var(--tr-bg));
+      border:1px solid color-mix(in oklab, var(--tr-primary) 22%, var(--tr-border));
+      border-radius:16px; padding:20px 24px; max-width:680px; margin:0 auto;
+    }
+    .guarantee-icon{ font-size:2rem; line-height:1; flex-shrink:0; }
+    .guarantee-copy h3{ margin:0 0 6px; font-size:1.05rem; }
+    .guarantee-copy p{ margin:0; color:var(--tr-muted); font-size:.95rem; }
+
+    /* author box */
+    .author-box{
+      display:flex; align-items:flex-start; gap:18px; max-width:680px; margin:0 auto;
+    }
+    .author-photo{
+      width:90px; height:90px; border-radius:50%; object-fit:cover;
+      flex-shrink:0; border:3px solid color-mix(in oklab, var(--tr-primary) 30%, var(--tr-border));
+    }
+    .author-copy{ flex:1; }
+    .author-name{ font-weight:800; font-size:1rem; margin:0 0 6px; }
+    .author-copy p{ margin:0 0 12px; color:var(--tr-muted); font-size:.95rem; }
+
+    @media (max-width:480px){
+      .guarantee-box, .author-box{ flex-direction:column; align-items:center; text-align:center; }
+    }
   </style>
 </head>
 
@@ -184,8 +211,8 @@
     <section class="hero" id="top">
       <div class="container hero-grid">
         <div class="hero-media">
-          <button class="image-button" data-lightbox="./assets/images/01-cover.png" data-img-file="01-cover.png" data-caption="Ebook cover: How to prepare a camper for the first trip" aria-label="Open cover preview">
-            <img class="shadow" src="./assets/images/01-cover.png" data-img-file="01-cover.png" alt="Ebook cover: How to prepare a camper for the first trip" width="1400" height="1994" loading="eager" fetchpriority="high" />
+          <button class="image-button" data-lightbox="./assets/images/01-cover.webp" data-img-file="01-cover.webp" data-caption="Ebook cover: How to prepare a camper for the first trip" aria-label="Open cover preview">
+            <img class="shadow" src="./assets/images/01-cover.webp" data-img-file="01-cover.webp" alt="Ebook cover: How to prepare a camper for the first trip" width="1400" height="1994" loading="eager" fetchpriority="high" />
           </button>
         </div>
 
@@ -301,8 +328,8 @@
           <p class="muted" data-i18n="system_p">You’ll follow a clear timeline so you don’t do everything last minute. It’s designed for beginners and helps you build confidence before the first departure.</p>
         </div>
 
-        <button class="image-button wide-image" data-lightbox="./assets/images/04-prep-schedule.png" data-img-file="04-prep-schedule.png" data-caption="Sample page: 24 hours before departure + departure day" aria-label="Open prep schedule preview">
-          <img class="shadow" src="./assets/images/04-prep-schedule.png" data-img-file="04-prep-schedule.png" alt="Sample page: 72h / 48h / 24h preparation schedule" width="1400" height="1980" loading="lazy" />
+        <button class="image-button wide-image" data-lightbox="./assets/images/04-prep-schedule.webp" data-img-file="04-prep-schedule.webp" data-caption="Sample page: 24 hours before departure + departure day" aria-label="Open prep schedule preview">
+          <img class="shadow" src="./assets/images/04-prep-schedule.webp" data-img-file="04-prep-schedule.webp" alt="Sample page: 72h / 48h / 24h preparation schedule" width="1400" height="1980" loading="lazy" />
         </button>
 
         <div class="mini-cta">
@@ -319,8 +346,8 @@
 
         <div class="two-up">
           <figure class="figure">
-            <button class="image-button" data-lightbox="./assets/images/05-minimum-checklist.png" data-img-file="05-minimum-checklist.png" data-caption="Minimum checklist before you leave" aria-label="Open minimum checklist preview">
-              <img class="shadow" src="./assets/images/05-minimum-checklist.png" data-img-file="05-minimum-checklist.png" alt="Sample page: Minimum checklist before you leave" width="1400" height="1980" loading="lazy" />
+            <button class="image-button" data-lightbox="./assets/images/05-minimum-checklist.webp" data-img-file="05-minimum-checklist.webp" data-caption="Minimum checklist before you leave" aria-label="Open minimum checklist preview">
+              <img class="shadow" src="./assets/images/05-minimum-checklist.webp" data-img-file="05-minimum-checklist.webp" alt="Sample page: Minimum checklist before you leave" width="1400" height="1980" loading="lazy" />
             </button>
             <figcaption data-i18n="sample_cap_1">Minimum checklist before you leave</figcaption>
           </figure>
@@ -460,11 +487,38 @@
       </div>
     </section>
 
+    <!-- SECTION 10b — GUARANTEE -->
+    <section class="section">
+      <div class="container">
+        <div class="guarantee-box">
+          <div class="guarantee-icon" aria-hidden="true">🛡️</div>
+          <div class="guarantee-copy">
+            <h3 data-i18n="guarantee_h3">30-day money-back guarantee</h3>
+            <p data-i18n="guarantee_p">If you don't find this ebook helpful, we'll refund you — no questions asked. Just send one email.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 10c — AUTHOR -->
+    <section class="section section-alt">
+      <div class="container">
+        <div class="author-box">
+          <img class="author-photo" src="./assets/images/author.jpg" alt="Mateusz Młynarski" width="90" height="90" loading="lazy" />
+          <div class="author-copy">
+            <p class="author-name" data-i18n="author_name">Mateusz Młynarski</p>
+            <p data-i18n="author_bio">I've been traveling by campervan for 5 years. I know what first-trip chaos looks like: forgotten adapters, unknown connectors, last-minute panic. I wrote this ebook so you have a clear system instead of guessing.</p>
+            <a class="btn btn-ghost" href="https://www.linkedin.com/in/mateuszmlynarski/" rel="noopener noreferrer" target="_blank">LinkedIn</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
     <!-- SECTION 11 — FINAL CTA -->
     <section class="final-cta">
       <div class="container final-grid">
         <div class="final-media" style="display:block;">
-          <img class="shadow" src="./assets/images/01-cover.png" data-img-file="01-cover.png" alt="Ebook cover" width="1400" height="1994" loading="lazy" />
+          <img class="shadow" src="./assets/images/01-cover.webp" data-img-file="01-cover.webp" alt="Ebook cover" width="1400" height="1994" loading="lazy" />
         </div>
 
         <div class="final-copy">
@@ -550,18 +604,18 @@ function updatePrices(lang){
 
       // Both EN/ES and PL images are stored in ./assets/images/. We only switch filenames for PL.
       const PL_FILE_MAP = {
-        '01-cover.png': '01-okladka.png',
+        '01-cover.webp': '01-okladka.webp',
         '02-contents.png': '02-Spis Tresci.png',
         '03-common-mistakes.png': '03-bledy.png',
-        '04-prep-schedule.png': '04-przygotowanie.png',
-        '05-minimum-checklist.png': '05-minimum.png',
+        '04-prep-schedule.webp': '04-przygotowanie.webp',
+        '05-minimum-checklist.webp': '05-minimum.webp',
         '06-safety-inspection.png': '06-bezpieczenstwo.png',
         '07-weight-cargo.png': '07-waga.png',
         '08-troubleshooting.png': '08-usterki.png',
-        '09-stopping-vs-camping.jpg': '09-na dziko vs kemping.png',
+        '09-stopping-vs-camping.jpg': '09-na-dziko-vs-kemping.webp',
         '10-electrics-kit.jpg': '10-elektryka.png',
-        '11-comfort-checklist.jpg': '11-komfort .png',
-        '12-gas-checklist.jpg': '12-gaz.png'
+        '11-comfort-checklist.jpg': '11-komfort.webp',
+        '12-gas-checklist.jpg': '12-gaz.webp'
       };
 
       // Assets shared across languages (kept in ./assets/images/)
@@ -574,7 +628,7 @@ function updatePrices(lang){
         if (lang !== 'pl') return file;
 
         // Polish bonus card was renamed; map old name to the new file
-        if (file === 'bonus-dimensions-card.png') return 'bonus-dimensions-card-pl.png';
+        if (file === 'bonus-dimensions-card.png') return 'bonus-dimensions-card-pl.webp';
 
         // Keep shared assets as-is
         if (SHARED_FILES.has(file)) return file;
@@ -756,6 +810,10 @@ function updatePrices(lang){
             final_b2: 'Pack smarter and avoid common mistakes',
             final_b3: 'Drive away confident and prepared',
             final_price_note: 'Instant download',
+            guarantee_h3: '30-day money-back guarantee',
+            guarantee_p: 'If you don\'t find this ebook helpful, we\'ll refund you — no questions asked. Just send one email.',
+            author_name: 'Mateusz Młynarski',
+            author_bio: 'I\'ve been traveling by campervan for 5 years. I know what first-trip chaos looks like: forgotten adapters, unknown connectors, last-minute panic. I wrote this ebook so you have a clear system instead of guessing.',
             footer_brand: 'Travel Rules',
             footer_support: 'Support: <a href="mailto:travelrules.app@gmail.com">travelrules.app@gmail.com</a>',
             footer_rights: '© ' + (new Date()).getFullYear() + ' Travel Rules. All rights reserved.',
@@ -863,6 +921,10 @@ function updatePrices(lang){
             final_b2: 'Spakuj się mądrzej i uniknij błędów',
             final_b3: 'Wyjedź pewnie i przygotowany',
             final_price_note: 'Natychmiastowy dostęp',
+            guarantee_h3: 'Gwarancja 30 dni',
+            guarantee_p: 'Jeśli uznasz że ebook Ci nie pomógł, zwrócimy pieniądze bez pytań. Wystarczy jeden email.',
+            author_name: 'Mateusz Młynarski',
+            author_bio: 'Jeżdżę kamperem od 5 lat. Wiem jak wygląda chaos przed pierwszym wyjazdem — zapomniany adapter, nieznane złącza, panika przy zbiorniku z gazem. Ten ebook napisałem żeby następna osoba miała gotowy system zamiast zgadywać.',
             footer_brand: 'Travel Rules',
             footer_support: 'Wsparcie: <a href="mailto:travelrules.app@gmail.com">travelrules.app@gmail.com</a>',
             footer_rights: '© ' + (new Date()).getFullYear() + ' Travel Rules. Wszelkie prawa zastrzeżone.',
@@ -970,6 +1032,10 @@ function updatePrices(lang){
             final_b2: 'Empaca mejor y evita errores comunes',
             final_b3: 'Sal a la carretera con confianza',
             final_price_note: 'Descarga inmediata',
+            guarantee_h3: 'Garantía 30 días',
+            guarantee_p: 'Si consideras que el ebook no te ha sido útil, te devolvemos el dinero sin preguntas. Un solo email.',
+            author_name: 'Mateusz Młynarski',
+            author_bio: 'Llevo 5 años viajando en autocaravana. Sé lo que es el caos del primer viaje: adaptadores olvidados, conectores desconocidos, pánico de último minuto. Escribí este ebook para que tengas un sistema claro en vez de adivinar.',
             footer_brand: 'Travel Rules',
             footer_support: 'Soporte: <a href="mailto:travelrules.app@gmail.com">travelrules.app@gmail.com</a>',
             footer_rights: '© ' + (new Date()).getFullYear() + ' Travel Rules. Todos los derechos reservados.',
