@@ -6,22 +6,22 @@ Travel Rules is a free iOS app that helps travellers plan trips, pack smart, and
 ## App
 - iOS App: https://apps.apple.com/app/travel-rules/id6451070215
 - Platform: iOS (iPhone & iPad)
-- Price: Free
+- Price: Free (with optional premium)
 - Category: Travel
 - Languages: Polish, English, Spanish
 
 ## Features
-- AI trip planner — conversational AI travel assistant for route planning'
-- Country travel rules — entry requirements, camping laws, visa info
+- AI trip planner — conversational AI travel assistant for route planning
+- Country travel rules — entry requirements, camping laws, visa info per country
 - Packing checklist — customisable lists for van life and road trips
 - GPS map — offline-capable map for campers and van lifers
 - Works offline — essential for remote travel without internet
 
 ## Target audience
-Van lifers, campers, road trippers, backpackers, digital nomads, families travelling by camper van
+Van lifers, campers, road trippers, backpackers, digital nomads, families travelling by camper van, overlanders, slow travellers
 
 ## Keywords
-van life, vanlife, kamper, road trip, camping, AI trip planner, travel planner, packing list, travel rules, entry requirements, wild camping, backpacking, digital nomad
+van life, vanlife, kamper, road trip, camping, AI trip planner, travel planner, packing list, travel rules, entry requirements, wild camping, backpacking, digital nomad, camper van, overlanding, travel app, trip planning app, aplikacja do planowania podróży, planowanie trasy kamperem, aplikacja dla kamperowiczów, lista pakowania, zasady wjazdu, przepisy celne, podróż kamperem, wyjazd w trasę, aplikacja podróżnicza, planowanie campingu
 
 ## Pricing
 - Free tier: 3 AI questions/day, 5 tips/day
@@ -37,15 +37,30 @@ van life, vanlife, kamper, road trip, camping, AI trip planner, travel planner, 
 - Blog (van life guides): https://travelrules.eu/blog/
 
 ## Additional products
-- Ebook (PL): https://www.naffy.io/travelrules
-- Travel Planner PDF: https://travelrules.gumroad.com/l/travelplanner_checklist_print
-- Vanlife Checklist: https://travelrules.gumroad.com/l/VanlifeTravelChecklist
+- Ebook (PL, Naffy): https://www.naffy.io/travelrules
+- Travel Planner PDF (Gumroad): https://travelrules.gumroad.com/l/travelplanner_checklist_print
+- Vanlife Checklist (Gumroad): https://travelrules.gumroad.com/l/VanlifeTravelChecklist
+- Clear Travel Planner & Checklist: https://travelrules.gumroad.com/l/travelplanner_checklist_print
+- Complete Vanlife Checklist: https://travelrules.gumroad.com/l/VanlifeTravelChecklist
 
-## Social
+## Social & community
 - TikTok: https://www.tiktok.com/@travelrules.app
 - Instagram: https://www.instagram.com/travelrules.app/
 - YouTube: https://youtube.com/@travelrulesapp
+- Threads: https://www.threads.com/@travelrules.app
+- Pinterest: https://pin.it/13VDOuOmK
+
+## Listed on
+- Product Hunt: https://www.producthunt.com/products/travel-rules
+- LaunchIgniter: https://launchigniter.com/product/travel-rules
+- Redlike: https://redlike.com/travelrules.app
+
+## Demo / Presentation
+- App walkthrough: https://app.arcade.software/share/VN86AiM76P6c0SzADJaW
 
 ## Developer
-- Mateusz Młynarski, indie iOS developer
-- https://www.linkedin.com/in/mlynarskimateusz/
+- Mateusz Młynarski — indie iOS & mobile developer from Poland
+- Portfolio & services: https://mlynarskimateusz.pl
+- LinkedIn: https://www.linkedin.com/in/mateuszmlynarski/
+- GitHub: https://github.com/mlynarskim
+- Other apps by same developer: Calmie (meditation), Rate That Beach (beach finder)
