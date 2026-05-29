@@ -38,3 +38,4 @@ pnpm-debug.log*
 .continue/agents/new-config.yaml
 .DS_Store
 .claude/worktrees/inspiring-ellis-eeeef8/
+.claude/
