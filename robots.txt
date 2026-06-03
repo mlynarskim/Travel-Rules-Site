@@ -13,5 +13,6 @@ Allow: /
 User-agent: GoogleOther
 Allow: /
 
+Sitemap: https://travelrules.eu/sitemap.xml
 Sitemap: https://travelrules.eu/sitemap-main.xml
 Sitemap: https://travelrules.eu/sitemap-blog.xml
