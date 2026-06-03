@@ -163,6 +163,9 @@
     .icon-btn:hover{ transform: translateY(-1px); }
     .icon-btn:focus{ outline:none; box-shadow: 0 0 0 6px var(--ring), 0 10px 22px rgba(2,6,23,.05); }
 
+    .nav-download{ font-size:.82rem; padding:7px 12px; }
+    @media(max-width:640px){ .nav-download{ display:none !important; } }
+
     .lang-select{
       height: 42px;
       border-radius: 999px;
@@ -562,6 +565,8 @@
       </a>
 
       <div class="header-controls" aria-label="Page controls">
+        <a class="btn btn-ghost nav-download" href="https://apps.apple.com/app/travel-rules/id6451070215" target="_blank" rel="noopener" aria-label="Download Travel Rules on iOS">Download iOS app</a>
+
         <button class="icon-btn" id="themeToggle" type="button" aria-label="Toggle theme" aria-pressed="false" title="Toggle theme">
           <span id="themeIcon" aria-hidden="true">☀️</span>
         </button>
@@ -655,7 +660,7 @@
             </ul>
 
             <div class="thumb" aria-label="Travel Rules App preview">
-<img id="appScreenThumb" src="./images/v3/travel rules app.png" alt="Travel Rules — iOS app dla van liferów i kamperów z AI asystentem podróży" loading="lazy">
+<img id="appScreenThumb" src="./images/v3/travel rules app.png" alt="Travel Rules iOS app screenshot – solo travel checklists, packing lists and GPS tools" loading="lazy">
             </div>
 
             <div class="card-actions">
@@ -677,7 +682,7 @@
             </div>
 
             <div class="thumb" aria-label="Ebook preview">
-              <img src="./ebook/assets/images/01-cover.png" alt="Ebook: Przygotuj kamper na pierwszą wyprawę — plan 72h/48h/24h" loading="lazy" />
+              <img src="./ebook/assets/images/01-cover.png" alt="Campervan first trip preparation ebook cover – 72h/48h/24h plan" loading="lazy" />
             </div>
 
             <h3 data-i18n="card2_h3">First Camper Trip Prep Ebook</h3>
@@ -712,7 +717,7 @@
             </ul>
 
             <div class="thumb" aria-label="Travel Planner App preview">
-              <img src="./images/v3/travel%20planer.png" alt="Travel Planner — planuj budżet i trasę road trip online za darmo" loading="lazy" />
+              <img src="./images/v3/travel%20planer.png" alt="Travel Planner App for campervan trips – budget tracker and route organizer" loading="lazy" />
             </div>
 
             <div class="card-actions">
