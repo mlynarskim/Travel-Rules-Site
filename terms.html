@@ -109,7 +109,7 @@
   <header>
     <h1 data-i18n="title_h1">Warunki korzystania</h1>
     <p class="small" data-i18n-html="app_line">Aplikacja: <strong>Travel Rules</strong> (iOS)</p>
-    <p class="meta" data-i18n="updated_line">Ostatnia aktualizacja: 16 marca 2026</p>
+    <p class="meta" data-i18n="updated_line">Ostatnia aktualizacja: 9 czerwca 2026</p>
 
     <div class="langbar" aria-label="Language switcher">
       <button class="lang-btn" type="button" data-lang="pl" aria-pressed="true">Polski</button>
@@ -240,6 +240,8 @@
 
       <h3 data-i18n="s8_1_h">8.1. Bezpieczeństwo treści</h3>
       <p data-i18n="s8_1_p">Zabrania się używania asystenta SAM do generowania treści promujących nienawiść, przemoc, działania nielegalne lub treści o charakterze seksualnym. Asystent posiada wbudowane filtry bezpieczeństwa dostarczane przez Google Gemini. Nagminne próby obejścia tych filtrów mogą skutkować ograniczeniem dostępu do funkcji AI dla danego urządzenia.</p>
+      <h3 data-i18n="s8_2_h">8.2. Zastrzeżenie dotyczące treści generowanych przez AI</h3>
+      <p data-i18n="s8_2_p">Asystent SAM generuje odpowiedzi przy użyciu technologii sztucznej inteligencji (Google Gemini). Treści generowane przez AI mogą zawierać nieścisłości, nieaktualne informacje lub błędy. Travel Rules nie gwarantuje dokładności, kompletności ani wiarygodności żadnych treści generowanych przez AI. Nie należy podejmować decyzji dotyczących podróży — w tym przekraczania granic, składania wniosków wizowych lub kwestii zdrowotnych i bezpieczeństwa — wyłącznie na podstawie odpowiedzi wygenerowanych przez AI. Przed podróżą zawsze weryfikuj wymogi wjazdowe, przepisy wizowe i ostrzeżenia dla podróżnych w oficjalnych źródłach rządowych.</p>
     </section>
 
     <section id="9">
@@ -269,6 +271,8 @@
         <li>W zakresie dozwolonym przez prawo, wyłączamy odpowiedzialność za szkody pośrednie, utratę danych, korzyści, przerwę w działalności itp.</li>
         <li>Użytkownik korzysta z Aplikacji na własną odpowiedzialność i zobowiązuje się do przestrzegania przepisów obowiązujących w miejscu korzystania.</li>
       </ul>
+      <h3 data-i18n="s11_acc_h">Dokładność informacji o podróżach</h3>
+      <p data-i18n="s11_acc_p">Przepisy drogowe, wymogi wizowe, przepisy graniczne i informacje dotyczące poszczególnych krajów zawarte w aplikacji mają wyłącznie charakter informacyjny i mogą nie odzwierciedlać aktualnych oficjalnych regulacji. Przed podróżą zawsze konsultuj się z oficjalnymi stronami rządowymi, ambasadami lub konsulatami w celu uzyskania aktualnych i prawnie wiążących informacji.</p>
     </section>
 
     <section id="12">
@@ -323,7 +327,7 @@
           page_desc: 'Warunki korzystania aplikacji Travel Rules na iOS. Informacje o licencji, subskrypcjach, asystencie AI, Firebase, odpowiedzialności i wsparciu.',
           title_h1: 'Warunki korzystania',
           app_line: 'Aplikacja: <strong>Travel Rules</strong> (iOS)',
-          updated_line: 'Ostatnia aktualizacja: 16 marca 2026',
+          updated_line: 'Ostatnia aktualizacja: 9 czerwca 2026',
           toc_title: 'Spis treści:',
           toc_1: '1. Postanowienia ogólne',
           toc_2: '2. Definicje',
@@ -372,6 +376,8 @@
           s8_ul: '<li>Odpowiedzi SAM są generowane automatycznie przez model AI i mogą zawierać błędy, nieścisłości lub informacje nieaktualne.</li><li>Treści generowane przez AI mają wyłącznie charakter informacyjny. Nie stanowią oficjalnych porad prawnych, nawigacyjnych ani medycznych.</li><li>Przed realizacją planu podróży zawsze weryfikuj informacje z oficjalnymi źródłami rządowymi, znakami drogowymi i lokalnymi przepisami.</li><li>Treść zapytań kierowanych do SAM jest przesyłana do API Google Gemini. Nie wysyłamy danych osobowych użytkownika do API — zapytania ograniczają się do wpisanego tekstu i parametrów profilu podróżnika.</li>',
           s8_1_h: '8.1. Bezpieczeństwo treści',
           s8_1_p: 'Zabrania się używania asystenta SAM do generowania treści promujących nienawiść, przemoc, działania nielegalne lub treści o charakterze seksualnym. Asystent posiada wbudowane filtry bezpieczeństwa dostarczane przez Google Gemini. Nagminne próby obejścia tych filtrów mogą skutkować ograniczeniem dostępu do funkcji AI dla danego urządzenia.',
+          s8_2_h: '8.2. Zastrzeżenie dotyczące treści generowanych przez AI',
+          s8_2_p: 'Asystent SAM generuje odpowiedzi przy użyciu technologii sztucznej inteligencji (Google Gemini). Treści generowane przez AI mogą zawierać nieścisłości, nieaktualne informacje lub błędy. Travel Rules nie gwarantuje dokładności, kompletności ani wiarygodności żadnych treści generowanych przez AI. Nie należy podejmować decyzji dotyczących podróży — w tym przekraczania granic, składania wniosków wizowych lub kwestii zdrowotnych i bezpieczeństwa — wyłącznie na podstawie odpowiedzi wygenerowanych przez AI. Przed podróżą zawsze weryfikuj wymogi wjazdowe, przepisy wizowe i ostrzeżenia dla podróżnych w oficjalnych źródłach rządowych.',
           s9_h: '9. Usługi zewnętrzne i Firebase',
           s9_intro: 'Aplikacja korzysta z platformy Google Firebase w celu synchronizacji profilu podróżnika i zarządzania limitami zapytań AI. Nie wymagamy rejestracji konta — stosujemy anonimowe uwierzytelnianie Firebase:',
           s9_ul: '<li><strong>Anonimowe uwierzytelnianie (Firebase Auth):</strong> Przy pierwszym uruchomieniu aplikacja tworzy anonimowy identyfikator urządzenia. Nie zbieramy imienia, adresu e-mail ani hasła.</li><li><strong>Profil podróżnika (Firestore):</strong> Przechowujemy preferencje podróżnicze (styl jazdy, typ pojazdu, towarzysze podróży) oraz licznik wykorzystanych zapytań AI, aby umożliwić synchronizację ustawień między urządzeniami.</li><li><strong>Firebase Analytics:</strong> Zbieramy anonimowe zdarzenia behawioralne w celu ulepszania aplikacji (np. ukończenie onboardingu, zapytania do SAM, interakcje z checklistą). Żadne zdarzenie nie jest powiązane z danymi osobowymi. Szczegółowa lista zdarzeń dostępna jest w Polityce Prywatności.</li><li><strong>Anonimowe logi diagnostyczne:</strong> Zbieramy anonimowe raporty błędów wyłącznie w celu naprawiania usterek technicznych.</li><li>Zgromadzone dane nie zawierają informacji umożliwiających bezpośrednią identyfikację osoby (brak e-maili, haseł, numerów telefonu).</li>',
@@ -380,6 +386,8 @@
           s10_p: 'Twoja prywatność jest dla nas ważna. Zapoznaj się z <a href="privacy.html">Polityką Prywatności</a>, która opisuje, jakie informacje są przetwarzane i w jaki sposób.',
           s11_h: '11. Zastrzeżenia, odpowiedzialność i ryzyka',
           s11_ul: '<li>Aplikacja dostarczana jest „tak jak jest" (AS IS), bez gwarancji przydatności do określonego celu czy bezbłędności.</li><li>Nie gwarantujemy dostępności wszystkich funkcji w każdym kraju ani aktualności numerów alarmowych czy danych zewnętrznych.</li><li>W zakresie dozwolonym przez prawo, wyłączamy odpowiedzialność za szkody pośrednie, utratę danych, korzyści, przerwę w działalności itp.</li><li>Użytkownik korzysta z Aplikacji na własną odpowiedzialność i zobowiązuje się do przestrzegania przepisów obowiązujących w miejscu korzystania.</li>',
+          s11_acc_h: 'Dokładność informacji o podróżach',
+          s11_acc_p: 'Przepisy drogowe, wymogi wizowe, przepisy graniczne i informacje dotyczące poszczególnych krajów zawarte w aplikacji mają wyłącznie charakter informacyjny i mogą nie odzwierciedlać aktualnych oficjalnych regulacji. Przed podróżą zawsze konsultuj się z oficjalnymi stronami rządowymi, ambasadami lub konsulatami w celu uzyskania aktualnych i prawnie wiążących informacji.',
           s12_h: '12. Zmiany, zawieszenie i rozwiązanie korzystania',
           s12_ul: '<li>Możemy wprowadzać aktualizacje, modyfikować lub czasowo ograniczać funkcje Aplikacji (np. z powodów technicznych lub prawnych).</li><li>Możemy rozwiązać licencję Użytkownika w przypadku naruszenia Warunków.</li><li>O istotnych zmianach Warunków poinformujemy w Aplikacji lub w opisie w App Store; dalsze korzystanie oznacza akceptację zmian.</li>',
           s13_h: '13. Prawo właściwe i rozstrzyganie sporów',
@@ -400,7 +408,7 @@
           page_desc: 'Terms of Use for the Travel Rules iOS app. Information about license, subscriptions, AI assistant, Firebase, liability, and support.',
           title_h1: 'Terms of Use',
           app_line: 'App: <strong>Travel Rules</strong> (iOS)',
-          updated_line: 'Last updated: March 16, 2026',
+          updated_line: 'Last updated: June 9, 2026',
           toc_title: 'Table of contents:',
           toc_1: '1. General provisions',
           toc_2: '2. Definitions',
@@ -449,6 +457,8 @@
           s8_ul: '<li>SAM\'s responses are automatically generated by an AI model and may contain errors, inaccuracies, or outdated information.</li><li>AI-generated content is for informational purposes only. It does not constitute official legal, navigational, or medical advice.</li><li>Always verify travel plans against official government sources, road signs, and local regulations before acting on them.</li><li>The content of queries sent to SAM is transmitted to the Google Gemini API. We do not send personal user data to the API — queries are limited to typed text and travel profile parameters.</li>',
           s8_1_h: '8.1. Content safety',
           s8_1_p: 'Using SAM to generate content promoting hatred, violence, illegal activity, or sexual content is prohibited. The assistant uses built-in safety filters provided by Google Gemini. Persistent attempts to circumvent these filters may result in restricted access to AI features for that device.',
+          s8_2_h: '8.2. AI-Generated Content Disclaimer',
+          s8_2_p: 'The SAM AI assistant generates responses using artificial intelligence technology (Google Gemini). AI-generated content may contain inaccuracies, outdated information, or errors. Travel Rules does not guarantee the accuracy, completeness, or reliability of any AI-generated content. You should not make travel decisions — including border crossings, visa applications, or health and safety choices — based solely on AI-generated responses. Always verify entry requirements, visa regulations, and travel advisories with official government sources before traveling.',
           s9_h: '9. Third-party services and Firebase',
           s9_intro: 'The App uses Google Firebase to sync the travel profile and manage AI query limits. No registration is required — we use anonymous Firebase authentication:',
           s9_ul: '<li><strong>Anonymous authentication (Firebase Auth):</strong> On first launch, the App creates an anonymous device identifier. We do not collect your name, email address, or password.</li><li><strong>Travel profile (Firestore):</strong> We store your travel preferences (driving style, vehicle type, travel companions) and the AI query counter to enable cross-device synchronization of your settings.</li><li><strong>Firebase Analytics:</strong> We collect anonymous behavioral events to improve the app (e.g. onboarding completion, SAM queries, checklist interactions). No event is linked to personal data. A detailed list of events is available in the Privacy Policy.</li><li><strong>Anonymous diagnostic logs:</strong> We collect anonymous error reports solely to fix technical issues.</li><li>Collected data does not include any directly identifying information (no email, password, or phone number).</li>',
@@ -457,6 +467,8 @@
           s10_p: 'Your privacy matters. Please read our <a href="privacy.html">Privacy Policy</a>, which describes what information is processed and how.',
           s11_h: '11. Disclaimers, liability, and risks',
           s11_ul: '<li>The App is provided "as is" (AS IS) without warranties of fitness for a particular purpose or error-free operation.</li><li>We do not guarantee availability of all features in every country or the accuracy/recency of emergency numbers or external data.</li><li>To the extent permitted by law, we disclaim liability for indirect damages, data loss, lost profits, business interruption, etc.</li><li>You use the App at your own risk and must comply with laws applicable where you use it.</li>',
+          s11_acc_h: 'Travel Information Accuracy',
+          s11_acc_p: 'Travel rules, visa requirements, border regulations, and country-specific information provided in this app are for general informational purposes only and may not reflect the most current official regulations. Always consult official government websites, embassies, or consulates for up-to-date and legally binding information.',
           s12_h: '12. Changes, suspension, and termination',
           s12_ul: '<li>We may update, modify, or temporarily limit App features (e.g., for technical or legal reasons).</li><li>We may terminate your license if you breach these Terms.</li><li>Material changes will be communicated in the App or App Store description; continued use means acceptance.</li>',
           s13_h: '13. Governing law and disputes',
@@ -477,7 +489,7 @@
           page_desc: 'Términos de uso de la app Travel Rules para iOS. Información sobre licencia, suscripciones, asistente AI, Firebase, responsabilidad y soporte.',
           title_h1: 'Términos de uso',
           app_line: 'Aplicación: <strong>Travel Rules</strong> (iOS)',
-          updated_line: 'Última actualización: 16 de marzo de 2026',
+          updated_line: 'Última actualización: 9 de junio de 2026',
           toc_title: 'Índice:',
           toc_1: '1. Disposiciones generales',
           toc_2: '2. Definiciones',
@@ -526,6 +538,8 @@
           s8_ul: '<li>Las respuestas de SAM son generadas automáticamente por un modelo de IA y pueden contener errores, inexactitudes o información desactualizada.</li><li>El contenido generado por IA es solo informativo. No constituye asesoramiento legal, de navegación ni médico oficial.</li><li>Verifica siempre los planes de viaje con fuentes gubernamentales oficiales, señales de tráfico y normativa local antes de actuar.</li><li>El contenido de las consultas enviadas a SAM se transmite a la API de Google Gemini. No enviamos datos personales del usuario a la API — las consultas se limitan al texto introducido y los parámetros del perfil de viaje.</li>',
           s8_1_h: '8.1. Seguridad del contenido',
           s8_1_p: 'Está prohibido usar SAM para generar contenido que promueva el odio, la violencia, actividades ilegales o contenido sexual. El asistente utiliza filtros de seguridad integrados de Google Gemini. Los intentos reiterados de eludir estos filtros pueden resultar en la restricción del acceso a las funciones de IA para ese dispositivo.',
+          s8_2_h: '8.2. Descargo de responsabilidad sobre el contenido generado por IA',
+          s8_2_p: 'El asistente SAM genera respuestas utilizando tecnología de inteligencia artificial (Google Gemini). El contenido generado por IA puede contener inexactitudes, información desactualizada o errores. Travel Rules no garantiza la exactitud, integridad ni fiabilidad de ningún contenido generado por IA. No debes tomar decisiones de viaje — incluidos cruces de frontera, solicitudes de visado o decisiones de salud y seguridad — basándote únicamente en las respuestas generadas por IA. Verifica siempre los requisitos de entrada, las normativas de visado y los avisos de viaje con fuentes gubernamentales oficiales antes de viajar.',
           s9_h: '9. Servicios externos y Firebase',
           s9_intro: 'La App usa Google Firebase para sincronizar el perfil de viaje y gestionar los límites de consultas AI. No se requiere registro — usamos autenticación anónima de Firebase:',
           s9_ul: '<li><strong>Autenticación anónima (Firebase Auth):</strong> En el primer inicio, la App crea un identificador de dispositivo anónimo. No recopilamos tu nombre, dirección de correo ni contraseña.</li><li><strong>Perfil de viaje (Firestore):</strong> Almacenamos tus preferencias de viaje (estilo de conducción, tipo de vehículo, acompañantes) y el contador de consultas AI para sincronizar tus ajustes entre dispositivos.</li><li><strong>Firebase Analytics:</strong> Recopilamos eventos de comportamiento anónimos para mejorar la app (p. ej. finalización del onboarding, consultas a SAM, interacciones con la checklist). Ningún evento está vinculado a datos personales. La lista detallada de eventos está disponible en la Política de Privacidad.</li><li><strong>Registros de diagnóstico anónimos:</strong> Recopilamos informes de errores anónimos únicamente para solucionar problemas técnicos.</li><li>Los datos recopilados no contienen información que permita identificar directamente a una persona (sin correo, contraseña ni teléfono).</li>',
@@ -534,6 +548,8 @@
           s10_p: 'Tu privacidad es importante. Consulta nuestra <a href="privacy.html">Política de Privacidad</a>, que describe qué información se procesa y cómo.',
           s11_h: '11. Exenciones, responsabilidad y riesgos',
           s11_ul: '<li>La App se proporciona "tal cual" (AS IS) sin garantías de idoneidad para un fin específico ni de funcionamiento sin errores.</li><li>No garantizamos la disponibilidad de todas las funciones en todos los países ni la exactitud/actualidad de números de emergencia o datos externos.</li><li>En la medida permitida por la ley, no asumimos responsabilidad por daños indirectos, pérdida de datos, lucro cesante, interrupción del negocio, etc.</li><li>Usas la App bajo tu propia responsabilidad y debes cumplir la legislación aplicable donde la uses.</li>',
+          s11_acc_h: 'Exactitud de la información de viaje',
+          s11_acc_p: 'Las normas de viaje, los requisitos de visado, las regulaciones fronterizas y la información específica de cada país que se proporciona en esta app son solo para fines informativos generales y pueden no reflejar las regulaciones oficiales más actualizadas. Consulta siempre los sitios web oficiales del gobierno, embajadas o consulados para obtener información actualizada y legalmente vinculante.',
           s12_h: '12. Cambios, suspensión y terminación',
           s12_ul: '<li>Podemos actualizar, modificar o limitar temporalmente funciones (por motivos técnicos o legales).</li><li>Podemos terminar tu licencia si incumples estos Términos.</li><li>Los cambios importantes se comunicarán en la App o en la descripción de App Store; el uso continuado implica aceptación.</li>',
           s13_h: '13. Ley aplicable y resolución de disputas',
