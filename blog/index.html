@@ -404,8 +404,9 @@
         }
       }
 
-      function buildPostUrl(postId){
+      function buildPostUrl(post){
         const lang = getLang();
+        const postId = post && post.id ? post.id : '';
 
         // When embedded (iframe), keep query-param version to stay inside the embed flow.
         if (isEmbed) {
@@ -417,7 +418,10 @@
         }
 
         // Normal (SEO) navigation: static, pre-generated pages.
-        return `/blog/p/${encodeURIComponent(postId)}.${lang}.html`;
+        const localizedSlug = post && post.slugs
+          ? (post.slugs[lang] || post.slugs.en || post.slugs.pl || postId)
+          : postId;
+        return `/blog/p/${encodeURIComponent(localizedSlug)}.${lang}.html`;
       }
 
       function render(){
@@ -460,7 +464,7 @@
               <h3 class="post-title">${title}</h3>
               <p class="post-excerpt">${excerpt}</p>
               <div style="margin-top:10px;display:flex;gap:10px;flex-wrap:wrap;">
-                <a class="btn btn-primary" href="${buildPostUrl(p.id)}">${escapeHtml(t('read'))}</a>
+                <a class="btn btn-primary" href="${buildPostUrl(p)}">${escapeHtml(t('read'))}</a>
               </div>
             </article>
           `;

@@ -104,6 +104,10 @@ function pickLang(obj, lang = "pl") {
   return obj[lang] || obj.pl || obj.en || obj.es || "";
 }
 
+function postSlug(post, lang = "pl") {
+  return pickLang(post?.slugs, lang) || post?.id || "post";
+}
+
 function stripHtml(html = "") {
   // proste wyciągnięcie tekstu do meta description
   return String(html)
@@ -328,11 +332,11 @@ function build() {
           title: pickLang(post.title, lang) || post.id,
           excerpt: pickLang(post.excerpt, lang) || "",
           date: formatDate(post.date),
-          href: `/blog/p/${encodeURIComponent(`${post.id}.${lang}.html`)}`
+          href: `/blog/p/${encodeURIComponent(`${postSlug(post, lang)}.${lang}.html`)}`
         });
       }
 
-      const fileName = `${post.id}.${lang}.html`;
+      const fileName = `${postSlug(post, lang)}.${lang}.html`;
       const outPath = path.join(outDir, fileName);
       const canonical = `${SITE}/blog/p/${encodeURIComponent(fileName)}`;
 
