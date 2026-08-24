@@ -50,7 +50,9 @@ const TAG_LABELS = {
   organizacja: { pl: "Organizacja", en: "Organization", es: "Organización" },
   bezpieczenstwo: { pl: "Bezpieczeństwo", en: "Safety", es: "Seguridad" },
   planowanie: { pl: "Planowanie", en: "Planning", es: "Planificación" },
-  europa: { pl: "Europa", en: "Europe", es: "Europa" }
+  europa: { pl: "Europa", en: "Europe", es: "Europa" },
+  prawo: { pl: "Prawo", en: "Law", es: "Normativa" },
+  kamper: { pl: "Kamper", en: "Motorhome", es: "Autocaravana" }
 };
 
 const RELATED = {
@@ -86,6 +88,40 @@ const RELATED = {
       ["Dormir gratis por Europa", "/blog/p/donde-dormir-gratis-furgoneta-europa.es.html"],
       ["Lista para un road trip", "/blog/p/road-trip-europe-checklist.es.html"],
       ["Seguridad en la furgoneta", "/blog/p/bezpieczenstwo-w-vanie-zabezpieczenia-antykradziezowe.es.html"]
+    ]
+  },
+  "poland-etoll-motorhomes-caravans-2026": {
+    pl: [
+      ["Kamper 4,25 t na prawo jazdy B", "/blog/p/kamper-4250-kg-prawo-jazdy-b-2026.pl.html"],
+      ["Checklista road tripu po Europie", "/blog/p/road-trip-europe-checklist.pl.html"],
+      ["Najlepsze aplikacje dla kamperów", "/blog/p/najlepsze-aplikacje-dla-kamperow-europa-2026.pl.html"]
+    ],
+    en: [
+      ["4.25 tonne motorhome licence rules", "/blog/p/4250kg-motorhome-category-b-licence-2026.en.html"],
+      ["Europe road trip checklist", "/blog/p/road-trip-europe-checklist.en.html"],
+      ["Best apps for motorhome travel", "/blog/p/best-campervan-apps-europe-2026.en.html"]
+    ],
+    es: [
+      ["Autocaravana de 4.250 kg con permiso B", "/blog/p/autocaravana-4250-kg-permiso-b-2026.es.html"],
+      ["Lista para viajar por Europa", "/blog/p/road-trip-europe-checklist.es.html"],
+      ["Mejores apps para autocaravanas", "/blog/p/mejores-apps-autocaravana-europa-2026.es.html"]
+    ]
+  },
+  "motorhome-4250kg-category-b-licence-2026": {
+    pl: [
+      ["e TOLL dla kampera i przyczepy", "/blog/p/e-toll-kamper-przyczepa-2026-zmiany.pl.html"],
+      ["Pierwsza podróż kamperem", "/blog/p/pierwsza_podroz_kamperem_bledy_poczatkujacych.pl.html"],
+      ["Lista 87 rzeczy do kampera", "/blog/p/co-zabrac-do-kampera-lista-87-rzeczy-2026.pl.html"]
+    ],
+    en: [
+      ["Poland e TOLL for motorhomes", "/blog/p/poland-e-toll-motorhome-caravan-2026.en.html"],
+      ["First motorhome trip", "/blog/p/pierwsza_podroz_kamperem_bledy_poczatkujacych.en.html"],
+      ["87 item campervan packing list", "/blog/p/campervan-packing-list-87-essentials-2026.en.html"]
+    ],
+    es: [
+      ["e TOLL en Polonia para autocaravanas", "/blog/p/e-toll-polonia-autocaravana-caravana-2026.es.html"],
+      ["Primer viaje en autocaravana", "/blog/p/pierwsza_podroz_kamperem_bledy_poczatkujacych.es.html"],
+      ["87 cosas para la autocaravana", "/blog/p/que-llevar-autocaravana-lista-87-cosas-2026.es.html"]
     ]
   }
 };
@@ -209,8 +245,16 @@ function updateTagPages(post, lang) {
 
     html = html.replace('<div class="blog-grid">', `<div class="blog-grid">${card}`);
     html = html.replace(
-      /<span class="muted">(\d+) (wpisów|posts|artículos)<\/span>/,
-      (_, count, noun) => `<span class="muted">${Number(count) + 1} ${noun}</span>`
+      /<span class="muted">(\d+) (wpis|wpisy|wpisów|post|posts|artículo|artículos)<\/span>/,
+      (_, count) => {
+        const total = Number(count) + 1;
+        if (lang === "en") return `<span class="muted">${total} ${total === 1 ? "post" : "posts"}</span>`;
+        if (lang === "es") return `<span class="muted">${total} ${total === 1 ? "artículo" : "artículos"}</span>`;
+        const lastTwo = total % 100;
+        const last = total % 10;
+        const noun = total === 1 ? "wpis" : last >= 2 && last <= 4 && !(lastTwo >= 12 && lastTwo <= 14) ? "wpisy" : "wpisów";
+        return `<span class="muted">${total} ${noun}</span>`;
+      }
     );
     fs.writeFileSync(tagPath, html, "utf8");
     console.log(`Updated tag ${tag}.${lang}.html`);
