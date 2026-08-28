@@ -56,6 +56,23 @@ const TAG_LABELS = {
 };
 
 const RELATED = {
+  "low-emission-zones-europe-motorhome-2026": {
+    pl: [
+      ["Checklista road tripu po Europie", "/blog/p/road-trip-europe-checklist.pl.html"],
+      ["Najlepsze aplikacje dla kamperów", "/blog/p/najlepsze-aplikacje-dla-kamperow-europa-2026.pl.html"],
+      ["e TOLL dla kampera i przyczepy", "/blog/p/e-toll-kamper-przyczepa-2026-zmiany.pl.html"]
+    ],
+    en: [
+      ["Europe road trip checklist", "/blog/p/road-trip-europe-checklist.en.html"],
+      ["Best apps for motorhome travel", "/blog/p/best-campervan-apps-europe-2026.en.html"],
+      ["Poland e TOLL for motorhomes", "/blog/p/poland-e-toll-motorhome-caravan-2026.en.html"]
+    ],
+    es: [
+      ["Lista para viajar por Europa", "/blog/p/road-trip-europe-checklist.es.html"],
+      ["Mejores apps para autocaravanas", "/blog/p/mejores-apps-autocaravana-europa-2026.es.html"],
+      ["e TOLL en Polonia para autocaravanas", "/blog/p/e-toll-polonia-autocaravana-caravana-2026.es.html"]
+    ]
+  },
   "campervan-packing-list-87-essentials-2026": {
     pl: [
       ["Pierwsza podróż kamperem", "/blog/p/pierwsza_podroz_kamperem_bledy_poczatkujacych.pl.html"],
