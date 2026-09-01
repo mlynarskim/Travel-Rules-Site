@@ -56,6 +56,23 @@ const TAG_LABELS = {
 };
 
 const RELATED = {
+  "safe-overnight-motorhome-parking-guide": {
+    pl: [
+      ["Darmowe noclegi w Europie", "/blog/p/gdzie_nocowac_vanem_za_darmo_europa.pl.html"],
+      ["Bezpieczeństwo w vanie", "/blog/p/bezpieczenstwo-w-vanie-zabezpieczenia-antykradziezowe.pl.html"],
+      ["Najlepsze aplikacje dla kamperów", "/blog/p/najlepsze-aplikacje-dla-kamperow-europa-2026.pl.html"]
+    ],
+    en: [
+      ["Free overnight parking in Europe", "/blog/p/where-to-sleep-in-your-van-for-free-europe.en.html"],
+      ["Campervan security", "/blog/p/bezpieczenstwo-w-vanie-zabezpieczenia-antykradziezowe.en.html"],
+      ["Best motorhome apps", "/blog/p/best-campervan-apps-europe-2026.en.html"]
+    ],
+    es: [
+      ["Dormir gratis por Europa", "/blog/p/donde-dormir-gratis-furgoneta-europa.es.html"],
+      ["Seguridad en la furgoneta", "/blog/p/bezpieczenstwo-w-vanie-zabezpieczenia-antykradziezowe.es.html"],
+      ["Mejores apps para autocaravanas", "/blog/p/mejores-apps-autocaravana-europa-2026.es.html"]
+    ]
+  },
   "low-emission-zones-europe-motorhome-2026": {
     pl: [
       ["Checklista road tripu po Europie", "/blog/p/road-trip-europe-checklist.pl.html"],
@@ -176,6 +193,7 @@ function page(post, lang) {
     `<a class="btn" href="${esc(href)}">${esc(label)}</a>`
   ).join("\n            ");
   const locale = lang === "pl" ? "pl_PL" : lang === "es" ? "es_ES" : "en_US";
+  const imageUrl = post.image?.src ? `${SITE}${post.image.src}` : `${SITE}/og-image.jpg`;
   const schema = {
     "@context": "https://schema.org",
     "@type": "BlogPosting",
@@ -193,6 +211,7 @@ function page(post, lang) {
     },
     datePublished: post.date,
     dateModified: post.date,
+    image: imageUrl,
     inLanguage: lang,
     url: canonical,
     mainEntityOfPage: canonical
@@ -214,11 +233,12 @@ function page(post, lang) {
   <meta property="og:title" content="${esc(title)}" />
   <meta property="og:description" content="${esc(description)}" />
   <meta property="og:url" content="${esc(canonical)}" />
-  <meta property="og:image" content="${SITE}/og-image.jpg" />
+  <meta property="og:image" content="${esc(imageUrl)}" />
   <meta property="og:locale" content="${locale}" />
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="${esc(title)}" />
   <meta name="twitter:description" content="${esc(description)}" />
+  <meta name="twitter:image" content="${esc(imageUrl)}" />
   <script type="application/ld+json">${JSON.stringify(schema)}</script>
   <style>
     :root{--bg:#f6f7f8;--card:#fff;--text:#0f172a;--muted:#475569;--border:#e5e7eb;--accent:#29606D;--radius:16px;--shadow:0 10px 30px rgba(2,6,23,.06);--max:1100px}
