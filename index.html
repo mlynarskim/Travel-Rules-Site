@@ -1432,9 +1432,12 @@
             const metaDate = escapeHtml(formatDateISO(p.date || ''));
             const tags = (p.tags || []).slice(0,4).map(tag => `<span class="tag">${escapeHtml(tag)}</span>`).join(' ');
 
-            // Prefer SEO-friendly generated pages if present (your generator can create /blog/p/<id>.<lang>.html)
+            // Prefer the localized static slug when the post defines one.
             const lang = document.documentElement.lang || 'en';
-            const seoHref = `/blog/p/${encodeURIComponent(p.id)}.${encodeURIComponent(lang)}.html`;
+            const localizedSlug = p.slugs
+              ? (p.slugs[lang] || p.slugs.en || p.slugs.pl || p.id)
+              : p.id;
+            const seoHref = `/blog/p/${encodeURIComponent(localizedSlug)}.${encodeURIComponent(lang)}.html`;
             const fallbackHref = `/blog/post.html?id=${encodeURIComponent(p.id)}&lang=${encodeURIComponent(lang)}`;
 
             return `
