@@ -48,6 +48,7 @@ const TAG_LABELS = {
   vanlife: { pl: "Vanlife", en: "Van life", es: "Van life" },
   poradnik: { pl: "Poradnik", en: "Guide", es: "Guía" },
   organizacja: { pl: "Organizacja", en: "Organization", es: "Organización" },
+  budzet: { pl: "Budżet", en: "Budget", es: "Presupuesto" },
   bezpieczenstwo: { pl: "Bezpieczeństwo", en: "Safety", es: "Seguridad" },
   planowanie: { pl: "Planowanie", en: "Planning", es: "Planificación" },
   europa: { pl: "Europa", en: "Europe", es: "Europa" },
@@ -56,6 +57,23 @@ const TAG_LABELS = {
 };
 
 const RELATED = {
+  "van-life-budget-calculator-first-year": {
+    pl: [
+      ["Prawdziwy koszt vanlife w Europie", "/blog/p/ile-kosztuje-vanlife-europa-2026.pl.html"],
+      ["Ukryte koszty vanlife", "/blog/p/ukryte_koszty_vanlife_o_ktorych_nikt_nie_mowi.pl.html"],
+      ["Jak mieszkać w vanie na pełen etat", "/blog/p/how-to-live-in-a-van-full-time-2026.pl.html"]
+    ],
+    en: [
+      ["The real cost of van life in Europe", "/blog/p/van-life-cost-europe-2026.en.html"],
+      ["Hidden costs of van life", "/blog/p/ukryte_koszty_vanlife_o_ktorych_nikt_nie_mowi.en.html"],
+      ["How to live in a van full time", "/blog/p/how-to-live-in-a-van-full-time-2026.en.html"]
+    ],
+    es: [
+      ["El coste real del vanlife en Europa", "/blog/p/coste-vanlife-europa-2026.es.html"],
+      ["Costes ocultos del vanlife", "/blog/p/ukryte_koszty_vanlife_o_ktorych_nikt_nie_mowi.es.html"],
+      ["Cómo vivir en furgoneta a tiempo completo", "/blog/p/how-to-live-in-a-van-full-time-2026.es.html"]
+    ]
+  },
   "safe-overnight-motorhome-parking-guide": {
     pl: [
       ["Darmowe noclegi w Europie", "/blog/p/gdzie_nocowac_vanem_za_darmo_europa.pl.html"],
