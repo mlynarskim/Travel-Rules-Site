@@ -459,8 +459,14 @@
       color: color-mix(in oklab, var(--accent) 78%, var(--text));
     }
     .post-title{ margin: 0; letter-spacing: -.2px; font-size: 1.15rem; }
-    .post-excerpt{ margin: 0; color: var(--muted); }
+    .post-excerpt{ margin: 0; color: var(--muted); display:-webkit-box; -webkit-line-clamp:3; -webkit-box-orient:vertical; overflow:hidden; }
     .post-actions{ display:flex; gap: 10px; flex-wrap:wrap; margin-top: 6px; }
+    .post-media{
+      display:block; margin:-16px -16px 12px; aspect-ratio:16/10; overflow:hidden;
+      background: color-mix(in oklab, var(--card) 92%, transparent);
+    }
+    .post-media img{ width:100%; height:100%; object-fit:cover; display:block; transition:transform .22s ease; }
+    .card:hover .post-media img{ transform:scale(1.03); }
 
     .post-view{ padding-top: 6px; }
     .post-view h3{ margin: 6px 0 10px; font-size: clamp(22px, 2.6vw, 34px); line-height: 1.18; letter-spacing: -.5px; }
@@ -1020,6 +1026,7 @@
           blog_original: 'Oryginał',
           blog_open_all: 'Otwórz blog',
           blog_empty: 'Brak wpisów do wyświetlenia.',
+          blog_file_hint: 'Wygląda na to, że otworzyłeś stronę bezpośrednio z pliku. Uruchom lokalny serwer (np. python3 -m http.server w katalogu projektu) i wejdź na http://localhost:8000 — przeglądarka blokuje wczytywanie wpisów z file://.',
 
           side_1_h: 'Szybki start',
           side_1_p: 'Wybierz produkt poniżej i przejdź do strony z opisem, podglądem i linkami.',
@@ -1130,6 +1137,7 @@
           blog_original: 'Original',
           blog_open_all: 'Open blog',
           blog_empty: 'No posts to display.',
+          blog_file_hint: 'It looks like you opened this page directly as a file. Run a local server (e.g. python3 -m http.server in the project folder) and go to http://localhost:8000 — browsers block loading posts from file://.',
 
           side_1_h: 'Quick start',
           side_1_p: 'Pick a product below and open its page with details, previews, and links.',
@@ -1240,6 +1248,7 @@
           blog_original: 'Original',
           blog_open_all: 'Abrir blog',
           blog_empty: 'No hay artículos para mostrar.',
+          blog_file_hint: 'Parece que abriste esta página directamente como archivo. Inicia un servidor local (p. ej. python3 -m http.server en la carpeta del proyecto) y entra en http://localhost:8000 — el navegador bloquea la carga desde file://.',
 
           side_1_h: 'Inicio rápido',
           side_1_p: 'Elige un producto y abre su página con detalles, vistas previas y enlaces.',
@@ -1426,11 +1435,78 @@
           const t = dict[document.documentElement.lang] || dict.en;
           const readLabel = t.blog_read || 'Read';
 
+          // Cover images: post.image > inline <img> > deterministic fallback pool
+          const FALLBACK_IMGS = [
+            '/blog/images/wild-camping-van.jpg',
+            '/blog/images/van-life-budget-calculator.jpg',
+            '/blog/images/safe-overnight-motorhome-parking.jpg',
+            '/blog/images/vanlife-costs-1.jpg',
+            '/blog/images/vanlife-costs-2.jpg',
+            '/blog/images/digital-nomad-van.jpg',
+            '/blog/images/spain-camper.jpg',
+            '/blog/images/camper-cooking.jpg',
+            '/blog/images/packing-suitcase.jpg',
+            '/blog/images/family-van-trip.jpg',
+            '/blog/images/dog-car-travel.jpg',
+            '/blog/images/winter-camper.jpg',
+            '/blog/images/mountain-road-van.jpg',
+            '/blog/images/work-in-motorhome.jpg',
+            '/blog/images/europe-old-town.jpg'
+          ];
+          function hashStr(s){
+            let h = 0; const str = String(s || '');
+            for (let i = 0; i < str.length; i++){ h = (h * 31 + str.charCodeAt(i)) | 0; }
+            return Math.abs(h);
+          }
+          function cardImg(p){
+            if (p && p.image && p.image.src) return p.image.src;
+            try{
+              const html = pickLangField(p.contentHtml) || '';
+              const m = String(html).match(/<img[^>]+src="([^"]+)"/i);
+              if (m) return m[1];
+            }catch(e){}
+            const TAG_IMAGES = {
+              budzet: [1, 3, 4], oszczedzanie: [1, 3, 4], koszty: [3, 4, 1],
+              bezpieczenstwo: [2, 0], prawo: [2, 12], zabezpieczenia: [2, 0],
+              digitalnomad: [5, 13], workation: [5, 13], internet: [5, 13],
+              hiszpania: [6, 12], 'cieple-kraje': [6, 9], wildcamping: [0, 12, 2], nocowanie: [0, 2], kempingi: [0, 6],
+              vanlife: [12, 0, 6], kamper: [12, 11, 4], roadtrip: [12, 14, 6],
+              podroze: [12, 14, 6], europa: [14, 12, 6],
+              gotowanie: [7], kuchnia: [7],
+              pakowanie: [8], dokumenty: [8, 13], organizacja: [8, 13, 1], planowanie: [1, 8, 13],
+              rodzina: [9], dzieci: [9],
+              zwierzeta: [10], 'pies-w-podrozy': [10], zima: [11],
+              lifestyle: [13, 6, 9]
+            };
+            const pool = [];
+            try{
+              for (const t of (p.tags || [])){
+                const arr = TAG_IMAGES[String(t || '').toLowerCase()];
+                if (arr) for (const i of arr) if (!pool.includes(i)) pool.push(i);
+              }
+            }catch(e){}
+            if (pool.length) return FALLBACK_IMGS[pool[hashStr(p && p.id) % pool.length]];
+            return FALLBACK_IMGS[hashStr(p && p.id) % FALLBACK_IMGS.length];
+          }
+          function readMins(p){
+            try{
+              const words = String(pickLangField(p.contentHtml) || '')
+                .replace(/<[^>]+>/g, ' ').split(/\s+/).filter(Boolean).length;
+              return Math.max(1, Math.round(words / 200));
+            }catch(e){ return 3; }
+          }
+          function prettyTag(slug){
+            return String(slug || '').replace(/[-_]+/g, ' ')
+              .replace(/\b\w/g, (m) => m.toUpperCase()).trim();
+          }
+
           latestPostsEl.innerHTML = latest.map(p => {
             const title = escapeHtml(pickLangField(p.title));
             const excerpt = escapeHtml(pickLangField(p.excerpt));
             const metaDate = escapeHtml(formatDateISO(p.date || ''));
-            const tags = (p.tags || []).slice(0,4).map(tag => `<span class="tag">${escapeHtml(tag)}</span>`).join(' ');
+            const mainTag = (p.tags || [])[0];
+            const img = cardImg(p);
+            const mins = readMins(p);
 
             // Prefer the localized static slug when the post defines one.
             const lang = document.documentElement.lang || 'en';
@@ -1442,13 +1518,17 @@
 
             return `
               <article class="card">
+                <a class="post-media" href="${seoHref}" tabindex="-1" aria-hidden="true">
+                  <img src="${escapeHtml(img)}" alt="" loading="lazy" decoding="async" />
+                </a>
                 <div class="post-meta">
-                  <span>${metaDate}</span>
-                  ${tags ? `<span class="dot">•</span><span>${tags}</span>` : ''}
+                  ${mainTag ? `<span class="tag">${escapeHtml(prettyTag(mainTag))}</span><span class="dot">•</span>` : ''}
+                  <span>${mins} min</span>
                 </div>
-                <h3 class="post-title">${title}</h3>
+                <h3 class="post-title"><a href="${seoHref}">${title}</a></h3>
                 <p class="post-excerpt">${excerpt}</p>
                 <div class="post-actions">
+                  <span class="post-date muted" style="font-size:.85rem;font-weight:700">${metaDate}</span>
                   <a class="btn btn-primary" href="${seoHref}" data-fallback-href="${fallbackHref}">${escapeHtml(readLabel)}</a>
                 </div>
               </article>
@@ -1462,7 +1542,9 @@
             });
           });
         }catch(e){
-          setBlogStatus('Nie udało się wczytać postów.');
+          const dd = dict[document.documentElement.lang] || dict.en;
+          const isFile = location.protocol === 'file:';
+          setBlogStatus(isFile && dd.blog_file_hint ? dd.blog_file_hint : 'Nie udało się wczytać postów.');
           latestPostsEl.innerHTML = '';
         }
       }

@@ -15,167 +15,416 @@
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>Post — Travel Rules</title>
   <meta name="description" content="Wpis na blogu Travel Rules." />
+  <meta name="robots" content="index, follow, max-image-preview:large" />
 
   <style>
     :root{
       --bg:#f6f7f8; --card:#fff; --text:#0f172a; --muted:#475569; --border:#e5e7eb;
-      --accent:#29606D; --ring:rgba(41,96,109,.25);
-      --radius:16px; --shadow:0 10px 30px rgba(2,6,23,.06); --max:1100px;
+      --accent:#29606D; --accent2:#DDAA4F; --ring:rgba(41,96,109,.25);
+      --radius:16px; --shadow:0 10px 30px rgba(2,6,23,.06); --max:1100px; --measure:760px;
     }
     html[data-theme="dark"]{
       --bg:#0b1220; --card:#0f172a; --text:#e5e7eb; --muted:#94a3b8; --border:#1f2937;
       --shadow:0 16px 40px rgba(0,0,0,.35); --ring:rgba(221,170,79,.18);
     }
 
-    body{margin:0;font-family:ui-sans-serif,system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial;color:var(--text);background:var(--bg);line-height:1.65}
+    *{ box-sizing:border-box; }
+    body{margin:0;font-family:ui-sans-serif,system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial;color:var(--text);background:var(--bg);line-height:1.7}
     a{color:inherit;text-decoration:none}
     .container{width:min(var(--max), calc(100% - 40px)); margin:0 auto;}
     .section{padding:30px 0}
-    .card{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);box-shadow:var(--shadow);padding:18px}
-    .muted{color:var(--muted)}
-    .btn{display:inline-flex;align-items:center;justify-content:center;padding:10px 14px;border-radius:999px;border:1px solid var(--border);background:var(--card);font-weight:800}
-    .btn-ghost{background:color-mix(in oklab, var(--card) 88%, transparent)}
-    .tag{
-      font-size:.8rem;font-weight:850;padding:4px 10px;border-radius:999px;
-      background: color-mix(in oklab, var(--accent) 8%, transparent);
-      border:1px solid color-mix(in oklab, var(--accent) 22%, var(--border));
-      color: color-mix(in oklab, var(--accent) 78%, var(--text));
-    }
-    .post-meta{display:flex;flex-wrap:wrap;gap:8px;align-items:center;color:var(--muted);font-weight:700;font-size:.92rem;margin-bottom:10px}
-    .dot{opacity:.6}
-    h1{margin:10px 0 12px;letter-spacing:-.5px;line-height:1.15;font-size:clamp(24px, 3vw, 40px)}
-    .content p{margin:10px 0;color:color-mix(in oklab, var(--text) 92%, var(--muted))}
-    .content h2,.content h3{margin:18px 0 8px}
-    .content ul{margin:10px 0 10px;padding-left:18px}
-    .content li{margin:6px 0}
 
-    /* Embed mode (iframe): no background and no extra outer padding */
+    .site-header{
+      position:sticky; top:0; z-index:50;
+      background: color-mix(in oklab, var(--bg) 82%, transparent);
+      backdrop-filter: blur(10px);
+      border-bottom:1px solid color-mix(in oklab, var(--border) 75%, transparent);
+    }
+    .header-inner{display:flex;align-items:center;justify-content:space-between;gap:14px;padding:12px 0}
+    .brand{display:flex;align-items:center;gap:10px;font-weight:800}
+    .brand-mark{width:36px;height:36px;border-radius:12px;display:grid;place-items:center;background:var(--accent);color:#fff;font-weight:900;font-size:.85rem}
+    .header-controls{display:flex;align-items:center;gap:10px}
+    .icon-btn{display:inline-flex;align-items:center;justify-content:center;width:42px;height:42px;border-radius:999px;cursor:pointer;border:1px solid color-mix(in oklab, var(--border) 90%, transparent);background:color-mix(in oklab, var(--card) 85%, transparent);color:var(--text);font-size:18px}
+    .lang-select{height:42px;border-radius:999px;padding:0 12px;font-weight:800;cursor:pointer;border:1px solid color-mix(in oklab, var(--border) 90%, transparent);background:color-mix(in oklab, var(--card) 92%, transparent);color:var(--text)}
+
+    .card{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);box-shadow:var(--shadow);padding:22px}
+    .muted{color:var(--muted)}
+    .btn{display:inline-flex;align-items:center;justify-content:center;padding:10px 16px;border-radius:999px;border:1px solid var(--border);background:var(--card);font-weight:800;font-size:.92rem;cursor:pointer;color:var(--text)}
+    .btn:hover{transform:translateY(-1px)}
+    .btn-primary{background:var(--accent);border-color:color-mix(in oklab, var(--accent) 70%, var(--border));color:#fff}
+    .btn-ghost{background:color-mix(in oklab, var(--card) 88%, transparent)}
+
+    .crumbs{display:flex;gap:8px;flex-wrap:wrap;align-items:center;color:var(--muted);font-size:.9rem;font-weight:700;margin-bottom:14px}
+    .crumbs a:hover{text-decoration:underline}
+
+    .article{max-width:var(--measure);margin:0 auto}
+    .post-meta{display:flex;flex-wrap:wrap;gap:8px;align-items:center;color:var(--muted);font-weight:700;font-size:.9rem;margin-bottom:10px}
+    .dot{opacity:.6}
+    .tag{font-size:.8rem;font-weight:850;padding:4px 10px;border-radius:999px;background:color-mix(in oklab, var(--accent) 8%, transparent);border:1px solid color-mix(in oklab, var(--accent) 22%, var(--border));color:color-mix(in oklab, var(--accent) 78%, var(--text));white-space:nowrap}
+    a.tag:hover{border-color:color-mix(in oklab, var(--accent) 45%, var(--border))}
+    h1{margin:10px 0 12px;letter-spacing:-.5px;line-height:1.15;font-size:clamp(26px, 3.4vw, 40px)}
+    .lede{color:var(--muted);font-size:1.08rem;margin:0 0 6px}
+
+    .hero-figure{margin:18px 0 6px}
+    .hero-figure img{display:block;width:100%;height:auto;border-radius:14px;aspect-ratio:16/10;object-fit:cover;background:color-mix(in oklab, var(--card) 92%, transparent)}
+    .hero-figure figcaption{font-size:.85rem;margin-top:7px;color:var(--muted)}
+    .hero-figure figcaption a{text-decoration:underline;text-underline-offset:2px}
+
+    .toc{margin:18px 0;padding:16px 18px;border:1px solid var(--border);border-radius:12px;background:color-mix(in oklab, var(--card) 94%, transparent)}
+    .toc-title{font-weight:900;font-size:.9rem;letter-spacing:.4px;text-transform:uppercase;color:var(--muted);margin:0 0 8px}
+    .toc ul{margin:0;padding-left:18px}
+    .toc li{margin:5px 0;font-size:.95rem}
+    .toc a:hover{text-decoration:underline}
+
+    .content{font-size:1.02rem}
+    .content p{margin:12px 0;color:color-mix(in oklab, var(--text) 93%, var(--muted))}
+    .content h2{margin:30px 0 10px;font-size:1.45rem;letter-spacing:-.3px;scroll-margin-top:90px}
+    .content h3{margin:24px 0 8px;font-size:1.15rem;scroll-margin-top:90px}
+    .content ul,.content ol{margin:12px 0;padding-left:22px}
+    .content li{margin:7px 0}
+    .content a{text-decoration:underline;text-underline-offset:2px}
+    .content img{max-width:100%;height:auto;border-radius:12px}
+    .content table{width:100%;border-collapse:collapse;margin:16px 0;display:block;overflow-x:auto}
+    .content th,.content td{border:1px solid var(--border);padding:8px 12px;text-align:left;font-size:.92rem}
+    .content th{background:color-mix(in oklab, var(--card) 92%, transparent)}
+    .content figure{margin:18px 0}
+    .content figcaption{font-size:.85rem;color:var(--muted);margin-top:7px}
+
+    .share-row{display:flex;gap:10px;flex-wrap:wrap;margin-top:22px;padding-top:16px;border-top:1px solid var(--border)}
+
+    .author{margin-top:22px;padding-top:16px;border-top:1px solid var(--border);display:flex;gap:14px;align-items:flex-start}
+    .author-avatar{width:52px;height:52px;border-radius:50%;background:var(--accent);color:#fff;display:grid;place-items:center;font-weight:900;flex:0 0 52px}
+    .author h3{margin:0 0 4px;font-size:1rem}
+    .author p{margin:0 0 10px;color:var(--muted);font-size:.93rem}
+
+    .cta-panel{margin-top:22px;padding:26px 22px;border-radius:var(--radius);text-align:center;border:1px solid color-mix(in oklab, var(--accent) 30%, var(--border));background:color-mix(in oklab, var(--accent) 7%, var(--card))}
+    .cta-panel h3{margin:0 0 8px;font-size:1.2rem}
+    .cta-panel p{margin:0 0 16px;color:var(--muted)}
+    .cta-btns{display:flex;gap:10px;flex-wrap:wrap;justify-content:center}
+
+    .related{margin-top:26px}
+    .related h3{margin:0 0 12px;font-size:1.15rem}
+    .related-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+    @media (max-width:760px){.related-grid{grid-template-columns:1fr}}
+    .rel-card{background:var(--card);border:1px solid var(--border);border-radius:12px;overflow:hidden;display:flex;flex-direction:column}
+    .rel-card:hover{border-color:color-mix(in oklab, var(--accent) 40%, var(--border))}
+    .rel-card img{width:100%;aspect-ratio:16/10;object-fit:cover;display:block}
+    .rel-body{padding:12px;display:flex;flex-direction:column;gap:6px}
+    .rel-body h4{margin:0;font-size:.95rem;line-height:1.35}
+    .rel-body h4 a:hover{text-decoration:underline}
+
+    .mini-footer{padding:26px 0 34px;border-top:1px solid var(--border);margin-top:26px}
+    .mini-footer-inner{display:flex;gap:10px;flex-wrap:wrap;align-items:center;justify-content:space-between}
+    .mini-footer small,.mini-footer a{color:var(--muted);font-weight:650}
+    .mini-links{display:flex;gap:12px;flex-wrap:wrap}
+
     html[data-embed="1"] body{ background: transparent; }
+    html[data-embed="1"] .site-header, html[data-embed="1"] .mini-footer{ display:none; }
     html[data-embed="1"] .section{ padding: 0; }
   </style>
 </head>
 
 <body>
-  <section class="section">
-    <div class="container">
-      <a class="btn btn-ghost" id="backToBlog" href="/blog/index.html">← Wróć do bloga</a>
-
-      <div class="card" style="margin-top:14px">
-        <div class="post-meta" id="meta"></div>
-        <h1 id="title">Ładowanie…</h1>
-        <div class="content" id="content"></div>
+  <header class="site-header">
+    <div class="container header-inner">
+      <a class="brand" href="/" aria-label="Travel Rules home">
+        <span class="brand-mark">TR</span>
+        <span>Travel Rules</span>
+      </a>
+      <div class="header-controls" aria-label="Page controls">
+        <button class="icon-btn" id="themeToggle" type="button" aria-label="Toggle theme" title="Toggle theme">
+          <span id="themeIcon" aria-hidden="true">☀️</span>
+        </button>
+        <select class="lang-select" id="langSelect" aria-label="Language">
+          <option value="pl">PL</option>
+          <option value="en">EN</option>
+          <option value="es">ES</option>
+        </select>
       </div>
     </div>
+  </header>
+
+  <main>
+  <section class="section">
+    <div class="container">
+      <nav class="crumbs" aria-label="Breadcrumb">
+        <a href="/" id="crumbHome">Home</a><span aria-hidden="true">/</span>
+        <a href="/blog/index.html" id="crumbBlog">Blog</a><span aria-hidden="true">/</span>
+        <span id="crumbCurrent" aria-current="page">…</span>
+      </nav>
+
+      <article class="card article">
+        <div class="post-meta" id="meta"></div>
+        <h1 id="title">…</h1>
+        <p class="lede" id="lede" hidden></p>
+        <figure class="hero-figure" id="heroFigure" hidden>
+          <img id="heroImg" alt="" />
+          <figcaption id="heroCap" hidden></figcaption>
+        </figure>
+        <nav class="toc" id="toc" hidden aria-label="Table of contents">
+          <p class="toc-title" id="tocTitle">W tym wpisie</p>
+          <ul id="tocList"></ul>
+        </nav>
+        <div class="content" id="content"></div>
+        <div class="share-row" id="shareRow" hidden>
+          <button class="btn btn-ghost" id="shareCopy" type="button">⧉ <span id="shareCopyLabel">Kopiuj link</span></button>
+          <a class="btn btn-ghost" id="shareX" href="#" target="_blank" rel="noopener">X</a>
+          <a class="btn btn-ghost" id="shareFb" href="#" target="_blank" rel="noopener">Facebook</a>
+          <button class="btn btn-ghost" id="shareNative" type="button" hidden>↗ <span id="shareNativeLabel">Udostępnij</span></button>
+        </div>
+        <div class="author" id="authorBox" hidden>
+          <div class="author-avatar" aria-hidden="true">MM</div>
+          <div>
+            <h3 id="authorName">Mateusz Młynarski</h3>
+            <p id="authorBio"></p>
+            <div style="display:flex;gap:10px;flex-wrap:wrap">
+              <a class="btn btn-ghost" href="https://www.linkedin.com/in/mateuszmlynarski/" rel="noopener noreferrer" target="_blank">LinkedIn</a>
+              <a class="btn btn-ghost" href="https://apps.apple.com/app/travel-rules/id6451070215" rel="noopener noreferrer" target="_blank">Travel Rules</a>
+            </div>
+          </div>
+        </div>
+        <div class="cta-panel" id="ctaPanel" hidden>
+          <h3 id="ctaTitle"></h3>
+          <p id="ctaText"></p>
+          <div class="cta-btns">
+            <a class="btn btn-primary" id="ctaApp" href="https://apps.apple.com/app/travel-rules/id6451070215" target="_blank" rel="noopener"></a>
+            <a class="btn" id="ctaEbook" href="/ebook/"></a>
+            <a class="btn" id="ctaPlanner" href="/planer/"></a>
+          </div>
+        </div>
+        <div class="related" id="relatedBox" hidden>
+          <h3 id="relatedTitle"></h3>
+          <div class="related-grid" id="relatedGrid"></div>
+        </div>
+      </article>
+    </div>
   </section>
+  </main>
+
+  <footer class="mini-footer">
+    <div class="container mini-footer-inner">
+      <small id="i18nRights">© Travel Rules.</small>
+      <div class="mini-links">
+        <a href="/">Home</a>
+        <a href="/privacy.html">Privacy</a>
+        <a href="/terms.html">Terms</a>
+      </div>
+    </div>
+  </footer>
 
   <script>
     (function(){
       const params = new URLSearchParams(location.search);
       const isEmbed = params.get('embed') === '1';
+      if (isEmbed) document.documentElement.setAttribute('data-embed', '1');
       const forcedLang = params.get('lang');
 
-      // ---- Theme sync (works both standalone and embedded) ----
-      const THEME_KEY = 'tr_theme';
+      const UI = {
+        pl: {
+          home: 'Strona główna', blog: 'Blog', toc: 'W tym wpisie',
+          copy: 'Kopiuj link', copied: 'Skopiowano!', share: 'Udostępnij',
+          related: 'Czytaj dalej', back: 'Wróć do bloga',
+          min_read: 'min czytania',
+          ctaTitle: 'Zaplanuj podróż z Travel Rules',
+          ctaText: 'Checklisty, zasady podróżne i narzędzia do planowania w bezpłatnej aplikacji na iOS.',
+          ctaApp: 'Pobierz bezpłatnie na iOS', ctaEbook: 'Zobacz ebook', ctaPlanner: 'Otwórz planer',
+          authorBio: 'Mateusz Młynarski — niezależny twórca aplikacji i podróżnik. Autor Travel Rules.',
+          rights: '© Travel Rules. Wszelkie prawa zastrzeżone.',
+          notFound: 'Nie znaleziono wpisu', notFoundText: 'Ten wpis nie istnieje lub ma inne ID. Wróć do listy bloga.',
+          noId: 'Brak ID wpisu', noIdText: 'Otwórz wpis z listy bloga.',
+          loadError: 'Błąd ładowania', loadErrorText: 'Nie udało się wczytać treści.',
+          fileHint: 'Otwórz stronę przez lokalny serwer (python3 -m http.server), a nie bezpośrednio z pliku.',
+        },
+        en: {
+          home: 'Home', blog: 'Blog', toc: 'In this post',
+          copy: 'Copy link', copied: 'Copied!', share: 'Share',
+          related: 'Keep reading', back: 'Back to blog',
+          min_read: 'min read',
+          ctaTitle: 'Plan your journey with Travel Rules',
+          ctaText: 'Checklists, travel rules and planning tools in the free iOS app.',
+          ctaApp: 'Download free on iOS', ctaEbook: 'View the ebook', ctaPlanner: 'Open the planner',
+          authorBio: 'Mateusz Młynarski — independent app developer and traveler. Creator of Travel Rules.',
+          rights: '© Travel Rules. All rights reserved.',
+          notFound: 'Post not found', notFoundText: 'This post does not exist. Go back to the blog list.',
+          noId: 'Missing post ID', noIdText: 'Open a post from the blog list.',
+          loadError: 'Loading error', loadErrorText: "Couldn't load the content.",
+          fileHint: 'Open this page via a local server (python3 -m http.server), not directly as a file.',
+        },
+        es: {
+          home: 'Inicio', blog: 'Blog', toc: 'En este artículo',
+          copy: 'Copiar enlace', copied: '¡Copiado!', share: 'Compartir',
+          related: 'Sigue leyendo', back: 'Volver al blog',
+          min_read: 'min de lectura',
+          ctaTitle: 'Planifica tu viaje con Travel Rules',
+          ctaText: 'Listas, normas de viaje y herramientas de planificación en la app gratuita para iOS.',
+          ctaApp: 'Descargar gratis para iOS', ctaEbook: 'Ver el ebook', ctaPlanner: 'Abrir el planificador',
+          authorBio: 'Mateusz Młynarski — desarrollador independiente y viajero. Creador de Travel Rules.',
+          rights: '© Travel Rules. Todos los derechos reservados.',
+          notFound: 'Artículo no encontrado', notFoundText: 'Este artículo no existe. Vuelve a la lista del blog.',
+          noId: 'Falta el ID', noIdText: 'Abre un artículo desde la lista del blog.',
+          loadError: 'Error de carga', loadErrorText: 'No se pudo cargar el contenido.',
+          fileHint: 'Abre esta página con un servidor local (python3 -m http.server), no directamente como archivo.',
+        }
+      };
 
+      // Theme (shared tr_theme)
       function detectTheme(){
         try{
-          const saved = localStorage.getItem(THEME_KEY);
+          const saved = localStorage.getItem('tr_theme');
           if (saved === 'light' || saved === 'dark') return saved;
         }catch(e){}
         const prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
         return prefersDark ? 'dark' : 'light';
       }
-
+      const themeBtn = document.getElementById('themeToggle');
+      const themeIcon = document.getElementById('themeIcon');
       function applyTheme(theme){
         const t = (theme === 'dark' || theme === 'light') ? theme : detectTheme();
         document.documentElement.setAttribute('data-theme', t);
+        try{ document.documentElement.style.colorScheme = t; }catch(e){}
+        if (themeBtn) themeBtn.setAttribute('aria-pressed', t === 'dark' ? 'true' : 'false');
+        if (themeIcon) themeIcon.textContent = t === 'dark' ? '🌙' : '☀️';
+        try{ localStorage.setItem('tr_theme', t); }catch(e){}
       }
-
-      // Initial theme
       applyTheme(detectTheme());
-
-      // React to system theme changes
-      try{
-        const mq = window.matchMedia('(prefers-color-scheme: dark)');
-        if (mq && mq.addEventListener) mq.addEventListener('change', () => applyTheme(detectTheme()));
-        else if (mq && mq.addListener) mq.addListener(() => applyTheme(detectTheme()));
-      }catch(e){}
-
-      // Embedded pages won't receive same-tab storage events reliably, so poll.
-      let _lastTheme = null;
-      function pollTheme(){
-        const t = detectTheme();
-        if (t !== _lastTheme){
-          _lastTheme = t;
-          applyTheme(t);
-          scheduleHeight();
-        }
-      }
-      _lastTheme = detectTheme();
-      setInterval(pollTheme, 800);
-      window.addEventListener('focus', pollTheme);
-      document.addEventListener('visibilitychange', pollTheme);
-
-      // Allow parent to push theme directly if it wants
-      window.addEventListener('message', (ev) => {
-        const d = ev && ev.data;
-        if (d && d.type === 'tr-theme' && (d.theme === 'dark' || d.theme === 'light')){
-          try{ localStorage.setItem(THEME_KEY, d.theme); }catch(e){}
-          applyTheme(d.theme);
-          scheduleHeight();
-        }
+      if (themeBtn) themeBtn.addEventListener('click', () => {
+        applyTheme(document.documentElement.getAttribute('data-theme') === 'dark' ? 'light' : 'dark');
+        scheduleHeight();
       });
 
-      // posts.json lives under /blog/data/
-      const POSTS_JSON_URL = '/blog/data/posts.json';
-      const id = params.get('id');
-
-      const titleEl = document.getElementById('title');
-      const contentEl = document.getElementById('content');
-      const metaEl = document.getElementById('meta');
-
-      // Keep correct back link inside iframe (preserve embed/lang)
-      const backLink = document.getElementById('backToBlog');
-      if (backLink) {
-        const u = new URL('/blog/index.html', window.location.origin);
-        if (isEmbed) u.searchParams.set('embed', '1');
-        if (forcedLang) u.searchParams.set('lang', forcedLang);
-        backLink.href = u.pathname + u.search;
-      }
-
-      function escapeHtml(s){
-        return String(s)
-          .replaceAll('&','&amp;')
-          .replaceAll('<','&lt;')
-          .replaceAll('>','&gt;')
-          .replaceAll('"','&quot;')
-          .replaceAll("'",'&#039;');
-      }
-      function formatDateISO(iso){
+      // Lang
+      function detectLang(){
+        if (forcedLang && UI[forcedLang]) return forcedLang;
         try{
-          const d = new Date(iso + 'T00:00:00');
-          return new Intl.DateTimeFormat(document.documentElement.lang || 'pl', {year:'numeric',month:'short',day:'2-digit'}).format(d);
-        }catch(e){ return iso; }
+          const saved = localStorage.getItem('tr_lang');
+          if (saved && UI[saved]) return saved;
+        }catch(e){}
+        const nav = (navigator.language || 'pl').toLowerCase();
+        if (nav.startsWith('pl')) return 'pl';
+        if (nav.startsWith('es')) return 'es';
+        return 'en';
+      }
+      let LANG = detectLang();
+      const langSelect = document.getElementById('langSelect');
+      function applyStaticUi(){
+        const u = UI[LANG];
+        document.documentElement.setAttribute('lang', LANG);
+        if (langSelect) langSelect.value = LANG;
+        document.getElementById('crumbHome').textContent = u.home;
+        document.getElementById('crumbBlog').textContent = u.blog;
+        document.getElementById('tocTitle').textContent = u.toc;
+        document.getElementById('shareCopyLabel').textContent = u.copy;
+        document.getElementById('shareNativeLabel').textContent = u.share;
+        document.getElementById('relatedTitle').textContent = u.related;
+        document.getElementById('ctaTitle').textContent = u.ctaTitle;
+        document.getElementById('ctaText').textContent = u.ctaText;
+        document.getElementById('ctaApp').textContent = u.ctaApp;
+        document.getElementById('ctaEbook').textContent = u.ctaEbook;
+        document.getElementById('ctaPlanner').textContent = u.ctaPlanner;
+        document.getElementById('authorBio').textContent = u.authorBio;
+        document.getElementById('i18nRights').textContent = u.rights;
+        const backHref = '/blog/index.html?lang=' + LANG + (isEmbed ? '&embed=1' : '');
+        document.getElementById('crumbBlog').href = backHref;
+      }
+      if (langSelect) langSelect.addEventListener('change', (e) => {
+        if (!UI[e.target.value]) return;
+        LANG = e.target.value;
+        try{ localStorage.setItem('tr_lang', LANG); }catch(err){}
+        applyStaticUi(); load();
+      });
+      applyStaticUi();
+
+      const TAG_LABELS = {
+        europa: { pl: 'Europa', en: 'Europe', es: 'Europa' },
+        poradnik: { pl: 'Poradnik', en: 'Guide', es: 'Guía' },
+        porady: { pl: 'Porady', en: 'Tips', es: 'Consejos' },
+        vanlife: { pl: 'Vanlife', en: 'Vanlife', es: 'Vanlife' },
+        roadtrip: { pl: 'Road trip', en: 'Road trip', es: 'Road trip' },
+        bezpieczenstwo: { pl: 'Bezpieczeństwo', en: 'Safety', es: 'Seguridad' },
+        budzet: { pl: 'Budżet', en: 'Budget', es: 'Presupuesto' },
+        planowanie: { pl: 'Planowanie', en: 'Planning', es: 'Planificación' },
+        kamper: { pl: 'Kamper', en: 'Motorhome', es: 'Autocaravana' },
+        prawo: { pl: 'Prawo', en: 'Law', es: 'Ley' }
+      };
+      function tagLabel(slug){
+        const e = TAG_LABELS[String(slug || '').toLowerCase()];
+        return (e && (e[LANG] || e.en)) || String(slug || '').replace(/[-_]+/g, ' ').replace(/\b\w/g, (m) => m.toUpperCase());
       }
 
-      function pickLangField(obj, fallbackLang){
-        if (!obj) return '';
-        const lang = document.documentElement.lang || 'pl';
-        return obj[lang] || (fallbackLang && obj[fallbackLang]) || obj.pl || obj.en || obj.es || '';
+      const FALLBACKS = [
+        { src: '/blog/images/wild-camping-van.jpg' },
+        { src: '/blog/images/van-life-budget-calculator.jpg' },
+        { src: '/blog/images/safe-overnight-motorhome-parking.jpg' },
+        { src: '/blog/images/vanlife-costs-1.jpg' },
+        { src: '/blog/images/vanlife-costs-2.jpg' },
+        { src: '/blog/images/digital-nomad-van.jpg' },
+        { src: '/blog/images/spain-camper.jpg' },
+        { src: '/blog/images/camper-cooking.jpg', credit: 'Kampus Production', sourceUrl: 'https://www.pexels.com/photo/a-woman-cooking-inside-an-rv-7476248/' },
+        { src: '/blog/images/packing-suitcase.jpg', credit: 'Pexels', sourceUrl: 'https://www.pexels.com/photo/packing-suitcase-for-traveling-9186152/' },
+        { src: '/blog/images/family-van-trip.jpg', credit: 'Pexels', sourceUrl: 'https://www.pexels.com/photo/family-on-a-van-14809953/' },
+        { src: '/blog/images/dog-car-travel.jpg', credit: 'Pexels', sourceUrl: 'https://www.pexels.com/photo/dog-in-a-car-with-its-head-sticking-out-the-window-26821389/' },
+        { src: '/blog/images/winter-camper.jpg', credit: 'Jeremy Li', sourceUrl: 'https://www.pexels.com/photo/scenic-winter-rv-camping-in-forest-landscape-30169347/' },
+        { src: '/blog/images/mountain-road-van.jpg', credit: 'Pexels', sourceUrl: 'https://www.pexels.com/photo/camping-van-on-the-road-in-the-mountains-17801948/' },
+        { src: '/blog/images/work-in-motorhome.jpg', credit: 'Pexels', sourceUrl: 'https://www.pexels.com/photo/a-couple-inside-a-motorhome-7476236/' },
+        { src: '/blog/images/europe-old-town.jpg', credit: 'Pexels', sourceUrl: 'https://www.pexels.com/photo/bustling-european-old-town-street-at-dusk-34538705/' }
+      ];
+      function hashStr(s){
+        let h = 0; const str = String(s || '');
+        for (let i = 0; i < str.length; i++){ h = (h * 31 + str.charCodeAt(i)) | 0; }
+        return Math.abs(h);
+      }
+      function pickLang(obj){
+        if (!obj || typeof obj !== 'object') return typeof obj === 'string' ? obj : '';
+        return obj[LANG] || obj.pl || obj.en || obj.es || '';
+      }
+      function escapeHtml(s){
+        return String(s == null ? '' : s)
+          .replaceAll('&','&amp;').replaceAll('<','&lt;').replaceAll('>','&gt;')
+          .replaceAll('"','&quot;').replaceAll("'",'&#039;');
+      }
+      function stripHtml(html){
+        return String(html || '').replace(/<script[\s\S]*?<\/script>/gi, ' ')
+          .replace(/<[^>]+>/g, ' ').replace(/\s+/g, ' ').trim();
+      }
+      const TAG_IMAGES = {
+        budzet: [1, 3, 4], oszczedzanie: [1, 3, 4], koszty: [3, 4, 1],
+        bezpieczenstwo: [2, 0], prawo: [2, 12], zabezpieczenia: [2, 0],
+        digitalnomad: [5, 13], workation: [5, 13], internet: [5, 13],
+        hiszpania: [6, 12], 'cieple-kraje': [6, 9],
+        wildcamping: [0, 12, 2], nocowanie: [0, 2], kempingi: [0, 6],
+        vanlife: [12, 0, 6], kamper: [12, 11, 4], roadtrip: [12, 14, 6],
+        podroze: [12, 14, 6], europa: [14, 12, 6],
+        gotowanie: [7], kuchnia: [7],
+        pakowanie: [8], dokumenty: [8, 13], organizacja: [8, 13, 1], planowanie: [1, 8, 13],
+        rodzina: [9], dzieci: [9],
+        zwierzeta: [10], 'pies-w-podrozy': [10],
+        zima: [11],
+        lifestyle: [13, 6, 9]
+      };
+      function coverOf(p){
+        if (p && p.image && p.image.src) return { src: p.image.src, credit: p.image.credit || '', sourceUrl: p.image.sourceUrl || '' };
+        const m = String(pickLang(p.contentHtml)).match(/<img[^>]+src="([^"]+)"/i);
+        if (m) return { src: m[1], credit: '', sourceUrl: '' };
+        const pool = [];
+        for (const t of (p.tags || [])){
+          const arr = TAG_IMAGES[String(t || '').toLowerCase()];
+          if (arr) for (const i of arr) if (!pool.includes(i)) pool.push(i);
+        }
+        if (pool.length) return FALLBACKS[pool[hashStr(p.id) % pool.length]];
+        return FALLBACKS[hashStr(p.id) % FALLBACKS.length];
+      }
+      function postImage(p){ return coverOf(p).src; }
+      function postUrl(p){
+        const slug = (p.slugs && (p.slugs[LANG] || p.slugs.en || p.slugs.pl)) || p.id;
+        return `/blog/p/${encodeURIComponent(slug)}.${LANG}.html`;
       }
 
-      // ---- iframe height reporting (debounced + change detection to avoid infinite loops) ----
-      let _lastH = 0;
-      let _hTimer = 0;
+      // Height reporting (embed)
+      let _lastH = 0, _hTimer = 0;
       function notifyHeight(){
         if (!isEmbed) return;
         try{
-          const h = Math.max(
-            document.body.scrollHeight,
-            document.documentElement.scrollHeight,
-            document.body.offsetHeight,
-            document.documentElement.offsetHeight
-          );
+          const h = Math.max(document.body.scrollHeight, document.documentElement.scrollHeight);
           const next = Math.round(h || 0);
           if (!next || Math.abs(next - _lastH) < 2) return;
           _lastH = next;
@@ -187,64 +436,135 @@
         clearTimeout(_hTimer);
         _hTimer = setTimeout(notifyHeight, 60);
       }
-
       window.addEventListener('resize', () => scheduleHeight());
-      window.addEventListener('message', (ev) => {
-        const d = ev && ev.data;
-        if (d && d.type === 'tr-blog-request-height') scheduleHeight();
-      });
-      if ('ResizeObserver' in window) {
-        const ro = new ResizeObserver(() => scheduleHeight());
-        ro.observe(document.documentElement);
+
+      const titleEl = document.getElementById('title');
+      const ledeEl = document.getElementById('lede');
+      const contentEl = document.getElementById('content');
+      const metaEl = document.getElementById('meta');
+
+      function fail(title, text){
+        titleEl.textContent = title;
+        contentEl.innerHTML = `<p class="muted">${escapeHtml(text)}</p>`;
+        document.getElementById('crumbCurrent').textContent = title;
+        scheduleHeight();
       }
 
       async function load(){
-        if(!id){
-          titleEl.textContent = 'Brak ID posta';
-          contentEl.innerHTML = '<p class="muted">Otwórz wpis z listy bloga.</p>';
-          scheduleHeight();
+        const id = new URLSearchParams(location.search).get('id');
+        const u = UI[LANG];
+        if (!id){ fail(u.noId, u.noIdText); return; }
+        let posts = [];
+        for (const url of ['data/posts.json', '/blog/data/posts.json']){
+          try{
+            const res = await fetch(url, { cache: 'no-store' });
+            if (res.ok){ const data = await res.json(); posts = Array.isArray(data) ? data : (data.posts || []); break; }
+          }catch(e){}
+        }
+        const post = posts.find(p => p.id === id);
+        if (!post){
+          if (!posts.length && location.protocol === 'file:' && u.fileHint){
+            fail(u.loadError, u.loadErrorText + ' ' + u.fileHint);
+          } else {
+            fail(u.notFound, u.notFoundText);
+          }
           return;
         }
 
-        try{
-          const res = await fetch(POSTS_JSON_URL, { cache:'no-store' });
-          if(!res.ok) throw new Error('posts.json not found');
-          const data = await res.json();
-          const posts = Array.isArray(data) ? data : (data && Array.isArray(data.posts) ? data.posts : []);
-          const post = posts.find(p => p.id === id);
+        const title = pickLang(post.title);
+        const excerpt = pickLang(post.excerpt);
+        const html = pickLang(post.contentHtml);
+        const tags = post.tags || [];
+        const mins = Math.max(1, Math.round(stripHtml(html).split(/\s+/).filter(Boolean).length / 200));
+        let date = post.date || '';
+        try{ date = new Intl.DateTimeFormat(LANG, { year:'numeric', month:'short', day:'2-digit' }).format(new Date(date + 'T00:00:00')); }catch(e){}
 
-          if(!post){
-            titleEl.textContent = 'Nie znaleziono posta';
-            contentEl.innerHTML = '<p class="muted">Ten wpis nie istnieje lub ma inne ID.</p>';
-            scheduleHeight();
-            return;
-          }
+        document.title = title + ' — Travel Rules';
+        const metaDesc = document.querySelector('meta[name="description"]');
+        if (metaDesc) metaDesc.setAttribute('content', excerpt.slice(0, 160));
 
-          const source = post.sourceLang || 'pl';
+        document.getElementById('crumbCurrent').textContent = title;
+        titleEl.textContent = title;
+        if (excerpt){ ledeEl.hidden = false; ledeEl.textContent = excerpt; }
+        metaEl.innerHTML = `<span>${escapeHtml(date)}</span><span class="dot">•</span><span>${mins} ${escapeHtml(u.min_read)}</span>` +
+          (tags.length ? `<span class="dot">•</span>` + tags.slice(0, 4).map(slug =>
+            `<a class="tag" href="/blog/t/${encodeURIComponent(String(slug).toLowerCase())}.${LANG}.html">${escapeHtml(tagLabel(slug))}</a>`
+          ).join(' ') : '');
 
-          const title = pickLangField(post.title, source);
-          const html = pickLangField(post.contentHtml, source);
-          const tags = (post.tags||[]).map(t => `<span class="tag">${escapeHtml(t)}</span>`).join(' ');
-          const date = post.date ? formatDateISO(post.date) : '';
-
-          document.title = title ? (title + ' — Travel Rules') : 'Post — Travel Rules';
-
-          titleEl.textContent = title || 'Wpis';
-          contentEl.innerHTML = html || '<p class="muted">Brak treści.</p>';
-
-          metaEl.innerHTML = `
-            <span>${escapeHtml(date)}</span>
-            ${tags ? `<span class="dot">•</span>${tags}` : ''}
-          `;
-
-          requestAnimationFrame(scheduleHeight);
-          setTimeout(scheduleHeight, 120);
-          setTimeout(scheduleHeight, 600);
-        }catch(e){
-          titleEl.textContent = 'Błąd ładowania';
-          contentEl.innerHTML = '<p class="muted">Nie udało się wczytać treści.</p>';
-          scheduleHeight();
+        // Hero image
+        const cover = coverOf(post);
+        const imgSrc = cover.src;
+        const heroFigure = document.getElementById('heroFigure');
+        const heroImg = document.getElementById('heroImg');
+        heroFigure.hidden = false;
+        heroImg.src = imgSrc;
+        heroImg.alt = title;
+        heroImg.loading = 'eager';
+        if (post.image && post.image.width) heroImg.width = post.image.width;
+        if (post.image && post.image.height) heroImg.height = post.image.height;
+        const heroCap = document.getElementById('heroCap');
+        if (cover.credit){
+          heroCap.hidden = false;
+          const credit = escapeHtml(cover.credit);
+          const src = cover.sourceUrl ? `<a href="${escapeHtml(cover.sourceUrl)}" target="_blank" rel="noopener">${credit}</a>` : credit;
+          heroCap.innerHTML = src;
         }
+
+        contentEl.innerHTML = html || '';
+
+        // TOC from h2
+        const toc = document.getElementById('toc');
+        const tocList = document.getElementById('tocList');
+        const heads = [...contentEl.querySelectorAll('h2')];
+        if (heads.length >= 2){
+          toc.hidden = false;
+          tocList.innerHTML = heads.map((h, i) => {
+            if (!h.id) h.id = 'sekcja-' + (i + 1);
+            return `<li><a href="#${h.id}">${escapeHtml(h.textContent)}</a></li>`;
+          }).join('');
+        } else { toc.hidden = true; }
+
+        // Share
+        const shareRow = document.getElementById('shareRow');
+        shareRow.hidden = false;
+        const pageUrl = location.origin + '/blog/p/' + encodeURIComponent((post.slugs && (post.slugs[LANG] || post.slugs.en || post.slugs.pl)) || post.id) + '.' + LANG + '.html';
+        document.getElementById('shareX').href = 'https://twitter.com/intent/tweet?text=' + encodeURIComponent(title) + '&url=' + encodeURIComponent(pageUrl);
+        document.getElementById('shareFb').href = 'https://www.facebook.com/sharer/sharer.php?u=' + encodeURIComponent(pageUrl);
+        document.getElementById('shareCopy').addEventListener('click', async (ev) => {
+          const btn = ev.currentTarget;
+          try{ await navigator.clipboard.writeText(pageUrl); document.getElementById('shareCopyLabel').textContent = u.copied; }
+          catch(e){ prompt(u.copy + ':', pageUrl); }
+          setTimeout(() => { document.getElementById('shareCopyLabel').textContent = u.copy; }, 2000);
+        }, { once: true });
+        const nativeBtn = document.getElementById('shareNative');
+        if (navigator.share){
+          nativeBtn.hidden = false;
+          nativeBtn.addEventListener('click', () => {
+            navigator.share({ title, text: excerpt, url: pageUrl }).catch(() => {});
+          }, { once: true });
+        }
+
+        document.getElementById('authorBox').hidden = false;
+        document.getElementById('ctaPanel').hidden = false;
+
+        // Related by tag overlap
+        const scored = posts
+          .filter(p => p.id !== post.id)
+          .map(p => ({ p, score: (p.tags || []).filter(x => tags.map(String).map(s => s.toLowerCase()).includes(String(x).toLowerCase())).length }))
+          .filter(x => x.score > 0)
+          .sort((a, b) => b.score - a.score || (b.p.date || '').localeCompare(a.p.date || ''))
+          .slice(0, 3);
+        if (scored.length){
+          document.getElementById('relatedBox').hidden = false;
+          document.getElementById('relatedGrid').innerHTML = scored.map(({ p }) => {
+            const rt = escapeHtml(pickLang(p.title));
+            return `<article class="rel-card"><a href="${postUrl(p)}" tabindex="-1" aria-hidden="true"><img src="${escapeHtml(postImage(p))}" alt="" loading="lazy" decoding="async" /></a>` +
+              `<div class="rel-body"><h4><a href="${postUrl(p)}">${rt}</a></h4></div></article>`;
+          }).join('');
+        }
+
+        requestAnimationFrame(scheduleHeight);
+        setTimeout(scheduleHeight, 300);
       }
 
       load();
