@@ -57,6 +57,23 @@ const TAG_LABELS = {
 };
 
 const RELATED = {
+  "campervan-fresh-water-tank-safety": {
+    pl: [
+      ["Prysznic i toaleta w vanie", "/blog/p/prysznic-toaleta-w-vanie-poradnik.pl.html"],
+      ["Lista 87 rzeczy do kampera", "/blog/p/co-zabrac-do-kampera-lista-87-rzeczy-2026.pl.html"],
+      ["Pierwsza podróż kamperem", "/blog/p/pierwsza_podroz_kamperem_bledy_poczatkujacych.pl.html"]
+    ],
+    en: [
+      ["Campervan shower and toilet", "/blog/p/van-life-shower-toilet-guide.en.html"],
+      ["87 item campervan packing list", "/blog/p/campervan-packing-list-87-essentials-2026.en.html"],
+      ["First campervan trip", "/blog/p/pierwsza_podroz_kamperem_bledy_poczatkujacych.en.html"]
+    ],
+    es: [
+      ["Ducha y baño en furgoneta", "/blog/p/ducha-bano-furgoneta-guia.es.html"],
+      ["87 cosas para la autocaravana", "/blog/p/que-llevar-autocaravana-lista-87-cosas-2026.es.html"],
+      ["Primer viaje en autocaravana", "/blog/p/pierwsza_podroz_kamperem_bledy_poczatkujacych.es.html"]
+    ]
+  },
   "campervan-condensation-mould-prevention": {
     pl: [
       ["Zima w kamperze", "/blog/p/kamperem_w_zimie_ogrzewanie_porady.pl.html"],
