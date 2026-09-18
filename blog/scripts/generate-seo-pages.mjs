@@ -57,6 +57,23 @@ const TAG_LABELS = {
 };
 
 const RELATED = {
+  "campervan-payload-axle-weight-guide": {
+    pl: [
+      ["Lista 87 rzeczy do kampera", "/blog/p/co-zabrac-do-kampera-lista-87-rzeczy-2026.pl.html"],
+      ["Pierwsza podróż kamperem", "/blog/p/pierwsza_podroz_kamperem_bledy_poczatkujacych.pl.html"],
+      ["Kalkulator budżetu vanlife", "/blog/p/kalkulator-budzetu-vanlife-koszt-pierwszego-roku.pl.html"]
+    ],
+    en: [
+      ["87 item campervan packing list", "/blog/p/campervan-packing-list-87-essentials-2026.en.html"],
+      ["First campervan trip", "/blog/p/pierwsza_podroz_kamperem_bledy_poczatkujacych.en.html"],
+      ["Van life budget calculator", "/blog/p/van-life-budget-calculator-first-year-cost.en.html"]
+    ],
+    es: [
+      ["87 cosas para la autocaravana", "/blog/p/que-llevar-autocaravana-lista-87-cosas-2026.es.html"],
+      ["Primer viaje en autocaravana", "/blog/p/pierwsza_podroz_kamperem_bledy_poczatkujacych.es.html"],
+      ["Calculadora de presupuesto vanlife", "/blog/p/calculadora-presupuesto-vanlife-coste-primer-ano.es.html"]
+    ]
+  },
   "campervan-fresh-water-tank-safety": {
     pl: [
       ["Prysznic i toaleta w vanie", "/blog/p/prysznic-toaleta-w-vanie-poradnik.pl.html"],
