@@ -53,7 +53,8 @@ const TAG_LABELS = {
   planowanie: { pl: "Planowanie", en: "Planning", es: "Planificación" },
   europa: { pl: "Europa", en: "Europe", es: "Europa" },
   prawo: { pl: "Prawo", en: "Law", es: "Normativa" },
-  kamper: { pl: "Kamper", en: "Motorhome", es: "Autocaravana" }
+  kamper: { pl: "Kamper", en: "Motorhome", es: "Autocaravana" },
+  przyczepa: { pl: "Przyczepa", en: "Trailer", es: "Remolque" }
 };
 
 const RELATED = {
@@ -279,7 +280,7 @@ function page(post, lang) {
       url: SITE
     },
     datePublished: post.date,
-    dateModified: post.date,
+    dateModified: post.modified || post.date,
     image: imageUrl,
     inLanguage: lang,
     url: canonical,

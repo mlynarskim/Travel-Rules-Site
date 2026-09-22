@@ -59,6 +59,7 @@ const TAG_LABELS = {
   budzet: { pl: "Budżet", en: "Budget", es: "Presupuesto" },
   planowanie: { pl: "Planowanie", en: "Planning", es: "Planificación" },
   kamper: { pl: "Kamper", en: "Motorhome", es: "Autocaravana" },
+  przyczepa: { pl: "Przyczepa", en: "Trailer", es: "Remolque" },
   kempingi: { pl: "Kempingi", en: "Campsites", es: "Campings" },
   wildcamping: { pl: "Nocowanie na dziko", en: "Wild camping", es: "Acampada libre" },
   nocowanie: { pl: "Nocowanie", en: "Overnight stays", es: "Pernocta" },
@@ -443,6 +444,7 @@ function pageTemplate({ post, lang, allPosts }) {
   const seoTitle = pickLang(post.seoTitle, lang) || title;
   const description = makeDescription(post, lang);
   const date = post.date || "";
+  const modified = post.modified || date;
   const displayDate = formatDate(date, lang);
   const tags = Array.isArray(post.tags) ? post.tags : [];
   const tagSlugs = tags.map((t) => slugify(t)).filter(Boolean);
@@ -468,7 +470,7 @@ function pageTemplate({ post, lang, allPosts }) {
     author: { "@type": "Person", name: "Mateusz Młynarski", url: "https://www.linkedin.com/in/mateuszmlynarski/" },
     publisher: { "@type": "Organization", name: "Travel Rules", url: SITE },
     datePublished: date,
-    dateModified: date,
+    dateModified: modified,
     wordCount: words,
     timeRequired: `PT${mins}M`,
     inLanguage: lang,
@@ -513,6 +515,7 @@ function pageTemplate({ post, lang, allPosts }) {
   <meta property="og:image" content="${esc(imageUrl)}" />
   <meta property="og:locale" content="${locale}" />
   <meta property="article:published_time" content="${esc(date)}" />
+  <meta property="article:modified_time" content="${esc(modified)}" />
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="${esc(title)}" />
   <meta name="twitter:description" content="${esc(description)}" />
@@ -628,7 +631,7 @@ function build() {
       const outPath = path.join(outDir, fileName);
       const canonical = `${SITE}/blog/p/${encodeURIComponent(fileName)}`;
       fs.writeFileSync(outPath, pageTemplate({ post, lang, allPosts: posts }), "utf-8");
-      urls.push({ loc: canonical, lastmod: post.date });
+      urls.push({ loc: canonical, lastmod: post.modified || post.date });
 
       const tagSlugs = (Array.isArray(post.tags) ? post.tags : []).map((t) => slugify(t)).filter(Boolean);
       for (const tagSlug of tagSlugs) {
@@ -638,6 +641,7 @@ function build() {
           excerpt: pickLang(post.excerpt, lang) || "",
           date: formatDate(post.date, lang),
           rawDate: post.date || "",
+          lastmod: post.modified || post.date || "",
           mins: readingMinutes(post.contentHtml, lang),
           img: resolveCover(post, lang).src,
           href: `/blog/p/${encodeURIComponent(fileName)}`
@@ -663,7 +667,8 @@ function build() {
         tagPageTemplate({ lang, tagSlug, canonical, title, description, posts: sorted }),
         "utf-8"
       );
-      tagUrls.push({ loc: canonical, lastmod: sorted[0]?.rawDate || "" });
+      const lastmod = [...sorted].sort((a, b) => (b.lastmod || "").localeCompare(a.lastmod || ""))[0]?.lastmod || "";
+      tagUrls.push({ loc: canonical, lastmod });
     }
   }
 
