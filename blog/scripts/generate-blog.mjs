@@ -89,6 +89,23 @@ function tagLabel(tagSlug, lang) {
 // Hand-picked related links for flagship posts (labels + hrefs verified by author).
 // Everywhere else related posts are picked automatically by shared tags.
 const RELATED = {
+  "campervan-carbon-monoxide-gas-fire-safety": {
+    pl: [
+      ["Wilgoć i pleśń w kamperze", "/blog/p/wilgoc-kondensacja-plesn-w-kamperze.pl.html"],
+      ["Pierwsza podróż kamperem", "/blog/p/pierwsza_podroz_kamperem_bledy_poczatkujacych.pl.html"],
+      ["Lista 87 rzeczy do kampera", "/blog/p/co-zabrac-do-kampera-lista-87-rzeczy-2026.pl.html"]
+    ],
+    en: [
+      ["Campervan condensation and mould", "/blog/p/campervan-condensation-mould-prevention.en.html"],
+      ["First campervan trip", "/blog/p/pierwsza_podroz_kamperem_bledy_poczatkujacych.en.html"],
+      ["87 item campervan packing list", "/blog/p/campervan-packing-list-87-essentials-2026.en.html"]
+    ],
+    es: [
+      ["Condensación y moho en la autocaravana", "/blog/p/condensacion-humedad-moho-autocaravana.es.html"],
+      ["Primer viaje en autocaravana", "/blog/p/pierwsza_podroz_kamperem_bledy_poczatkujacych.es.html"],
+      ["87 cosas para la autocaravana", "/blog/p/que-llevar-autocaravana-lista-87-cosas-2026.es.html"]
+    ]
+  },
   "van-life-budget-calculator-first-year": {
     pl: [
       ["Prawdziwy koszt vanlife w Europie", "/blog/p/ile-kosztuje-vanlife-europa-2026.pl.html"],
