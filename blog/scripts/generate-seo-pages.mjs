@@ -58,6 +58,23 @@ const TAG_LABELS = {
 };
 
 const RELATED = {
+  "campervan-battery-runtime-power-budget-solar": {
+    pl: [
+      ["Gaz i czad w kamperze", "/blog/p/gaz-czad-kamper-czujnik-co-bezpieczenstwo.pl.html"],
+      ["Praca zdalna z vana", "/blog/p/cyfrowy_nomada_praca_z_vana_internet_prad_ergonomia.pl.html"],
+      ["Pierwsza podróż kamperem", "/blog/p/pierwsza_podroz_kamperem_bledy_poczatkujacych.pl.html"]
+    ],
+    en: [
+      ["Campervan gas and CO safety", "/blog/p/campervan-carbon-monoxide-gas-fire-safety.en.html"],
+      ["Remote work from a van", "/blog/p/cyfrowy_nomada_praca_z_vana_internet_prad_ergonomia.en.html"],
+      ["First campervan trip", "/blog/p/pierwsza_podroz_kamperem_bledy_poczatkujacych.en.html"]
+    ],
+    es: [
+      ["Seguridad del gas y CO", "/blog/p/gas-monoxido-carbono-autocaravana-seguridad.es.html"],
+      ["Teletrabajo desde una furgoneta", "/blog/p/cyfrowy_nomada_praca_z_vana_internet_prad_ergonomia.es.html"],
+      ["Primer viaje en autocaravana", "/blog/p/pierwsza_podroz_kamperem_bledy_poczatkujacych.es.html"]
+    ]
+  },
   "campervan-carbon-monoxide-gas-fire-safety": {
     pl: [
       ["Wilgoć i pleśń w kamperze", "/blog/p/wilgoc-kondensacja-plesn-w-kamperze.pl.html"],
