@@ -58,6 +58,23 @@ const TAG_LABELS = {
 };
 
 const RELATED = {
+  "drowsy-driving-road-trip-fatigue-plan": {
+    pl: [
+      ["Checklista road tripu po Europie", "/blog/p/road-trip-europe-checklist.pl.html"],
+      ["Przygotowanie samochodu do długiej trasy", "/blog/p/przygotowanie-samochodu-do-dlugiej-trasy.pl.html"],
+      ["Bezpieczny nocleg kamperem", "/blog/p/bezpieczny-nocleg-kamperem-jak-wybrac-miejsce.pl.html"]
+    ],
+    en: [
+      ["Europe road trip checklist", "/blog/p/road-trip-europe-checklist.en.html"],
+      ["Prepare a car for a long journey", "/blog/p/przygotowanie-samochodu-do-dlugiej-trasy.en.html"],
+      ["Safe overnight motorhome parking", "/blog/p/safe-overnight-motorhome-parking-guide.en.html"]
+    ],
+    es: [
+      ["Lista para un road trip por Europa", "/blog/p/road-trip-europe-checklist.es.html"],
+      ["Preparar el coche para un viaje largo", "/blog/p/przygotowanie-samochodu-do-dlugiej-trasy.es.html"],
+      ["Elegir un lugar seguro para dormir", "/blog/p/como-elegir-lugar-seguro-dormir-autocaravana.es.html"]
+    ]
+  },
   "campervan-battery-runtime-power-budget-solar": {
     pl: [
       ["Gaz i czad w kamperze", "/blog/p/gaz-czad-kamper-czujnik-co-bezpieczenstwo.pl.html"],
