@@ -58,6 +58,23 @@ const TAG_LABELS = {
 };
 
 const RELATED = {
+  "campervan-tyre-pressure-load-age-check": {
+    pl: [
+      ["Ładowność kampera i naciski osi", "/blog/p/ladownosc-kampera-jak-zwazyc-osie.pl.html"],
+      ["Przygotowanie samochodu do długiej trasy", "/blog/p/przygotowanie-samochodu-do-dlugiej-trasy.pl.html"],
+      ["Pierwsza podróż kamperem", "/blog/p/pierwsza_podroz_kamperem_bledy_poczatkujacych.pl.html"]
+    ],
+    en: [
+      ["Campervan payload and axle weight", "/blog/p/campervan-payload-axle-weight-guide.en.html"],
+      ["Prepare a car for a long journey", "/blog/p/przygotowanie-samochodu-do-dlugiej-trasy.en.html"],
+      ["First campervan trip", "/blog/p/pierwsza_podroz_kamperem_bledy_poczatkujacych.en.html"]
+    ],
+    es: [
+      ["Carga útil y peso por ejes", "/blog/p/carga-util-autocaravana-peso-ejes.es.html"],
+      ["Preparar el coche para un viaje largo", "/blog/p/przygotowanie-samochodu-do-dlugiej-trasy.es.html"],
+      ["Primer viaje en autocaravana", "/blog/p/pierwsza_podroz_kamperem_bledy_poczatkujacych.es.html"]
+    ]
+  },
   "drowsy-driving-road-trip-fatigue-plan": {
     pl: [
       ["Checklista road tripu po Europie", "/blog/p/road-trip-europe-checklist.pl.html"],
