@@ -89,6 +89,23 @@ function tagLabel(tagSlug, lang) {
 // Hand-picked related links for flagship posts (labels + hrefs verified by author).
 // Everywhere else related posts are picked automatically by shared tags.
 const RELATED = {
+  "vanlife-laundry-washing-drying-small-campervan": {
+    pl: [
+      ["Organizacja przestrzeni w vanie", "/blog/p/organizacja_przestrzeni_w_vanie_porady.pl.html"],
+      ["Wilgoć i pleśń w kamperze", "/blog/p/wilgoc-kondensacja-plesn-w-kamperze.pl.html"],
+      ["Prysznic i toaleta w vanie", "/blog/p/prysznic-toaleta-w-vanie-poradnik.pl.html"]
+    ],
+    en: [
+      ["Organising space in a van", "/blog/p/organizacja_przestrzeni_w_vanie_porady.en.html"],
+      ["Campervan condensation and mould", "/blog/p/campervan-condensation-mould-prevention.en.html"],
+      ["Campervan shower and toilet", "/blog/p/van-life-shower-toilet-guide.en.html"]
+    ],
+    es: [
+      ["Organizar el espacio en la furgoneta", "/blog/p/organizacja_przestrzeni_w_vanie_porady.es.html"],
+      ["Condensación y moho en la autocaravana", "/blog/p/condensacion-humedad-moho-autocaravana.es.html"],
+      ["Ducha y baño en la furgoneta", "/blog/p/ducha-bano-furgoneta-guia.es.html"]
+    ]
+  },
   "campervan-tyre-pressure-load-age-check": {
     pl: [
       ["Ładowność kampera i naciski osi", "/blog/p/ladownosc-kampera-jak-zwazyc-osie.pl.html"],
