@@ -58,6 +58,23 @@ const TAG_LABELS = {
 };
 
 const RELATED = {
+  "vanlife-burnout-travel-fatigue-reset-routine": {
+    pl: [
+      ["Jak mieszkać w vanie na pełen etat", "/blog/p/how-to-live-in-a-van-full-time-2026.pl.html"],
+      ["Kalkulator budżetu vanlife", "/blog/p/kalkulator-budzetu-vanlife-koszt-pierwszego-roku.pl.html"],
+      ["Pranie w vanie bez wilgoci", "/blog/p/pranie-w-vanie-jak-prac-suszyc-bez-wilgoci.pl.html"]
+    ],
+    en: [
+      ["How to live in a van full time", "/blog/p/how-to-live-in-a-van-full-time-2026.en.html"],
+      ["Van life budget calculator", "/blog/p/van-life-budget-calculator-first-year-cost.en.html"],
+      ["Campervan laundry without damp", "/blog/p/vanlife-laundry-washing-drying-small-campervan.en.html"]
+    ],
+    es: [
+      ["Cómo vivir en una furgoneta a tiempo completo", "/blog/p/how-to-live-in-a-van-full-time-2026.es.html"],
+      ["Calculadora de presupuesto vanlife", "/blog/p/calculadora-presupuesto-vanlife-coste-primer-ano.es.html"],
+      ["Lavandería en la furgoneta sin humedad", "/blog/p/lavar-secar-ropa-furgoneta-sin-humedad.es.html"]
+    ]
+  },
   "vanlife-laundry-washing-drying-small-campervan": {
     pl: [
       ["Organizacja przestrzeni w vanie", "/blog/p/organizacja_przestrzeni_w_vanie_porady.pl.html"],
